@@ -7,7 +7,7 @@ export default defineConfig({
 		react(),
 		VitePWA({
 			registerType: "autoUpdate",
-			includeAssets: ["vite.svg"], // Update this array to include only existing assets
+			includeAssets: ["logo.svg"], // Update this array to include only existing assets
 			manifest: {
 				name: "ivisit",
 				short_name: "ivisit",
@@ -15,12 +15,12 @@ export default defineConfig({
 				theme_color: "#000", // Default theme color
 				icons: [
 					{
-						src: "vite.svg",
+						src: "logo.svg",
 						sizes: "192x192",
 						type: "image/svg+xml",
 					},
 					{
-						src: "vite.png",
+						src: "logo.png",
 						sizes: "512x512",
 						type: "image/svg+xml",
 					},
