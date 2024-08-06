@@ -2,7 +2,7 @@
 import React from 'react';
 
 const Avatar = ({ children, className }) => (
-  <div className={`w-10 h-10 rounded-full overflow-hidden bg-gray-200 ${className}`}>
+  <div className={`w-12 h-12 border border-red-500/50 p-1 shadow-md rounded-full overflow-hidden bg-gray-200 ${className}`}>
     {children}
   </div>
 );
