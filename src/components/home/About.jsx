@@ -49,7 +49,7 @@ const About = () => {
 					data-aos="fade-up"
 				>
 					{features.map((feature, index) => (
-						<div key={index} className="grid gap-1 p-4 rounded-xl bg-muted">
+						<div key={index} className="grid gap-1 p-4 rounded-xl bg-muted sm:h-36">
 							<h3 className="text-lg font-bold">{feature.title}</h3>
 							<p className="text-sm text-muted-foreground">
 								{feature.description}
