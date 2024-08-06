@@ -21,7 +21,7 @@ const Team = () => {
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 					<div className="flex flex-col items-center justify-center space-y-2">
 						<Avatar>
-							<AvatarImage src="vite.svg" alt="Dr. Jane Doe" />
+							<AvatarImage src="logo.svg" alt="Dr. Jane Doe" />
 							<AvatarFallback>JD</AvatarFallback>
 						</Avatar>
 						<div className="text-center">
@@ -33,7 +33,7 @@ const Team = () => {
 					</div>
 					<div className="flex flex-col items-center justify-center space-y-2">
 						<Avatar>
-							<AvatarImage src="vite.svg" alt="Dr. John Smith" />
+							<AvatarImage src="logo.svg" alt="Dr. John Smith" />
 							<AvatarFallback>JS</AvatarFallback>
 						</Avatar>
 						<div className="text-center">
@@ -43,7 +43,7 @@ const Team = () => {
 					</div>
 					<div className="flex flex-col items-center justify-center space-y-2">
 						<Avatar>
-							<AvatarImage src="vite.svg" alt="Dr. Sarah Lee" />
+							<AvatarImage src="logo.svg" alt="Dr. Sarah Lee" />
 							<AvatarFallback>SL</AvatarFallback>
 						</Avatar>
 						<div className="text-center">
@@ -53,7 +53,7 @@ const Team = () => {
 					</div>
 					<div className="flex flex-col items-center justify-center space-y-2">
 						<Avatar>
-							<AvatarImage src="vite.svg" alt="Dr. Michael Chen" />
+							<AvatarImage src="logo.svg" alt="Dr. Michael Chen" />
 							<AvatarFallback>MC</AvatarFallback>
 						</Avatar>
 						<div className="text-center">
