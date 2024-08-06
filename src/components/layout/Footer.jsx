@@ -7,58 +7,58 @@ const Footer = () => {
 			<div className="container max-w-7xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 text-sm">
 				<div className="grid gap-1">
 					<h3 className="font-semibold">About</h3>
-					<Link href="#" prefetch={false}>
+					<Link href="#" >
 						Our Mission
 					</Link>
-					<Link href="#" prefetch={false}>
+					<Link href="#" >
 						Our History
 					</Link>
-					<Link href="#" prefetch={false}>
+					<Link href="#" >
 						Careers
 					</Link>
 				</div>
 				<div className="grid gap-1">
 					<h3 className="font-semibold">Services</h3>
-					<Link href="#" prefetch={false}>
+					<Link href="#" >
 						Emergency Response
 					</Link>
-					<Link href="#" prefetch={false}>
+					<Link href="#" >
 						Advanced Medical Care
 					</Link>
-					<Link href="#" prefetch={false}>
+					<Link href="#" >
 						Compassionate Service
 					</Link>
 				</div>
 				<div className="grid gap-1">
 					<h3 className="font-semibold">Resources</h3>
-					<Link href="#" prefetch={false}>
+					<Link href="#" >
 						FAQs
 					</Link>
-					<Link href="#" prefetch={false}>
+					<Link href="#" >
 						Blog
 					</Link>
-					<Link href="#" prefetch={false}>
+					<Link href="#" >
 						Community
 					</Link>
 				</div>
 				<div className="grid gap-1">
 					<h3 className="font-semibold">Legal</h3>
-					<Link href="#" prefetch={false}>
+					<Link href="#" >
 						Privacy Policy
 					</Link>
-					<Link href="#" prefetch={false}>
+					<Link href="#" >
 						Terms of Service
 					</Link>
 				</div>
 				<div className="grid gap-1">
 					<h3 className="font-semibold">Contact</h3>
-					<Link href="#" prefetch={false}>
+					<Link href="#" >
 						Phone: 555-555-5555
 					</Link>
-					<Link href="#" prefetch={false}>
+					<Link href="#" >
 						Email: info@ivisit.com
 					</Link>
-					<Link href="#" prefetch={false}>
+					<Link href="#" >
 						Address: 123 Main St, Anytown USA
 					</Link>
 				</div>
