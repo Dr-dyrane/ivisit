@@ -21,8 +21,8 @@ const Navbar = () => {
 
     return (
         <header
-            className={`sticky z-50 top-0 overflow-hidden text-primary-foreground px-4 lg:px-6 h-14 flex items-center transition-all duration-300 ${
-                isScrolled ? "bg-primary/90" : "bg-primary"
+            className={`sticky bg-primary z-50 top-0 overflow-hidden text-primary-foreground px-4 lg:px-6 h-14 flex items-center transition-all duration-300 ${
+                isScrolled ? "glass-effect" : ""
             }`}
         >
             <Link to="/" className="flex items-center justify-center">
