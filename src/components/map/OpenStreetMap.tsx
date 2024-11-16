@@ -62,19 +62,19 @@ interface MapCenterProps {
 // Component to handle map center updates
 function MapCenter({ center, zoom }: MapCenterProps) {
   const map = useMap();
-  
+
   useEffect(() => {
     map.setView(center, zoom);
-    
+
     // Set map options for cleaner view
     map.setMinZoom(14); // Restrict minimum zoom
     map.setMaxZoom(18); // Restrict maximum zoom
-    
+
     // Enable smooth zoom but disable other controls
     map.scrollWheelZoom.enable();
     map.boxZoom.disable();
     map.doubleClickZoom.disable();
-    
+
     // Restrict pan bounds to approximately 1km around center
     const bounds = L.latLngBounds(
       L.latLng(center[0] - 0.005, center[1] - 0.005), // Reduced bounds for closer view
@@ -87,7 +87,7 @@ function MapCenter({ center, zoom }: MapCenterProps) {
       radius: 1000, // 1km in meters
       color: '#ef4444',
       fillColor: '#ef4444',
-      fillOpacity: 0.1,
+      fillOpacity: 0.025,
       weight: 1
     }).addTo(map);
 
@@ -135,16 +135,18 @@ export default function OpenStreetMap({
     <div className="w-full h-full relative">
       <MapContainer
         center={currentLocation}
-        zoom={16} // Increased zoom level for closer view
+        zoom={17} // Increased zoom level for closer view
         className="h-full w-full z-0"
         zoomControl={false}
         attributionControl={false}
+        scrollWheelZoom={false}
       >
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
           className="map-tiles"
+          maxZoom={19}
         />
-        <MapCenter center={currentLocation} zoom={16} />
+        <MapCenter center={currentLocation} zoom={17} />
 
         {/* User Location Marker */}
         <Marker
@@ -155,13 +157,8 @@ export default function OpenStreetMap({
             iconAnchor: [12, 41],
             popupAnchor: [1, -34],
           })}
-        >
-          <Popup>
-            <div className="p-2">
-              <h3 className="font-semibold">Your Location</h3>
-            </div>
-          </Popup>
-        </Marker>
+        />
+
 
         {/* Hospital Markers */}
         {demoHospitals.map((hospital) => (
@@ -178,8 +175,8 @@ export default function OpenStreetMap({
                 <h3 className="font-semibold">{hospital.name}</h3>
                 <p className="text-sm text-gray-600">{hospital.distance}</p>
                 <p className="text-sm text-gray-600">
-                  {mapType === 'hospital' ? 
-                    `Available Beds: ${hospital.availableBeds}` : 
+                  {mapType === 'hospital' ?
+                    `Available Beds: ${hospital.availableBeds}` :
                     `ETA: ${hospital.eta}`
                   }
                 </p>
