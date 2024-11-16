@@ -82,7 +82,7 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
           ];
           const nearbyHospitals = Array.from({ length: 5 }, (_, index) => ({
             name: hospitalNames[index] || 'Unnamed Hospital', // Default name if not available
-            coordinates: getRandomCoordinates(userCoords, 5), // 5-mile radius
+            coordinates: getRandomCoordinates(userCoords, 25), // 25-mile radius
           }));
           setHospitals(nearbyHospitals);
         },
@@ -143,7 +143,8 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
         scrollWheelZoom
       >
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url="https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
+          subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
           maxZoom={19}
         />
 
