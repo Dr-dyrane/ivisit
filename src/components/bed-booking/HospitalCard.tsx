@@ -26,11 +26,11 @@ export default function HospitalCard({
           : 'bg-card/30 hover:bg-card/50 backdrop-blur-sm text-foreground'
       }`}
     >
-      <div className="flex items-start gap-6">
+      <div className="flex flex-col sm:flex-row lg:flex-col items-start gap-6">
         <ImageWithFallback
           src={hospital.image}
           alt={hospital.name}
-          className="w-32 h-24 object-cover rounded-lg"
+          className="w-full sm:w-32 lg:w-full h-auto sm:h-24 lg:h-auto object-cover rounded-lg"
         />
         <div className="flex-1">
           <div className="flex items-center justify-between mb-2">
