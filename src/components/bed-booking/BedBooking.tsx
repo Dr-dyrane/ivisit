@@ -31,7 +31,7 @@ export default function BedBooking() {
       
       <div className="relative flex flex-col lg:flex-row h-screen">
         {/* Map Section */}
-        <div className="flex-1 h-[50vh] lg:h-full bg-card/50 backdrop-blur-sm relative">
+        <div className="flex-1 min-h-[50vh] lg:h-full bg-card/50 backdrop-blur-sm relative">
           <OpenStreetMap
             hospitals={hospitals}
             selectedHospital={selectedHospital}
