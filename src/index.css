@@ -56,12 +56,31 @@
   body {
     @apply bg-background text-foreground transition-colors duration-300;
   }
-  
-  /* Global theme transitions */
-  *, *::before, *::after {
+
+   /* Global theme transitions */
+   *, *::before, *::after {
     @apply transition-colors duration-300;
   }
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 8px; /* Thinner scrollbar */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5); /* Dark color for thumb */
+    border-radius: 4px; /* Rounded corners for the scrollbar thumb */
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1); /* Light background for track */
+  }
+
+  ::-webkit-scrollbar:hover {
+    width: 12px; /* Increase width on hover */
+  }
 }
+
 
 /* Leaflet Map Styles */
 .leaflet-container {

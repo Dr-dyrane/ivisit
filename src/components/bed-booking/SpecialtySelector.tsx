@@ -13,7 +13,7 @@ export default function SpecialtySelector({
   onSelect 
 }: SpecialtySelectorProps) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 gap-4">
       {specialties.map((specialty) => (
         <button
           key={specialty}
