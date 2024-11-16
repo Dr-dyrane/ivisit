@@ -49,8 +49,8 @@ export default function Hero() {
 
       <Container className="relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <animated.div style={fadeIn} className="text-center lg:text-left">
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground mb-6">
+          <animated.div style={fadeIn} className="text-left sm:text-center lg:text-left">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground mb-6">
               iVisit
             </h1>
 
@@ -58,7 +58,7 @@ export default function Hero() {
               Professional medical assistance within minutes.
             </p>
 
-            <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-12">
+            <div className="flex flex-wrap gap-4 justify-start sm:justify-center lg:justify-start mb-12">
               {features.map((feature, index) => (
                 <div
                   key={index}
