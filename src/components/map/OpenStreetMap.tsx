@@ -137,7 +137,7 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
 
   // Map tile URLs for dark and light themes
   const tileLayerUrl = theme === 'dark'
-    ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png' // Dark mode tile layer
+    ? 'https://{s}.google.com/vt/lyrs=r&x={x}&y={y}&z={z}' // Dark mode tile layer
     : 'https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}'; // Light mode tile layer
 
   return (
