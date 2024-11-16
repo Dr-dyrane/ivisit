@@ -132,7 +132,7 @@ export default function OpenStreetMap({
   }, [userLocation]);
 
   return (
-    <div className="w-full h-full relative p-6 rounded-lg">
+    <div className="w-full h-full relative">
       <MapContainer
         center={currentLocation}
         zoom={16} // Increased zoom level for closer view

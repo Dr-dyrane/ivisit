@@ -89,8 +89,8 @@ export default function AmbulanceCall() {
         </div>
 
         {/* Service Selection Panel */}
-        <div className="w-full lg:w-[400px] overflow-auto bg-card/50 backdrop-blur-sm border-l border-border">
-          <Container className="p-6 space-y-6">
+        <div className="w-full lg:w-[400px] rounded-t-3xl lg:rounded-none overflow-auto bg-card/50 backdrop-blur-sm border lg:border-none border-border">
+          <Container className="p-6 mt-6 lg:mt-0 space-y-6">
             <EmergencyHeader />
             
             <ServiceTypeSelector

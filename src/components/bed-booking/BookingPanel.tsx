@@ -24,8 +24,8 @@ export default function BookingPanel({
   onBookBed
 }: BookingPanelProps) {
   return (
-    <animated.div style={fadeIn} className="h-full overflow-auto bg-card/50 backdrop-blur-sm border-l border-border">
-      <Container className="p-6 space-y-8">
+    <animated.div style={fadeIn} className="h-full overflow-auto bg-card/50 backdrop-blur-sm rounded-t-3xl lg:rounded-none border lg:border-none border-border">
+      <Container className="p-6 mt-6 lg:mt-0 space-y-8">
         <BookingHeader />
         
         <SpecialtySelector
