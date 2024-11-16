@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Ambulance, PanelTopClose, PanelTopOpen } from 'lucide-react';
+import { Ambulance, LayoutPanelTop, X } from 'lucide-react';
 import { useSpring, animated } from '@react-spring/web';
 import { Dialog } from '@headlessui/react';
 
@@ -59,7 +59,7 @@ export default function Navbar() {
             className="md:hidden inline-flex items-center justify-center rounded-md p-2.5 text-foreground"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <PanelTopOpen className="h-6 w-6" />
+            <LayoutPanelTop className="h-6 w-6" />
           </button>
         </div>
       </div>
@@ -77,7 +77,7 @@ export default function Navbar() {
               className="rounded-md p-2.5 text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <PanelTopClose className="h-6 w-6" />
+              <X className="h-6 w-6" />
             </button>
           </div>
           <div className="mt-6 flow-root">
