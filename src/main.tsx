@@ -12,17 +12,6 @@ const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 
 const savedTheme = localStorage.getItem('theme') || systemTheme;
 root.classList.add(savedTheme);
 
-// Register service worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').then(registration => {
-      console.log('SW registered:', registration);
-    }).catch(error => {
-      console.log('SW registration failed:', error);
-    });
-  });
-}
-
 createRoot(container).render(
   <React.StrictMode>
     <App />
