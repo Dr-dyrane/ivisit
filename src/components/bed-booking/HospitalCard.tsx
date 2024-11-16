@@ -30,7 +30,7 @@ export default function HospitalCard({
         <ImageWithFallback
           src={hospital.image}
           alt={hospital.name}
-          className="w-full sm:w-32 lg:w-full h-auto sm:h-24 lg:h-auto object-cover rounded-lg"
+          className="w-full sm:w-1/3 lg:w-full h-auto object-cover rounded-lg"
         />
         <div className="flex-1">
           <div className="flex items-center justify-between mb-2">
@@ -71,7 +71,7 @@ export default function HospitalCard({
 
       <Button
         variant="accent"
-        className="mt-4 w-full"
+        className="mt-4 w-full rounded-xl"
         onClick={(e) => {
           e.stopPropagation();
           onBook(hospital.id);

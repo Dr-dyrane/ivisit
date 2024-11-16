@@ -46,7 +46,7 @@ export default function Navbar() {
               onClick={() => navigate('/emergency')}
               className="relative group"
             >
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-accent-600 to-accent-500 rounded-full blur opacity-75 group-hover:opacity-100 animate-pulse transition duration-300"></div>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-accent-600 to-accent-500 rounded-full blur opacity-15 group-hover:opacity-100 animate-pulse transition duration-300"></div>
               <div className="relative px-6 py-2 bg-accent-600 text-white rounded-full text-sm font-medium hover:bg-accent-500 transition-colors">
                 SOS
               </div>

@@ -37,11 +37,11 @@ export default function HospitalCard({
       }`}
       onClick={() => onSelect(hospital.id)}
     >
-      <div className="flex items-start gap-4">
+      <div className="flex flex-col sm:flex-row lg:flex-col items-start gap-4">
         <ImageWithFallback
           src={hospital.image}
           alt={hospital.name}
-          className="w-24 h-24 object-cover rounded-lg"
+          className="w-full sm:w-1/3 lg:w-full h-auto object-cover rounded-lg"
         />
         <div className="flex-1">
           <div className="flex items-center justify-between mb-3">
