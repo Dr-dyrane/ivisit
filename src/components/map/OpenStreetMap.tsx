@@ -87,7 +87,7 @@ function MapCenter({ center, zoom }: MapCenterProps) {
       radius: 1000, // 1km in meters
       color: '#ef4444',
       fillColor: '#ef4444',
-      fillOpacity: 0.025,
+      fillOpacity: 0.0025,
       weight: 1
     }).addTo(map);
 
