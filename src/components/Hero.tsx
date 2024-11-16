@@ -5,6 +5,7 @@ import { useSpring, animated } from '@react-spring/web';
 import { Container } from './ui/Container';
 import { Section } from './ui/Section';
 import { Button } from './ui/Button';
+import { useTheme } from '@/context/ThemeContext';
 
 const features = [
   {
@@ -23,12 +24,24 @@ const features = [
 
 export default function Hero() {
   const navigate = useNavigate();
-  
+
+  const { theme } = useTheme();
+
   const fadeIn = useSpring({
-    from: { opacity: 0, transform: 'translateY(20px)' },
-    to: { opacity: 1, transform: 'translateY(0)' },
-    config: { duration: 1000 }
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: { duration: 1000 },
   });
+
+  const images = {
+    dark: 'https://images.pexels.com/photos/8942726/pexels-photo-8942726.jpeg',
+    light: 'https://images.pexels.com/photos/6754179/pexels-photo-6754179.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  };
+
+  const gradients = {
+    dark: 'bg-gradient-to-t from-black/80 via-black/20 to-transparent',
+    light: 'bg-gradient-to-t from-white/80 via-white/50 to-transparent',
+  };
 
   return (
     <Section className="relative min-h-[calc(100vh-5rem)] flex items-center bg-background overflow-hidden">
@@ -40,7 +53,7 @@ export default function Hero() {
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground mb-6">
               iVisit
             </h1>
-            
+
             <p className="text-lg sm:text-xl text-muted-foreground mb-8">
               Professional medical assistance within minutes.
             </p>
@@ -49,10 +62,10 @@ export default function Hero() {
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-secondary-foreground"
+                  className="flex items-center gap-2 px-4 py-3.5 rounded-full bg-secondary text-secondary-foreground"
                 >
                   {feature.icon}
-                  <span>{feature.text}</span>
+                  <span className='font-light'>{feature.text}</span>
                 </div>
               ))}
             </div>
@@ -88,11 +101,13 @@ export default function Hero() {
           <animated.div style={fadeIn} className="relative aspect-[4/3] lg:aspect-auto">
             <div className="relative h-full">
               <img
-                src="https://images.pexels.com/photos/8942726/pexels-photo-8942726.jpeg"
-                alt="Emergency Response Team at Night"
+                src={images[theme]}
+                alt="Emergency Response Team"
                 className="w-full h-full object-cover object-center rounded-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent mix-blend-multiply rounded-2xl"></div>
+              <div
+                className={`absolute inset-0 ${gradients[theme]} mix-blend-multiply rounded-2xl`}
+              ></div>
             </div>
           </animated.div>
         </div>
