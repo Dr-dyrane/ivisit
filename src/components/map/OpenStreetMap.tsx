@@ -56,31 +56,57 @@ function FitBounds({ bounds }: { bounds: L.LatLngBoundsExpression }) {
 }
 
 export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
-  const defaultLocation: [number, number] = [6.5244, 3.3792]; // Lagos coordinates
-  const [currentLocation, setCurrentLocation] = useState<[number, number]>(defaultLocation);
-  const [hospitals, setHospitals] = useState<[number, number][]>([]);
+  const defaultLocation: [number, number] = [6.5244, 3.3792]; // Default to Lagos coordinates
+  const [currentLocation, setCurrentLocation] = useState<[number, number] | null>(null); // Initial state set to null
+  const [hospitals, setHospitals] = useState<{ name: string; coordinates: [number, number] }[]>([]);
 
   // Fetch user location and generate nearby hospitals
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const userCoords: [number, number] = [position.coords.latitude, position.coords.longitude];
-        setCurrentLocation(userCoords);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userCoords: [number, number] = [
+            position.coords.latitude,
+            position.coords.longitude,
+          ];
+          setCurrentLocation(userCoords);
 
-        // Generate 5 random hospital locations within a 5-mile radius
-        const nearbyHospitals = Array.from({ length: 5 }, () =>
-          getRandomCoordinates(userCoords, 5) // 5-mile radius
-        );
-        setHospitals(nearbyHospitals);
-      },
-      () => {
-        setCurrentLocation(defaultLocation); // Fallback to default
-      }
-    );
+          // Generate 5 random hospital locations with names
+          const hospitalNames = [
+            'City General Hospital',
+            'St. Mary\'s Medical Center',
+            'Emergency Care Unit',
+            'Central Health Clinic',
+            'Greenfield Hospital',
+          ];
+          const nearbyHospitals = Array.from({ length: 5 }, (_, index) => ({
+            name: hospitalNames[index] || 'Unnamed Hospital', // Default name if not available
+            coordinates: getRandomCoordinates(userCoords, 5), // 5-mile radius
+          }));
+          setHospitals(nearbyHospitals);
+        },
+        () => {
+          // In case of error, set to default location
+          setCurrentLocation(defaultLocation);
+        }
+      );
+    } else {
+      // If geolocation is not supported, fall back to default location
+      setCurrentLocation(defaultLocation);
+    }
   }, []);
 
+  // Ensure data is available before rendering the map
+  if (!currentLocation || hospitals.length === 0) {
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        <span>Loading map...</span>
+      </div>
+    );
+  }
+
   // Calculate bounds to include user's location and hospitals
-  const allLocations = [currentLocation, ...hospitals];
+  const allLocations = [currentLocation, ...hospitals.map((h) => h.coordinates)];
   const bounds = L.latLngBounds(allLocations);
 
   return (
@@ -118,21 +144,27 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
           </Popup>
         </Marker>
 
-        {/* Hospital markers */}
-        {hospitals.map((coords, index) => (
-          <Marker
-            key={index}
-            position={coords}
-            icon={hospitalIcon}
-          >
-            <Popup>
-              <div className="p-2">
-                <h3 className="font-semibold">Hospital #{index + 1}</h3>
-                <p>Coordinates: {coords[0].toFixed(5)}, {coords[1].toFixed(5)}</p>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+        {/* Hospital markers with names */}
+        {hospitals.map((hospital, index) => {
+          // Ensure hospital coordinates are defined and valid
+          const { name, coordinates } = hospital;
+          if (!coordinates || coordinates.length !== 2) {
+            return null; // Skip rendering invalid data
+          }
+
+          return (
+            <Marker key={index} position={coordinates} icon={hospitalIcon}>
+              <Popup>
+                <div className="p-2">
+                  <h3 className="font-semibold">{name || 'Unnamed Hospital'}</h3>
+                  <p>
+                    Coordinates: {coordinates[0].toFixed(5)}, {coordinates[1].toFixed(5)}
+                  </p>
+                </div>
+              </Popup>
+            </Marker>
+          );
+        })}
       </MapContainer>
 
       <style>{`
