@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { RefreshCcw } from 'lucide-react'; // Import Lucid icon
+import { useTheme } from '@/context/ThemeContext';
 
 // Helper Function: Generate random coordinates within a radius
 function getRandomCoordinates(baseCoordinates: [number, number], radiusInMiles: number): [number, number] {
@@ -60,6 +61,8 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
   const defaultLocation: [number, number] = [6.5244, 3.3792]; // Default to Lagos coordinates
   const [currentLocation, setCurrentLocation] = useState<[number, number] | null>(null); // Initial state set to null
   const [hospitals, setHospitals] = useState<{ name: string; coordinates: [number, number] }[]>([]);
+
+  const { theme } = useTheme();
 
   // Fetch user location and generate nearby hospitals
   useEffect(() => {
@@ -132,6 +135,11 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
     }
   };
 
+  // Map tile URLs for dark and light themes
+  const tileLayerUrl = theme === 'dark'
+    ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png' // Dark mode tile layer
+    : 'https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}'; // Light mode tile layer
+
   return (
     <div className="w-full h-full relative">
       <MapContainer
@@ -142,8 +150,9 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
         attributionControl={false}
         scrollWheelZoom
       >
+
         <TileLayer
-          url="https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
+          url={tileLayerUrl}
           subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
           maxZoom={19}
         />
