@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { RefreshCcw } from 'lucide-react'; // Import Lucid icon
 
 // Helper Function: Generate random coordinates within a radius
 function getRandomCoordinates(baseCoordinates: [number, number], radiusInMiles: number): [number, number] {
@@ -109,6 +110,28 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
   const allLocations = [currentLocation, ...hospitals.map((h) => h.coordinates)];
   const bounds = L.latLngBounds(allLocations);
 
+  // Function to reload the map (e.g., reset hospitals and re-center map)
+  const handleReload = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userCoords: [number, number] = [
+            position.coords.latitude,
+            position.coords.longitude,
+          ];
+          setCurrentLocation(userCoords);
+
+          // Re-generate hospitals with new coordinates
+          const nearbyHospitals = Array.from({ length: 5 }, (_, index) => ({
+            name: `Hospital ${index + 1}`,
+            coordinates: getRandomCoordinates(userCoords, 5), // 5-mile radius
+          }));
+          setHospitals(nearbyHospitals);
+        }
+      );
+    }
+  };
+
   return (
     <div className="w-full h-full relative">
       <MapContainer
@@ -146,7 +169,6 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
 
         {/* Hospital markers with names */}
         {hospitals.map((hospital, index) => {
-          // Ensure hospital coordinates are defined and valid
           const { name, coordinates } = hospital;
           if (!coordinates || coordinates.length !== 2) {
             return null; // Skip rendering invalid data
@@ -166,6 +188,15 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
           );
         })}
       </MapContainer>
+
+      {/* CTA Button */}
+      <button
+        onClick={handleReload}
+        className="absolute bottom-4 right-4 p-4 bg-accent-500 text-white rounded-full shadow-lg hover:bg-accent-600 transition-all duration-300"
+        style={{ zIndex: 999 }}
+      >
+        <RefreshCcw size={16} /> {/* Lucid React Icon for refresh */}
+      </button>
 
       <style>{`
         .leaflet-container {
