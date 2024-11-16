@@ -63,38 +63,38 @@ interface MapCenterProps {
 function MapCenter({ center, zoom }: MapCenterProps) {
   const map = useMap();
 
-  useEffect(() => {
-    map.setView(center, zoom);
+  // useEffect(() => {
+  //   map.setView(center, zoom);
 
-    // Set map options for cleaner view
-    map.setMinZoom(14); // Restrict minimum zoom
-    map.setMaxZoom(18); // Restrict maximum zoom
+  //   // Set map options for cleaner view
+  //   map.setMinZoom(14); // Restrict minimum zoom
+  //   map.setMaxZoom(18); // Restrict maximum zoom
 
-    // Enable smooth zoom but disable other controls
-    map.scrollWheelZoom.enable();
-    map.boxZoom.disable();
-    map.doubleClickZoom.disable();
+  //   // Enable smooth zoom but disable other controls
+  //   map.scrollWheelZoom.enable();
+  //   map.boxZoom.disable();
+  //   map.doubleClickZoom.disable();
 
-    // Restrict pan bounds to approximately 1km around center
-    const bounds = L.latLngBounds(
-      L.latLng(center[0] - 0.005, center[1] - 0.005), // Reduced bounds for closer view
-      L.latLng(center[0] + 0.005, center[1] + 0.005)
-    );
-    map.setMaxBounds(bounds);
+  //   // Restrict pan bounds to approximately 1km around center
+  //   const bounds = L.latLngBounds(
+  //     L.latLng(center[0] - 0.005, center[1] - 0.005), // Reduced bounds for closer view
+  //     L.latLng(center[0] + 0.005, center[1] + 0.005)
+  //   );
+  //   map.setMaxBounds(bounds);
 
-    // Add circle to show 1km radius
-    const circle = L.circle(center, {
-      radius: 1000, // 1km in meters
-      color: '#ef4444',
-      fillColor: '#ef4444',
-      fillOpacity: 0.0025,
-      weight: 1
-    }).addTo(map);
+  //   // Add circle to show 1km radius
+  //   const circle = L.circle(center, {
+  //     radius: 1000, // 1km in meters
+  //     color: '#ef4444',
+  //     fillColor: '#ef4444',
+  //     fillOpacity: 0.0025,
+  //     weight: 1
+  //   }).addTo(map);
 
-    return () => {
-      map.removeLayer(circle);
-    };
-  }, [center, zoom, map]);
+  //   return () => {
+  //     map.removeLayer(circle);
+  //   };
+  // }, [center, zoom, map]);
 
   return null;
 }
