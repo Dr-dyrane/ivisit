@@ -7,7 +7,7 @@ import Services from './components/home/Services';
 import Contact from './components/home/Contact';
 import Footer from './components/layout/Footer';
 import LoadingSpinner from './components/ui/LoadingSpinner';
-import { ThemeProvider } from './context/ThemeContext';
+import { ThemeProvider } from './providers/ThemeContext';
 import { ErrorBoundary } from './providers/ErrorBoundary';
 import AmbulanceCall from './components/ambulance/AmbulanceCall';
 import BedBooking from './components/bed-booking/BedBooking';

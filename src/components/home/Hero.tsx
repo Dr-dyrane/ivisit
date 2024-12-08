@@ -5,7 +5,7 @@ import { useSpring, animated } from '@react-spring/web';
 import { Container } from '../ui/Container';
 import { Section } from '../ui/Section';
 import { Button } from '../ui/Button';
-import { useTheme } from '@/context/ThemeContext';
+import { useTheme } from '@/providers/ThemeContext';
 
 const features = [
   {

@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { RefreshCcw } from 'lucide-react'; // Import Lucid icon
-import { useTheme } from '@/context/ThemeContext';
+import { useTheme } from '@/providers/ThemeContext';
 
 // Helper Function: Generate random coordinates within a radius
 function getRandomCoordinates(baseCoordinates: [number, number], radiusInMiles: number): [number, number] {
