@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { PublicRoutes } from './PublicRoutes';
 import { PrivateRoutes } from './PrivateRoutes';
-import { Home } from 'lucide-react';
 import AmbulanceCall from '@/components/ambulance/AmbulanceCall';
 import BedBooking from '@/components/bed-booking/BedBooking';
 import Login from '@/pages/Login';
@@ -10,6 +9,7 @@ import Register from '@/pages/Register';
 import Dashboard from '@/pages/Dashboard';
 import Profile from '@/pages/Profile';
 import Appointments from '@/pages/Appointments';
+import Home from '@/pages/Home';
 
 export const AppRouter: React.FC = () => {
 
@@ -17,7 +17,6 @@ export const AppRouter: React.FC = () => {
     <Routes>
       {/* Public Routes */}
       <Route element={<PublicRoutes />}>
-        <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/home" element={<Home />} />
         <Route path="/emergency" element={<AmbulanceCall />} />
         <Route path="/book-bed" element={<BedBooking />} />

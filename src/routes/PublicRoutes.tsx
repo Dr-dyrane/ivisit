@@ -7,9 +7,7 @@ export const PublicRoutes: React.FC = () => {
   return (
     <>
       <Navbar />
-      <main className="flex-grow mt-20">
         <Outlet />
-      </main>
       <Footer />
     </>
   );

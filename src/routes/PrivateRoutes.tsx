@@ -7,7 +7,7 @@ export const PrivateRoutes: React.FC = () => {
 
 
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       <Sidebar />
       <main className="flex-grow">
         <Outlet />
