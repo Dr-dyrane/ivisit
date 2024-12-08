@@ -2,9 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Ambulance, Phone, Clock, Bed } from 'lucide-react';
 import { useSpring, animated } from '@react-spring/web';
-import { Container } from './ui/Container';
-import { Section } from './ui/Section';
-import { Button } from './ui/Button';
+import { Container } from '../ui/Container';
+import { Section } from '../ui/Section';
+import { Button } from '../ui/Button';
 import { useTheme } from '@/context/ThemeContext';
 
 const features = [
@@ -44,7 +44,7 @@ export default function Hero() {
   };
 
   return (
-    <Section className="relative min-h-[calc(100vh-5rem)] flex items-center bg-background overflow-hidden">
+    <Section id="home" className="relative min-h-[calc(100vh-5rem)] flex items-center bg-background overflow-hidden">
       <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMS4yMjY3NiAwQzEuOTEzNzQgMCAyLjQ1MzUxIDAuNTM5NzczIDIuNDUzNTEgMS4yMjY3NkMyLjQ1MzUxIDEuOTEzNzQgMS45MTM3NCAyLjQ1MzUxIDEuMjI2NzYgMi40NTM1MUMwLjUzOTc3MyAyLjQ1MzUxIDAgMS45MTM3NCAwIDEuMjI2NzZDMCAwLjUzOTc3MyAwLjUzOTc3MyAwIDEuMjI2NzYgMFoiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')]" />
 
       <Container className="relative z-10">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Star, MapPin, Clock, Ambulance, ChevronRight } from 'lucide-react';
 import { Card } from '../ui/Card';
-import ImageWithFallback from '../ImageWithFallback';
+import ImageWithFallback from '../ui/ImageWithFallback';
 
 interface Hospital {
   id: string;

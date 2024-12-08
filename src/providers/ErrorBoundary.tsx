@@ -1,8 +1,8 @@
 import React, { Component, ErrorInfo } from 'react';
 import { AlertTriangle } from 'lucide-react';
-import { Card } from './ui/Card';
-import { Button } from './ui/Button';
-import { Container } from './ui/Container';
+import { Card } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
+import { Container } from '../components/ui/Container';
 
 interface Props {
   children: React.ReactNode;

@@ -1,14 +1,14 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useSpring, animated } from '@react-spring/web';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import LoadingSpinner from './components/LoadingSpinner';
+import Navbar from './components/layout/Navbar';
+import Hero from './components/home/Hero';
+import Services from './components/home/Services';
+import Contact from './components/home/Contact';
+import Footer from './components/layout/Footer';
+import LoadingSpinner from './components/ui/LoadingSpinner';
 import { ThemeProvider } from './context/ThemeContext';
-import { ErrorBoundary } from './components/ErrorBoundary';
+import { ErrorBoundary } from './providers/ErrorBoundary';
 import AmbulanceCall from './components/ambulance/AmbulanceCall';
 import BedBooking from './components/bed-booking/BedBooking';
 

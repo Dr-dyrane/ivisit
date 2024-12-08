@@ -2,7 +2,7 @@ import React from 'react';
 import { Bed, MapPin, Clock, Star, ChevronRight } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Hospital } from '../../types/hospital';
-import ImageWithFallback from '../ImageWithFallback';
+import ImageWithFallback from '../ui/ImageWithFallback';
 
 interface HospitalCardProps {
   hospital: Hospital;

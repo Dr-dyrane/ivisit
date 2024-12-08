@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Ambulance, LayoutPanelTop, X } from 'lucide-react';
 import { useSpring, animated } from '@react-spring/web';
 import { Dialog } from '@headlessui/react';
@@ -12,6 +12,11 @@ const navigation = [
 
 export default function Navbar() {
   const navigate = useNavigate();
+  
+  const location = useLocation()
+  const { pathname } = location
+  const inEmergency = pathname === '/emergency'
+  
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navAnimation = useSpring({
@@ -21,8 +26,8 @@ export default function Navbar() {
   });
 
   return (
-    <animated.nav 
-      style={navAnimation} 
+    <animated.nav
+      style={navAnimation}
       className="fixed w-full z-50 bg-gradient-to-b from-background/90 to-transparent backdrop-blur-sm"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,13 +47,13 @@ export default function Navbar() {
                 {item.name}
               </Link>
             ))}
-            <button 
-              onClick={() => navigate('/emergency')}
+            <button
+              onClick={() => { inEmergency ? navigate('/book-bed') : navigate('/emergency') }}
               className="relative group"
             >
               <div className="absolute -inset-0.5 bg-gradient-to-r from-accent-600 to-accent-500 rounded-full blur opacity-15 group-hover:opacity-100 animate-pulse transition duration-300"></div>
               <div className="relative px-6 py-2 bg-accent-600 text-white rounded-full text-sm font-medium hover:bg-accent-500 transition-colors">
-                SOS
+                {inEmergency ? 'Book Bed' : 'SOS'}
               </div>
             </button>
           </div>
@@ -94,7 +99,7 @@ export default function Navbar() {
               ))}
               <button
                 onClick={() => {
-                  navigate('/emergency');
+                  inEmergency ? navigate('/book-bed') : navigate('/emergency')
                   setMobileMenuOpen(false);
                 }}
                 className="w-full mt-4"
@@ -102,7 +107,7 @@ export default function Navbar() {
                 <div className="relative group w-full">
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-accent-600 to-accent-500 rounded-lg blur opacity-75 group-hover:opacity-100 animate-pulse transition duration-300"></div>
                   <div className="relative w-full px-6 py-3 bg-accent-600 text-white rounded-lg text-base font-semibold hover:bg-accent-500 transition-colors text-center">
-                    Emergency SOS
+                    {inEmergency ? 'Book-Bed' : 'Emergency SOS'}
                   </div>
                 </div>
               </button>
