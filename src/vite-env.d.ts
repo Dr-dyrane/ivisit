@@ -266,3 +266,28 @@ interface OpenStreetMapProps {
 	userLocation?: L.LatLng | null | number | [number, number]; // Correct type for user location
 	onHospitalSelect?: (hospitalId: string) => void; // Add optional callback
 }
+
+// Add types for Redux actions and state (optional, but recommended):
+interface RootState {
+	auth: AuthState;
+	hospital: HospitalState; // Add other slices
+}
+
+//Example type of auth slice state
+interface AuthState {
+	isLoggedIn: boolean;
+	user: User | null;
+	token: string | null;
+	loading: boolean;
+	error: string | null;
+}
+//Example type of hospital slice state
+interface HospitalState {
+	hospitals: Hospital[];
+	isLoading: boolean;
+	error: string | null;
+}
+
+interface ProvidersProps {
+	children: React.ReactNode;
+}
