@@ -8,20 +8,20 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/lib/store';
 
 export const Layout: React.FC = () => {
-  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+    const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 
-  return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-      <div className="flex flex-1">
-        {isAuthenticated && <Sidebar />}
-        <main className="flex-1 p-4">
-          <Outlet />
-        </main>
-      </div>
-      {isAuthenticated && <BottomNav />}
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="flex flex-col min-h-screen">
+            {!isAuthenticated && <Navbar />}
+            <div className="flex flex-1 min-h-screen">
+                {isAuthenticated && <Sidebar />}
+                <main className="flex-1 p-4">
+                    <Outlet />
+                </main>
+            </div>
+            {isAuthenticated && <BottomNav />}
+            {!isAuthenticated && <Footer />}
+        </div>
+    );
 };
 
