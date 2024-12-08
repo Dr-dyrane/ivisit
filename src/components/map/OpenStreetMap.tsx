@@ -40,9 +40,6 @@ const hospitalIcon = new L.Icon({
   popupAnchor: [1, -34],
 });
 
-interface OpenStreetMapProps {
-  mapType: 'hospital';
-}
 
 // Component to fit the map bounds
 function FitBounds({ bounds }: { bounds: L.LatLngBoundsExpression }) {

@@ -1,11 +1,6 @@
 import React from 'react';
 import { Shield } from 'lucide-react';
 
-interface ServiceTypeSelectorProps {
-  selectedType: 'Premium' | 'Standard';
-  onSelect: (type: 'Premium' | 'Standard') => void;
-}
-
 export function ServiceTypeSelector({ selectedType, onSelect }: ServiceTypeSelectorProps) {
   return (
     <div className="grid grid-cols-2 gap-4">

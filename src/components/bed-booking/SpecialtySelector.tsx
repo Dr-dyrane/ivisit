@@ -1,11 +1,4 @@
-import React from 'react';
 import { Stethoscope } from 'lucide-react';
-
-interface SpecialtySelectorProps {
-  specialties: string[];
-  selectedSpecialty: string;
-  onSelect: (specialty: string) => void;
-}
 
 export default function SpecialtySelector({ 
   specialties, 

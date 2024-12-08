@@ -1,4 +1,3 @@
-import React from 'react';
 import { animated } from '@react-spring/web';
 import { Container } from '../ui/Container';
 import SpecialtySelector from './SpecialtySelector';
@@ -6,14 +5,6 @@ import HospitalList from './HospitalList';
 import BookingHeader from './BookingHeader';
 import { specialties, hospitals } from '../../data/hospitals';
 
-interface BookingPanelProps {
-  fadeIn: any;
-  selectedSpecialty: string;
-  selectedHospital: string | null;
-  onSpecialtySelect: (specialty: string) => void;
-  onHospitalSelect: (hospitalId: string) => void;
-  onBookBed: (hospitalId: string) => void;
-}
 
 export default function BookingPanel({
   fadeIn,

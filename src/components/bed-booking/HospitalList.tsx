@@ -1,14 +1,5 @@
-import React from 'react';
 import HospitalCard from './HospitalCard';
-import { Hospital } from '../../types/hospital';
 
-interface HospitalListProps {
-  hospitals: Hospital[];
-  selectedSpecialty: string;
-  selectedHospital: string | null;
-  onHospitalSelect: (id: string) => void;
-  onBookBed: (id: string) => void;
-}
 
 export default function HospitalList({
   hospitals,
@@ -29,7 +20,7 @@ export default function HospitalList({
           hospital={hospital}
           isSelected={selectedHospital === hospital.id}
           onSelect={onHospitalSelect}
-          onBook={onBookBed}
+          onCall={onBookBed}
         />
       ))}
     </div>

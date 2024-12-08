@@ -1,21 +1,14 @@
 import React from 'react';
 import { Bed, MapPin, Clock, Star, ChevronRight } from 'lucide-react';
 import { Button } from '../ui/Button';
-import { Hospital } from '../../types/hospital';
 import ImageWithFallback from '../ui/ImageWithFallback';
 
-interface HospitalCardProps {
-  hospital: Hospital;
-  isSelected: boolean;
-  onSelect: (id: string) => void;
-  onBook: (id: string) => void;
-}
 
 export default function HospitalCard({ 
   hospital, 
   isSelected, 
   onSelect,
-  onBook 
+  onCall 
 }: HospitalCardProps) {
   return (
     <div
@@ -74,7 +67,7 @@ export default function HospitalCard({
         className="mt-4 w-full rounded-xl"
         onClick={(e) => {
           e.stopPropagation();
-          onBook(hospital.id);
+          onCall(hospital.id);
         }}
       >
         <div className="flex items-center justify-between w-full">

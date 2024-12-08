@@ -3,25 +3,6 @@ import { Star, MapPin, Clock, Ambulance, ChevronRight } from 'lucide-react';
 import { Card } from '../ui/Card';
 import ImageWithFallback from '../ui/ImageWithFallback';
 
-interface Hospital {
-  id: string;
-  name: string;
-  distance: string;
-  eta: string;
-  rating: number;
-  ambulances: number;
-  type: 'Premium' | 'Standard';
-  price: string;
-  image: string;
-}
-
-interface HospitalCardProps {
-  hospital: Hospital;
-  isSelected: boolean;
-  onSelect: (id: string) => void;
-  onCall: (id: string) => void;
-}
-
 export default function HospitalCard({
   hospital,
   isSelected,
