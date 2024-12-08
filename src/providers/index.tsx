@@ -2,27 +2,23 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from './ThemeContext';
 import { ErrorBoundary } from './ErrorBoundary';
-
-// Placeholder for future Redux Provider
-// import { Provider } from 'react-redux';
-// import { store } from './store';
-// import { AuthWrapper } from './AuthWrapper';
-
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from '@/lib/store';
 
 export const Providers: React.FC<ProvidersProps> = ({ children }) => {
   return (
-    <ErrorBoundary>
-      <ThemeProvider>
-        <Router>
-          {/* <AuthWrapper> */}
-            {/* Placeholder for future Redux Provider */}
-            {/* <Provider store={store}> */}
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <ErrorBoundary>
+          <ThemeProvider>
+            <Router>
               {children}
-            {/* </Provider> */}
-          {/* </AuthWrapper> */}
-        </Router>
-      </ThemeProvider>
-    </ErrorBoundary>
+            </Router>
+          </ThemeProvider>
+        </ErrorBoundary>
+      </PersistGate>
+    </Provider>
   );
 };
 

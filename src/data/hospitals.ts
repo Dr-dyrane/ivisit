@@ -1,5 +1,3 @@
-import { Hospital } from '../types/hospital';
-
 export const specialties = [
   'General Care',
   'Emergency',

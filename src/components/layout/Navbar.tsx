@@ -3,6 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Ambulance, LayoutPanelTop, X } from 'lucide-react';
 import { useSpring, animated } from '@react-spring/web';
 import { Dialog } from '@headlessui/react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/lib/store';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -12,11 +14,12 @@ const navigation = [
 
 export default function Navbar() {
   const navigate = useNavigate();
-  
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+
   const location = useLocation()
   const { pathname } = location
   const inEmergency = pathname === '/emergency'
-  
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navAnimation = useSpring({
@@ -24,6 +27,23 @@ export default function Navbar() {
     transform: 'translateY(0)',
     from: { opacity: 0, transform: 'translateY(-20px)' },
   });
+
+  const handleEmergency = () => {
+    if (isAuthenticated) {
+      navigate('/emergency');
+    } else {
+      navigate('/login', { state: { from: '/emergency' } });
+    }
+  };
+
+  const handleBookBed = () => {
+    if (isAuthenticated) {
+      navigate('/book-bed');
+    } else {
+      navigate('/login', { state: { from: '/book-bed' } });
+    }
+  };
+
 
   return (
     <animated.nav
@@ -48,7 +68,7 @@ export default function Navbar() {
               </Link>
             ))}
             <button
-              onClick={() => { inEmergency ? navigate('/book-bed') : navigate('/emergency') }}
+              onClick={() => { inEmergency ? handleBookBed() : handleEmergency() }}
               className="relative group"
             >
               <div className="absolute -inset-0.5 bg-gradient-to-r from-accent-600 to-accent-500 rounded-full blur opacity-15 group-hover:opacity-100 animate-pulse transition duration-300"></div>
@@ -99,7 +119,7 @@ export default function Navbar() {
               ))}
               <button
                 onClick={() => {
-                  inEmergency ? navigate('/book-bed') : navigate('/emergency')
+                  inEmergency ? handleBookBed() : handleEmergency()
                   setMobileMenuOpen(false);
                 }}
                 className="w-full mt-4"

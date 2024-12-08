@@ -20,18 +20,18 @@ interface User {
 	/** User's phone number. Optional, but recommended. */
 	phoneNumber?: string;
 	/** User's current location (latitude and longitude). */
-	location: {
+	location?: {
 		latitude: number | L.LatLng;
 		longitude: number | L.LatLng;
 	};
 	/** Information about authentication providers used by the user. */
-	authenticationProviders: {
+	authenticationProviders?: {
 		google?: string; // Google ID, if authenticated with Google
 		apple?: string; // Apple ID, if authenticated with Apple
 		custom?: string; // Custom ID if using your own auth system
 	};
 	/** Array of emergency contact details for the user. */
-	emergencyContacts: EmergencyContact[];
+	emergencyContacts?: EmergencyContact[];
 }
 
 /**
@@ -275,9 +275,10 @@ interface RootState {
 
 //Example type of auth slice state
 interface AuthState {
-	isLoggedIn: boolean;
+	isLoggedIn?: boolean;
+	isAuthenticated?: boolean;
 	user: User | null;
-	token: string | null;
+	token?: string | null;
 	loading: boolean;
 	error: string | null;
 }
