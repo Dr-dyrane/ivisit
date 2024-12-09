@@ -15,7 +15,7 @@ export const Layout: React.FC = () => {
             {!isAuthenticated && <Navbar />}
             <div className="flex flex-1 min-h-screen">
                 {isAuthenticated && <Sidebar />}
-                <main className="flex-1 p-4">
+                <main className="flex-1">
                     <Outlet />
                 </main>
             </div>

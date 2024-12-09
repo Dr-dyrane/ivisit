@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { useSpring, animated } from '@react-spring/web';
+import { useState } from 'react';
+import { useSpring } from '@react-spring/web';
 import { Phone } from 'lucide-react';
 import { Container } from '../ui/Container';
 import EmergencyHeader from './EmergencyHeader';
 import { ServiceTypeSelector } from './ServiceTypeSelector';
 import HospitalCard from './HospitalCard';
-import { Hospital } from '../../types/hospital';
 import OpenStreetMap from '../map/OpenStreetMap';
 
 const hospitals: Hospital[] = [
@@ -73,7 +72,7 @@ export default function AmbulanceCall() {
   const filteredHospitals = hospitals.filter(hospital => hospital.type === serviceType);
 
   return (
-    <div className="min-h-screen mt-20 bg-background">
+    <div className="min-h-screen bg-background">
       <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMS4yMjY3NiAwQzEuOTEzNzQgMCAyLjQ1MzUxIDAuNTM5NzczIDIuNDUzNTEgMS4yMjY3NkMyLjQ1MzUxIDEuOTEzNzQgMS45MTM3NCAyLjQ1MzUxIDEuMjI2NzYgMi40NTM1MUMwLjUzOTc3MyAyLjQ1MzUxIDAgMS45MTM3NCAwIDEuMjI2NzZDMCAwLjUzOTc3MyAwLjUzOTc3MyAwIDEuMjI2NzYgMFoiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')]" />
       
       <div className="relative flex flex-col lg:flex-row min-h-screen">
