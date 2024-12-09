@@ -6,7 +6,7 @@ import Emergency from '@/pages/AmbulanceCall';
 import BedBooking from '@/pages/BedBooking';
 import Profile from '@/pages/Profile';
 import Visits from '@/pages/Appointments';
-import { MarketingLayout } from '@/components/layout/MarketingLayout';
+import { MarketingLayout } from '@/components/layout/marketing/MarketingLayout';
 import { AuthenticatedLayout } from '@/components/layout/AuthenticatedLayout';
 
 

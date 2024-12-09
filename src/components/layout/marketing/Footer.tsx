@@ -1,5 +1,5 @@
 import { Moon, Sun, Ambulance } from 'lucide-react';
-import { useTheme } from '../../providers/ThemeContext';
+import { useTheme } from '../../../providers/ThemeContext';
 
 export default function Footer() {
   const { theme, toggleTheme } = useTheme();
