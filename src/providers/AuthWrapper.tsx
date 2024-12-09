@@ -8,7 +8,8 @@ interface AuthWrapperProps {
   children: React.ReactNode;
 }
 
-const unauthenticatedPages = ['/', '/login'];
+const UNAUTHENTICATED_PAGES = ['/', '/login'];
+const DEFAULT_AUTH_PAGE = '/emergency'; // Default page for authenticated users
 
 export const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
   const { isAuthenticated, loading } = useSelector((state: RootState) => state.auth);
@@ -16,29 +17,26 @@ export const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
   const location = useLocation();
 
   useEffect(() => {
-    const currentPath = location.pathname;
+    if (loading) return; // Wait for the authentication status to resolve
 
-    if (loading) return; // Wait until the authentication state is loaded
+    const isOnUnauthenticatedPage = UNAUTHENTICATED_PAGES.includes(location.pathname);
 
-    const isUnauthenticatedPage = unauthenticatedPages.includes(currentPath);
-    const isAuthenticatedPage = !isUnauthenticatedPage;
-
-    if (isAuthenticated) {
-      // Authenticated users navigating to unauthenticated pages
-      if (isUnauthenticatedPage) {
-        navigate('/emergency', { replace: true });
-      }
-    } else {
-      // Unauthenticated users navigating to authenticated pages
-      if (isAuthenticatedPage) {
-        navigate('/', { replace: true });
-      }
+    if (isAuthenticated && isOnUnauthenticatedPage) {
+      // Redirect authenticated users away from unauthenticated pages
+      navigate(DEFAULT_AUTH_PAGE, { replace: true });
+    } else if (!isAuthenticated && !isOnUnauthenticatedPage) {
+      // Redirect unauthenticated users trying to access protected pages
+      navigate('/', { replace: true });
     }
   }, [isAuthenticated, loading, location.pathname, navigate]);
 
   if (loading) {
-    return <div className='min-h-screen flex justify-center items-center flex-1 bg-white/50'><LoadingSpinner/></div>; // Optional loading indicator while checking auth
+    return (
+      <div className="min-h-screen flex justify-center items-center bg-white/50">
+        <LoadingSpinner />
+      </div>
+    ); // Optional loading indicator while checking auth state
   }
 
-  return <>{children}</>; // Render children if no navigation rules are violated
+  return <>{children}</>;
 };

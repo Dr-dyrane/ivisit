@@ -24,6 +24,7 @@ interface User {
 		latitude: number | L.LatLng;
 		longitude: number | L.LatLng;
 	};
+	avatarUrl?: string;
 	/** Information about authentication providers used by the user. */
 	authenticationProviders?: {
 		google?: string; // Google ID, if authenticated with Google
