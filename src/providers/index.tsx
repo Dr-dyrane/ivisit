@@ -5,6 +5,7 @@ import { ErrorBoundary } from './ErrorBoundary';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from '@/lib/store';
+import { AuthWrapper } from './AuthWrapper';
 
 export const Providers: React.FC<ProvidersProps> = ({ children }) => {
   return (
@@ -13,7 +14,7 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
         <ErrorBoundary>
           <ThemeProvider>
             <Router>
-              {children}
+              <AuthWrapper>{children}</AuthWrapper> {/* Use AuthWrapper to handle auth redirection */}
             </Router>
           </ThemeProvider>
         </ErrorBoundary>

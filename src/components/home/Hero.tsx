@@ -6,6 +6,7 @@ import { Container } from '../ui/Container';
 import { Section } from '../ui/Section';
 import { Button } from '../ui/Button';
 import { useTheme } from '@/providers/ThemeContext';
+import { useSelector } from 'react-redux';
 
 const features = [
   {
@@ -24,6 +25,8 @@ const features = [
 
 export default function Hero() {
   const navigate = useNavigate();
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+
 
   const { theme } = useTheme();
 
@@ -43,6 +46,21 @@ export default function Hero() {
     light: 'bg-gradient-to-t from-white/80 via-white/50 to-transparent',
   };
 
+  const handleEmergency = () => {
+    if (isAuthenticated) {
+      navigate('/emergency');
+    } else {
+      navigate('/login', { state: { from: '/emergency' } });
+    }
+  };
+
+  const handleBookBed = () => {
+    if (isAuthenticated) {
+      navigate('/book-bed');
+    } else {
+      navigate('/login', { state: { from: '/book-bed' } });
+    }
+  };
   return (
     <Section id="home" className="relative min-h-[calc(100vh-5rem)] flex items-center bg-background overflow-hidden">
       <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMS4yMjY3NiAwQzEuOTEzNzQgMCAyLjQ1MzUxIDAuNTM5NzczIDIuNDUzNTEgMS4yMjY3NkMyLjQ1MzUxIDEuOTEzNzQgMS45MTM3NCAyLjQ1MzUxIDEuMjI2NzYgMi40NTM1MUMwLjUzOTc3MyAyLjQ1MzUxIDAgMS45MTM3NCAwIDEuMjI2NzZDMCAwLjUzOTc3MyAwLjUzOTc3MyAwIDEuMjI2NzYgMFoiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')]" />
@@ -74,7 +92,7 @@ export default function Hero() {
               <Button
                 variant="accent"
                 size="lg"
-                onClick={() => navigate('/emergency')}
+                onClick={handleEmergency}
                 className="group relative overflow-hidden text-white dark:text-white"
               >
                 <div className="absolute inset-0 w-3 bg-accent-400 transition-all duration-[250ms] ease-out group-hover:w-full rounded-full opacity-50"></div>
@@ -86,7 +104,7 @@ export default function Hero() {
               <Button
                 variant="outline"
                 size="lg"
-                onClick={() => navigate('/book-bed')}
+                onClick={handleBookBed}
                 className="group relative overflow-hidden text-foreground dark:text-white"
               >
                 <div className="absolute inset-0 w-0 bg-primary transition-all duration-[250ms] ease-out group-hover:w-full rounded-full opacity-10"></div>

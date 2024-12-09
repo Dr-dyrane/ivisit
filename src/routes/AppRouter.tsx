@@ -1,35 +1,35 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Layout } from '@/components/layout/Layout';
 import Home from '@/pages/Home';
 import Login from '@/pages/Login';
-import Register from '@/pages/Register';
-import Dashboard from '@/pages/Dashboard';
 import Emergency from '@/pages/AmbulanceCall';
 import BedBooking from '@/pages/BedBooking';
 import Profile from '@/pages/Profile';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/lib/store';
+import Visits from '@/pages/Appointments';
+import { MarketingLayout } from '@/components/layout/MarketingLayout';
+import { AuthenticatedLayout } from '@/components/layout/AuthenticatedLayout';
 
-const PrivateRoute: React.FC<{ element: React.ReactElement }> = ({ element }) => {
-  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
-  return isAuthenticated ? element : <Navigate to="/login" replace />;
-};
 
 export const AppRouter: React.FC = () => {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/home" element={<Home />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
-        <Route path="/emergency" element={<PrivateRoute element={<Emergency />} />} />
-        <Route path="/book-bed" element={<PrivateRoute element={<BedBooking />} />} />
-        <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
-      </Route>
-    </Routes>
+      <Routes>
+        {/* Public routes */}
+        <Route element={<MarketingLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
+
+        {/* Authenticated Routes */}
+        <Route element={<AuthenticatedLayout />}>
+          <Route path="/emergency" element={<Emergency />} />
+          <Route path="/bed-booking" element={<BedBooking />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/visits" element={<Visits />} />
+        </Route>
+
+        {/* Catch-all route */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
   );
 };
 
