@@ -3,11 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Home, Calendar, User, LogOut, Moon, Sun } from 'lucide-react';
 import { FaUserCircle } from 'react-icons/fa';
+import { Dialog } from '@headlessui/react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/Button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
-
 import { logoutUser } from '@/lib/slices/authSlice';
 import { RootState, AppDispatch } from '@/lib/store';
 import { useTheme } from '@/providers/ThemeContext';
@@ -28,8 +28,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     navigate('/');
   };
 
-  return (
-    <aside className={`${isOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 left-0 z-50 w-64 bg-background rounded-r-xl shadow-lg transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 flex flex-col`}>
+  const sidebarContent = (
+    <>
       <ScrollArea className="flex-grow">
         <div className="p-6 flex flex-col h-full">
           {/* User Card */}
@@ -72,7 +72,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         <div className="flex items-center justify-between">
           <Button
             variant="ghost"
-            // size="icon"
+          //  size="icon"
             onClick={toggleTheme}
           >
             {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
@@ -83,18 +83,24 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           </Button>
         </div>
       </div>
+    </>
+  );
 
-      {/* Mobile close button */}
-      <Button
-        variant="ghost"
-        // size="icon"
-        className="absolute top-4 right-4 md:hidden"
-        onClick={onClose}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
-        <span className="sr-only">Close</span>
-      </Button>
-    </aside>
+  return (
+    <>
+      {/* Desktop Sidebar */}
+      <aside className="hidden md:flex md:flex-col md:w-64 bg-background rounded-r-xl shadow-lg">
+        {sidebarContent}
+      </aside>
+
+      {/* Mobile Sidebar Dialog */}
+      <Dialog as="div" className="md:hidden" open={isOpen} onClose={onClose}>
+        <Dialog.Overlay className="fixed inset-0 bg-black/30" />
+        <Dialog.Panel className="fixed inset-y-0 left-0 z-50 w-[80vw] sm:w-[50vw] bg-background rounded-r-xl shadow-lg flex flex-col">
+          {sidebarContent}
+        </Dialog.Panel>
+      </Dialog>
+    </>
   );
 };
 

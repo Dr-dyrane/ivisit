@@ -21,6 +21,8 @@ export const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
 
     const isOnUnauthenticatedPage = UNAUTHENTICATED_PAGES.includes(location.pathname);
 
+    console.log(isAuthenticated)
+
     if (isAuthenticated && isOnUnauthenticatedPage) {
       // Redirect authenticated users away from unauthenticated pages
       navigate(DEFAULT_AUTH_PAGE, { replace: true });
