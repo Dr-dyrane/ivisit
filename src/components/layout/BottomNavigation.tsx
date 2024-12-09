@@ -16,7 +16,7 @@ const BottomNavigation: React.FC = () => {
         </Link>
         <Link to="/profile" className="flex flex-col items-center py-2">
           <User size={24} />
-          <span className="text-xs mt-1">Profile</span>
+          <span className="text-xs mt-1">Account</span>
         </Link>
       </div>
     </nav>
