@@ -22,7 +22,7 @@ export const AppRouter: React.FC = () => {
         {/* Authenticated Routes */}
         <Route element={<AuthenticatedLayout />}>
           <Route path="/emergency" element={<Emergency />} />
-          <Route path="/bed-booking" element={<BedBooking />} />
+          <Route path="/book-bed" element={<BedBooking />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/visits" element={<Visits />} />
         </Route>
