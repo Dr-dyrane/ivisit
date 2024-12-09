@@ -10,7 +10,6 @@ import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import { AppDispatch, RootState } from '@/lib/store';
 import SocialIcon from '@/components/ui/social-icons';
-import { Ambulance } from 'lucide-react';
 
 
 const Login: React.FC = () => {
