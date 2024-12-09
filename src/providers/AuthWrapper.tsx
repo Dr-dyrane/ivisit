@@ -37,7 +37,7 @@ export const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
   }, [isAuthenticated, loading, location.pathname, navigate]);
 
   if (loading) {
-    return <div><LoadingSpinner/></div>; // Optional loading indicator while checking auth
+    return <div className='min-h-screen flex justify-center items-center flex-1 bg-white/50'><LoadingSpinner/></div>; // Optional loading indicator while checking auth
   }
 
   return <>{children}</>; // Render children if no navigation rules are violated
