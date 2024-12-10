@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { FaAmbulance, FaBed } from 'react-icons/fa';
+
 
 const FloatingActionButton: React.FC = () => {
   const navigate = useNavigate();
@@ -22,7 +24,8 @@ const FloatingActionButton: React.FC = () => {
       <div className="relative group w-full">
         <div className="absolute -inset-0.5 bg-gradient-to-r from-accent-600 to-accent-500 rounded-lg blur opacity-75 group-hover:opacity-100 animate-pulse transition duration-300"></div>
         <div className="relative w-full px-6 py-3 bg-accent-600 text-white rounded-2xl text-base font-semibold hover:bg-accent-500 transition-colors text-center">
-          {isEmergencyPage ? 'Book-Bed' : 'SOS'}
+        {isEmergencyPage ? <FaBed size={24} /> : <FaAmbulance size={24} />}
+        <span className="sr-only">{isEmergencyPage ? 'Book Bed' : 'SOS'}</span>
         </div>
       </div>
     </button>
