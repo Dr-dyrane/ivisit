@@ -36,7 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         <div className="p-6 flex flex-col h-full">
           {/* User Card */}
           <div className="mb-4">
-            <Link to="/profile" className="flex items-center space-x-4 p-4 bg-muted rounded-lg hover:shadow-md dark:hover:shadow-white/50 transition-colors">
+            <Link to="/profile" className="flex items-center space-x-4 py-4 px-2 bg-muted rounded-lg hover:shadow-md dark:hover:shadow-white/50 transition-colors">
               <Avatar>
                 <AvatarImage src={user?.avatarUrl} />
                 <AvatarFallback><FaUserCircle className="w-10 h-10" /></AvatarFallback>
@@ -77,11 +77,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             variant="ghost"
             //  size="icon"
             onClick={toggleTheme}
-            className='hover:bg-muted-foreground'
+            className='hover:bg-muted-foreground p-3 rounded-full bg-accent'
           >
             {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
           </Button>
-          <Button variant="ghost" onClick={handleLogout} className='hover:bg-muted-foreground'>
+          <Button variant="ghost" onClick={handleLogout} className='hover:bg-accent-200 bg-accent rounded-md hover:text-accent-500'>
             <LogOut size={20} className="mr-2" />
             Logout
           </Button>
