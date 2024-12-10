@@ -89,7 +89,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex md:flex-col md:w-64 bg-background rounded-r-xl shadow-lg">
+      <aside className="hidden md:flex md:flex-col md:w-[40vw] bg-background rounded-r-xl shadow-lg">
         {sidebarContent}
       </aside>
 
