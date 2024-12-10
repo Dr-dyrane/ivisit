@@ -23,7 +23,7 @@ export default function Profile() {
                 <AvatarImage src={user?.avatarUrl} />
                 <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
               </Avatar>
-              <div className='flex flex-wrap'>
+              <div className=''>
                 <h2 className="text-xl font-semibold">{user?.name}</h2>
                 <p className="text-muted-foreground">{user?.email}</p>
               </div>
