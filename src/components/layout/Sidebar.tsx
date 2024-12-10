@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Home, Calendar, User, LogOut, Moon, Sun } from 'lucide-react';
 import { FaUserCircle } from 'react-icons/fa';
@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator"
 import { logoutUser } from '@/lib/slices/authSlice';
 import { RootState, AppDispatch } from '@/lib/store';
 import { useTheme } from '@/providers/ThemeContext';
+import { navItems, isHomePage } from './navigation';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -21,6 +22,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const { toggleTheme, theme } = useTheme();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const location = useLocation();
   const user = useSelector((state: RootState) => state.auth.user);
 
   const handleLogout = async () => {
@@ -33,8 +35,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       <ScrollArea className="flex-grow">
         <div className="p-6 flex flex-col h-full">
           {/* User Card */}
-          <div className="mb-6">
-            <Link to="/profile" className="flex items-center space-x-4 p-2 rounded-lg hover:bg-accent transition-colors">
+          <div className="mb-4">
+            <Link to="/profile" className="flex items-center space-x-4 p-4 bg-muted rounded-lg hover:shadow-md dark:hover:shadow-white/50 transition-colors">
               <Avatar>
                 <AvatarImage src={user?.avatarUrl} />
                 <AvatarFallback><FaUserCircle className="w-10 h-10" /></AvatarFallback>
@@ -50,18 +52,19 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
           {/* Navigation Links */}
           <nav className="space-y-2">
-            <Link to="/emergency" className="flex items-center space-x-2 px-2 py-1.5 rounded-md hover:bg-accent transition-colors">
-              <Home size={20} />
-              <span>Home</span>
-            </Link>
-            <Link to="/visits" className="flex items-center space-x-2 px-2 py-1.5 rounded-md hover:bg-accent transition-colors">
-              <Calendar size={20} />
-              <span>Visits</span>
-            </Link>
-            <Link to="/profile" className="flex items-center space-x-2 px-2 py-1.5 rounded-md hover:bg-accent transition-colors">
-              <User size={20} />
-              <span>Profile</span>
-            </Link>
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`flex items-center space-x-2 px-2 py-1.5 rounded-md transition-colors ${(isHomePage(location.pathname) && isHomePage(item.path)) || location.pathname === item.path
+                    ? 'bg-accent text-accent-foreground'
+                    : 'hover:bg-accent hover:text-accent-foreground'
+                  }`}
+              >
+                <item.icon size={20} className='text-muted-foreground'/>
+                <span>{item.label}</span>
+              </Link>
+            ))}
           </nav>
         </div>
       </ScrollArea>
@@ -69,15 +72,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       {/* Footer */}
       <div className="p-6 mt-auto">
         <Separator className="my-4" />
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between rounded-2xl">
           <Button
             variant="ghost"
-          //  size="icon"
+            //  size="icon"
             onClick={toggleTheme}
+            className='hover:bg-muted-foreground'
           >
             {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
           </Button>
-          <Button variant="ghost" onClick={handleLogout}>
+          <Button variant="ghost" onClick={handleLogout} className='hover:bg-muted-foreground'>
             <LogOut size={20} className="mr-2" />
             Logout
           </Button>
@@ -89,7 +93,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex md:flex-col md:w-[40vw] bg-background rounded-r-xl shadow-lg z-50">
+      <aside className="hidden md:flex md:flex-col md:w-[30vw] max-w-80 bg-background rounded-r-xl shadow-lg z-50">
         {sidebarContent}
       </aside>
 
