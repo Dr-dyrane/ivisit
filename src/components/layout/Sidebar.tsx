@@ -56,13 +56,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center space-x-2 px-2 py-1.5 rounded-md transition-colors ${(isHomePage(location.pathname) && isHomePage(item.path)) || location.pathname === item.path
+                className={`flex items-center justify-start space-x-3 px-2 py-1.5 rounded-md transition-colors ${(isHomePage(location.pathname) && isHomePage(item.path)) || location.pathname === item.path
                     ? 'bg-accent text-accent-foreground'
                     : 'hover:bg-accent hover:text-accent-foreground'
                   }`}
               >
-                <item.icon size={20} className='text-muted-foreground'/>
-                <span>{item.label}</span>
+                <item.icon size={16} className='text-muted-foreground'/>
+                <span className='flex items-center justify-center'>{item.label}</span>
               </Link>
             ))}
           </nav>

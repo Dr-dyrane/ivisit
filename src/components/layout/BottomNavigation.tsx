@@ -18,8 +18,8 @@ const BottomNavigation: React.FC = () => {
                 : 'text-muted-foreground'
             }`}
           >
-            <item.icon size={24} />
-            <span className="text-xs mt-1">{item.label}</span>
+            <item.icon size={18} />
+            <span className="text-xs mt-1.5">{item.label}</span>
           </Link>
         ))}
       </div>
