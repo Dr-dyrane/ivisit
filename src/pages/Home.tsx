@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Hero from '../components/home/Hero';
 import Services from '../components/home/Services';
 import ProtocolFlow from '../components/home/ProtocolFlow';
 import Contact from '../components/home/Contact';
+import TrustSignals from '../components/home/TrustSignals';
 
-const Home: React.FC = () => (
-  <main className='flex-grow mt-20 min-h-screen justify-center items-center'>
-    <Hero />
-    <Services />
-    <ProtocolFlow />
-    <Contact />
-  </main>
-);
+const Home: React.FC = () => {
+  useEffect(() => {
+    document.title = "iVisit | Command-Grade Medical Dispatch & Response";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "iVisit delivers ultra-rapid medical dispatch and hospital bed booking with real-time tactical intelligence. 5-minute ETA response protocols.");
+    }
+  }, []);
+
+  return (
+    <main className='flex-grow mt-20 min-h-screen'>
+      <Hero />
+      <TrustSignals />
+      <Services />
+      <ProtocolFlow />
+      <Contact />
+    </main>
+  );
+};
 
 export default Home;
 

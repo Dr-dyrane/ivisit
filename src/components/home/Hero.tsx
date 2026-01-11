@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Ambulance, Phone, Clock, Bed } from 'lucide-react';
 import { useSpring, animated } from '@react-spring/web';
@@ -27,7 +27,23 @@ const features = [
 export default function Hero() {
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        setMousePos({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        });
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   const { theme } = useTheme();
 
@@ -63,7 +79,25 @@ export default function Hero() {
     }
   };
   return (
-    <Section id="home" className="relative min-h-[calc(100vh-5rem)] flex items-center bg-transparent overflow-hidden">
+    <Section id="home" ref={sectionRef} className="relative min-h-[calc(100vh-5rem)] flex items-center bg-transparent overflow-hidden group">
+      {/* Smarty Blur Background */}
+      <div 
+        className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-0 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(circle 600px at ${mousePos.x}px ${mousePos.y}px, ${theme === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(var(--grid-color), 0.05)'}, transparent 80%)`,
+        }}
+      />
+      <div 
+        className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-0 group-hover:opacity-100"
+        style={{
+          maskImage: `radial-gradient(circle 400px at ${mousePos.x}px ${mousePos.y}px, black, transparent 80%)`,
+          WebkitMaskImage: `radial-gradient(circle 400px at ${mousePos.x}px ${mousePos.y}px, black, transparent 80%)`,
+        }}
+      >
+        <div className={`absolute inset-0 backdrop-blur-[3px] ${theme === 'dark' ? 'bg-white/[0.01]' : 'bg-primary/[0.02]'} `} />
+        <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      </div>
+
       {/* Innovative Background Orbs */}
       <div className="absolute top-1/4 -left-20 w-96 h-96 bg-accent/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
       <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none animate-pulse" style={{ animationDelay: '2s' }} />
@@ -100,18 +134,30 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center sm:flex-nowrap">
-              <Button
-                variant="accent"
-                size="lg"
-                onClick={handleEmergency}
-                showOverlay={true}
-                className="group px-8 rounded-2xl h-16 w-full sm:w-auto min-w-[200px]"
-              >
-                <div className="relative flex items-center gap-3">
-                  <Ambulance className="w-6 h-6 animate-bounce" />
-                  <span className="font-black tracking-[0.1em] text-base">LAUNCH DEMO</span>
+              <div className="relative group w-full sm:w-auto">
+                <Button
+                  variant="accent"
+                  size="lg"
+                  onClick={handleEmergency}
+                  showOverlay={true}
+                  className="px-8 rounded-2xl h-16 w-full sm:w-auto min-w-[220px]"
+                >
+                  <div className="relative flex items-center gap-3">
+                    <Ambulance className="w-6 h-6 animate-pulse" />
+                    <div className="flex flex-col items-start leading-none">
+                      <span className="font-black tracking-[0.1em] text-base">LAUNCH DEMO</span>
+                      <span className="text-[9px] font-bold opacity-70 tracking-widest mt-0.5">INSTANT ACCESS</span>
+                    </div>
+                  </div>
+                </Button>
+                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 sm:left-4 sm:translate-x-0 whitespace-nowrap">
+                  <span className="text-[9px] font-black text-muted-foreground/60 uppercase tracking-[0.2em] flex items-center gap-1.5">
+                    <span className="h-1 w-1 rounded-full bg-green-500 animate-pulse" />
+                    No signup required
+                  </span>
                 </div>
-              </Button>
+              </div>
+
               <Button
                 variant="outline"
                 size="lg"
@@ -129,19 +175,28 @@ export default function Hero() {
             <div className="mt-12 flex flex-col sm:flex-row items-center gap-6 opacity-80 hover:opacity-100 transition-opacity justify-start sm:justify-center lg:justify-start">
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground whitespace-nowrap">Available Now:</span>
               <div className="flex gap-4 items-center">
-                <a href="#" className="transition-transform hover:scale-105 active:scale-95">
+                <a href="#" className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px]">
                   <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" 
-                    alt="Download on the App Store" 
-                    className="h-10 w-auto"
+                    src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" 
+                    alt="Apple" 
+                    className="h-6 w-auto dark:invert transition-colors"
                   />
+                  <div className="flex flex-col leading-none">
+                    <span className="text-[9px] font-bold uppercase tracking-tighter opacity-60">Download on the</span>
+                    <span className="text-base font-black tracking-tight">App Store</span>
+                  </div>
                 </a>
-                <a href="#" className="transition-transform hover:scale-105 active:scale-95">
-                  <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-                    alt="Get it on Google Play" 
-                    className="h-[58px] w-auto"
-                  />
+                <a href="#" className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px]">
+                   <svg viewBox="0 0 512 512" className="h-6 w-auto">
+                    <path fill="#4285F4" d="M12 12L12 500L350 256L12 12Z" />
+                    <path fill="#34A853" d="M12 500L440 330L350 256L12 500Z" />
+                    <path fill="#FBBC05" d="M440 330L500 256L440 182L350 256L440 330Z" />
+                    <path fill="#EA4335" d="M12 12L350 256L440 182L12 12Z" />
+                  </svg>
+                  <div className="flex flex-col leading-none">
+                    <span className="text-[9px] font-bold uppercase tracking-tighter opacity-60">Get it on</span>
+                    <span className="text-base font-black tracking-tight whitespace-nowrap">Google Play</span>
+                  </div>
                 </a>
               </div>
             </div>

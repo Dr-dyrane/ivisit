@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSpring, animated, useTransition } from '@react-spring/web';
 import { 
   Ambulance, 
@@ -15,6 +15,7 @@ import {
 import { Container } from '../ui/Container';
 import { Section } from '../ui/Section';
 import { Card } from '../ui/Card';
+import { useTheme } from '@/providers/ThemeContext';
 
 type FlowMode = 'emergency' | 'booking';
 
@@ -98,7 +99,26 @@ const bookingSteps: Step[] = [
 ];
 
 export default function ProtocolFlow() {
+  const { theme } = useTheme();
   const [mode, setMode] = useState<FlowMode>('emergency');
+  const sectionRef = useRef<HTMLElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        setMousePos({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        });
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   const steps = mode === 'emergency' ? ambulanceSteps : bookingSteps;
 
   const transitions = useTransition(steps, {
@@ -110,8 +130,26 @@ export default function ProtocolFlow() {
   });
 
   return (
-    <Section id="protocol" className="py-32 bg-transparent relative z-10 overflow-hidden">
-      <Container>
+    <Section id="protocol" ref={sectionRef} className="py-32 bg-transparent relative z-10 overflow-hidden group">
+      {/* Smarty Blur Background */}
+      <div 
+        className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-0 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(circle 600px at ${mousePos.x}px ${mousePos.y}px, ${theme === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(var(--grid-color), 0.05)'}, transparent 80%)`,
+        }}
+      />
+      <div 
+        className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-0 group-hover:opacity-100"
+        style={{
+          maskImage: `radial-gradient(circle 400px at ${mousePos.x}px ${mousePos.y}px, black, transparent 80%)`,
+          WebkitMaskImage: `radial-gradient(circle 400px at ${mousePos.x}px ${mousePos.y}px, black, transparent 80%)`,
+        }}
+      >
+        <div className={`absolute inset-0 backdrop-blur-[3px] ${theme === 'dark' ? 'bg-white/[0.01]' : 'bg-primary/[0.02]'} `} />
+        <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      </div>
+
+      <Container className="relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           {/* Left Column: Info & Toggle */}
           <div className="lg:w-1/3 space-y-8 sticky top-32">
