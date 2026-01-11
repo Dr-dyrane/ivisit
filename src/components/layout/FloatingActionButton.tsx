@@ -18,7 +18,7 @@ const FloatingActionButton: React.FC = () => {
 
   return (
     <button
-      className="fixed bottom-20 right-4 md:bottom-8 md:right-8"
+      className="fixed bottom-20 right-4 md:bottom-8 md:right-8 z-[1000]"
       onClick={handleClick}
     >
       <div className="relative group w-full">
