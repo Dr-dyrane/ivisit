@@ -35,9 +35,23 @@ L.Icon.Default.mergeOptions({
 
 const hospitalIcon = new L.Icon({
   iconUrl: '/hospital-marker.svg',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32],
+});
+
+const ambulanceIcon = new L.Icon({
+  iconUrl: '/ambulance-marker.svg',
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32],
+});
+
+const userIcon = new L.Icon({
+  iconUrl: '/user-marker.svg',
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32],
 });
 
 
@@ -160,16 +174,12 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
         {/* User's current location */}
         <Marker
           position={currentLocation}
-          icon={new L.Icon({
-            iconUrl: '/user-marker.svg',
-            iconSize: [30, 45],
-            iconAnchor: [15, 45],
-            popupAnchor: [1, -34],
-          })}
+          icon={userIcon}
         >
           <Popup>
-            <div>
-              <h3>You are here!</h3>
+            <div className="p-2">
+              <h3 className="font-bold text-accent">Deployment Point</h3>
+              <p className="text-sm">Your current tactical position</p>
             </div>
           </Popup>
         </Marker>
@@ -182,12 +192,12 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
           }
 
           return (
-            <Marker key={index} position={coordinates} icon={hospitalIcon}>
+            <Marker key={index} position={coordinates} icon={index === 0 ? ambulanceIcon : hospitalIcon}>
               <Popup>
                 <div className="p-2">
-                  <h3 className="font-semibold">{name || 'Unnamed Hospital'}</h3>
-                  <p>
-                    Coordinates: {coordinates[0].toFixed(5)}, {coordinates[1].toFixed(5)}
+                  <h3 className="font-semibold text-primary">{name || 'Medical Facility'}</h3>
+                  <p className="text-xs font-mono">
+                    LOC: {coordinates[0].toFixed(5)}, {coordinates[1].toFixed(5)}
                   </p>
                 </div>
               </Popup>
@@ -207,10 +217,17 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
 
       <style>{`
         .leaflet-container {
-          background: #f8fafc;
+          background: #0B0F1A;
+          filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
         }
-        .dark .leaflet-container {
-          background: #1e293b;
+        .leaflet-tile {
+          filter: brightness(0.6) contrast(1.2);
+        }
+        .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+          background: #121826 !important;
+          color: white !important;
+          border: 1px solid rgba(134, 16, 14, 0.3);
+          backdrop-filter: blur(8px);
         }
       `}</style>
     </div>

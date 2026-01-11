@@ -5,6 +5,7 @@ import { useSpring, animated } from '@react-spring/web';
 import { Dialog } from '@headlessui/react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/lib/store';
+import { Button } from '@/components/ui/Button';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -48,34 +49,40 @@ export default function Navbar() {
   return (
     <animated.nav
       style={navAnimation}
-      className="fixed w-full z-50 bg-gradient-to-b from-background/90 to-transparent backdrop-blur-sm"
+      className="fixed w-full z-50 bg-background/60 backdrop-blur-2xl border-b border-border/50"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <Link to="/" className="p-2">
-            <Ambulance className="h-8 w-8 text-accent-500" />
+          <Link to="/" className="p-2 flex items-center gap-3 group">
+            <div className="relative">
+              <img src="/logo.png" alt="iVisit Logo" className="h-9 w-auto transition-transform group-hover:scale-110" />
+              <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
+            <span className="text-2xl font-black tracking-tighter text-foreground">iVisit<span className="text-accent">.</span></span>
           </Link>
 
           {/* Desktop navigation */}
-          <div className="hidden md:flex md:items-center md:gap-8">
+          <div className="hidden md:flex md:items-center md:gap-10">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className="text-foreground hover:text-accent-500 text-sm font-medium transition-colors"
+                className="text-muted-foreground hover:text-foreground text-xs font-bold uppercase tracking-[0.2em] transition-colors"
               >
                 {item.name}
               </Link>
             ))}
-            <button
+            <Button
+              variant="accent"
+              size="md"
+              showOverlay={true}
               onClick={() => { inEmergency ? handleBookBed() : handleEmergency() }}
-              className="relative group"
+              className="px-8 rounded-xl h-12"
             >
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-accent-600 to-accent-500 rounded-full blur opacity-15 group-hover:opacity-100 animate-pulse transition duration-300"></div>
-              <div className="relative px-6 py-2 bg-accent-600 text-white rounded-full text-sm font-medium hover:bg-accent-500 transition-colors">
-                {inEmergency ? 'Book Bed' : 'SOS'}
-              </div>
-            </button>
+              <span className="font-black tracking-widest text-xs">
+                {inEmergency ? 'RESERVE' : 'SOS'}
+              </span>
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -94,8 +101,9 @@ export default function Navbar() {
         <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background p-4 sm:max-w-sm">
           <div className="flex items-center justify-between">
-            <Link to="/" className="p-2" onClick={() => setMobileMenuOpen(false)}>
-              <Ambulance className="h-8 w-8 text-accent-500" />
+            <Link to="/" className="p-2 flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
+              <img src="/logo.png" alt="iVisit Logo" className="h-8 w-auto" />
+              <span className="text-xl font-bold tracking-tighter text-foreground">iVisit</span>
             </Link>
             <button
               type="button"

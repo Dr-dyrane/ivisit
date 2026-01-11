@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg', 'logo.svg'],
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg', 'logo.png'],
       manifest: {
         name: 'iVisit Medical Services',
         short_name: 'iVisit',
@@ -40,10 +40,10 @@ export default defineConfig({
             purpose: 'maskable'
           },
           {
-            src: 'logo.svg', // Adding the SVG icon
-            sizes: '512x512', // Update this size if applicable
-            type: 'image/svg+xml',
-            purpose: 'any maskable' // Optional, 'maskable' if the SVG is designed for it
+            src: 'logo.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable'
           }
         ]
       }

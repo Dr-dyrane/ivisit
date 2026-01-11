@@ -1,6 +1,7 @@
 import React from 'react';
 import { Ambulance, HeartPulse, Stethoscope, Bed } from 'lucide-react';
 import { useSpring, animated } from '@react-spring/web';
+import { Card } from '../ui/Card';
 
 export default function Services() {
   const fadeIn = useSpring({
@@ -13,50 +14,61 @@ export default function Services() {
     {
       icon: <Ambulance className="h-8 w-8" />,
       title: "Emergency Response",
-      description: "24/7 rapid emergency medical response."
+      description: "24/7 rapid emergency medical response. GPS-tracked command."
     },
     {
       icon: <HeartPulse className="h-8 w-8" />,
       title: "Urgent Care",
-      description: "Immediate care for medical needs."
+      description: "Immediate care for medical needs with high-priority dispatch."
     },
     {
       icon: <Bed className="h-8 w-8" />,
       title: "Bed Booking",
-      description: "Reserve hospital beds in advance."
+      description: "Reserve hospital beds in advance with real-time availability."
     },
     {
       icon: <Stethoscope className="h-8 w-8" />,
       title: "General Check-ups",
-      description: "Comprehensive health assessments."
+      description: "Comprehensive health assessments for preventive care."
     }
   ];
 
   return (
-    <div id="services" className="py-24 bg-background">
+    <div id="services" className="py-32 bg-transparent relative z-10 overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[160px] pointer-events-none" />
+
       <animated.div style={fadeIn} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Our Services
+        <div className="text-center mb-24">
+          <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-6">
+            Core Operations
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-6">
+            Strategic Services<span className="text-primary">.</span>
           </h2>
-          <p className="mt-4 text-xl text-muted-foreground">
-            Expert care when you need it most
+          <p className="max-w-2xl mx-auto text-lg text-muted-foreground font-light">
+            Deploying medical intelligence and rapid response protocols across the metropolitan area.
           </p>
         </div>
 
-        <div className="mt-20 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service, index) => (
-            <div
+            <Card
               key={index}
-              className="relative group"
+              className="p-10 rounded-[2.5rem] group cursor-default transition-all duration-500 hover:scale-[1.02] bg-background/20 backdrop-blur-3xl"
             >
-              <div className="absolute -inset-0.5 bg-accent-500/10 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
-              <div className="relative h-full bg-card backdrop-blur-sm p-8 rounded-3xl border border-border">
-                <div className="text-accent-500">{service.icon}</div>
-                <h3 className="mt-4 text-xl font-semibold text-foreground">{service.title}</h3>
-                <p className="mt-2 text-muted-foreground">{service.description}</p>
+              <div className="relative z-10">
+                <div className="mb-10 inline-flex p-4 rounded-2xl bg-primary/10 border border-primary/20 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                  {service.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-4 tracking-tight">{service.title}</h3>
+                <p className="text-muted-foreground leading-relaxed font-light text-sm">{service.description}</p>
               </div>
-            </div>
+              {/* Corner Accent */}
+              <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="w-8 h-8 border-t-2 border-r-2 border-accent/30 rounded-tr-xl" />
+              </div>
+            </Card>
           ))}
         </div>
       </animated.div>

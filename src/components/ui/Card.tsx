@@ -13,14 +13,14 @@ export function Card({
   ...props 
 }: CardProps) {
   const variants = {
-    default: "bg-primary-900 border border-primary-800",
-    glass: "bg-primary-900/50 backdrop-blur-sm border border-primary-800"
+    default: "bg-background/20 backdrop-blur-3xl transition-all duration-500 hover:bg-background/30",
+    glass: "moist-glass transition-all duration-500"
   };
 
   return (
     <div 
       className={cn(
-        "rounded-xl p-6",
+        "rounded-[2.5rem] p-8",
         variants[variant],
         className
       )} 

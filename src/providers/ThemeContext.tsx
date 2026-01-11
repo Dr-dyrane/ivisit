@@ -51,15 +51,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       root.classList.remove('light', 'dark');
       root.classList.add(theme);
       localStorage.setItem('theme', theme);
-
-      // Update CSS variables based on theme
-      if (theme === 'dark') {
-        root.style.setProperty('--background', '222.2 84% 4.9%');
-        root.style.setProperty('--foreground', '210 40% 98%');
-      } else {
-        root.style.setProperty('--background', '0 0% 100%');
-        root.style.setProperty('--foreground', '222.2 84% 4.9%');
-      }
     } catch (error) {
       console.error('Error applying theme:', error);
     }

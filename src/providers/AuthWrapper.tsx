@@ -8,7 +8,7 @@ interface AuthWrapperProps {
   children: React.ReactNode;
 }
 
-const UNAUTHENTICATED_PAGES = ['/', '/login'];
+const UNAUTHENTICATED_PAGES = ['/', '/login', '/privacy', '/terms', '/support'];
 const DEFAULT_AUTH_PAGE = '/emergency'; // Default page for authenticated users
 
 export const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {

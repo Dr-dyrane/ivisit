@@ -12,6 +12,8 @@ import { AppDispatch, RootState } from '@/lib/store';
 import SocialIcon from '@/components/ui/social-icons';
 
 
+import { Card } from '@/components/ui/Card';
+
 const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate();
@@ -61,87 +63,90 @@ const Login: React.FC = () => {
 
 
   return (
-    <div className="container mx-auto px-4 py-16 min-h-screen flex flex-col items-center justify-center">
+    <div className="container mx-auto px-4 py-16 min-h-screen flex flex-col items-center justify-center bg-transparent">
       {/* Toggle between Login and Register */}
 
+      <Card className="w-full max-w-md p-10 rounded-3xl border-border bg-card">
+        <h2 className="text-3xl font-bold text-center mb-8 text-foreground tracking-tight">
+          {isLogin ? 'Access Command' : 'Register Officer'}
+        </h2>
 
-      <div className={cn("w-full max-w-md bg-background rounded-lg p-8 shadow-md", isLogin && "border border-foreground/20")}>
-
-
-
-        <h2 className="text-2xl font-bold text-center mb-4">{isLogin ? 'Welcome Back' : 'Create Your Account'}</h2>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {!isLogin && (
-            <div>
-              <Label htmlFor="name">Name</Label>
+            <div className="space-y-2">
+              <Label htmlFor="name" className="text-xs uppercase tracking-widest text-muted-foreground ml-1">Name</Label>
               <Input
                 id="name"
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
+                className="bg-background border-border rounded-xl text-foreground"
               />
             </div>
           )}
-          <div>
-            <Label htmlFor="email">Email</Label>
+          <div className="space-y-2">
+            <Label htmlFor="email" className="text-xs uppercase tracking-widest text-muted-foreground ml-1">Email</Label>
             <Input
               id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="bg-background border-border rounded-xl text-foreground"
             />
           </div>
-          <div>
-            <Label htmlFor="password">Password</Label>
+          <div className="space-y-2">
+            <Label htmlFor="password" className="text-xs uppercase tracking-widest text-muted-foreground ml-1">Key Phrase</Label>
             <Input
               id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              className="bg-background border-border rounded-xl text-foreground"
             />
           </div>
           {/* Error Alert */}
           {error && (
-            <Alert variant="destructive">
-              <AlertDescription>{error}</AlertDescription>
+            <Alert variant="destructive" className="rounded-xl border-destructive/50 bg-destructive/10">
+              <AlertDescription className="text-xs uppercase tracking-wider">{error}</AlertDescription>
             </Alert>
           )}
-          <Button variant='accent' type="submit" disabled={loading} className='w-full rounded-lg'>
-            {loading ? 'Loading...' : isLogin ? 'Login' : 'Register'}
+          <Button variant='accent' type="submit" disabled={loading} className='w-full py-7 rounded-xl font-bold uppercase tracking-widest'>
+            {loading ? 'Authenticating...' : isLogin ? 'Initialize' : 'Create Profile'}
           </Button>
         </form>
-        <div className="mt-4 flex items-center justify-center space-x-4 text-white">
+
+        <div className="mt-8 flex items-center justify-center space-x-6 text-muted-foreground">
           {['google', 'apple', 'facebook', 'twitter'].map((provider) => (
             <SocialIcon
               key={provider}
               provider={provider as any} // Type assertion if needed
               onClick={() => console.log(`${provider} clicked`)}
+              className="hover:text-foreground transition-colors"
             />
           ))}
         </div>
-        <p className="mt-4 text-center text-sm text-muted-foreground">
+
+        <p className="mt-10 text-center text-sm text-muted-foreground">
           {isLogin ? (
             <>
-              Don't have an account?{' '}
-              <Link to="/login" onClick={() => setIsLogin(false)} className="font-medium text-accent-foreground hover:underline">
+              New to Command?{' '}
+              <Link to="/login" onClick={() => setIsLogin(false)} className="font-bold text-accent hover:underline">
                 Register
               </Link>
             </>
           ) : (
             <>
-              Already have an account?{' '}
-              <Link to="/login" onClick={() => setIsLogin(true)} className="font-medium text-accent-foreground hover:underline">
+              Already registered?{' '}
+              <Link to="/login" onClick={() => setIsLogin(true)} className="font-bold text-accent hover:underline">
                 Login
               </Link>
             </>
           )}
         </p>
-      </div>
-
+      </Card>
     </div>
   );
 };

@@ -72,12 +72,10 @@ export default function AmbulanceCall() {
   const filteredHospitals = hospitals.filter(hospital => hospital.type === serviceType);
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMS4yMjY3NiAwQzEuOTEzNzQgMCAyLjQ1MzUxIDAuNTM5NzczIDIuNDUzNTEgMS4yMjY3NkMyLjQ1MzUxIDEuOTEzNzQgMS45MTM3NCAyLjQ1MzUxIDEuMjI2NzYgMi40NTM1MUMwLjUzOTc3MyAyLjQ1MzUxIDAgMS45MTM3NCAwIDEuMjI2NzZDMCAwLjUzOTc3MyAwLjUzOTc3MyAwIDEuMjI2NzYgMFoiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')]" />
-      
-      <div className="relative flex flex-col lg:flex-row min-h-screen">
+    <div className="min-h-screen bg-transparent">
+      <div className="relative flex flex-col lg:flex-row min-h-screen pt-20">
         {/* Map Section */}
-        <div className="flex-auto h-[50vh] md:h-[100vh] bg-card/50 backdrop-blur-sm relative">
+        <div className="flex-auto h-[50vh] md:h-[calc(100vh-5rem)] bg-card/20 backdrop-blur-md relative border-r border-white/5">
           <OpenStreetMap
             hospitals={hospitals}
             selectedHospital={selectedHospital}
@@ -88,8 +86,8 @@ export default function AmbulanceCall() {
         </div>
 
         {/* Service Selection Panel */}
-        <div className="w-full lg:w-[400px] rounded-t-3xl lg:rounded-none overflow-auto bg-card/50 backdrop-blur-sm border lg:border-none border-border">
-          <Container className="p-6 mt-6 lg:mt-0 space-y-6">
+        <div className="w-full lg:w-[450px] overflow-auto bg-background/80 backdrop-blur-xl border-t lg:border-t-0 border-white/10">
+          <Container className="p-8 space-y-8">
             <EmergencyHeader />
             
             <ServiceTypeSelector
@@ -100,10 +98,10 @@ export default function AmbulanceCall() {
             {/* Emergency Call Button */}
             <button 
               onClick={() => window.location.href = 'tel:911'}
-              className="w-full bg-accent-600 hover:bg-accent-500 text-white dark:text-white px-6 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 font-medium"
+              className="w-full bg-accent hover:bg-accent/90 text-white px-6 py-5 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 font-bold uppercase tracking-widest shadow-lg shadow-accent/20"
             >
-              <Phone className="h-5 w-5" />
-              <span>Call Emergency (911)</span>
+              <Phone className="h-6 w-6 animate-pulse" />
+              <span>SOS TRANSMISSION</span>
             </button>
 
             {/* Available Services */}

@@ -15,23 +15,29 @@ export default function BookingPanel({
   onBookBed
 }: BookingPanelProps) {
   return (
-    <animated.div style={fadeIn} className="h-full overflow-auto bg-card/50 backdrop-blur-sm rounded-t-3xl lg:rounded-none border lg:border-none border-border">
-      <Container className="p-6 mt-6 lg:mt-0 space-y-8">
+    <animated.div style={fadeIn} className="h-full overflow-auto bg-background/60 backdrop-blur-3xl border-l border-white/5 relative z-10">
+      <Container className="p-8 space-y-10">
         <BookingHeader />
         
-        <SpecialtySelector
-          specialties={specialties}
-          selectedSpecialty={selectedSpecialty}
-          onSelect={onSpecialtySelect}
-        />
+        <div className="space-y-4">
+          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-accent ml-2">Operation Mode</label>
+          <SpecialtySelector
+            specialties={specialties}
+            selectedSpecialty={selectedSpecialty}
+            onSelect={onSpecialtySelect}
+          />
+        </div>
 
-        <HospitalList
-          hospitals={hospitals}
-          selectedSpecialty={selectedSpecialty}
-          selectedHospital={selectedHospital}
-          onHospitalSelect={onHospitalSelect}
-          onBookBed={onBookBed}
-        />
+        <div className="space-y-4">
+          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-accent ml-2">Facility Selection</label>
+          <HospitalList
+            hospitals={hospitals}
+            selectedSpecialty={selectedSpecialty}
+            selectedHospital={selectedHospital}
+            onHospitalSelect={onHospitalSelect}
+            onBookBed={onBookBed}
+          />
+        </div>
       </Container>
     </animated.div>
   );

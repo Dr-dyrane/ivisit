@@ -3,6 +3,7 @@ import { useSpring, animated } from '@react-spring/web';
 import LoadingSpinner from './components/ui/LoadingSpinner';
 import { Providers } from './providers';
 import { AppRouter } from './routes/AppRouter';
+import { GridBackground } from './components/ui/GridBackground';
 
 function App() {
   const fadeIn = useSpring({
@@ -13,7 +14,7 @@ function App() {
 
   return (
     <Providers>
-      <animated.div style={fadeIn} className="min-h-screen flex flex-col bg-background text-foreground">
+      <animated.div style={fadeIn} className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
         <Suspense fallback={<LoadingSpinner />}>
           <AppRouter />
         </Suspense>

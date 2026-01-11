@@ -3,6 +3,8 @@ import { Star, MapPin, Clock, Ambulance, ChevronRight } from 'lucide-react';
 import { Card } from '../ui/Card';
 import ImageWithFallback from '../ui/ImageWithFallback';
 
+import { Button } from '../ui/Button';
+
 export default function HospitalCard({
   hospital,
   isSelected,
@@ -11,58 +13,75 @@ export default function HospitalCard({
 }: HospitalCardProps) {
   return (
     <Card
-      className={`cursor-pointer ${
+      className={`cursor-pointer transition-all duration-500 rounded-[2rem] p-6 ${
         isSelected 
-          ? 'ring-2 ring-accent-500 bg-accent-500/10' 
-          : 'hover:bg-accent-500/5'
+          ? 'border-accent/50 bg-accent/5 shadow-[0_0_30px_rgba(134,16,14,0.1)]' 
+          : 'hover:border-white/20'
       }`}
       onClick={() => onSelect(hospital.id)}
     >
-      <div className="flex flex-col sm:flex-row lg:flex-col items-start gap-4">
-        <ImageWithFallback
-          src={hospital.image}
-          alt={hospital.name}
-          className="w-full sm:w-1/3 lg:w-full h-auto object-cover rounded-lg"
-        />
-        <div className="flex-1">
-          <div className="flex items-center justify-between mb-3">
+      <div className="flex flex-col gap-6">
+        <div className="relative group">
+          <ImageWithFallback
+            src={hospital.image}
+            alt={hospital.name}
+            className="w-full h-48 object-cover rounded-2xl grayscale-[0.3] group-hover:grayscale-0 transition-all duration-500"
+          />
+          <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-[10px] font-black uppercase tracking-widest text-white">
+            {hospital.type}
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <div className="flex items-start justify-between">
             <div>
-              <h3 className="text-lg font-medium text-foreground">{hospital.name}</h3>
-              <div className="flex items-center space-x-2 mt-1">
-                <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                <span className="text-sm text-muted-foreground">{hospital.rating}</span>
+              <h3 className="text-xl font-bold text-white tracking-tight">{hospital.name}</h3>
+              <div className="flex items-center space-x-2 mt-2">
+                <Star className="h-3 w-3 text-accent fill-current" />
+                <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">{hospital.rating} Rating</span>
               </div>
             </div>
-            <span className="text-lg font-medium text-foreground">{hospital.price}</span>
+            <div className="text-right">
+              <span className="text-lg font-black text-white">{hospital.price}</span>
+              <p className="text-[10px] font-bold text-accent uppercase tracking-tighter">Base Rate</p>
+            </div>
           </div>
           
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            <div className="flex items-center space-x-2">
-              <MapPin className="h-4 w-4 text-accent-500" />
-              <span className="text-sm text-muted-foreground">{hospital.distance}</span>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex items-center space-x-3 bg-white/5 p-3 rounded-xl border border-white/5">
+              <MapPin className="h-4 w-4 text-accent" />
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black text-muted-foreground uppercase tracking-tighter">Distance</span>
+                <span className="text-xs font-bold text-white">{hospital.distance}</span>
+              </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <Clock className="h-4 w-4 text-accent-500" />
-              <span className="text-sm text-muted-foreground">ETA: {hospital.eta}</span>
+            <div className="flex items-center space-x-3 bg-white/5 p-3 rounded-xl border border-white/5">
+              <Clock className="h-4 w-4 text-accent" />
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black text-muted-foreground uppercase tracking-tighter">Response</span>
+                <span className="text-xs font-bold text-white">{hospital.eta}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
       
       {isSelected && (
-        <button 
+        <Button 
+          variant="accent"
+          showOverlay={true}
           onClick={(e) => {
             e.stopPropagation();
             onCall(hospital.id);
           }}
-          className="w-full bg-accent-600 text-white px-4 py-3 rounded-lg hover:bg-accent-500 transition-all duration-300 flex items-center justify-between mt-4"
+          className="w-full py-6 rounded-xl mt-6 flex items-center justify-between"
         >
-          <div className="flex items-center space-x-2">
-            <Ambulance className="h-5 w-5" />
-            <span className="font-medium">Request Now</span>
+          <div className="flex items-center space-x-3">
+            <Ambulance className="h-5 w-5 animate-pulse" />
+            <span className="font-black text-xs uppercase tracking-[0.2em]">Deploy Unit</span>
           </div>
           <ChevronRight className="h-5 w-5" />
-        </button>
+        </Button>
       )}
     </Card>
   );
