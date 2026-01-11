@@ -25,7 +25,7 @@
     --ring: 1 81% 29%;
     --radius: 0.75rem;
     --grid-color: 134, 16, 14; /* Brand Red for light mode */
-    --grid-opacity: 0.4;
+    --grid-opacity: 0.1;
   }
 
   .dark {

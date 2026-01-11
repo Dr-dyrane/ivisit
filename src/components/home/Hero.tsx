@@ -29,6 +29,18 @@ export default function Hero() {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
   const sectionRef = useRef<HTMLElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [liveStats, setLiveStats] = useState({ eta: 4.8, units: 34, uptime: '99.9%' });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLiveStats(prev => ({
+        ...prev,
+        eta: +(4.5 + Math.random() * 0.5).toFixed(1),
+        units: Math.floor(30 + Math.random() * 10)
+      }));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -103,16 +115,44 @@ export default function Hero() {
       <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none animate-pulse" style={{ animationDelay: '2s' }} />
 
       <Container className="relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <animated.div style={fadeIn} className="text-left sm:text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-[0.2em] mb-8">
+        {/* System Heartbeat Ticker */}
+        <div className="mb-12 flex flex-wrap items-center justify-between gap-6 border-b border-border/50 pb-8">
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-[0.2em]">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
-              System Active: Lagos Command
+              System Active
             </div>
+            <div className="flex gap-8">
+              <div className="flex flex-col">
+                <span className="text-[9px] font-black text-muted-foreground uppercase tracking-widest opacity-50">Avg ETA</span>
+                <span className="text-sm font-black text-foreground tabular-nums tracking-tighter">{liveStats.eta}m</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[9px] font-black text-muted-foreground uppercase tracking-widest opacity-50">Active Units</span>
+                <span className="text-sm font-black text-foreground tabular-nums tracking-tighter">{liveStats.units}</span>
+              </div>
+            </div>
+          </div>
+          <div className="hidden md:flex items-center gap-6">
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+              <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest opacity-60">Satellite-Linked</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+              <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest opacity-60">Watch Ready</span>
+            </div>
+            <div className="px-3 py-1 rounded border border-border/50 bg-secondary/50">
+              <span className="text-[9px] font-black text-foreground tabular-nums tracking-widest">{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })} UTC</span>
+            </div>
+          </div>
+        </div>
 
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <animated.div style={fadeIn} className="text-left sm:text-center lg:text-left">
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[-0.05em] text-foreground mb-8 leading-[0.85]">
               iVisit<span className="text-primary">.</span>
             </h1>
@@ -120,18 +160,6 @@ export default function Hero() {
             <p className="text-xl sm:text-2xl text-muted-foreground mb-12 max-w-xl sm:mx-auto lg:mx-0 leading-relaxed font-normal">
               Ultra-rapid medical dispatch systems. Command-grade intervention within <span className="text-primary font-bold">5 minutes</span>.
             </p>
-
-            <div className="flex flex-wrap gap-4 justify-start sm:justify-center lg:justify-start mb-16">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-secondary border border-border text-foreground backdrop-blur-xl transition-all hover:border-primary/50 group"
-                >
-                  <span className="text-primary group-hover:scale-110 transition-transform">{feature.icon}</span>
-                  <span className='font-bold text-[10px] uppercase tracking-widest'>{feature.text}</span>
-                </div>
-              ))}
-            </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center sm:flex-nowrap">
               <div className="relative group w-full sm:w-auto">
@@ -171,50 +199,45 @@ export default function Hero() {
                 </div>
               </Button>
             </div>
-
-            <div className="mt-12 flex flex-col sm:flex-row items-center gap-6 opacity-80 hover:opacity-100 transition-opacity justify-start sm:justify-center lg:justify-start">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground whitespace-nowrap">Available Now:</span>
-              <div className="flex gap-4 items-center">
-                <a href="#" className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px]">
-                  <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" 
-                    alt="Apple" 
-                    className="h-6 w-auto dark:invert transition-colors"
-                  />
-                  <div className="flex flex-col leading-none">
-                    <span className="text-[9px] font-bold uppercase tracking-tighter opacity-60">Download on the</span>
-                    <span className="text-base font-black tracking-tight">App Store</span>
-                  </div>
-                </a>
-                <a href="#" className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px]">
-                   <svg viewBox="0 0 512 512" className="h-6 w-auto">
-                    <path fill="#4285F4" d="M12 12L12 500L350 256L12 12Z" />
-                    <path fill="#34A853" d="M12 500L440 330L350 256L12 500Z" />
-                    <path fill="#FBBC05" d="M440 330L500 256L440 182L350 256L440 330Z" />
-                    <path fill="#EA4335" d="M12 12L350 256L440 182L12 12Z" />
-                  </svg>
-                  <div className="flex flex-col leading-none">
-                    <span className="text-[9px] font-bold uppercase tracking-tighter opacity-60">Get it on</span>
-                    <span className="text-base font-black tracking-tight whitespace-nowrap">Google Play</span>
-                  </div>
-                </a>
-              </div>
-            </div>
           </animated.div>
 
           <animated.div style={fadeIn} className="relative hidden lg:block">
-            <div className="relative z-10 rounded-[2.5rem] overflow-hidden moist-glass p-4">
+            <div className="relative z-10 rounded-[2.5rem] overflow-hidden moist-glass p-2">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent pointer-events-none" />
               <img
                 src={images[theme]}
                 alt="Emergency Response Team"
-                className="w-full h-full object-cover rounded-[2rem] grayscale-[0.5] hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full object-cover rounded-[2rem] grayscale-[0.5] hover:grayscale-0 transition-all duration-700 shadow-2xl"
               />
             </div>
-            {/* HUD Elements */}
-            <div className="absolute -top-6 -right-6 w-32 h-32 border-t-2 border-r-2 border-primary/30 rounded-tr-3xl pointer-events-none" />
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 border-b-2 border-l-2 border-primary/30 rounded-bl-3xl pointer-events-none" />
+            {/* Minimalist HUD Elements */}
+            <div className="absolute -top-4 -right-4 w-24 h-24 border-t border-r border-primary/40 rounded-tr-3xl pointer-events-none" />
+            <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b border-l border-primary/40 rounded-bl-3xl pointer-events-none" />
+            <div className="absolute -top-2 -left-2 w-4 h-4 border-t border-l border-primary/60 pointer-events-none" />
+            <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b border-r border-primary/60 pointer-events-none" />
           </animated.div>
+        </div>
+
+        {/* Tactical Feature Strip */}
+        <div className="mt-24 grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-border/50 pt-12">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-secondary/30 border border-border/50 backdrop-blur-sm group hover:border-primary/30 transition-all"
+            >
+              <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:scale-110 transition-transform">
+                {feature.icon}
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground">
+                  {feature.text}
+                </span>
+                <span className="text-[8px] font-bold text-muted-foreground uppercase tracking-widest opacity-60">
+                  Operational Protocol
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </Container>
     </Section>

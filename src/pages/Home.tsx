@@ -4,6 +4,7 @@ import Services from '../components/home/Services';
 import ProtocolFlow from '../components/home/ProtocolFlow';
 import Contact from '../components/home/Contact';
 import TrustSignals from '../components/home/TrustSignals';
+import StrategicAdvantage from '../components/home/StrategicAdvantage';
 
 const Home: React.FC = () => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const Home: React.FC = () => {
       <Hero />
       <TrustSignals />
       <Services />
+      <StrategicAdvantage />
       <ProtocolFlow />
       <Contact />
     </main>
