@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Zap, Users, Rocket, Heart, ArrowRight } from 'lucide-react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Zap, Users, Rocket, Heart, ArrowRight, Check } from 'lucide-react';
 import { useSpring, animated } from '@react-spring/web';
 import { Container } from '@/components/ui/Container';
 import { Section } from '@/components/ui/Section';
@@ -66,10 +66,12 @@ const pricingTiers = [
 
 export default function EarlyAccessPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { theme } = useTheme();
   const sectionRef = useRef<HTMLElement>(null);
   const formSectionRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isPaid] = useState(searchParams.get('paid') === 'true');
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -107,8 +109,20 @@ export default function EarlyAccessPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      {isPaid && (
+        <div className="fixed top-0 left-0 right-0 z-40 bg-green-500/10 border-b border-green-500/30 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-4 py-4 flex items-center gap-3 sm:gap-4">
+            <Check className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 flex-shrink-0" />
+            <div>
+              <p className="text-sm sm:text-base font-semibold text-green-600">Payment Received!</p>
+              <p className="text-xs sm:text-sm text-green-600/70">Thank you for supporting iVisit. Your account has been upgraded to Supporter status.</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
-      <Section id="early-access-hero" ref={sectionRef} className="relative min-h-[calc(100vh-5rem)] flex items-center bg-transparent overflow-hidden group pt-20 md:pt-32">
+      <Section id="early-access-hero" ref={sectionRef} className={`relative min-h-[calc(100vh-5rem)] flex items-center bg-transparent overflow-hidden group pt-20 md:pt-32 ${isPaid ? 'mt-20' : ''}`}>
         {/* Smarty Blur Background */}
         <div 
           className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-0 group-hover:opacity-100"

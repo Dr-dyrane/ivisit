@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS public.subscribers (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   email TEXT UNIQUE NOT NULL,
   type TEXT NOT NULL DEFAULT 'free' CHECK (type IN ('free', 'paid')),
+  sale_id TEXT UNIQUE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
