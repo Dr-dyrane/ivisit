@@ -17,6 +17,11 @@ CREATE INDEX IF NOT EXISTS idx_subscribers_type ON public.subscribers(type);
 -- Enable RLS (Row Level Security)
 ALTER TABLE public.subscribers ENABLE ROW LEVEL SECURITY;
 
+-- Drop existing policies if they exist
+DROP POLICY IF EXISTS "Allow insert for all users" ON public.subscribers;
+DROP POLICY IF EXISTS "Allow read for all users" ON public.subscribers;
+DROP POLICY IF EXISTS "Allow update for own record" ON public.subscribers;
+
 -- Create policy for inserting (anyone can insert their own email)
 CREATE POLICY "Allow insert for all users" ON public.subscribers
   FOR INSERT WITH CHECK (true);
