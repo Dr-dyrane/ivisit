@@ -43,7 +43,7 @@ export const GridBackground: React.FC<GridBackgroundProps> = ({
           zIndex: 0 
         }}
       />
-      <div className="noise-overlay" />
+      {/* <div className="noise-overlay" /> */}
       <div className="relative z-10">
         {children}
       </div>
