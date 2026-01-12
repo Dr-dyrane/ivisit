@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Zap, Diamond, CheckCircle2 } from 'lucide-react';
+import { Zap, Diamond, CheckCircle2 } from 'lucide-react';
 
 interface ServiceTypeSelectorProps {
   selectedType: 'Premium' | 'Standard';
@@ -38,7 +38,7 @@ export function ServiceTypeSelector({ selectedType, onSelect }: ServiceTypeSelec
               }`}>
                 {type === 'Premium' ? 'Elite Tier' : 'Standard'}
               </h3>
-              <p className="text-[10px] font-bold text-muted-foreground/60 leading-tight uppercase tracking-widest">
+              <p className="text-xs sm:text-sm font-bold text-muted-foreground/60 leading-tight uppercase tracking-widest">
                 {type === 'Premium' 
                   ? 'Priority Uplink • < 5min'
                   : 'Basic Dispatch • < 15min'

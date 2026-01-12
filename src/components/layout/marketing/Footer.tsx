@@ -60,13 +60,13 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="font-black text-foreground uppercase tracking-[0.3em] text-[10px] mb-8 opacity-50">Operations</h3>
+            <h3 className="font-black text-foreground uppercase tracking-[0.3em] text-xs sm:text-sm mb-8 opacity-50">Operations</h3>
             <ul className="space-y-4">
               <li><Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide">Home</Link></li>
               <li><a href="#services" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide">Services</a></li>
               <li><a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide">Command Center</a></li>
               <li className="pt-4 border-t border-border/10">
-                <p className="text-[10px] font-black text-primary uppercase tracking-widest mb-1">USA HQ</p>
+                <p className="text-xs sm:text-sm font-black text-primary uppercase tracking-widest mb-1">USA HQ</p>
                 <p className="text-xs text-muted-foreground">California Command</p>
                 <p className="text-xs text-muted-foreground">+1 951 728 4218</p>
               </li>
@@ -74,7 +74,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="font-black text-foreground uppercase tracking-[0.3em] text-[10px] mb-8 opacity-50">Legal</h3>
+            <h3 className="font-black text-foreground uppercase tracking-[0.3em] text-xs sm:text-sm mb-8 opacity-50">Legal</h3>
             <ul className="space-y-4">
               <li><Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide">Privacy Policy</Link></li>
               <li><Link to="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide">Terms of Service</Link></li>
@@ -88,7 +88,7 @@ export default function Footer() {
                     className="h-6 w-auto dark:invert transition-colors"
                   />
                   <div className="flex flex-col leading-none text-left">
-                    <span className="text-[9px] font-bold uppercase tracking-tighter opacity-60">Download on the</span>
+                    <span className="text-xs sm:text-sm font-bold uppercase tracking-tighter opacity-60">Download on the</span>
                     <span className="text-base font-black tracking-tight">App Store</span>
                   </div>
                </a>
@@ -100,7 +100,7 @@ export default function Footer() {
                     <path fill="#EA4335" d="M12 12L350 256L440 182L12 12Z" />
                   </svg>
                   <div className="flex flex-col leading-none text-left">
-                    <span className="text-[9px] font-bold uppercase tracking-tighter opacity-60">Get it on</span>
+                    <span className="text-xs sm:text-sm font-bold uppercase tracking-tighter opacity-60">Get it on</span>
                     <span className="text-base font-black tracking-tight whitespace-nowrap">Google Play</span>
                   </div>
                </a>
@@ -108,7 +108,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="font-black text-foreground uppercase tracking-[0.3em] text-[10px] mb-8 opacity-50">Preferences</h3>
+            <h3 className="font-black text-foreground uppercase tracking-[0.3em] text-xs sm:text-sm mb-8 opacity-50">Preferences</h3>
             <Button
               variant="default"
               showOverlay={true}
@@ -131,7 +131,7 @@ export default function Footer() {
         </div>
         
         <div className="mt-16 pt-8 border-t border-white/5">
-          <p className="text-center text-muted-foreground text-[10px] font-black uppercase tracking-[0.4em] opacity-30">
+          <p className="text-center text-muted-foreground text-xs sm:text-sm font-black uppercase tracking-[0.4em] opacity-30">
             © {new Date().getFullYear()} IVISIT COMMAND • ALL SYSTEMS OPERATIONAL
           </p>
         </div>

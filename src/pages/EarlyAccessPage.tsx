@@ -111,11 +111,11 @@ export default function EarlyAccessPage() {
     <div className="min-h-screen bg-background">
       {isPaid && (
         <div className="fixed top-0 left-0 right-0 z-40 bg-green-500/10 border-b border-green-500/30 backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto px-4 py-4 flex items-center gap-3 sm:gap-4">
-            <Check className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 flex-shrink-0" />
-            <div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-start sm:items-center gap-3 sm:gap-4">
+            <Check className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 flex-shrink-0 mt-0.5 sm:mt-0" />
+            <div className="min-w-0">
               <p className="text-sm sm:text-base font-semibold text-green-600">Payment Received!</p>
-              <p className="text-xs sm:text-sm text-green-600/70">Thank you for supporting iVisit. Your account has been upgraded to Supporter status.</p>
+              <p className="text-xs sm:text-sm text-green-600/70">Thank you for supporting iVisit. Enjoy Supporter benefits.</p>
             </div>
           </div>
         </div>
@@ -250,11 +250,12 @@ export default function EarlyAccessPage() {
                   <Button
                     variant={tier.variant}
                     size="lg"
-                    className="w-full rounded-xl"
+                    className="w-full rounded-xl text-sm sm:text-base font-semibold sm:font-bold"
                     onClick={tier.name === 'Early Access' ? handleFreeCTA : handlePaidCTA}
                   >
-                    {tier.cta}
-                    <ArrowRight className="h-4 w-4 ml-2" />
+                    <span className="sm:hidden">{tier.name === 'Early Access' ? 'Join Free' : 'Support'}</span>
+                    <span className="hidden sm:inline">{tier.cta}</span>
+                    <ArrowRight className="h-4 w-4 ml-1 sm:ml-2 flex-shrink-0" />
                   </Button>
                 </Card>
               </animated.div>
@@ -273,22 +274,24 @@ export default function EarlyAccessPage() {
             <p className="text-base text-muted-foreground mb-8">
               Join early adopters transforming emergency healthcare. Start today.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Button
                 variant="accent"
                 size="lg"
-                className="rounded-xl"
+                className="rounded-xl text-sm sm:text-base font-semibold sm:font-bold"
                 onClick={handleFreeCTA}
               >
-                Get Early Access
+                <span className="sm:hidden">Get Access</span>
+                <span className="hidden sm:inline">Get Early Access</span>
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 onClick={() => navigate('/')}
-                className="rounded-xl"
+                className="rounded-xl text-sm sm:text-base font-semibold sm:font-bold"
               >
-                Back to Home
+                <span className="sm:hidden">Home</span>
+                <span className="hidden sm:inline">Back to Home</span>
               </Button>
             </div>
           </div>

@@ -50,7 +50,7 @@ export default function EarlyAccessCTA() {
 
       <Container className="relative z-10">
         <animated.div style={fadeIn} className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-black uppercase tracking-[0.3em] mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs sm:text-sm font-black uppercase tracking-[0.3em] mb-8">
             <Sparkles className="h-3.5 w-3.5" />
             Limited Early Access Available
           </div>

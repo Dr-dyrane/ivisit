@@ -43,14 +43,14 @@ export default function SpecialtySelector({
             </div>
             
             <div className="text-left">
-              <h3 className={`text-[10px] font-black uppercase tracking-[0.2em] mb-1 ${
+              <h3 className={`text-xs sm:text-sm font-black uppercase tracking-[0.2em] mb-1 ${
                 selectedSpecialty === specialty ? 'text-foreground' : 'text-muted-foreground'
               }`}>
                 {specialty}
               </h3>
               <div className="flex items-center gap-1.5">
                 <div className={`w-1 h-1 rounded-full ${selectedSpecialty === specialty ? 'bg-blue-500 animate-pulse' : 'bg-muted-foreground/30'}`} />
-                <span className="text-[8px] font-bold text-muted-foreground/50 uppercase tracking-widest">Protocol Active</span>
+                <span className="text-xs sm:text-sm font-bold text-muted-foreground/50 uppercase tracking-widest">Protocol Active</span>
               </div>
             </div>
           </div>

@@ -35,10 +35,10 @@ export default function TrustSignals() {
                 {signal.icon}
               </div>
               <div>
-                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground mb-1">
+                <h4 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-foreground mb-1">
                   {signal.label}
                 </h4>
-                <p className="text-[9px] text-muted-foreground font-medium uppercase tracking-wider opacity-60">
+                <p className="text-xs sm:text-sm text-muted-foreground font-medium uppercase tracking-wider opacity-60">
                   {signal.description}
                 </p>
               </div>

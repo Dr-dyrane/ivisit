@@ -3,7 +3,6 @@ import { useSpring, animated } from '@react-spring/web';
 import LoadingSpinner from './components/ui/LoadingSpinner';
 import { Providers } from './providers';
 import { AppRouter } from './routes/AppRouter';
-import { GridBackground } from './components/ui/GridBackground';
 
 function App() {
   const fadeIn = useSpring({

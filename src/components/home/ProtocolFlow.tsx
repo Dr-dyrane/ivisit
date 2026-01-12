@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSpring, animated, useTransition } from '@react-spring/web';
+import { animated, useTransition } from '@react-spring/web';
 import { 
   Ambulance, 
   Bed, 
@@ -7,7 +7,6 @@ import {
   ShieldCheck, 
   Activity, 
   CheckCircle2, 
-  ArrowRight,
   Database,
   Smartphone,
   ChevronRight
@@ -154,7 +153,7 @@ export default function ProtocolFlow() {
           {/* Left Column: Info & Toggle */}
           <div className="lg:w-1/3 space-y-8 lg:sticky lg:top-32">
             <div>
-              <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-6">
+              <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-black uppercase tracking-[0.3em] mb-6">
                 Operational Lifecycle
               </div>
               <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-6 leading-tight">
@@ -168,7 +167,7 @@ export default function ProtocolFlow() {
             <div className="flex p-1 bg-secondary border border-border rounded-2xl">
               <button
                 onClick={() => setMode('emergency')}
-                className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-xl text-xs sm:text-sm font-black uppercase tracking-widest transition-all ${
                   mode === 'emergency' ? 'bg-background text-primary shadow-lg' : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
@@ -177,7 +176,7 @@ export default function ProtocolFlow() {
               </button>
               <button
                 onClick={() => setMode('booking')}
-                className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-xl text-xs sm:text-sm font-black uppercase tracking-widest transition-all ${
                   mode === 'booking' ? 'bg-background text-primary shadow-lg' : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
@@ -223,9 +222,9 @@ export default function ProtocolFlow() {
                   {/* Content */}
                   <div className="flex-grow pt-2">
                     <div className="flex flex-wrap items-center gap-3 mb-3">
-                      <span className="text-[10px] font-black text-muted-foreground/50 uppercase tracking-[0.2em]">Step 0{index + 1}</span>
+                      <span className="text-xs sm:text-sm font-black text-muted-foreground/50 uppercase tracking-[0.2em]">Step 0{index + 1}</span>
                       <ChevronRight className="h-3 w-3 text-muted-foreground/30" />
-                      <span className={`text-[10px] font-black uppercase tracking-[0.2em] px-2 py-0.5 rounded-md border ${
+                      <span className={`text-xs sm:text-sm font-black uppercase tracking-[0.2em] px-2 py-0.5 rounded-md border ${
                         mode === 'emergency' ? 'bg-primary/5 border-primary/20 text-primary' : 'bg-accent/5 border-accent/20 text-accent'
                       }`}>
                         {step.status}
@@ -239,7 +238,7 @@ export default function ProtocolFlow() {
                     </p>
                     
                     {step.dbAction && (
-                      <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-secondary/50 border border-border/50 font-mono text-[10px] text-muted-foreground/70 group hover:border-primary/30 transition-colors">
+                      <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-secondary/50 border border-border/50 font-mono text-xs sm:text-sm text-muted-foreground/70 group hover:border-primary/30 transition-colors">
                         <Database className="h-3 w-3 text-primary/50 group-hover:text-primary transition-colors" />
                         {step.dbAction}
                       </div>

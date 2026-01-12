@@ -31,9 +31,9 @@ export function Button({
   };
 
   const sizes = {
-    sm: "h-9 px-4 text-sm",
-    md: "h-11 px-6 text-base",
-    lg: "h-14 px-10 text-lg"
+    sm: "h-10 sm:h-11 px-4 text-sm",
+    md: "h-12 sm:h-13 px-6 text-base",
+    lg: "h-13 sm:h-14 px-10 text-base sm:text-lg"
   };
 
   const Component = as === 'a' ? 'a' : 'button';

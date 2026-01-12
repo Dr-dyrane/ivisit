@@ -12,22 +12,22 @@ export default function Services() {
 
   const services = [
     {
-      icon: <Ambulance className="h-8 w-8" />,
+      icon: <Ambulance className="h-6 sm:h-8 w-6 sm:w-8" />,
       title: "Emergency Response",
       description: "24/7 rapid emergency medical response. GPS-tracked command."
     },
     {
-      icon: <HeartPulse className="h-8 w-8" />,
+      icon: <HeartPulse className="h-6 sm:h-8 w-6 sm:w-8" />,
       title: "Urgent Care",
       description: "Immediate care for medical needs with high-priority dispatch."
     },
     {
-      icon: <Bed className="h-8 w-8" />,
+      icon: <Bed className="h-6 sm:h-8 w-6 sm:w-8" />,
       title: "Bed Booking",
       description: "Reserve hospital beds in advance with real-time availability."
     },
     {
-      icon: <Stethoscope className="h-8 w-8" />,
+      icon: <Stethoscope className="h-6 sm:h-8 w-6 sm:w-8" />,
       title: "General Check-ups",
       description: "Comprehensive health assessments for preventive care."
     }
@@ -40,7 +40,7 @@ export default function Services() {
 
       <animated.div style={fadeIn} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-24">
-          <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-6">
+          <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-black uppercase tracking-[0.3em] mb-6">
             Core Operations
           </div>
           <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-6">

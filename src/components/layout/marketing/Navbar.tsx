@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Ambulance, LayoutPanelTop, X, Activity, ShieldCheck } from 'lucide-react';
+import { LayoutPanelTop, X, Activity, ShieldCheck } from 'lucide-react';
 import { useSpring, animated } from '@react-spring/web';
 import { Dialog } from '@headlessui/react';
 import { useSelector } from 'react-redux';
@@ -98,7 +98,7 @@ export default function Navbar() {
               </div>
               <div className="flex flex-col leading-none">
                 <span className="text-xl font-black tracking-tighter text-foreground">iVisit<span className="text-primary">.</span></span>
-                <span className="text-[8px] font-black text-primary uppercase tracking-[0.3em] opacity-70">Command Center</span>
+                <span className="text-xs sm:text-sm font-black text-primary uppercase tracking-[0.3em] opacity-70">Command Center</span>
               </div>
             </Link>
 
@@ -109,12 +109,12 @@ export default function Navbar() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
                 </span>
-                <span className="text-[9px] font-black text-foreground/60 uppercase tracking-widest">Global Status: Optimal</span>
+                <span className="text-xs sm:text-sm font-black text-foreground/60 uppercase tracking-widest">Global Status: Optimal</span>
               </div>
               <div className="w-px h-3 bg-border/50" />
               <div className="flex items-center gap-1.5">
                 <ShieldCheck className="w-3 h-3 text-primary opacity-60" />
-                <span className="text-[9px] font-black text-foreground/60 uppercase tracking-widest">Secure</span>
+                <span className="text-xs sm:text-sm font-black text-foreground/60 uppercase tracking-widest">Secure</span>
               </div>
             </div>
           </div>
@@ -126,7 +126,7 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="relative text-muted-foreground hover:text-foreground text-[10px] font-black uppercase tracking-[0.25em] transition-all group/link overflow-hidden py-2"
+                  className="relative text-muted-foreground hover:text-foreground text-xs sm:text-sm font-black uppercase tracking-[0.25em] transition-all group/link overflow-hidden py-2"
                 >
                   {item.name}
                   <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary transform translate-x-[-100%] group-hover/link:translate-x-0 transition-transform duration-300" />
@@ -139,7 +139,7 @@ export default function Navbar() {
                 variant="outline"
                 size="sm"
                 onClick={handleBookBed}
-                className="hidden lg:flex px-5 rounded-xl h-10 border-border/50 hover:border-primary/50 text-[10px] font-black tracking-widest"
+                className="hidden lg:flex px-5 rounded-xl h-10 border-border/50 hover:border-primary/50 text-xs sm:text-sm font-black tracking-widest"
               >
                 LOGISTICS
               </Button>
@@ -152,7 +152,7 @@ export default function Navbar() {
               >
                 <div className="flex items-center gap-2">
                   <Activity className="w-3.5 h-3.5 animate-pulse" />
-                  <span className="font-black tracking-[0.2em] text-[10px]">
+                  <span className="font-black tracking-[0.2em] text-xs sm:text-sm">
                     {inEmergency ? 'STANDBY' : 'LAUNCH SOS'}
                   </span>
                 </div>
@@ -192,9 +192,9 @@ export default function Navbar() {
             <div className="p-4 rounded-2xl bg-secondary/30 border border-border/50 mb-4">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-[10px] font-black uppercase tracking-widest text-foreground/60">System Ready</span>
+                <span className="text-xs sm:text-sm font-black uppercase tracking-widest text-foreground/60">System Ready</span>
               </div>
-              <p className="text-[11px] text-muted-foreground leading-relaxed">Command-grade medical dispatch infrastructure active.</p>
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">Command-grade medical dispatch infrastructure active.</p>
             </div>
             
             <div className="space-y-1">
@@ -202,7 +202,7 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="flex items-center justify-between p-4 rounded-xl text-[11px] font-black uppercase tracking-[0.3em] text-foreground hover:bg-secondary/50 border border-transparent hover:border-border/50 transition-all"
+                  className="flex items-center justify-between p-4 rounded-xl text-xs sm:text-sm font-black uppercase tracking-[0.3em] text-foreground hover:bg-secondary/50 border border-transparent hover:border-border/50 transition-all"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
@@ -239,7 +239,7 @@ export default function Navbar() {
           </div>
           
           <div className="absolute bottom-8 left-0 w-full px-6">
-            <p className="text-center text-[8px] font-black text-muted-foreground uppercase tracking-[0.5em] opacity-30">
+            <p className="text-center text-xs sm:text-sm font-black text-muted-foreground uppercase tracking-[0.5em] opacity-30">
               SECURE COMMAND CHANNEL
             </p>
           </div>

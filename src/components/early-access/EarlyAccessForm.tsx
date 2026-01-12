@@ -106,9 +106,10 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
             variant="accent"
             size="lg"
             disabled={loading}
-            className="w-full rounded-xl"
+            className="w-full rounded-xl text-sm sm:text-base font-semibold sm:font-bold"
           >
-            {loading ? 'Subscribing...' : 'Get Free Early Access'}
+            <span className="sm:hidden">{loading ? 'Signing up...' : 'Join Free'}</span>
+            <span className="hidden sm:inline">{loading ? 'Subscribing...' : 'Get Free Early Access'}</span>
           </Button>
         )}
         {status === 'success' && (
@@ -117,9 +118,10 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
             variant="accent"
             size="lg"
             onClick={handlePaymentRedirect}
-            className="w-full rounded-xl"
+            className="w-full rounded-xl text-sm sm:text-base font-semibold sm:font-bold"
           >
-            Support the Project
+            <span className="sm:hidden">Support</span>
+            <span className="hidden sm:inline">Support the Project</span>
           </Button>
         )}
       </form>

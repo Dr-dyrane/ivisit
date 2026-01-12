@@ -38,7 +38,7 @@ export default function StrategicAdvantage() {
       
       <Container>
         <div className="text-center mb-20">
-          <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-6">
+          <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-black uppercase tracking-[0.3em] mb-6">
             Strategic Comparison
           </div>
           <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-6">
@@ -64,11 +64,11 @@ export default function StrategicAdvantage() {
                   <div className={`p-2 rounded-lg ${feature.highlight ? 'bg-primary text-white' : 'bg-secondary text-primary'}`}>
                     {feature.icon}
                   </div>
-                  <span className="font-black text-[11px] uppercase tracking-widest text-foreground">{feature.name}</span>
+                  <span className="font-black text-xs sm:text-sm uppercase tracking-widest text-foreground">{feature.name}</span>
                 </div>
                 
                 <div className="flex flex-col md:items-center space-y-1 opacity-50 mb-4 md:mb-0">
-                  <span className="text-[9px] font-black uppercase tracking-tighter">Legacy System</span>
+                  <span className="text-xs sm:text-sm font-black uppercase tracking-tighter">Legacy System</span>
                   <div className="flex items-center gap-2 text-sm font-medium">
                     <X className="h-4 w-4 text-destructive" />
                     {feature.legacy}
@@ -76,7 +76,7 @@ export default function StrategicAdvantage() {
                 </div>
 
                 <div className="flex flex-col md:items-end space-y-1">
-                  <span className={`text-[9px] font-black uppercase tracking-tighter ${feature.highlight ? 'text-primary' : 'text-primary/70'}`}>iVisit Command</span>
+                  <span className={`text-xs sm:text-sm font-black uppercase tracking-tighter ${feature.highlight ? 'text-primary' : 'text-primary/70'}`}>iVisit Command</span>
                   <div className="flex items-center gap-2 text-sm font-black text-foreground">
                     <Check className="h-4 w-4 text-primary" />
                     {feature.ivisit}
@@ -88,7 +88,7 @@ export default function StrategicAdvantage() {
         </div>
 
         <div className="mt-20 flex justify-center">
-          <p className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground opacity-40">
+          <p className="text-xs sm:text-sm font-black uppercase tracking-[0.4em] text-muted-foreground opacity-40">
             AUDITED PERFORMANCE METRICS • 2024 OPERATIONAL CYCLE
           </p>
         </div>

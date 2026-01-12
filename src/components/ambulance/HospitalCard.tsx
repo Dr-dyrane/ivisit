@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, MapPin, Clock, Ambulance, ChevronRight, Bed, Users, Waves, Activity } from 'lucide-react';
+import { Star, MapPin, Clock, Ambulance, ChevronRight, Bed, Waves, Activity } from 'lucide-react';
 import { Card } from '../ui/Card';
 import ImageWithFallback from '../ui/ImageWithFallback';
 import { Button } from '../ui/Button';
@@ -27,7 +27,7 @@ export default function HospitalCard({
               alt={hospital.name}
               className="w-full h-full object-cover rounded-2xl grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700"
             />
-            <div className="absolute -top-2 -right-2 bg-primary text-white text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-widest">
+            <div className="absolute -top-2 -right-2 bg-primary text-white text-xs font-black px-2 py-0.5 rounded uppercase tracking-widest">
               {hospital.type}
             </div>
           </div>
@@ -37,30 +37,30 @@ export default function HospitalCard({
               <h3 className="text-xl font-black text-foreground tracking-tighter leading-none">{hospital.name}</h3>
               <div className="flex flex-col items-end">
                 <span className="text-sm font-black text-primary tabular-nums">{hospital.price}</span>
-                <span className="text-[8px] font-bold text-muted-foreground uppercase tracking-tighter">Base Uplink</span>
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-tighter">Base Uplink</span>
               </div>
             </div>
             
             <div className="flex items-center gap-4 mb-4">
               <div className="flex items-center gap-1.5">
                 <Star className="h-3 w-3 text-primary fill-current" />
-                <span className="text-[9px] font-black text-foreground uppercase tracking-[0.2em]">{hospital.rating}</span>
+                <span className="text-xs sm:text-sm font-black text-foreground uppercase tracking-[0.2em]">{hospital.rating}</span>
               </div>
               <div className="w-1 h-1 rounded-full bg-border" />
               <div className="flex items-center gap-1.5">
                 <Activity className="h-3 w-3 text-primary/60" />
-                <span className="text-[9px] font-black text-muted-foreground uppercase tracking-[0.2em]">{hospital.waitTime} Wait</span>
+                <span className="text-xs sm:text-sm font-black text-muted-foreground uppercase tracking-[0.2em]">{hospital.waitTime} Wait</span>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
               <div className="flex items-center gap-2 bg-secondary/30 p-2 rounded-xl border border-border/50">
                 <MapPin className="h-3 w-3 text-primary" />
-                <span className="text-[9px] font-bold text-foreground tabular-nums">{hospital.distance}</span>
+                <span className="text-xs sm:text-sm font-bold text-foreground tabular-nums">{hospital.distance}</span>
               </div>
               <div className="flex items-center gap-2 bg-secondary/30 p-2 rounded-xl border border-border/50">
                 <Clock className="h-3 w-3 text-primary" />
-                <span className="text-[9px] font-bold text-foreground tabular-nums">{hospital.eta} ETA</span>
+                <span className="text-xs sm:text-sm font-bold text-foreground tabular-nums">{hospital.eta} ETA</span>
               </div>
             </div>
           </div>
@@ -69,18 +69,18 @@ export default function HospitalCard({
         <div className="grid grid-cols-3 gap-3">
           <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-secondary/20 border border-border/50 group-hover:border-primary/20 transition-all">
             <Bed className="h-4 w-4 text-primary mb-1" />
-            <span className="text-[10px] font-black text-foreground">{hospital.availableBeds}</span>
-            <span className="text-[7px] font-bold text-muted-foreground uppercase tracking-widest">Beds</span>
+            <span className="text-xs sm:text-sm font-black text-foreground">{hospital.availableBeds}</span>
+            <span className="text-[10px] sm:text-xs font-bold text-muted-foreground uppercase tracking-widest">Beds</span>
           </div>
           <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-secondary/20 border border-border/50 group-hover:border-primary/20 transition-all">
             <Ambulance className="h-4 w-4 text-primary mb-1" />
-            <span className="text-[10px] font-black text-foreground">{hospital.ambulances}</span>
-            <span className="text-[7px] font-bold text-muted-foreground uppercase tracking-widest">Units</span>
+            <span className="text-xs sm:text-sm font-black text-foreground">{hospital.ambulances}</span>
+            <span className="text-[10px] sm:text-xs font-bold text-muted-foreground uppercase tracking-widest">Units</span>
           </div>
           <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-secondary/20 border border-border/50 group-hover:border-primary/20 transition-all">
             <Waves className="h-4 w-4 text-primary mb-1" />
-            <span className="text-[10px] font-black text-foreground">Stable</span>
-            <span className="text-[7px] font-bold text-muted-foreground uppercase tracking-widest">Comms</span>
+            <span className="text-xs sm:text-sm font-black text-foreground">Stable</span>
+            <span className="text-[10px] sm:text-xs font-bold text-muted-foreground uppercase tracking-widest">Comms</span>
           </div>
         </div>
       </div>
@@ -100,7 +100,7 @@ export default function HospitalCard({
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
             </div>
-            <span className="font-black text-[11px] uppercase tracking-[0.3em]">Deploy Unit Now</span>
+            <span className="font-black text-xs sm:text-sm uppercase tracking-[0.3em]">Deploy Unit Now</span>
             <ChevronRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
           </div>
         </Button>

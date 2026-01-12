@@ -35,7 +35,7 @@ export default function Contact() {
 
       <animated.div style={fadeIn} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-24">
-          <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-6">
+          <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-black uppercase tracking-[0.3em] mb-6">
             Secure Communications
           </div>
           <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-6">
@@ -69,7 +69,7 @@ export default function Contact() {
 
             <form className="grid grid-cols-1 gap-12 md:grid-cols-2 relative z-10">
               <div className="space-y-4">
-                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-primary ml-2">Reporting Officer</label>
+                <label className="text-xs sm:text-sm font-black uppercase tracking-[0.3em] text-primary ml-2">Reporting Officer</label>
                 <input
                   type="text"
                   className="w-full px-6 py-5 bg-secondary border border-border rounded-2xl text-foreground focus:ring-1 focus:ring-primary focus:border-primary transition-all placeholder:text-muted-foreground/30 outline-none backdrop-blur-md"
@@ -77,7 +77,7 @@ export default function Contact() {
                 />
               </div>
               <div className="space-y-4">
-                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-primary ml-2">Uplink Address</label>
+                <label className="text-xs sm:text-sm font-black uppercase tracking-[0.3em] text-primary ml-2">Uplink Address</label>
                 <input
                   type="email"
                   className="w-full px-6 py-5 bg-secondary border border-border rounded-2xl text-foreground focus:ring-1 focus:ring-primary focus:border-primary transition-all placeholder:text-muted-foreground/30 outline-none backdrop-blur-md"
@@ -85,7 +85,7 @@ export default function Contact() {
                 />
               </div>
               <div className="space-y-4 md:col-span-2">
-                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-primary ml-2">Situation Briefing</label>
+                <label className="text-xs sm:text-sm font-black uppercase tracking-[0.3em] text-primary ml-2">Situation Briefing</label>
                 <textarea
                   rows={4}
                   className="w-full px-6 py-5 bg-secondary border border-border rounded-2xl text-foreground focus:ring-1 focus:ring-primary focus:border-primary transition-all placeholder:text-muted-foreground/30 outline-none backdrop-blur-md resize-none"

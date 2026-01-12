@@ -33,29 +33,29 @@ export default function HospitalCard({
               <h3 className="text-lg font-black text-foreground tracking-tighter leading-none">{hospital.name}</h3>
               <div className="flex items-center gap-1.5 bg-blue-500/10 px-2 py-1 rounded-lg">
                 <Star className="h-3 w-3 text-blue-500 fill-current" />
-                <span className="text-[10px] font-black text-blue-500 uppercase tracking-tighter">{hospital.rating}</span>
+                <span className="text-xs sm:text-sm font-black text-blue-500 uppercase tracking-tighter">{hospital.rating}</span>
               </div>
             </div>
             
             <div className="grid grid-cols-2 gap-2 mb-4">
               <div className="flex items-center gap-2">
                 <MapPin className="h-3 w-3 text-blue-500" />
-                <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-tight">{hospital.distance}</span>
+                <span className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-tight">{hospital.distance}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-3 w-3 text-blue-500" />
-                <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-tight">{hospital.waitTime} Wait</span>
+                <span className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-tight">{hospital.waitTime} Wait</span>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/50 border border-border/50">
                 <Bed className="h-3 w-3 text-blue-500" />
-                <span className="text-[9px] font-black text-foreground uppercase tracking-widest">{hospital.availableBeds} Beds</span>
+                <span className="text-xs sm:text-sm font-black text-foreground uppercase tracking-widest">{hospital.availableBeds} Beds</span>
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
                 <ShieldCheck className="w-3 h-3 text-blue-500" />
-                <span className="text-[9px] font-black text-blue-500 uppercase tracking-widest">Verified</span>
+                <span className="text-xs sm:text-sm font-black text-blue-500 uppercase tracking-widest">Verified</span>
               </div>
             </div>
           </div>
@@ -65,7 +65,7 @@ export default function HospitalCard({
           {hospital.specialties.map((specialty) => (
             <span
               key={specialty}
-              className="px-3 py-1 text-[8px] font-black uppercase tracking-widest rounded-lg bg-secondary/30 text-muted-foreground border border-border/50"
+              className="px-3 py-1 text-xs sm:text-sm font-black uppercase tracking-widest rounded-lg bg-secondary/30 text-muted-foreground border border-border/50"
             >
               {specialty}
             </span>
@@ -84,7 +84,7 @@ export default function HospitalCard({
         >
           <div className="flex items-center justify-center gap-3 w-full">
             <Activity className="h-4 w-4 animate-pulse" />
-            <span className="font-black text-[11px] uppercase tracking-[0.3em]">Confirm Logistics</span>
+            <span className="font-black text-xs sm:text-sm uppercase tracking-[0.3em]">Confirm Logistics</span>
             <ChevronRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
           </div>
         </Button>
