@@ -111,7 +111,7 @@ export default function EarlyAccessPage() {
     <div className="min-h-screen bg-background">
       {isPaid && (
         <div className="fixed top-0 left-0 right-0 z-40 bg-green-500/10 border-b border-green-500/30 backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-start sm:items-center gap-3 sm:gap-4">
+          <div className="w-full mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-start sm:items-center gap-3 sm:gap-4">
             <Check className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 flex-shrink-0 mt-0.5 sm:mt-0" />
             <div className="min-w-0">
               <p className="text-sm sm:text-base font-semibold text-green-600">Payment Received!</p>

@@ -33,7 +33,7 @@ export default function Contact() {
       {/* Background Glow */}
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <animated.div style={fadeIn} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <animated.div style={fadeIn} className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-24">
           <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-black uppercase tracking-[0.3em] mb-6">
             Secure Communications
@@ -96,7 +96,7 @@ export default function Contact() {
                 <Button
                   variant="accent"
                   showOverlay={true}
-                  className="w-full py-10 text-xl font-black tracking-[0.4em] uppercase rounded-2xl shadow-2xl shadow-accent/20"
+                  className="w-full py-10 text-sm sm:text-base md:text-lg font-black tracking-[0.3em] sm:tracking-[0.4em] uppercase rounded-2xl shadow-2xl shadow-accent/20"
                 >
                   Initiate Transmission
                 </Button>

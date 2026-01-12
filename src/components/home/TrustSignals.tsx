@@ -27,7 +27,7 @@ const signals = [
 export default function TrustSignals() {
   return (
     <div className="py-12 border-y border-border/50 bg-secondary/30 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {signals.map((signal, index) => (
             <div key={index} className="flex flex-col items-center text-center space-y-3 group">

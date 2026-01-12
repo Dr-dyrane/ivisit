@@ -38,7 +38,7 @@ export default function Services() {
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[160px] pointer-events-none" />
 
-      <animated.div style={fadeIn} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <animated.div style={fadeIn} className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-24">
           <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-black uppercase tracking-[0.3em] mb-6">
             Core Operations

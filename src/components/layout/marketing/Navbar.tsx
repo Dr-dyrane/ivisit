@@ -88,45 +88,45 @@ export default function Navbar() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex items-center justify-between h-14">
-          <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center gap-3 group/logo">
+          <div className="flex items-center gap-4 md:gap-6 lg:gap-8">
+            <Link to="/" className="flex items-center gap-2 sm:gap-3 group/logo flex-shrink-0">
               <div className="relative">
                 <img src="/logo.png" alt="iVisit Logo" className="h-8 w-auto transition-transform group-hover/logo:scale-110" />
                 <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover/logo:opacity-100 transition-opacity" />
               </div>
               <div className="flex flex-col leading-none">
-                <span className="text-xl font-black tracking-tighter text-foreground">iVisit<span className="text-primary">.</span></span>
-                <span className="text-xs sm:text-sm font-black text-primary uppercase tracking-[0.3em] opacity-70">Command Center</span>
+                <span className="text-base sm:text-lg font-black tracking-tighter text-foreground">iVisit<span className="text-primary">.</span></span>
+                <span className="text-[8px] sm:text-[9px] font-black text-primary uppercase tracking-[0.15em] opacity-70">Command</span>
               </div>
             </Link>
 
             {/* Status Indicator (Desktop) */}
-            <div className="hidden lg:flex items-center gap-4 px-4 py-1.5 rounded-full bg-secondary/30 border border-border/50">
-              <div className="flex items-center gap-2">
+            <div className="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/30 border border-border/50 flex-shrink-0 text-xs">
+              <div className="flex items-center gap-1.5">
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
                 </span>
-                <span className="text-xs sm:text-sm font-black text-foreground/60 uppercase tracking-widest">Global Status: Optimal</span>
+                <span className="font-black text-foreground/60 uppercase tracking-wider whitespace-nowrap">Optimal</span>
               </div>
-              <div className="w-px h-3 bg-border/50" />
-              <div className="flex items-center gap-1.5">
-                <ShieldCheck className="w-3 h-3 text-primary opacity-60" />
-                <span className="text-xs sm:text-sm font-black text-foreground/60 uppercase tracking-widest">Secure</span>
+              <div className="w-px h-2 bg-border/50" />
+              <div className="flex items-center gap-1">
+                <ShieldCheck className="w-3 h-3 text-primary opacity-60 flex-shrink-0" />
+                <span className="font-black text-foreground/60 uppercase tracking-wider">Secure</span>
               </div>
             </div>
           </div>
 
           {/* Desktop navigation */}
-          <div className="hidden md:flex md:items-center md:gap-8">
-            <div className="flex items-center gap-8 mr-4">
+          <div className="hidden md:flex md:items-center md:gap-4 lg:gap-6">
+            <div className="flex items-center gap-3 lg:gap-6 lg:mr-4">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="relative text-muted-foreground hover:text-foreground text-xs sm:text-sm font-black uppercase tracking-[0.25em] transition-all group/link overflow-hidden py-2"
+                  className="relative text-muted-foreground hover:text-foreground text-xs font-black uppercase tracking-[0.1em] transition-all group/link overflow-hidden py-2 whitespace-nowrap"
                 >
                   {item.name}
                   <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary transform translate-x-[-100%] group-hover/link:translate-x-0 transition-transform duration-300" />
@@ -134,12 +134,12 @@ export default function Navbar() {
               ))}
             </div>
             
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleBookBed}
-                className="hidden lg:flex px-5 rounded-xl h-10 border-border/50 hover:border-primary/50 text-xs sm:text-sm font-black tracking-widest"
+                className="hidden lg:flex px-3 lg:px-5 rounded-xl h-9 lg:h-10 border-border/50 hover:border-primary/50 text-xs font-black tracking-widest"
               >
                 LOGISTICS
               </Button>
@@ -148,12 +148,12 @@ export default function Navbar() {
                 size="sm"
                 showOverlay={true}
                 onClick={handleEmergency}
-                className="px-6 rounded-xl h-10 shadow-[0_0_20px_rgba(var(--primary),0.3)]"
+                className="px-3 lg:px-6 rounded-xl h-9 lg:h-10 shadow-[0_0_20px_rgba(var(--primary),0.3)] flex-shrink-0"
               >
-                <div className="flex items-center gap-2">
-                  <Activity className="w-3.5 h-3.5 animate-pulse" />
-                  <span className="font-black tracking-[0.2em] text-xs sm:text-sm">
-                    {inEmergency ? 'STANDBY' : 'LAUNCH SOS'}
+                <div className="flex items-center gap-1 lg:gap-2">
+                  <Activity className="w-3 h-3 lg:w-3.5 lg:h-3.5 animate-pulse flex-shrink-0" />
+                  <span className="font-black tracking-[0.15em] text-xs whitespace-nowrap">
+                    {inEmergency ? 'STANDBY' : 'SOS'}
                   </span>
                 </div>
               </Button>
