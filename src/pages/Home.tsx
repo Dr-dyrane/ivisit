@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Hero from '../components/home/Hero';
 import Services from '../components/home/Services';
 import ProtocolFlow from '../components/home/ProtocolFlow';
+import EarlyAccessCTA from '../components/home/EarlyAccessCTA';
 import Contact from '../components/home/Contact';
 import TrustSignals from '../components/home/TrustSignals';
 import StrategicAdvantage from '../components/home/StrategicAdvantage';
@@ -22,6 +23,7 @@ const Home: React.FC = () => {
       <Services />
       <StrategicAdvantage />
       <ProtocolFlow />
+      <EarlyAccessCTA />
       <Contact />
     </main>
   );

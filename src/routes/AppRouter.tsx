@@ -7,6 +7,7 @@ import BedBooking from '@/pages/BedBooking';
 import Profile from '@/pages/Profile';
 import Visits from '@/pages/Appointments';
 import LegalPage from '@/pages/LegalPage';
+import EarlyAccessPage from '@/pages/EarlyAccessPage';
 import { MarketingLayout } from '@/components/layout/marketing/MarketingLayout';
 import { AuthenticatedLayout } from '@/components/layout/AuthenticatedLayout';
 import { GridBackground } from '@/components/ui/GridBackground';
@@ -22,6 +23,7 @@ export const AppRouter: React.FC = () => {
         <Route element={<MarketingLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/early-access" element={<EarlyAccessPage />} />
           <Route path="/privacy" element={<LegalPage title="Privacy Policy" content={<PrivacyContent />} />} />
           <Route path="/terms" element={<LegalPage title="Terms of Service" content={<TermsContent />} />} />
           <Route path="/support" element={<LegalPage title="Support Protocol" content={<SupportContent />} />} />

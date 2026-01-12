@@ -84,11 +84,7 @@ export default function Hero() {
   };
 
   const handleBookBed = () => {
-    if (isAuthenticated) {
-      navigate('/book-bed');
-    } else {
-      navigate('/login', { state: { from: '/book-bed' } });
-    }
+    navigate('/early-access');
   };
   return (
     <Section id="home" ref={sectionRef} className="relative min-h-[calc(100vh-5rem)] flex items-center bg-transparent overflow-hidden group">

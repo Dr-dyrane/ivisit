@@ -12,6 +12,7 @@ const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Services', href: '/#services' },
   { name: 'Protocols', href: '/#protocols' },
+  { name: 'Early Access', href: '/early-access' },
   { name: 'Contact', href: '/#contact' },
 ];
 
@@ -66,11 +67,7 @@ export default function Navbar() {
   };
 
   const handleBookBed = () => {
-    if (isAuthenticated) {
-      navigate('/book-bed');
-    } else {
-      navigate('/login', { state: { from: '/book-bed' } });
-    }
+    navigate('/early-access');
   };
 
   return (
