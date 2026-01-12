@@ -98,7 +98,7 @@ export default function BedBooking() {
 
         {/* Booking Panel */}
         <div className="w-full lg:w-[480px] bg-background/40 backdrop-blur-3xl border-t lg:border-t-0 border-border/50 overflow-auto">
-          <div className="p-8 space-y-8">
+          <div className="p-4 sm:p-8 space-y-8">
             <div className="p-4 rounded-2xl bg-blue-500/5 border border-blue-500/20 mb-6">
               <div className="flex items-center gap-3 mb-2">
                 <Layout className="w-4 h-4 text-blue-500" />

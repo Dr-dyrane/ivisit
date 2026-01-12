@@ -26,8 +26,8 @@ export const AuthenticatedLayout: React.FC = () => {
       <div className="flex-1 flex flex-col overflow-hidden">
 
 
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-background pb-10">
-          <div className="container mx-auto">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-background pb-32 md:pb-10">
+          <div className="w-full">
             <Outlet />
           </div>
         </main>

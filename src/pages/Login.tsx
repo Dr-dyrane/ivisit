@@ -102,7 +102,7 @@ const Login: React.FC = () => {
         </p>
       </div>
 
-      <Card className="relative z-10 w-full max-w-md p-10 rounded-[3rem] border-border/50 bg-background/40 backdrop-blur-3xl shadow-2xl overflow-hidden">
+      <Card className="relative z-10 w-full max-w-md p-6 sm:p-10 rounded-[3rem] border-border/50 bg-background/40 backdrop-blur-3xl shadow-2xl overflow-hidden">
         {/* Corner Accents */}
         <div className="absolute top-0 left-0 w-12 h-12 border-t border-l border-primary/20 rounded-tl-[3rem]" />
         <div className="absolute bottom-0 right-0 w-12 h-12 border-b border-r border-primary/20 rounded-br-[3rem]" />

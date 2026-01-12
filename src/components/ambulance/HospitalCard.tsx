@@ -12,16 +12,16 @@ export default function HospitalCard({
 }: HospitalCardProps) {
   return (
     <Card
-      className={`group cursor-pointer transition-all duration-500 rounded-[2.5rem] p-6 border-border/50 bg-background/20 backdrop-blur-3xl overflow-hidden relative ${
+      className={`group cursor-pointer transition-all duration-500 rounded-[2.5rem] p-4 sm:p-6 border-border/50 bg-background/20 backdrop-blur-3xl overflow-hidden relative ${
         isSelected 
           ? 'ring-2 ring-primary border-transparent shadow-[0_0_40px_rgba(var(--primary),0.1)]' 
           : 'hover:border-primary/30'
       }`}
       onClick={() => onSelect(hospital.id)}
     >
-      <div className="flex flex-col gap-6 relative z-10">
-        <div className="flex gap-6 items-start">
-          <div className="relative w-32 h-32 flex-shrink-0">
+      <div className="flex flex-col gap-4 relative z-10">
+        <div className="flex gap-4 sm:gap-6 items-start">
+          <div className="relative w-20 h-20 sm:w-32 sm:h-32 flex-shrink-0">
             <ImageWithFallback
               src={hospital.image}
               alt={hospital.name}

@@ -6,8 +6,8 @@ const BottomNavigation: React.FC = () => {
   const location = useLocation();
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-background border-t">
-      <div className="flex justify-around">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-lg border-t border-border/50 z-[100] pb-[env(safe-area-inset-bottom)]">
+      <div className="flex justify-around items-center h-16">
         {navItems.map((item) => (
           <Link
             key={item.path}

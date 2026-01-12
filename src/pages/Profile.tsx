@@ -11,7 +11,7 @@ export default function Profile() {
   const user = useSelector((state: RootState) => state.auth.user);
 
   return (
-    <div className="container mx-auto p-8 pt-20 md:pt-10">
+    <div className="w-full p-4 sm:p-8 pt-24 md:pt-10">
       <h1 className="text-3xl font-bold mb-6">Your Profile</h1>
       <div className="grid gap-6 md:grid-cols-2">
         <Card className="md:col-span-2">

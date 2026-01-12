@@ -9,11 +9,11 @@ interface LegalPageProps {
 
 export const LegalPage: React.FC<LegalPageProps> = ({ title, content }) => {
   return (
-    <div className="min-h-screen pt-40 pb-32 bg-background transition-colors duration-300">
+    <div className="min-h-screen pt-24 sm:pt-40 pb-32 bg-background transition-colors duration-300">
       <Container>
         <div className="max-w-3xl mx-auto">
-          <div className="mb-16">
-            <h1 className="text-5xl font-black text-foreground mb-4 tracking-tighter uppercase">{title}</h1>
+          <div className="mb-12 sm:mb-16">
+            <h1 className="text-3xl sm:text-5xl font-black text-foreground mb-4 tracking-tighter uppercase">{title}</h1>
             <div className="h-1 w-20 bg-primary rounded-full" />
             <p className="mt-8 text-xs font-black uppercase tracking-[0.3em] text-muted-foreground/50">Official Protocol Document • IVISIT COMMAND</p>
           </div>
