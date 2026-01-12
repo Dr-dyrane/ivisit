@@ -178,7 +178,7 @@ export default function Hero() {
                     </div>
                   </div>
                 </Button>
-                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 sm:left-4 sm:translate-x-0 whitespace-nowrap">
+                <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 sm:left-4 sm:translate-x-0 sm:top-auto sm:-bottom-6 whitespace-nowrap">
                   <span className="text-[9px] font-black text-muted-foreground/60 uppercase tracking-[0.2em] flex items-center gap-1.5">
                     <span className="h-1 w-1 rounded-full bg-green-500 animate-pulse" />
                     No signup required

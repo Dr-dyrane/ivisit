@@ -152,7 +152,7 @@ export default function ProtocolFlow() {
       <Container className="relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           {/* Left Column: Info & Toggle */}
-          <div className="lg:w-1/3 space-y-8 sticky top-32">
+          <div className="lg:w-1/3 space-y-8 lg:sticky lg:top-32">
             <div>
               <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-6">
                 Operational Lifecycle
