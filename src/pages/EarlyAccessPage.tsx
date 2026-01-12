@@ -13,22 +13,22 @@ const benefits = [
   {
     icon: <Zap className="h-6 w-6" />,
     title: 'Instant Access',
-    description: 'Get immediate access to the iVisit platform. No waiting lists.'
+    description: 'No waiting lists. Start using iVisit right now.'
   },
   {
     icon: <Rocket className="h-6 w-6" />,
     title: 'Shape the Future',
-    description: 'Your feedback directly influences feature development and priorities.'
+    description: 'Your feedback drives our development roadmap.'
   },
   {
     icon: <Users className="h-6 w-6" />,
     title: 'Community First',
-    description: 'Join our early adopters community and connect with like-minded health tech enthusiasts.'
+    description: 'Connect with early adopters in healthcare tech.'
   },
   {
     icon: <Heart className="h-6 w-6" />,
-    title: 'Lifetime Supporter Badge',
-    description: 'Early supporters receive a special badge and recognition on the platform.'
+    title: 'Lifetime Badge',
+    description: 'Special supporter badge and platform recognition.'
   }
 ];
 
@@ -145,8 +145,8 @@ export default function EarlyAccessPage() {
               Join the iVisit<span className="text-primary"> Revolution</span>
             </h1>
 
-            <p className="text-xl sm:text-2xl text-muted-foreground mb-12 leading-relaxed font-normal">
-              Be among the first to experience ultra-rapid medical dispatch. Early access subscribers shape the future of emergency healthcare delivery.
+            <p className="text-lg sm:text-xl text-muted-foreground mb-12 leading-relaxed font-normal">
+              Experience ultra-rapid medical dispatch. Shape the future of emergency healthcare.
             </p>
 
             <EarlyAccessForm onSuccess={() => {}} />
@@ -169,8 +169,8 @@ export default function EarlyAccessPage() {
             <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-6 leading-tight">
               Why Join Early<span className="text-primary">?</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Early access subscribers get exclusive benefits and help shape the platform's future.
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+              Get exclusive benefits. Shape our platform.
             </p>
           </div>
 
@@ -209,8 +209,8 @@ export default function EarlyAccessPage() {
             <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-6 leading-tight">
               Choose Your Path<span className="text-primary">.</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Start free, or support our mission to revolutionize emergency healthcare.
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+              Start free or become a paid supporter.
             </p>
           </div>
 
@@ -270,8 +270,8 @@ export default function EarlyAccessPage() {
             <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-6 leading-tight">
               Ready to Be Part of the Change<span className="text-primary">?</span>
             </h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Join thousands of early adopters revolutionizing emergency healthcare. Start your journey today.
+            <p className="text-base text-muted-foreground mb-8">
+              Join early adopters transforming emergency healthcare. Start today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
