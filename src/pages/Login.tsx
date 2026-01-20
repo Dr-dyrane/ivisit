@@ -116,7 +116,38 @@ const Login: React.FC = () => {
           </h2>
           <div className="flex items-center justify-center gap-2">
             <Activity className="w-3 h-3 text-primary animate-pulse" />
-            <span className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-[0.1em]">Secure Access</span>
+            <span className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-[0.1em]">Instant Demo Access</span>
+          </div>
+        </div>
+
+        {/* Priority Social Login */}
+        <div className="mb-8">
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <Button 
+              variant="outline" 
+              onClick={() => console.log('Google clicked')}
+              className="h-12 rounded-2xl border-border/50 bg-background/50 hover:bg-background flex items-center justify-center gap-3 font-bold"
+            >
+              <SocialIcon provider="google" onClick={() => {}} className="w-5 h-5 !p-0 !bg-transparent !text-inherit" />
+              <span className="text-sm">Google</span>
+            </Button>
+            <Button 
+              variant="outline" 
+              onClick={() => console.log('Apple clicked')}
+              className="h-12 rounded-2xl border-border/50 bg-background/50 hover:bg-background flex items-center justify-center gap-3 font-bold"
+            >
+              <SocialIcon provider="apple" onClick={() => {}} className="w-5 h-5 !p-0 !bg-transparent !text-inherit" />
+              <span className="text-sm">Apple</span>
+            </Button>
+          </div>
+          
+          <div className="relative mb-8">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-border/50"></div>
+            </div>
+            <div className="relative flex justify-center text-xs font-semibold uppercase tracking-wider">
+              <span className="bg-background/40 px-3 sm:px-4 text-muted-foreground">Or use email</span>
+            </div>
           </div>
         </div>
 
@@ -179,27 +210,7 @@ const Login: React.FC = () => {
           </Button>
         </form>
 
-        <div className="mt-8 sm:mt-10">
-          <div className="relative mb-6 sm:mb-8">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-border/50"></div>
-            </div>
-            <div className="relative flex justify-center text-xs font-semibold uppercase tracking-wider">
-              <span className="bg-background/40 px-3 sm:px-4 text-muted-foreground">Or continue with</span>
-            </div>
-          </div>
-          
-          <div className="flex items-center justify-center space-x-4 sm:space-x-6">
-            {(['google', 'apple', 'facebook', 'twitter'] as const).map((provider) => (
-              <SocialIcon
-                key={provider}
-                provider={provider}
-                onClick={() => console.log(`${provider} clicked`)}
-                className="hover:text-primary transition-all hover:scale-110 w-6 h-6 sm:w-7 sm:h-7"
-              />
-            ))}
-          </div>
-        </div>
+
 
         <p className="mt-8 sm:mt-10 text-center text-xs sm:text-sm font-medium text-muted-foreground">
           {isLogin ? (

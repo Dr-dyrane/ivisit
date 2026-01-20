@@ -23,41 +23,34 @@ export default function SpecialtySelector({
         <button
           key={specialty}
           onClick={() => onSelect(specialty)}
-          className={`relative p-4 rounded-2xl border transition-all duration-500 group/btn overflow-hidden ${
+          className={`relative p-4 rounded-3xl border transition-all duration-300 group/btn overflow-hidden ${
             selectedSpecialty === specialty
-              ? 'bg-blue-500/10 border-blue-500/30 shadow-[0_0_20px_rgba(59,130,246,0.1)]'
-              : 'bg-secondary/20 border-border/50 hover:border-blue-500/20'
+              ? 'bg-blue-500/10 border-blue-500 shadow-[0_8px_30px_rgba(59,130,246,0.1)]'
+              : 'bg-background/40 border-border/50 hover:border-blue-500/30 backdrop-blur-sm'
           }`}
         >
           {selectedSpecialty === specialty && (
-            <div className="absolute top-0 right-0 p-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-blue-500" />
+            <div className="absolute top-0 right-0 p-3">
+              <CheckCircle2 className="w-4 h-4 text-blue-500" />
             </div>
           )}
           
           <div className="flex flex-col items-start gap-3 relative z-10">
-            <div className={`p-2 rounded-xl transition-colors duration-500 ${
-              selectedSpecialty === specialty ? 'bg-blue-500 text-white' : 'bg-secondary text-muted-foreground'
+            <div className={`p-3 rounded-2xl transition-all duration-300 ${
+              selectedSpecialty === specialty ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' : 'bg-secondary/50 text-muted-foreground'
             }`}>
               {getIcon(specialty)}
             </div>
             
             <div className="text-left">
-              <h3 className={`text-xs sm:text-sm font-black uppercase tracking-[0.2em] mb-1 ${
+              <h3 className={`text-sm font-bold tracking-tight mb-0.5 ${
                 selectedSpecialty === specialty ? 'text-foreground' : 'text-muted-foreground'
               }`}>
                 {specialty}
               </h3>
-              <div className="flex items-center gap-1.5">
-                <div className={`w-1 h-1 rounded-full ${selectedSpecialty === specialty ? 'bg-blue-500 animate-pulse' : 'bg-muted-foreground/30'}`} />
-                <span className="text-xs sm:text-sm font-bold text-muted-foreground/50 uppercase tracking-widest">Protocol Active</span>
-              </div>
+              <span className="text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide">Available Units</span>
             </div>
           </div>
-
-          <div className={`absolute bottom-0 left-0 h-1 bg-blue-500 transition-all duration-500 ${
-            selectedSpecialty === specialty ? 'w-full' : 'w-0 group-hover/btn:w-1/3'
-          }`} />
         </button>
       ))}
     </div>

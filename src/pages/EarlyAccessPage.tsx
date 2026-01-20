@@ -74,6 +74,7 @@ export default function EarlyAccessPage() {
   const [isPaid] = useState(searchParams.get('paid') === 'true');
 
   useEffect(() => {
+    document.title = 'iVisit Early Access - Join the Revolution';
     const handleMouseMove = (e: MouseEvent) => {
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect();

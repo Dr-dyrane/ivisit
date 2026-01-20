@@ -155,22 +155,22 @@ export default function AmbulanceCall() {
             {/* Emergency Call Button */}
             <button 
               onClick={() => window.location.href = 'tel:911'}
-              className="group relative w-full overflow-hidden bg-primary text-white px-6 py-4 sm:py-5 rounded-xl sm:rounded-2xl transition-all duration-500 flex items-center justify-center gap-3 sm:gap-4 font-bold uppercase tracking-[0.15em] shadow-lg sm:shadow-2xl shadow-primary/20 active:scale-95 h-12 sm:h-14"
+              className="group relative w-full overflow-hidden bg-red-600 hover:bg-red-700 text-white px-6 py-4 sm:py-5 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 sm:gap-4 font-bold uppercase tracking-wider shadow-xl active:scale-[0.98] h-14"
             >
-              <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
-              <Activity className="h-5 sm:h-6 w-5 sm:w-6 animate-pulse flex-shrink-0" />
-              <span className="text-sm sm:text-base">Call SOS</span>
+              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <Activity className="h-6 w-6 animate-pulse flex-shrink-0" />
+              <span className="text-base">Quick SOS Call</span>
             </button>
 
             {/* Available Services */}
             <div className="space-y-4 sm:space-y-6">
-              <div className="flex items-center justify-between border-b border-border/50 pb-4">
+              <div className="flex items-center justify-between border-b border-border/30 pb-4">
                 <div className="flex items-center gap-2">
                   <Target className="w-4 h-4 text-primary flex-shrink-0" />
-                  <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-foreground">Nearby Units</h3>
+                  <h3 className="text-sm font-bold tracking-tight text-foreground">Nearby Units</h3>
                 </div>
-                <span className="text-xs sm:text-sm font-bold text-primary bg-primary/10 px-2 py-1 rounded uppercase">
-                  {filteredHospitals.length} Active
+                <span className="text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                  {filteredHospitals.length} Available
                 </span>
               </div>
 
