@@ -60,6 +60,15 @@ export const submitSubscriber = async (
       };
     }
 
+    // Trigger welcome email via Edge Function (fire and forget pattern)
+    supabase.functions.invoke('sendWelcome', {
+      body: { email }
+    }).then(({ error }) => {
+      if (error) console.error('Failed to send welcome email:', error);
+    }).catch(err => {
+      console.error('Error invoking welcome email function:', err);
+    });
+
     return {
       success: true,
       message: 'Thank you! Check your inbox soon for early access.'
