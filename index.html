@@ -43,6 +43,85 @@
 		/>
 		<meta name="twitter:image" content="https://ivisit.ng/og-image.png" />
 
+		<!-- Structured Data (JSON-LD) -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "MedicalOrganization",
+			"name": "iVisit",
+			"url": "https://ivisit.ng",
+			"logo": "https://ivisit.ng/logo.png",
+			"description": "Ultra-rapid emergency medical dispatch and coordination, built for real-time response.",
+			"sameAs": [
+				"https://ivisit.ng"
+			],
+			"contactPoint": {
+				"@type": "ContactPoint",
+				"telephone": "+234-800-000-0000",
+				"contactType": "emergency",
+				"availableLanguage": ["English"],
+				"hoursAvailable": "24/7"
+			},
+			"areaServed": {
+				"@type": "Country",
+				"name": "Nigeria"
+			},
+			"serviceType": [
+				"Emergency Medical Services",
+				"Ambulance Services",
+				"Hospital Bed Booking",
+				"Medical Coordination"
+			],
+			"hasOfferCatalog": {
+				"@type": "OfferCatalog",
+				"name": "Emergency Medical Services",
+				"itemListElement": [
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Emergency Ambulance Dispatch",
+							"description": "Rapid ambulance dispatch for medical emergencies"
+						}
+					},
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Hospital Bed Booking",
+							"description": "Real-time hospital bed availability and booking"
+						}
+					}
+				]
+			}
+		}
+		</script>
+
+		<!-- Additional SEO Meta Tags -->
+		<meta name="keywords" content="emergency medical services, ambulance dispatch, hospital booking, medical emergency, nigeria healthcare, rapid response, medical coordination, emergency response" />
+		<meta name="author" content="iVisit Medical Services" />
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+		<meta name="googlebot" content="index, follow" />
+		<meta name="bingbot" content="index, follow" />
+		
+		<!-- Geographic and Language Tags -->
+		<meta name="geo.region" content="NG" />
+		<meta name="geo.placename" content="Nigeria" />
+		<meta name="ICBM" content="9.0820,8.6753" />
+		<meta http-equiv="content-language" content="en" />
+		
+		<!-- Canonical and Alternate URLs -->
+		<link rel="canonical" href="https://ivisit.ng/" />
+		<link rel="alternate" hreflang="en" href="https://ivisit.ng/" />
+		
+		<!-- DNS Prefetch for Performance -->
+		<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+		<link rel="dns-prefetch" href="//rsms.me" />
+		
+		<!-- Preconnect for Critical Resources -->
+		<link rel="preconnect" href="https://rsms.me/" crossorigin />
+		<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+
 		<!-- Fonts -->
 		<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
 	</head>

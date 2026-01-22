@@ -8,6 +8,8 @@ import { Button } from '../ui/Button';
 import { useTheme } from '@/providers/ThemeContext';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/lib/store';
+import SEOHead from '../seo/SEOHead';
+import PremiumFloatingCTA from './PremiumFloatingCTA';
 
 const features = [
   {
@@ -83,11 +85,62 @@ export default function Hero() {
     }
   };
 
-  const handleBookBed = () => {
-    navigate('/early-access');
-  };
   return (
-    <Section id="home" ref={sectionRef} className="relative min-h-[calc(100vh-5rem)] flex items-center bg-transparent overflow-hidden group">
+    <>
+      <SEOHead
+        title="iVisit — Emergency Medical Dispatch | 5-Minute Response Time"
+        description="Ultra-rapid emergency medical dispatch and coordination platform. Get ambulance response within 5 minutes across Nigeria. Real-time tracking, instant booking, 24/7 availability."
+        keywords="emergency medical services, ambulance dispatch, 5 minute response, hospital booking, medical emergency, nigeria healthcare, rapid response, medical coordination, emergency response"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "MedicalOrganization",
+          "name": "iVisit",
+          "url": "https://ivisit.ng",
+          "logo": "https://ivisit.ng/logo.png",
+          "description": "Ultra-rapid emergency medical dispatch and coordination platform with 5-minute response time across Nigeria.",
+          "sameAs": ["https://ivisit.ng"],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+234-800-000-0000",
+            "contactType": "emergency",
+            "availableLanguage": ["English"],
+            "hoursAvailable": "24/7"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Nigeria"
+          },
+          "serviceType": [
+            "Emergency Medical Services",
+            "Ambulance Services", 
+            "Hospital Bed Booking",
+            "Medical Coordination"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Emergency Medical Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Emergency Ambulance Dispatch",
+                  "description": "Rapid ambulance dispatch for medical emergencies with 5-minute response time"
+                }
+              },
+              {
+                "@type": "Offer", 
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Hospital Bed Booking",
+                  "description": "Real-time hospital bed availability and booking system"
+                }
+              }
+            ]
+          }
+        }}
+      />
+      <Section id="home" ref={sectionRef} className="relative min-h-[calc(100vh-5rem)] flex items-center bg-transparent overflow-hidden group">
       {/* Smarty Blur Background */}
       <div 
         className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-0 group-hover:opacity-100"
@@ -102,7 +155,7 @@ export default function Hero() {
           WebkitMaskImage: `radial-gradient(circle 400px at ${mousePos.x}px ${mousePos.y}px, black, transparent 80%)`,
         }}
       >
-        <div className={`absolute inset-0 backdrop-blur-[3px] ${theme === 'dark' ? 'bg-white/[0.01]' : 'bg-primary/[0.02]'} `} />
+        <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-white/[0.01]' : 'bg-primary/[0.02]'} `} />
         <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
       </div>
 
@@ -114,12 +167,12 @@ export default function Hero() {
         {/* System Heartbeat Ticker */}
         <div className="mb-8 sm:mb-12 flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center justify-between gap-4 sm:gap-6 border-b border-border/50 pb-6 sm:pb-8">
           <div className="flex items-center gap-3 sm:gap-6">
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/30 text-red-500 text-xs font-bold uppercase tracking-wider animate-pulse">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
               </span>
-              Active
+              Limited Time: 80% OFF
             </div>
             <div className="flex gap-4 sm:gap-8">
               <div className="flex flex-col">
@@ -149,7 +202,12 @@ export default function Hero() {
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <animated.div style={fadeIn} className="text-left sm:text-center lg:text-left">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[-0.05em] text-foreground mb-8 leading-[0.85]">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-8">
+              <span className="h-3 w-3 bg-primary rounded-full animate-pulse" />
+              5-Minute Response
+            </div>
+
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-0.05em] text-foreground mb-8 leading-[0.85]">
               iVisit<span className="text-primary">.</span>
             </h1>
 
@@ -164,7 +222,7 @@ export default function Hero() {
                   size="lg"
                   onClick={handleEmergency}
                   showOverlay={true}
-                  className="px-4 sm:px-8 rounded-xl sm:rounded-2xl w-full sm:w-auto min-w-[160px] sm:min-w-[220px]"
+                  className="px-4 sm:px-6 rounded-xl sm:rounded-2xl w-full sm:w-auto min-w-[140px] sm:min-w-[180px]"
                 >
                   <div className="relative flex items-center gap-2 sm:gap-3">
                     <Ambulance className="w-5 sm:w-6 h-5 sm:h-6 animate-pulse flex-shrink-0" />
@@ -186,21 +244,19 @@ export default function Hero() {
               <Button
                 variant="outline"
                 size="lg"
-                onClick={handleBookBed}
+                onClick={() => window.open('/early-access', '_blank')}
                 showOverlay={true}
-                className="group px-4 sm:px-8 rounded-xl sm:rounded-2xl border-border w-full sm:w-auto min-w-[140px] sm:min-w-[200px]"
+                className="group px-4 sm:px-6 rounded-xl sm:rounded-2xl border-border bg-background hover:bg-primary/5 hover:border-primary w-full sm:w-auto min-w-[120px] sm:min-w-[160px]"
               >
-                <div className="relative flex items-center gap-2 sm:gap-3">
-                  <Bed className="w-5 sm:w-6 h-5 sm:h-6 flex-shrink-0" />
-                  <span className="sm:hidden font-semibold tracking-[0.02em] text-xs">Reserve</span>
-                  <span className="hidden sm:inline font-bold tracking-[0.05em] text-base">Reserve Bed</span>
+                <div className="relative flex items-center gap-2">
+                  <span className="text-xs sm:text-sm">View Premium</span>
                 </div>
               </Button>
             </div>
           </animated.div>
 
           <animated.div style={fadeIn} className="relative hidden lg:block">
-            <div className="relative z-10 rounded-[2.5rem] overflow-hidden moist-glass p-2">
+            <div className="relative z-10 rounded-[2.5rem] overflow-hidden border border-border/50 bg-background/50 p-2 shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent pointer-events-none" />
               <img
                 src={images[theme]}
@@ -221,11 +277,9 @@ export default function Hero() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-secondary/30 border border-border/50 backdrop-blur-sm group hover:border-primary/30 transition-all"
+              className="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-secondary/80 sm:bg-secondary/30 border border-border/50 backdrop-blur-none sm:backdrop-blur-sm group hover:border-primary/30 transition-all"
             >
-              <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:scale-110 transition-transform flex-shrink-0">
-                {feature.icon}
-              </div>
+              {feature.icon}
               <div className="flex flex-col min-w-0">
                 <span className="text-xs sm:text-sm font-bold uppercase tracking-wide text-foreground">
                   {feature.text}
@@ -238,6 +292,8 @@ export default function Hero() {
           ))}
         </div>
       </Container>
-    </Section>
+      </Section>
+      <PremiumFloatingCTA />
+    </>
   );
 }

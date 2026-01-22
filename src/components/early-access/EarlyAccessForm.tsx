@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { Mail, CheckCircle2, AlertCircle } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Mail, CheckCircle2, AlertCircle, X } from 'lucide-react';
+import { FaGoogle } from 'react-icons/fa';
 import { Button } from '../ui/Button';
-import { submitSubscriber } from '@/lib/api/subscribers';
+import { submitSubscriber, signInWithGoogleForEarlyAccess } from '@/lib/api/subscribers';
+import { toast } from 'sonner';
 
 interface EarlyAccessFormProps {
   onSuccess?: () => void;
@@ -13,6 +15,8 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,18 +30,31 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
       setMessage(result.message);
       setEmail('');
       onSuccess?.();
+      toast.success('Successfully subscribed!');
     } else {
       setStatus('error');
       setMessage(result.error || 'Something went wrong');
+      toast.error(result.error || 'Something went wrong');
     }
 
     setLoading(false);
   };
 
-  const handlePaymentRedirect = () => {
-    const gumroadLink = import.meta.env.VITE_GUMROAD_LINK;
-    if (gumroadLink && gumroadLink !== 'https://gumroad.com/l/your-product-id') {
-      window.open(gumroadLink, '_blank');
+  const handleGoogleSignIn = async () => {
+    try {
+      setLoading(true);
+      await signInWithGoogleForEarlyAccess();
+    } catch (error) {
+      console.error('Google Sign-In failed:', error);
+      toast.error('Google Sign-In failed. Please try again.');
+      setLoading(false);
+    }
+  };
+
+  const clearInput = () => {
+    setEmail('');
+    if (inputRef.current) {
+      inputRef.current.focus();
     }
   };
 
@@ -47,6 +64,9 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
         <form onSubmit={handleSubmit} className="flex gap-3">
           <input
             type="email"
+            id="email-compact"
+            name="email"
+            autoComplete="email"
             placeholder="your@email.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -61,7 +81,7 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
             disabled={loading || status === 'success'}
             className="px-6"
           >
-            {loading ? 'Subscribing...' : 'Join'}
+            {loading ? '...' : 'Join'}
           </Button>
         </form>
 
@@ -84,70 +104,82 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
 
   return (
     <div className="w-full px-4 sm:px-0 max-w-lg mx-auto">
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Apple-style Input with Focus Effect */}
         <div className="relative">
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground transition-all duration-200" style={{
+            transform: `translateY(-50%) scale(${isFocused ? 1.1 : 1})`,
+            opacity: isFocused ? 0.8 : 1
+          }}>
             <Mail className="h-5 w-5" />
           </div>
+          
           <input
+            ref={inputRef}
             type="email"
-            placeholder="you@example.com"
+            id="email-early-access"
+            name="email"
+            autoComplete="email"
+            placeholder="Enter your email for early access..."
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             disabled={loading || status === 'success'}
-            className="w-full pl-12 pr-4 py-4 rounded-2xl bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full pl-12 pr-12 py-4 rounded-2xl bg-secondary/50 border-0 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-background focus:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             required
           />
+          
+          {/* Clear Button */}
+          {email && (
+            <button
+              type="button"
+              onClick={clearInput}
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-muted-foreground hover:text-foreground transition-all duration-200 hover:scale-110"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          )}
         </div>
 
-        {status !== 'success' && (
+        {/* Submit Button with Google Icon */}
+        <div className="flex gap-3">
           <Button
             type="submit"
             variant="accent"
             size="lg"
-            disabled={loading}
-            className="w-full rounded-xl text-sm sm:text-base font-semibold sm:font-bold"
+            disabled={loading || status === 'success'}
+            className="flex-1 rounded-2xl text-base font-bold transition-all duration-200 hover:scale-[1.02]"
           >
-            <span className="sm:hidden">{loading ? 'Signing up...' : 'Join Free'}</span>
-            <span className="hidden sm:inline">{loading ? 'Subscribing...' : 'Get Free Early Access'}</span>
+            {loading ? 'Subscribing...' : 'Get Early Access'}
           </Button>
-        )}
-        {status === 'success' && (
+          
           <Button
             type="button"
-            variant="accent"
+            variant="outline"
             size="lg"
-            onClick={handlePaymentRedirect}
-            className="w-full rounded-xl text-sm sm:text-base font-semibold sm:font-bold"
+            disabled={loading}
+            onClick={handleGoogleSignIn}
+            className="w-14 h-14 rounded-2xl border-border/50 bg-background/50 hover:bg-background flex items-center justify-center transition-all duration-200 hover:scale-110 group"
           >
-            <span className="sm:hidden">Support</span>
-            <span className="hidden sm:inline">Support the Project</span>
+            <FaGoogle className="h-5 w-5 text-red-500 group-hover:animate-pulse" />
           </Button>
+        </div>
+
+        {status === 'success' && (
+          <div className="mt-4 flex items-center gap-2 text-green-500 text-sm">
+            <CheckCircle2 className="h-4 w-4" />
+            <span>{message}</span>
+          </div>
+        )}
+
+        {status === 'error' && (
+          <div className="mt-4 flex items-start gap-2 text-destructive text-sm">
+            <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+            <span>{message}</span>
+          </div>
         )}
       </form>
-
-      {status === 'success' && (
-        <div className="mt-6 sm:mt-8 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-green-500/10 border border-green-500/20 flex gap-3 sm:gap-4">
-          <CheckCircle2 className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 flex-shrink-0 mt-0.5" />
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-green-500 mb-2">Subscription Confirmed!</p>
-            <p className="text-xs sm:text-sm text-muted-foreground break-words">{message}</p>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-2">
-              Want to support the project? Click the button above to become a paid supporter and unlock premium features.
-            </p>
-          </div>
-        </div>
-      )}
-
-      {status === 'error' && (
-        <div className="mt-6 sm:mt-8 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-destructive/10 border border-destructive/20 flex gap-3 sm:gap-4">
-          <AlertCircle className="h-5 w-5 sm:h-6 sm:w-6 text-destructive flex-shrink-0 mt-0.5" />
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-destructive mb-2">Subscription Failed</p>
-            <p className="text-xs sm:text-sm text-muted-foreground break-words">{message}</p>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

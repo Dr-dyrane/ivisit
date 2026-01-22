@@ -84,6 +84,21 @@ export const submitSubscriber = async (
 };
 
 /**
+ * Sign in with Google for Early Access
+ */
+export const signInWithGoogleForEarlyAccess = async () => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: `${window.location.origin}/early-access?google=success`,
+    }
+  });
+  
+  if (error) throw error;
+  return data;
+};
+
+/**
  * Check if email is already subscribed
  */
 export const checkSubscriberExists = async (email: string): Promise<boolean> => {

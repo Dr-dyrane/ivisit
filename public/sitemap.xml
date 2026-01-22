@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage - Highest Priority -->
+  <url>
+    <loc>https://ivisit.ng/</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ivisit.ng/og-image.png</image:loc>
+      <image:title>iVisit Emergency Medical Dispatch</image:title>
+      <image:caption>Ultra-rapid emergency medical dispatch and coordination platform</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Emergency Services - High Priority -->
+  <url>
+    <loc>https://ivisit.ng/ambulance</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ivisit.ng/og-image.png</image:loc>
+      <image:title>Emergency Ambulance Dispatch</image:title>
+      <image:caption>5-minute response time for medical emergencies</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Hospital Bed Booking - High Priority -->
+  <url>
+    <loc>https://ivisit.ng/bed-booking</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ivisit.ng/og-image.png</image:loc>
+      <image:title>Hospital Bed Booking</image:title>
+      <image:caption>Real-time hospital bed availability and booking system</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Premium Early Access - High Priority -->
+  <url>
+    <loc>https://ivisit.ng/early-access</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ivisit.ng/og-image.png</image:loc>
+      <image:title>iVisit Premium Early Access</image:title>
+      <image:caption>Limited time offer - Get lifetime premium access at 50% off</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Services - Medium Priority -->
+  <url>
+    <loc>https://ivisit.ng/services</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ivisit.ng/og-image.png</image:loc>
+      <image:title>iVisit Medical Services</image:title>
+      <image:caption>Comprehensive emergency medical services and healthcare coordination</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Support - Medium Priority -->
+  <url>
+    <loc>https://ivisit.ng/support</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Emergency Dispatch - Additional Route -->
+  <url>
+    <loc>https://ivisit.ng/emergency</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ivisit.ng/og-image.png</image:loc>
+      <image:title>Emergency Medical Dispatch</image:title>
+      <image:caption>Immediate emergency medical response and coordination</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Bed Booking Alternative Route -->
+  <url>
+    <loc>https://ivisit.ng/book-bed</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ivisit.ng/og-image.png</image:loc>
+      <image:title>Book Hospital Bed</image:title>
+      <image:caption>Instant hospital bed booking and reservation system</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Sitemap Viewer - Medium Priority -->
+  <url>
+    <loc>https://ivisit.ng/sitemap</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://ivisit.ng/og-image.png</image:loc>
+      <image:title>iVisit Sitemap</image:title>
+      <image:caption>Interactive sitemap viewer with all pages and SEO information</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Privacy Policy - Low Priority -->
+  <url>
+    <loc>https://ivisit.ng/privacy</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <!-- Terms of Service - Low Priority -->
+  <url>
+    <loc>https://ivisit.ng/terms</loc>
+    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>
