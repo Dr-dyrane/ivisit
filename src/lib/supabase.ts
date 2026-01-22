@@ -13,5 +13,7 @@ export const supabase = createClient(supabaseUrl, supabaseKey, {
     detectSessionInUrl: true,
     persistSession: true,
     autoRefreshToken: true,
+    storageKey: 'ivisit-auth-token',
+    storage: window.localStorage,
   },
 });

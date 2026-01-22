@@ -15,7 +15,7 @@ export default defineConfig({
         description: 'Emergency Medical Response Service',
         theme_color: '#ef4444',
         background_color: '#ffffff',
-        display: 'standalone',
+        display: 'minimal-ui',
         icons: [
           {
             src: 'pwa-64x64.png',

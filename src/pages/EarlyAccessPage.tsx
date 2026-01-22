@@ -122,43 +122,33 @@ export default function EarlyAccessPage() {
   }, []);
 
   useEffect(() => {
-    const checkGoogleSignIn = async () => {
-      if (searchParams.get('google') === 'success') {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === 'SIGNED_IN' && session?.user?.email) {
         try {
-          // Wait a moment for Supabase to process the session
-          await new Promise(resolve => setTimeout(resolve, 500));
-          
-          const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-          
-          if (sessionError) {
-            console.error('Session error:', sessionError);
-            toast.error('Failed to get Google sign-in session');
-            return;
-          }
-          
-          if (session?.user?.email) {
-            const result = await submitSubscriber(session.user.email, 'free');
-            if (result.success) {
-              toast.success('Google Sign-In successful! You are now subscribed.');
-              // Scroll to form section after successful Google sign-in
-              setTimeout(() => {
-                if (formSectionRef.current) {
-                  formSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-              }, 1000);
-            } else {
-              toast.error(result.error || 'Failed to subscribe with Google account');
+          const result = await submitSubscriber(session.user.email, 'free');
+          if (result.success) {
+            toast.success('Google Sign-In successful! You are now subscribed.');
+            if (formSectionRef.current) {
+              formSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
-          } else {
-            toast.error('No email found in Google account');
           }
         } catch (error) {
-          console.error('Error handling Google sign-in redirect:', error);
-          toast.error('Failed to process Google sign-in');
-        } finally {
-          // Clean up URL parameters
-          navigate('/early-access', { replace: true });
+          console.error('Error handling auth change:', error);
         }
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    const checkGoogleSignIn = async () => {
+      if (searchParams.get('google') === 'success') {
+        // We still keep this for backward compatibility or if onAuthStateChange is slow,
+        // but clean up the URL regardless
+        navigate('/early-access', { replace: true });
       }
     };
     

@@ -91,10 +91,9 @@ export const signInWithGoogleForEarlyAccess = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/early-access?google=success`,
+        redirectTo: `${window.location.origin}/early-access`,
         queryParams: {
-          access_type: 'offline',
-          prompt: 'consent',
+          prompt: 'select_account',
         },
       }
     });
