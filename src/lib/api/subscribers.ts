@@ -87,15 +87,39 @@ export const submitSubscriber = async (
  * Sign in with Google for Early Access
  */
 export const signInWithGoogleForEarlyAccess = async () => {
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: `${window.location.origin}/early-access?google=success`,
+  try {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/early-access?google=success`,
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent',
+        },
+      }
+    });
+    
+    if (error) {
+      console.error('Supabase OAuth error:', error);
+      throw error;
     }
-  });
-  
-  if (error) throw error;
-  return data;
+    
+    return data;
+  } catch (error) {
+    console.error('Google sign-in error:', error);
+    
+    // Handle common OAuth errors
+    if (error instanceof Error) {
+      if (error.message.includes('popup') || error.message.includes('window')) {
+        throw new Error('Please allow popups for this site to use Google sign-in');
+      }
+      if (error.message.includes('access_denied')) {
+        throw new Error('Google sign-in was cancelled. Please try again.');
+      }
+    }
+    
+    throw error;
+  }
 };
 
 /**

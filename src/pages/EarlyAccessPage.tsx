@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useSpring, animated } from '@react-spring/web';
-import { Mail, Crown, Star, Check, ArrowRight, Search, X, Zap, Rocket, Users, Heart, Shield, Timer } from 'lucide-react';
+import { Crown, Star, Check, ArrowRight, Zap, Rocket, Users, Heart, Shield, Timer } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { Section } from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
@@ -125,7 +125,17 @@ export default function EarlyAccessPage() {
     const checkGoogleSignIn = async () => {
       if (searchParams.get('google') === 'success') {
         try {
-          const { data: { session } } = await supabase.auth.getSession();
+          // Wait a moment for Supabase to process the session
+          await new Promise(resolve => setTimeout(resolve, 500));
+          
+          const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+          
+          if (sessionError) {
+            console.error('Session error:', sessionError);
+            toast.error('Failed to get Google sign-in session');
+            return;
+          }
+          
           if (session?.user?.email) {
             const result = await submitSubscriber(session.user.email, 'free');
             if (result.success) {
@@ -136,16 +146,22 @@ export default function EarlyAccessPage() {
                   formSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
               }, 1000);
+            } else {
+              toast.error(result.error || 'Failed to subscribe with Google account');
             }
+          } else {
+            toast.error('No email found in Google account');
           }
         } catch (error) {
           console.error('Error handling Google sign-in redirect:', error);
+          toast.error('Failed to process Google sign-in');
         } finally {
           // Clean up URL parameters
           navigate('/early-access', { replace: true });
         }
       }
     };
+    
     checkGoogleSignIn();
   }, [searchParams, navigate]);
 

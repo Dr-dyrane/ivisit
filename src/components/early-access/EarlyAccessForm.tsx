@@ -44,9 +44,12 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
     try {
       setLoading(true);
       await signInWithGoogleForEarlyAccess();
+      // The OAuth flow will redirect, so we don't need to set loading to false here
+      // It will be handled by the redirect callback
     } catch (error) {
       console.error('Google Sign-In failed:', error);
-      toast.error('Google Sign-In failed. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Google Sign-In failed. Please try again.';
+      toast.error(errorMessage);
       setLoading(false);
     }
   };
