@@ -80,7 +80,7 @@ export default function Footer() {
               <li><Link to="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide">Terms of Service</Link></li>
               <li><Link to="/support" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide">Support Protocol</Link></li>
             </ul>
-            <div className="mt-8 pt-8 border-t border-border/10 flex flex-col gap-4">
+            <div className="mt-8 pt-8 border-t border-border/10 flex flex-row md:flex-col gap-4">
                <a href="#" className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-fit">
                   <img 
                     src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" 
