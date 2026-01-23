@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { createStore } from "@/lib/store";
 
 import { AuthWrapper } from './AuthWrapper';
+import { AuthProvider } from '../contexts/AuthContext';
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 export const Providers: React.FC<ProvidersProps> = ({ children }) => {
@@ -31,9 +32,11 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
       <PersistGate loading={null} persistor={persistor}>
         <ErrorBoundary>
           <ThemeProvider>
-            <Router>
-              <AuthWrapper>{children}</AuthWrapper> {/* Use AuthWrapper to handle auth redirection */}
-            </Router>
+            <AuthProvider>
+              <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+                <AuthWrapper>{children}</AuthWrapper> {/* Use AuthWrapper to handle auth redirection */}
+              </Router>
+            </AuthProvider>
           </ThemeProvider>
         </ErrorBoundary>
       </PersistGate>

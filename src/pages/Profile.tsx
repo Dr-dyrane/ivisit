@@ -11,53 +11,62 @@ export default function Profile() {
   const user = useSelector((state: RootState) => state.auth.user);
 
   return (
-    <div className="w-full p-4 sm:p-8 pt-24 md:pt-10">
-      <h1 className="text-3xl font-bold mb-6">Your Profile</h1>
-      <div className="grid gap-6 md:grid-cols-2">
+    <div className="w-full p-6 sm:p-8 pt-24 md:pt-10">
+      <h1 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-0.06em] text-foreground mb-12 leading-[0.8]">
+        Your Profile<span className="text-primary">.</span>
+      </h1>
+      <div className="grid gap-12 md:grid-cols-2">
         <Card className="md:col-span-2">
           <CardHeader>
-            <CardTitle>Personal Information</CardTitle>
+            <CardTitle className="text-2xl font-black tracking-tight">Personal Information</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col md:flex-row items-center gap-6 mb-6">
+            <div className="flex flex-col md:flex-row items-center gap-8 mb-8">
               <Avatar className="w-24 h-24">
                 <AvatarImage src={user?.avatarUrl} />
-                <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
+                <AvatarFallback className="text-2xl font-black">{user?.name?.charAt(0)}</AvatarFallback>
               </Avatar>
               <div>
-                <h2 className="text-2xl font-semibold">{user?.name}</h2>
-                <p className="text-muted-foreground">{user?.email}</p>
+                <h2 className="text-3xl font-black tracking-tight text-foreground">{user?.name}</h2>
+                <p className="text-lg font-light text-muted-foreground tracking-wide">{user?.email}</p>
               </div>
             </div>
-            <form className="space-y-4">
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+            <form className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <div className="space-y-3">
+                  <Label htmlFor="name" className="text-sm font-light uppercase tracking-[0.15em] text-primary">Full Name</Label>
                   <div className="relative">
-                    <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input id="name" defaultValue={user?.name} className="pl-9" />
+                    <User className="absolute left-4 top-4 h-4 w-4 text-muted-foreground" />
+                    <Input id="name" defaultValue={user?.name} className="pl-12 h-12 text-base" />
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                <div className="space-y-3">
+                  <Label htmlFor="email" className="text-sm font-light uppercase tracking-[0.15em] text-primary">Email</Label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input id="email" type="email" defaultValue={user?.email} className="pl-9" />
+                    <Mail className="absolute left-4 top-4 h-4 w-4 text-muted-foreground" />
+                    <Input id="email" type="email" defaultValue={user?.email} className="pl-12 h-12 text-base" />
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone</Label>
+                <div className="space-y-3">
+                  <Label htmlFor="phone" className="text-sm font-light uppercase tracking-[0.15em] text-primary">Phone</Label>
                   <div className="relative">
-                    <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input id="phone" type="tel" defaultValue={user?.phoneNumber} className="pl-9" />
+                    <Phone className="absolute left-4 top-4 h-4 w-4 text-muted-foreground" />
+                    <Input id="phone" type="tel" className="pl-12 h-12 text-base" />
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <Label htmlFor="address" className="text-sm font-light uppercase tracking-[0.15em] text-primary">Address</Label>
+                  <div className="relative">
+                    <Edit className="absolute left-4 top-4 h-4 w-4 text-muted-foreground" />
+                    <Input id="address" className="pl-12 h-12 text-base" />
                   </div>
                 </div>
               </div>
             </form>
           </CardContent>
-          <CardFooter>
-            <Button>
-              <Edit className="mr-2 h-4 w-4" /> Update Profile
+          <CardFooter className="pt-8">
+            <Button className="w-full py-6 text-lg font-black tracking-[0.2em] uppercase rounded-2xl">
+              Update Profile
             </Button>
           </CardFooter>
         </Card>

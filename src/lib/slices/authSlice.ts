@@ -3,7 +3,7 @@ import { login, register, logout } from '../auth/auth';
 
 export const loginUser = createAsyncThunk(
   'auth/login',
-  async (credentials: { email: string; password: string }, { rejectWithValue }) => {
+  async (credentials: { email: string; password: string; provider?: string; providerId?: string }, { rejectWithValue }) => {
     try {
       const user = await login(credentials);
       return user;
@@ -15,7 +15,7 @@ export const loginUser = createAsyncThunk(
 
 export const registerUser = createAsyncThunk(
   'auth/register',
-  async (userData: { name: string; email: string; password: string }, { rejectWithValue }) => {
+  async (userData: { name: string; email: string; password: string; avatar?: string; provider?: string; providerId?: string }, { rejectWithValue }) => {
     try {
       const user = await register(userData);
       return user;

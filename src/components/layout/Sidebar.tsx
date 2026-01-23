@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Home, Calendar, User, LogOut, Moon, Sun } from 'lucide-react';
+import { LogOut, Moon, Sun } from 'lucide-react';
 import { FaUserCircle } from 'react-icons/fa';
 import { Dialog } from '@headlessui/react';
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/Button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { logoutUser } from '@/lib/slices/authSlice';
 import { RootState, AppDispatch } from '@/lib/store';
 import { useTheme } from '@/providers/ThemeContext';
+import { useAuth } from '@/contexts/AuthContext';
+import { LogoutDialog } from '@/components/auth/LogoutDialog';
 import { navItems, isHomePage } from './navigation';
 
 interface SidebarProps {
@@ -20,14 +22,35 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const { toggleTheme, theme } = useTheme();
+  const { signOut, user: authUser } = useAuth();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const location = useLocation();
   const user = useSelector((state: RootState) => state.auth.user);
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  // Use AuthContext user data if available, fallback to Redux user
+  const displayUser = authUser || user;
 
   const handleLogout = async () => {
-    await dispatch(logoutUser());
-    navigate('/');
+    setIsLoggingOut(true);
+    try {
+      // Sign out from Supabase
+      await signOut();
+      // Clear Redux state
+      await dispatch(logoutUser()).unwrap();
+      // Navigate to home
+      navigate('/');
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Even if Supabase logout fails, clear Redux and navigate
+      await dispatch(logoutUser()).unwrap();
+      navigate('/');
+    } finally {
+      setIsLoggingOut(false);
+      setIsLogoutDialogOpen(false);
+    }
   };
 
   const sidebarContent = (
@@ -38,12 +61,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           <div className="mb-4">
             <Link to="/profile" className="flex items-center space-x-4 py-4 px-2 bg-muted rounded-lg hover:shadow-md dark:hover:shadow-white/50 transition-colors">
               <Avatar>
-                <AvatarImage src={user?.avatarUrl} />
                 <AvatarFallback><FaUserCircle className="w-10 h-10" /></AvatarFallback>
               </Avatar>
               <div>
-                <p className="text-sm font-medium leading-none">{user?.name}</p>
-                <p className="text-sm text-muted-foreground">{user?.email}</p>
+                <p className="text-sm font-medium leading-none">
+                  {displayUser?.email?.split('@')[0]}
+                </p>
+                <p className="text-sm text-muted-foreground">{displayUser?.email}</p>
               </div>
             </Link>
           </div>
@@ -81,7 +105,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           >
             {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
           </Button>
-          <Button variant="ghost" onClick={handleLogout} className='hover:bg-accent-200 bg-accent rounded-md hover:text-accent-500'>
+          <Button variant="ghost" onClick={() => setIsLogoutDialogOpen(true)} className='hover:bg-accent-200 bg-accent rounded-md hover:text-accent-500'>
             <LogOut size={20} className="mr-2" />
             Logout
           </Button>
@@ -104,6 +128,14 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           {sidebarContent}
         </Dialog.Panel>
       </Dialog>
+
+      {/* Logout Confirmation Dialog */}
+      <LogoutDialog
+        isOpen={isLogoutDialogOpen}
+        onClose={() => setIsLogoutDialogOpen(false)}
+        onConfirm={handleLogout}
+        loading={isLoggingOut}
+      />
     </>
   );
 };
