@@ -62,7 +62,7 @@ export default function Navbar() {
     if (isAuthenticated) {
       navigate('/emergency');
     } else {
-      navigate('/login', { state: { from: '/emergency' } });
+      window.open('https://expo.dev/preview/update?message=modified%3A+++services%2FinsuranceService.js&updateRuntimeVersion=1.0.0&createdAt=2026-01-20T19%3A56%3A27.878Z&slug=exp&projectId=a3777b70-b973-4b3b-ba59-ed32bf5662e0&group=929eee2a-83cd-497e-8f88-c42c58648467', '_blank');
     }
   };
 

@@ -47,7 +47,12 @@ export default function Footer() {
               <li><Link to="/support" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Support Protocol</Link></li>
             </ul>
             <div className="mt-12 pt-12 border-t border-border/10 flex flex-row md:flex-col gap-4">
-               <a href="#" className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-fit">
+               <a 
+                 href="https://expo.dev/preview/update?message=modified%3A+++services%2FinsuranceService.js&updateRuntimeVersion=1.0.0&createdAt=2026-01-20T19%3A56%3A27.878Z&slug=exp&projectId=a3777b70-b973-4b3b-ba59-ed32bf5662e0&group=929eee2a-83cd-497e-8f88-c42c58648467" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-fit"
+               >
                   <img 
                     src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" 
                     alt="Apple" 
@@ -58,7 +63,12 @@ export default function Footer() {
                     <span className="text-base font-black tracking-tight">App Store</span>
                   </div>
                </a>
-               <a href="#" className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-fit">
+               <a 
+                 href="https://expo.dev/preview/update?message=modified%3A+++services%2FinsuranceService.js&updateRuntimeVersion=1.0.0&createdAt=2026-01-20T19%3A56%3A27.878Z&slug=exp&projectId=a3777b70-b973-4b3b-ba59-ed32bf5662e0&group=929eee2a-83cd-497e-8f88-c42c58648467" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-fit"
+               >
                   <svg viewBox="0 0 512 512" className="h-6 w-auto">
                     <path fill="#4285F4" d="M12 12L12 500L350 256L12 12Z" />
                     <path fill="#34A853" d="M12 500L440 330L350 256L12 500Z" />

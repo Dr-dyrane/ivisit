@@ -148,7 +148,14 @@ const Login: React.FC = () => {
           </h2>
           <div className="flex items-center justify-center gap-2">
             <Activity className="w-3 h-3 text-primary animate-pulse" />
-            <span className="text-sm font-light text-muted-foreground uppercase tracking-[0.15em]">Instant Demo Access</span>
+            <a 
+              href="https://expo.dev/preview/update?message=modified%3A+++services%2FinsuranceService.js&updateRuntimeVersion=1.0.0&createdAt=2026-01-20T19%3A56%3A27.878Z&slug=exp&projectId=a3777b70-b973-4b3b-ba59-ed32bf5662e0&group=929eee2a-83cd-497e-8f88-c42c58648467" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm font-light text-muted-foreground uppercase tracking-[0.15em] hover:text-primary transition-colors cursor-pointer"
+            >
+              Instant Demo Access
+            </a>
           </div>
         </div>
 
