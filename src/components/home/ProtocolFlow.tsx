@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { animated, useTransition } from '@react-spring/web';
 import { 
   Ambulance, 
@@ -14,7 +14,6 @@ import {
 import { Container } from '../ui/Container';
 import { Section } from '../ui/Section';
 import { Card } from '../ui/Card';
-import { useTheme } from '@/providers/ThemeContext';
 
 type FlowMode = 'emergency' | 'booking';
 
@@ -98,25 +97,8 @@ const bookingSteps: Step[] = [
 ];
 
 export default function ProtocolFlow() {
-  const { theme } = useTheme();
   const [mode, setMode] = useState<FlowMode>('emergency');
   const sectionRef = useRef<HTMLElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        setMousePos({
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top,
-        });
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   const steps = mode === 'emergency' ? ambulanceSteps : bookingSteps;
 
@@ -129,37 +111,16 @@ export default function ProtocolFlow() {
   });
 
   return (
-    <Section id="protocol" ref={sectionRef} className="py-32 bg-transparent relative z-10 overflow-hidden group">
-      {/* Smarty Blur Background */}
-      <div 
-        className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-0 group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(circle 600px at ${mousePos.x}px ${mousePos.y}px, ${theme === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(var(--grid-color), 0.05)'}, transparent 80%)`,
-        }}
-      />
-      <div 
-        className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-0 group-hover:opacity-100"
-        style={{
-          maskImage: `radial-gradient(circle 400px at ${mousePos.x}px ${mousePos.y}px, black, transparent 80%)`,
-          WebkitMaskImage: `radial-gradient(circle 400px at ${mousePos.x}px ${mousePos.y}px, black, transparent 80%)`,
-        }}
-      >
-        <div className={`absolute inset-0 backdrop-blur-[3px] ${theme === 'dark' ? 'bg-white/[0.01]' : 'bg-primary/[0.02]'} `} />
-        <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-      </div>
-
-      <Container className="relative z-10">
-        <div className="flex flex-col lg:flex-row gap-16 items-start">
+    <Section id="protocols" ref={sectionRef} className="min-h-screen flex items-center justify-center bg-transparent">
+      <Container>
+        <div className="flex flex-col lg:flex-row gap-20 items-start">
           {/* Left Column: Info & Toggle */}
-          <div className="lg:w-1/3 space-y-8 lg:sticky lg:top-32">
+          <div className="lg:w-1/3 space-y-12 lg:sticky lg:top-32">
             <div>
-              <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-black uppercase tracking-[0.3em] mb-6">
-                Operational Lifecycle
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-6 leading-tight">
-                Command Flow <br /> Protocols<span className="text-primary">.</span>
+              <h2 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-0.06em] text-foreground mb-12 leading-[0.8]">
+                Command Flow<span className="text-primary">.</span>
               </h2>
-              <p className="text-muted-foreground font-light text-lg leading-relaxed">
+              <p className="text-muted-foreground font-light text-xl leading-relaxed tracking-[-0.02em] max-w-md">
                 Audited end-to-end synchronization between the mobile terminal and the global command grid.
               </p>
             </div>
@@ -167,32 +128,32 @@ export default function ProtocolFlow() {
             <div className="flex p-1 bg-secondary border border-border rounded-2xl">
               <button
                 onClick={() => setMode('emergency')}
-                className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-xl text-xs sm:text-sm font-black uppercase tracking-widest transition-all ${
+                className={`flex-1 flex items-center justify-center gap-3 py-6 rounded-xl text-sm font-light uppercase tracking-[0.15em] transition-all ${
                   mode === 'emergency' ? 'bg-background text-primary shadow-lg' : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                <Ambulance className="h-4 w-4" />
+                <Ambulance className="h-5 w-5" />
                 Ambulance SOS
               </button>
               <button
                 onClick={() => setMode('booking')}
-                className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-xl text-xs sm:text-sm font-black uppercase tracking-widest transition-all ${
+                className={`flex-1 flex items-center justify-center gap-3 py-6 rounded-xl text-sm font-light uppercase tracking-[0.15em] transition-all ${
                   mode === 'booking' ? 'bg-background text-primary shadow-lg' : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                <Bed className="h-4 w-4" />
+                <Bed className="h-5 w-5" />
                 Bed Booking
               </button>
             </div>
 
-            <Card className="p-6 bg-primary/5 border-primary/20 rounded-3xl">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-2xl bg-primary text-white">
-                  <Database className="h-5 w-5" />
+            <Card className="p-8 bg-primary/5 border-primary/20 rounded-3xl">
+              <div className="flex items-start gap-6">
+                <div className="p-4 rounded-2xl bg-primary text-white">
+                  <Database className="h-6 w-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-foreground text-sm uppercase tracking-wider mb-1">Real-time Persistence</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <h4 className="font-light text-foreground text-sm uppercase tracking-[0.15em] mb-3">Real-time Persistence</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed font-light">
                     Every state change is synchronized with Supabase for real-time dispatch intelligence and visit history audit.
                   </p>
                 </div>
@@ -204,42 +165,42 @@ export default function ProtocolFlow() {
           <div className="lg:w-2/3 relative">
             <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent hidden md:block" />
             
-            <div className="space-y-12">
+            <div className="space-y-16">
               {transitions((style, step, _, index) => (
-                <animated.div style={style} className="relative flex flex-col md:flex-row gap-8">
+                <animated.div style={style} className="relative flex flex-col md:flex-row gap-12">
                   {/* Icon Node */}
                   <div className="relative z-10 flex-shrink-0">
-                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 bg-background ${
+                    <div className={`w-20 h-20 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 bg-background ${
                       mode === 'emergency' ? 'border-primary/20 text-primary shadow-[0_0_20px_rgba(134,16,14,0.1)]' : 'border-accent/20 text-accent shadow-[0_0_20px_rgba(var(--accent),0.1)]'
                     }`}>
                       {step.icon}
                     </div>
                     {index < steps.length - 1 && (
-                       <div className="absolute top-16 left-1/2 -translate-x-1/2 h-12 w-px bg-border md:hidden" />
+                       <div className="absolute top-20 left-1/2 -translate-x-1/2 h-12 w-px bg-border md:hidden" />
                     )}
                   </div>
 
                   {/* Content */}
-                  <div className="flex-grow pt-2">
-                    <div className="flex flex-wrap items-center gap-3 mb-3">
-                      <span className="text-xs sm:text-sm font-black text-muted-foreground/50 uppercase tracking-[0.2em]">Step 0{index + 1}</span>
-                      <ChevronRight className="h-3 w-3 text-muted-foreground/30" />
-                      <span className={`text-xs sm:text-sm font-black uppercase tracking-[0.2em] px-2 py-0.5 rounded-md border ${
+                  <div className="flex-grow pt-4">
+                    <div className="flex flex-wrap items-center gap-4 mb-4">
+                      <span className="text-sm font-light text-muted-foreground/50 uppercase tracking-[0.15em]">Step 0{index + 1}</span>
+                      <ChevronRight className="h-4 w-4 text-muted-foreground/30" />
+                      <span className={`text-sm font-light uppercase tracking-[0.15em] px-3 py-1 rounded-lg border ${
                         mode === 'emergency' ? 'bg-primary/5 border-primary/20 text-primary' : 'bg-accent/5 border-accent/20 text-accent'
                       }`}>
                         {step.status}
                       </span>
                     </div>
-                    <h3 className="text-2xl font-bold text-foreground mb-4 tracking-tight uppercase">
+                    <h3 className="text-2xl font-black text-foreground mb-6 tracking-tight uppercase">
                       {step.title}
                     </h3>
-                    <p className="text-muted-foreground text-sm font-light leading-relaxed mb-6 max-w-xl">
+                    <p className="text-muted-foreground text-lg font-light leading-relaxed mb-8 max-w-xl">
                       {step.description}
                     </p>
                     
                     {step.dbAction && (
-                      <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-secondary/50 border border-border/50 font-mono text-xs sm:text-sm text-muted-foreground/70 group hover:border-primary/30 transition-colors">
-                        <Database className="h-3 w-3 text-primary/50 group-hover:text-primary transition-colors" />
+                      <div className="inline-flex items-center gap-4 px-6 py-3 rounded-xl bg-secondary/50 border border-border/50 font-mono text-sm text-muted-foreground/70 group hover:border-primary/30 transition-colors">
+                        <Database className="h-4 w-4 text-primary/50 group-hover:text-primary transition-colors" />
                         {step.dbAction}
                       </div>
                     )}
@@ -247,7 +208,7 @@ export default function ProtocolFlow() {
 
                   {/* Progress Line for Desktop */}
                   {index < steps.length - 1 && (
-                    <div className="absolute left-[31px] top-16 bottom-[-48px] w-px bg-border hidden md:block" />
+                    <div className="absolute left-[39px] top-20 bottom-[-64px] w-px bg-border hidden md:block" />
                   )}
                 </animated.div>
               ))}

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutPanelTop, X, Activity, ShieldCheck } from 'lucide-react';
+import { LayoutPanelTop, X, Activity, ShieldCheck, Moon, Sun } from 'lucide-react';
 import { useSpring, animated } from '@react-spring/web';
 import { Dialog } from '@headlessui/react';
 import { useSelector } from 'react-redux';
@@ -18,7 +18,7 @@ const navigation = [
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
   const location = useLocation();
   const { pathname } = location;
@@ -126,15 +126,27 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="relative text-muted-foreground hover:text-foreground text-xs font-black uppercase tracking-[0.1em] transition-all group/link overflow-hidden py-2 whitespace-nowrap"
+                  className="relative text-muted-foreground hover:text-foreground text-xs font-light uppercase tracking-[0.15em] transition-all group/link overflow-hidden py-2 whitespace-nowrap"
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary transform translate-x-[-100%] group-hover/link:translate-x-0 transition-transform duration-300" />
+                  <span className="absolute bottom-0 left-0 w-full h-[0.5px] bg-primary transform translate-x-[-100%] group-hover/link:translate-x-0 transition-transform duration-300" />
                 </Link>
               ))}
             </div>
-            
+
             <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={toggleTheme}
+                className="px-3 rounded-xl h-9 lg:h-10 border-border/50 hover:border-primary/50 text-xs font-black tracking-widest"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-4 h-4 text-yellow-500" />
+                ) : (
+                  <Moon className="w-4 h-4 text-blue-400" />
+                )}
+              </Button>
               <Button
                 variant="outline"
                 size="sm"
@@ -192,7 +204,7 @@ export default function Navbar() {
             <div className="p-4 rounded-2xl bg-secondary/30 border border-border/50 mb-4">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-xs sm:text-sm font-black uppercase tracking-widest text-foreground/60">System Ready</span>
+                <span className="text-xs sm:text-sm font-light uppercase tracking-widest text-foreground/60">System Ready</span>
               </div>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">Command-grade medical dispatch infrastructure active.</p>
             </div>
@@ -202,7 +214,7 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="flex items-center justify-between p-4 rounded-xl text-xs sm:text-sm font-black uppercase tracking-[0.3em] text-foreground hover:bg-secondary/50 border border-transparent hover:border-border/50 transition-all"
+                  className="flex items-center justify-between p-4 rounded-xl text-xs sm:text-sm font-light uppercase tracking-[0.15em] text-foreground hover:bg-secondary/50 border border-transparent hover:border-border/50 transition-all"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}

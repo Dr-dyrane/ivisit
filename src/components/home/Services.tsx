@@ -1,4 +1,3 @@
-import React from 'react';
 import { Ambulance, HeartPulse, Stethoscope, Bed } from 'lucide-react';
 import { useSpring, animated } from '@react-spring/web';
 import { Card } from '../ui/Card';
@@ -34,42 +33,34 @@ export default function Services() {
   ];
 
   return (
-    <div id="services" className="py-20 sm:py-32 bg-transparent relative z-10 overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[160px] pointer-events-none" />
-
+    <div id="services" className="min-h-screen flex items-center justify-center bg-transparent relative z-10">
       <animated.div style={fadeIn} className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-24">
-          <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-black uppercase tracking-[0.3em] mb-6">
-            Core Operations
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-24">
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-0.06em] text-foreground mb-12 leading-[0.8]">
+              Strategic Services<span className="text-primary">.</span>
+            </h2>
+            <p className="text-xl sm:text-2xl font-light text-muted-foreground max-w-3xl mx-auto leading-relaxed tracking-[-0.02em]">
+              Deploying medical intelligence and rapid response protocols across the metropolitan area.
+            </p>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-6">
-            Strategic Services<span className="text-primary">.</span>
-          </h2>
-          <p className="max-w-2xl mx-auto text-lg text-muted-foreground font-light px-4">
-            Deploying medical intelligence and rapid response protocols across the metropolitan area.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {services.map((service, index) => (
-            <Card
-              key={index}
-              className="p-6 sm:p-10 rounded-[2.5rem] group cursor-default transition-all duration-500 hover:scale-[1.02] bg-background/20 backdrop-blur-3xl"
-            >
-              <div className="relative z-10">
-                <div className="mb-10 inline-flex p-4 rounded-2xl bg-primary/10 border border-primary/20 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                  {service.icon}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {services.map((service, index) => (
+              <Card
+                key={index}
+                className="p-12 rounded-3xl group cursor-default transition-all duration-500 hover:scale-[1.02] bg-background/20 backdrop-blur-3xl"
+              >
+                <div className="relative z-10">
+                  <div className="mb-8 inline-flex p-6 rounded-2xl bg-primary/10 border border-primary/20 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-3xl font-bold text-foreground mb-6 tracking-tight">{service.title}</h3>
+                  <p className="text-lg font-light text-muted-foreground leading-relaxed">{service.description}</p>
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4 tracking-tight">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed font-light text-sm">{service.description}</p>
-              </div>
-              {/* Corner Accent */}
-              <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="w-8 h-8 border-t-2 border-r-2 border-accent/30 rounded-tr-xl" />
-              </div>
-            </Card>
-          ))}
+              </Card>
+            ))}
+          </div>
         </div>
       </animated.div>
     </div>
