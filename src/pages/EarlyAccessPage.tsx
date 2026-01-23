@@ -1,40 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useSpring, animated } from '@react-spring/web';
-import { Crown, Star, Check, ArrowRight, Zap, Rocket, Users, Heart, Shield, Timer } from 'lucide-react';
+import { Crown, Star, Check, ArrowRight, Shield, Timer } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { Section } from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { useTheme } from '@/providers/ThemeContext';
 import EarlyAccessForm from '@/components/early-access/EarlyAccessForm';
 import SEOHead from '@/components/seo/SEOHead';
 import { supabase } from '@/lib/supabase';
 import { submitSubscriber } from '@/lib/api/subscribers';
 import { toast } from 'sonner';
-
-const benefits = [
-  {
-    icon: <Zap className="h-6 w-6" />,
-    title: 'Instant Access',
-    description: 'No waiting lists. Start using iVisit right now.'
-  },
-  {
-    icon: <Rocket className="h-6 w-6" />,
-    title: 'Shape the Future',
-    description: 'Your feedback drives our development roadmap.'
-  },
-  {
-    icon: <Users className="h-6 w-6" />,
-    title: 'Community First',
-    description: 'Connect with early adopters in healthcare tech.'
-  },
-  {
-    icon: <Heart className="h-6 w-6" />,
-    title: 'Lifetime Badge',
-    description: 'Special supporter badge and platform recognition.'
-  }
-];
 
 const premiumBenefits = [
   {
@@ -99,26 +75,12 @@ const pricingTiers = [
 export default function EarlyAccessPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { theme } = useTheme();
   const sectionRef = useRef<HTMLElement>(null);
   const formSectionRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isPaid] = useState(searchParams.get('paid') === 'true');
 
   useEffect(() => {
     document.title = 'iVisit Early Access - Join the Revolution';
-    const handleMouseMove = (e: MouseEvent) => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        setMousePos({
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top,
-        });
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   useEffect(() => {
@@ -218,231 +180,166 @@ export default function EarlyAccessPage() {
       )}
 
       {/* Hero Section */}
-      <Section id="early-access-hero" ref={sectionRef} className={`relative min-h-[calc(100vh-5rem)] flex items-center bg-transparent overflow-hidden group pt-20 md:pt-32 ${isPaid ? 'mt-20' : ''}`}>
-        {/* Smarty Blur Background */}
-        <div 
-          className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-0 group-hover:opacity-100"
-          style={{
-            background: `radial-gradient(circle 600px at ${mousePos.x}px ${mousePos.y}px, ${theme === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(var(--grid-color), 0.05)'}, transparent 80%)`,
-          }}
-        />
-
-        {/* Background Orbs */}
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-accent/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none animate-pulse" style={{ animationDelay: '2s' }} />
-
+      <Section id="early-access-hero" ref={sectionRef} className={`relative min-h-screen flex items-center justify-center bg-transparent ${isPaid ? 'mt-20' : ''}`}>
         <Container className="relative z-10">
-          <animated.div style={fadeIn} className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/20 text-red-500 text-[10px] font-black uppercase tracking-[0.3em] mb-8">
-              <Timer className="h-3 w-3 animate-pulse" />
-              Limited Time - 80% OFF
+          <animated.div style={fadeIn} className="max-w-4xl mx-auto text-center">
+            <div className="mb-16">
+              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-[-0.08em] text-foreground mb-8 leading-[0.75]">
+                Join iVisit<span className="text-primary"> Premium</span>
+              </h1>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-0.05em] text-foreground mb-8 leading-[0.85]">
-              Join iVisit<span className="text-primary"> Premium</span>
-            </h1>
-
-            <p className="text-lg sm:text-xl text-muted-foreground mb-12 leading-relaxed font-normal">
-              Transform emergency healthcare. Get <span className="text-primary font-bold">lifetime premium access</span> at 80% off.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={handleFreeCTA}
-                className="flex-1 rounded-2xl text-base font-bold border-border/50 bg-background/50 hover:bg-background transition-all duration-200"
-              >
-                Start Free
-              </Button>
-              
-              <Button
-                variant="accent"
-                size="lg"
-                onClick={handlePaidCTA}
-                className="flex-1 rounded-2xl text-base font-bold bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 transition-all duration-200"
-              >
-                Get Premium Access
-              </Button>
+            <div className="max-w-2xl mx-auto mb-20">
+              <p className="text-xl sm:text-2xl md:text-3xl font-light text-muted-foreground leading-relaxed tracking-[-0.02em]">
+                Transform emergency healthcare with lifetime premium access.
+              </p>
             </div>
 
-            <EarlyAccessForm onSuccess={() => {}} />
-
-            <p className="text-xs text-muted-foreground/60 mt-8">
-              ✓ No credit card required for basic early access
-              <br />
-              ✓ Premium offer ends February 28, 2025
-              <br />
-              ✓ 30-day money-back guarantee
-            </p>
+            <div className="max-w-md mx-auto">
+              <EarlyAccessForm onSuccess={() => {}} />
+            </div>
           </animated.div>
         </Container>
       </Section>
 
       {/* Benefits Section */}
-      <Section className="py-20 md:py-32 bg-secondary/30" ref={formSectionRef}>
+      <Section className="min-h-screen flex items-center justify-center bg-secondary/30" ref={formSectionRef}>
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-6 leading-tight">
-              Why Choose Premium<span className="text-primary">?</span>
-            </h2>
-            <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-              Exclusive benefits for early supporters. Limited time offer.
-            </p>
-          </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-24">
+              <h2 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-0.06em] text-foreground mb-12 leading-[0.8]">
+                Why Choose Premium<span className="text-primary">?</span>
+              </h2>
+              <p className="text-xl sm:text-2xl font-light text-muted-foreground max-w-3xl mx-auto leading-relaxed tracking-[-0.02em]">
+                Exclusive benefits for early supporters who shape the future of healthcare.
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            {premiumBenefits.map((benefit, index) => (
-              <animated.div
-                key={index}
-                style={fadeIn}
-                className="group"
-              >
-                <Card className="p-6 h-full rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 hover:border-primary/40 transition-all duration-300">
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-lg bg-background border border-border group-hover:scale-110 transition-transform">
-                      {benefit.icon}
+            <div className="grid md:grid-cols-2 gap-12">
+              {premiumBenefits.map((benefit, index) => (
+                <animated.div
+                  key={index}
+                  style={fadeIn}
+                  className="group"
+                >
+                  <Card className="p-12 h-full rounded-3xl bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 hover:border-primary/40 transition-all duration-500">
+                    <div className="flex items-start gap-6">
+                      <div className="p-4 rounded-2xl bg-background border border-border group-hover:scale-110 transition-transform duration-300">
+                        {benefit.icon}
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-2xl font-bold text-foreground mb-4 tracking-tight">
+                          {benefit.title}
+                        </h3>
+                        <p className="text-lg font-light text-muted-foreground leading-relaxed">
+                          {benefit.description}
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-bold text-foreground mb-2">
-                        {benefit.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {benefit.description}
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-              </animated.div>
-            ))}
-          </div>
-
-          <div className="text-center mb-16">
-            <h3 className="text-2xl md:text-3xl font-black tracking-tighter text-foreground mb-6 leading-tight">
-              Standard Benefits<span className="text-primary">.</span>
-            </h3>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {benefits.map((benefit, index) => (
-              <animated.div
-                key={index}
-                style={fadeIn}
-                className="group"
-              >
-                <Card className="p-8 h-full rounded-3xl bg-background border-border hover:border-primary/50 transition-all duration-300">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                      {benefit.icon}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-bold text-foreground mb-2">
-                        {benefit.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {benefit.description}
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-              </animated.div>
-            ))}
+                  </Card>
+                </animated.div>
+              ))}
+            </div>
           </div>
         </Container>
       </Section>
 
       {/* Pricing Section */}
-      <Section className="py-20 md:py-32">
+      <Section className="min-h-screen flex items-center justify-center">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-6 leading-tight">
-              Choose Your Path<span className="text-primary">.</span>
-            </h2>
-            <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-              Start free or become a paid supporter.
-            </p>
-          </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-24">
+              <h2 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-0.06em] text-foreground mb-12 leading-[0.8]">
+                Choose Your Path<span className="text-primary">.</span>
+              </h2>
+              <p className="text-xl sm:text-2xl font-light text-muted-foreground max-w-3xl mx-auto leading-relaxed tracking-[-0.02em]">
+                Start free or become a premium supporter with lifetime benefits.
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {pricingTiers.map((tier, index) => (
-              <animated.div
-                key={index}
-                style={fadeIn}
-              >
-                <Card
-                  className={`p-8 h-full rounded-3xl transition-all duration-300 flex flex-col ${
-                    tier.highlighted
-                      ? 'border-primary/50 bg-primary/5 scale-[1.02]'
-                      : 'bg-secondary/30 border-border'
-                  }`}
+            <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+              {pricingTiers.map((tier, index) => (
+                <animated.div
+                  key={index}
+                  style={fadeIn}
                 >
-                  <div className="mb-8">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-2xl font-black text-foreground">
-                        {tier.name}
-                      </h3>
-                      {tier.limitedOffer && (
-                        <div className="px-2 py-1 rounded-full bg-red-500 text-white text-[10px] font-bold uppercase tracking-wider">
-                          Limited
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex items-baseline gap-2 mb-3">
-                      {tier.originalPrice && (
-                        <span className="text-lg text-muted-foreground line-through">{tier.originalPrice}</span>
-                      )}
-                      <span className="text-4xl font-black text-foreground">{tier.price}</span>
-                      {tier.period && <span className="text-sm text-muted-foreground">{tier.period}</span>}
-                    </div>
-                    <p className="text-sm text-muted-foreground">{tier.description}</p>
-                  </div>
-
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {tier.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center gap-3">
-                        <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Button
-                    variant={tier.variant}
-                    size="lg"
-                    className="w-full rounded-xl text-sm sm:text-base font-semibold sm:font-bold"
-                    onClick={tier.name === 'Early Access' ? handleFreeCTA : handlePaidCTA}
+                  <Card
+                    className={`p-12 h-full rounded-3xl transition-all duration-500 flex flex-col ${
+                      tier.highlighted
+                        ? 'border-primary/50 bg-primary/5 scale-[1.02]'
+                        : 'bg-secondary/30 border-border'
+                    }`}
                   >
-                    <span className="sm:hidden">{tier.name === 'Early Access' ? 'Join Free' : 'Premium'}</span>
-                    <span className="hidden sm:inline">{tier.cta}</span>
-                    <ArrowRight className="h-4 w-4 ml-1 sm:ml-2 flex-shrink-0" />
-                  </Button>
-                  {tier.highlighted && (
-                    <p className="text-xs text-center text-muted-foreground/60 mt-3">
-                      ⚡ Limited time - Save 80%
-                    </p>
-                  )}
-                </Card>
-              </animated.div>
-            ))}
+                    <div className="mb-12">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-3xl font-black text-foreground tracking-tight">
+                          {tier.name}
+                        </h3>
+                        {tier.limitedOffer && (
+                          <div className="px-3 py-1 rounded-full bg-red-500 text-white text-sm font-bold uppercase tracking-wider">
+                            Limited
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex items-baseline gap-3 mb-6">
+                        {tier.originalPrice && (
+                          <span className="text-xl text-muted-foreground line-through font-light">{tier.originalPrice}</span>
+                        )}
+                        <span className="text-5xl font-black text-foreground">{tier.price}</span>
+                        {tier.period && <span className="text-lg text-muted-foreground font-light">{tier.period}</span>}
+                      </div>
+                      <p className="text-lg font-light text-muted-foreground leading-relaxed">
+                        {tier.description}
+                      </p>
+                    </div>
+
+                    <ul className="space-y-4 mb-12 flex-1">
+                      {tier.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center gap-4">
+                          <div className="h-2 w-2 rounded-full bg-primary" />
+                          <span className="text-base font-light text-muted-foreground">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Button
+                      variant={tier.variant}
+                      size="lg"
+                      className="w-full rounded-2xl text-lg font-bold py-6 transition-all duration-300 hover:scale-[1.02]"
+                      onClick={tier.name === 'Early Access' ? handleFreeCTA : handlePaidCTA}
+                    >
+                      <span className="sm:hidden">{tier.name === 'Early Access' ? 'Join Free' : 'Premium'}</span>
+                      <span className="hidden sm:inline">{tier.cta}</span>
+                      <ArrowRight className="h-5 w-5 ml-2 flex-shrink-0" />
+                    </Button>
+                    {tier.highlighted && (
+                      <p className="text-sm text-center text-muted-foreground/60 mt-4 font-light">
+                        ⚡ Limited time - Save 80%
+                      </p>
+                    )}
+                  </Card>
+                </animated.div>
+              ))}
+            </div>
           </div>
         </Container>
       </Section>
 
       {/* CTA Section */}
-      <Section className="py-20 md:py-32 bg-secondary/30">
+      <Section className="min-h-screen flex items-center justify-center bg-secondary/30">
         <Container>
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground mb-6 leading-tight">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-0.06em] text-foreground mb-12 leading-[0.8]">
               Ready to Transform Healthcare<span className="text-primary">?</span>
             </h2>
-            <p className="text-base text-muted-foreground mb-8">
+            <p className="text-xl sm:text-2xl font-light text-muted-foreground mb-16 max-w-3xl mx-auto leading-relaxed tracking-[-0.02em]">
               Join premium supporters and get lifetime benefits. Limited time offer.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button
                 variant="accent"
                 size="lg"
-                className="rounded-xl text-sm sm:text-base font-semibold sm:font-bold"
+                className="rounded-2xl text-lg font-bold py-6 px-12 transition-all duration-300 hover:scale-[1.02]"
                 onClick={handlePaidCTA}
               >
                 <span className="sm:hidden">Get Premium</span>
@@ -452,7 +349,7 @@ export default function EarlyAccessPage() {
                 variant="outline"
                 size="lg"
                 onClick={handleFreeCTA}
-                className="rounded-xl text-sm sm:text-base font-semibold sm:font-bold"
+                className="rounded-2xl text-lg font-bold py-6 px-12 transition-all duration-300 hover:scale-[1.02]"
               >
                 <span className="sm:hidden">Free Access</span>
                 <span className="hidden sm:inline">Start Free</span>

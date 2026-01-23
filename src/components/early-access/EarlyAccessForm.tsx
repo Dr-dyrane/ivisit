@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Mail, CheckCircle2, AlertCircle, X } from 'lucide-react';
-import { FaGoogle } from 'react-icons/fa';
 import { Button } from '../ui/Button';
-import { submitSubscriber, signInWithGoogleForEarlyAccess } from '@/lib/api/subscribers';
+import { submitSubscriber } from '@/lib/api/subscribers';
 import { toast } from 'sonner';
 
 interface EarlyAccessFormProps {
@@ -40,19 +39,6 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
     setLoading(false);
   };
 
-  const handleGoogleSignIn = async () => {
-    try {
-      setLoading(true);
-      await signInWithGoogleForEarlyAccess();
-      // The OAuth flow will redirect, so we don't need to set loading to false here
-      // It will be handled by the redirect callback
-    } catch (error) {
-      console.error('Google Sign-In failed:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Google Sign-In failed. Please try again.';
-      toast.error(errorMessage);
-      setLoading(false);
-    }
-  };
 
   const clearInput = () => {
     setEmail('');
@@ -145,29 +131,16 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
           )}
         </div>
 
-        {/* Submit Button with Google Icon */}
-        <div className="flex gap-3">
-          <Button
-            type="submit"
-            variant="accent"
-            size="lg"
-            disabled={loading || status === 'success'}
-            className="flex-1 rounded-2xl text-base font-bold transition-all duration-200 hover:scale-[1.02]"
-          >
-            {loading ? 'Subscribing...' : 'Get Early Access'}
-          </Button>
-          
-          <Button
-            type="button"
-            variant="outline"
-            size="lg"
-            disabled={loading}
-            onClick={handleGoogleSignIn}
-            className="w-14 h-14 rounded-2xl border-border/50 bg-background/50 hover:bg-background flex items-center justify-center transition-all duration-200 hover:scale-110 group"
-          >
-            <FaGoogle className="h-5 w-5 text-red-500 group-hover:animate-pulse" />
-          </Button>
-        </div>
+        {/* Submit Button */}
+        <Button
+          type="submit"
+          variant="accent"
+          size="lg"
+          disabled={loading || status === 'success'}
+          className="w-full rounded-2xl text-base font-bold transition-all duration-200 hover:scale-[1.02]"
+        >
+          {loading ? 'Subscribing...' : 'Get Early Access'}
+        </Button>
 
         {status === 'success' && (
           <div className="mt-4 flex items-center gap-2 text-green-500 text-sm">
