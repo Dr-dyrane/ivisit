@@ -249,6 +249,37 @@ const Login: React.FC = () => {
           </Button>
         </form>
 
+        {/* Legal Links - App Store Compliance */}
+        <div className="mt-8 space-y-2 text-center">
+          <div className="text-xs text-muted-foreground space-y-1">
+            <p>
+              By continuing, you agree to our{" "}
+              <a href="/terms" className="text-primary font-black hover:underline transition-colors">
+                Terms
+              </a>
+              ,{" "}
+              <a href="/privacy" className="text-primary font-black hover:underline transition-colors">
+                Privacy
+              </a>
+              ,{" "}
+              <a href="/medical-disclaimer" className="text-primary font-black hover:underline transition-colors">
+                Medical Disclaimer
+              </a>
+              , &{" "}
+              <a href="/health-data-consent" className="text-primary font-black hover:underline transition-colors">
+                Health Data Consent
+              </a>
+            </p>
+            <p>
+              We require{" "}
+              <span className="text-primary font-black">
+                Location Access
+              </span>{" "}
+              for dispatch.
+            </p>
+          </div>
+        </div>
+
         <p className="mt-12 text-center text-sm font-light text-muted-foreground">
           {isLogin ? (
             <>
