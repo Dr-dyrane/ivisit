@@ -10,9 +10,9 @@ export default function Footer() {
 
   return (
     <footer ref={footerRef} className="bg-background border-t border-border relative z-10 transition-colors duration-300">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
-          <div className="col-span-1">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-3 group cursor-default">
               <div className="relative">
                 <img src="/logo.png" alt="iVisit Logo" className="h-9 w-auto" />
@@ -26,7 +26,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="font-light text-foreground uppercase tracking-[0.2em] text-xs sm:text-sm mb-12 opacity-60">Operations</h3>
+            <h3 className="font-light text-foreground uppercase tracking-[0.2em] text-xs sm:text-sm mb-8 sm:mb-12 opacity-60">Operations</h3>
             <ul className="space-y-6">
               <li><Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Home</Link></li>
               <li><a href="#services" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Services</a></li>
@@ -40,18 +40,20 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="font-light text-foreground uppercase tracking-[0.2em] text-xs sm:text-sm mb-12 opacity-60">Legal</h3>
+            <h3 className="font-light text-foreground uppercase tracking-[0.2em] text-xs sm:text-sm mb-8 sm:mb-12 opacity-60">Legal</h3>
             <ul className="space-y-6">
               <li><Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Privacy Policy</Link></li>
               <li><Link to="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Terms of Service</Link></li>
               <li><Link to="/support" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Support Protocol</Link></li>
+              <li><Link to="/medical-disclaimer" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Medical Disclaimer</Link></li>
+              <li><Link to="/health-data-consent" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Health Data Consent</Link></li>
             </ul>
-            <div className="mt-12 pt-12 border-t border-border/10 flex flex-row md:flex-col gap-4">
+            <div className="mt-12 pt-12 border-t border-border/10 flex flex-col sm:flex-row lg:flex-col gap-4">
                <a 
                  href="https://expo.dev/preview/update?message=modified%3A+++services%2FinsuranceService.js&updateRuntimeVersion=1.0.0&createdAt=2026-01-20T19%3A56%3A27.878Z&slug=exp&projectId=a3777b70-b973-4b3b-ba59-ed32bf5662e0&group=929eee2a-83cd-497e-8f88-c42c58648467" 
                  target="_blank" 
                  rel="noopener noreferrer"
-                 className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-fit"
+                 className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-full sm:w-fit lg:w-full"
                >
                   <img 
                     src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" 
@@ -67,7 +69,7 @@ export default function Footer() {
                  href="https://expo.dev/preview/update?message=modified%3A+++services%2FinsuranceService.js&updateRuntimeVersion=1.0.0&createdAt=2026-01-20T19%3A56%3A27.878Z&slug=exp&projectId=a3777b70-b973-4b3b-ba59-ed32bf5662e0&group=929eee2a-83cd-497e-8f88-c42c58648467" 
                  target="_blank" 
                  rel="noopener noreferrer"
-                 className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-fit"
+                 className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-full sm:w-fit lg:w-full"
                >
                   <svg viewBox="0 0 512 512" className="h-6 w-auto">
                     <path fill="#4285F4" d="M12 12L12 500L350 256L12 12Z" />
@@ -83,8 +85,8 @@ export default function Footer() {
             </div>
           </div>
           
-          <div>
-            <h3 className="font-light text-foreground uppercase tracking-[0.2em] text-xs sm:text-sm mb-12 opacity-60">Preferences</h3>
+          <div className="sm:col-span-2 lg:col-span-1">
+            <h3 className="font-light text-foreground uppercase tracking-[0.2em] text-xs sm:text-sm mb-8 sm:mb-12 opacity-60">Preferences</h3>
             <Button
               variant="ghost"
               onClick={toggleTheme}
