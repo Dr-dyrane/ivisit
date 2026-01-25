@@ -10,7 +10,7 @@ interface AuthGuardProps {
   redirectTo?: string;
 }
 
-const UNAUTHENTICATED_PAGES = ['/', '/login', '/privacy', '/terms', '/support', '/early-access'];
+const UNAUTHENTICATED_PAGES = ['/', '/login', '/privacy', '/terms', '/support', '/early-access', '/medical-disclaimer', '/health-data-consent'];
 const DEFAULT_AUTH_PAGE = '/emergency';
 
 export const AuthGuard: React.FC<AuthGuardProps> = ({ 
