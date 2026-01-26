@@ -3,10 +3,12 @@ import { Moon, Sun } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../../providers/ThemeContext';
 import { Button } from '../../ui/Button';
+import { getAppDownloadLink } from '@/constants/appLinks';
 
 export default function Footer() {
   const { theme, toggleTheme } = useTheme();
   const footerRef = useRef<HTMLElement>(null);
+  const appDownloadLink = getAppDownloadLink('production');
 
   return (
     <footer ref={footerRef} className="bg-background border-t border-border relative z-10 transition-colors duration-300">
@@ -50,7 +52,7 @@ export default function Footer() {
             </ul>
             <div className="mt-12 pt-12 border-t border-border/10 flex flex-col sm:flex-row lg:flex-col gap-4">
                <a 
-                 href="https://expo.dev/preview/update?message=merge%3A+Complete+emergency+system+with+Google+hospital+verification%0A%0A-+Merge+preview+branch+into+master%0A-+Resolve+conflicts+in+pr&updateRuntimeVersion=1.0.0&createdAt=2026-01-26T20%3A43%3A50.986Z&slug=exp&projectId=a3777b70-b973-4b3b-ba59-ed32bf5662e0&group=5322f690-17ac-47a1-9abb-89c1599156a0" 
+                 href={appDownloadLink}
                  target="_blank" 
                  rel="noopener noreferrer"
                  className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-full sm:w-fit lg:w-full"
@@ -66,7 +68,7 @@ export default function Footer() {
                   </div>
                </a>
                <a 
-                 href="https://expo.dev/preview/update?message=merge%3A+Complete+emergency+system+with+Google+hospital+verification%0A%0A-+Merge+preview+branch+into+master%0A-+Resolve+conflicts+in+pr&updateRuntimeVersion=1.0.0&createdAt=2026-01-26T20%3A43%3A50.986Z&slug=exp&projectId=a3777b70-b973-4b3b-ba59-ed32bf5662e0&group=5322f690-17ac-47a1-9abb-89c1599156a0" 
+                 href={appDownloadLink}
                  target="_blank" 
                  rel="noopener noreferrer"
                  className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-full sm:w-fit lg:w-full"
