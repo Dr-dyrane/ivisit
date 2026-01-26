@@ -25,7 +25,7 @@ export default function Hero() {
     if (isAuthenticated) {
       navigate('/emergency');
     } else {
-      window.open('https://expo.dev/preview/update?message=modified%3A+++services%2FinsuranceService.js&updateRuntimeVersion=1.0.0&createdAt=2026-01-20T19%3A56%3A27.878Z&slug=exp&projectId=a3777b70-b973-4b3b-ba59-ed32bf5662e0&group=929eee2a-83cd-497e-8f88-c42c58648467', '_blank');
+      window.open('https://expo.dev/preview/update?message=feat%3A+implement+enhanced+driver+automation+and+fix+web+export%0A%0A-+Add+automatic+driver+assignment+on+ambulance+request+creation%0A-&updateRuntimeVersion=1.0.0&createdAt=2026-01-26T09%3A17%3A06.260Z&slug=exp&projectId=a3777b70-b973-4b3b-ba59-ed32bf5662e0&group=6de339b5-691c-4057-a9cf-4f1fdb159665', '_blank');
     }
   };
 
