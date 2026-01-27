@@ -75,13 +75,16 @@ export function WelcomeScreenReplica({ onConnect, isActive }: WelcomeScreenRepli
             {/* Slide Button */}
             <div className="w-full mt-auto mb-6">
                 <div
-                    className="relative h-[56px] w-full bg-[#B91C1C] rounded-2xl overflow-hidden cursor-pointer group shadow-lg shadow-red-900/20 active:scale-[0.98] transition-all duration-200"
+                    className="relative h-[56px] w-full bg-[#B91C1C] rounded-2xl overflow-hidden cursor-pointer group shadow-lg shadow-red-900/40 active:scale-[0.98] transition-all duration-200"
                     onClick={handleSlide}
                 >
                     {/* Base Text */}
-                    <div className={`absolute inset-0 flex items-center justify-center gap-2 z-10 transition-all duration-300 ${swiped ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+                    <div className={`absolute inset-0 flex items-center justify-center gap-3 z-10 transition-all duration-300 ${swiped ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+                        <div className="relative">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>
+                            <Ambulance className="h-5 w-5 text-white relative z-10" />
+                        </div>
                         <span className="text-[15px] font-bold tracking-wide text-white">Find Care Now</span>
-                        <Ambulance className="h-5 w-5 text-white" />
                     </div>
 
                     {/* Connecting State Overlay */}

@@ -107,7 +107,7 @@ export function BedBookingScreenReplica({ onBook, isActive }: BedBookingScreenRe
 
                 {/* Hospital List - Transparent Cards & Hidden Scrollbar */}
                 <div className="flex-1 space-y-4 overflow-y-auto [&::-webkit-scrollbar]:hidden no-scrollbar pb-4 pr-1">
-                    {hospitals.map((hospital) => (
+                    {hospitals.map((hospital, index) => (
                         <div
                             key={hospital.id}
                             onClick={() => handleBook(hospital.id)}
@@ -115,9 +115,16 @@ export function BedBookingScreenReplica({ onBook, isActive }: BedBookingScreenRe
                                 ? (isDarkMode
                                     ? 'bg-[#1E293B]/40 border-red-500/50 shadow-lg shadow-red-900/20'
                                     : 'bg-white/40 border-red-500/50 shadow-lg shadow-red-500/10')
-                                : 'bg-transparent border-transparent hover:bg-white/5'
+                                : (index === 0 && !selectedHospital ? 'bg-white/10 border-red-500/20' : 'bg-transparent border-transparent hover:bg-white/5')
                                 }`}
                         >
+                            {/* Best Match Ping - Only on first item when nothing selected */}
+                            {index === 0 && !selectedHospital && (
+                                <div className="absolute top-3 right-3 flex h-3 w-3 z-20">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                                </div>
+                            )}
                             {/* Card Content */}
                             <div className="flex justify-between items-start mb-3">
                                 <div>

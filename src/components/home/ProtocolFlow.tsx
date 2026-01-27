@@ -20,22 +20,22 @@ export default function ProtocolFlow() {
           <div className="inline-flex items-center bg-muted/50 dark:bg-muted/20 backdrop-blur-md p-1.5 rounded-full border border-border/50 mb-8 mx-auto shadow-lg relative z-20">
             <button
               onClick={() => setMode('emergency')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${mode === 'emergency'
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 relative group ${mode === 'emergency'
                 ? 'bg-background text-foreground shadow-sm scale-100'
                 : 'text-muted-foreground hover:text-foreground hover:bg-background/50 scale-95'
                 }`}
             >
-              <Ambulance className={`w-4 h-4 ${mode === 'emergency' ? 'text-destructive' : ''}`} />
+              <Ambulance className={`w-4 h-4 ${mode === 'emergency' ? 'text-destructive' : 'group-hover:text-destructive transition-colors'}`} />
               Ambulance Call
             </button>
             <button
               onClick={() => setMode('bed')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${mode === 'bed'
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 relative group ${mode === 'bed'
                 ? 'bg-background text-foreground shadow-sm scale-100'
                 : 'text-muted-foreground hover:text-foreground hover:bg-background/50 scale-95'
                 }`}
             >
-              <BedDouble className={`w-4 h-4 ${mode === 'bed' ? 'text-blue-500' : ''}`} />
+              <BedDouble className={`w-4 h-4 ${mode === 'bed' ? 'text-blue-500' : 'group-hover:text-blue-500 transition-colors'}`} />
               Bed Booking
             </button>
           </div>
