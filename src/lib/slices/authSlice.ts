@@ -7,7 +7,7 @@ export const loginUser = createAsyncThunk(
     try {
       const user = await login(credentials);
       return user;
-    } catch (error:any) {
+    } catch (error: any) {
       return rejectWithValue(error.message);
     }
   }
@@ -19,7 +19,7 @@ export const registerUser = createAsyncThunk(
     try {
       const user = await register(userData);
       return user;
-    } catch (error:any) {
+    } catch (error: any) {
       return rejectWithValue(error.message);
     }
   }
@@ -30,27 +30,28 @@ export const logoutUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await logout();
-    } catch (error:any) {
+    } catch (error: any) {
       return rejectWithValue(error.message);
     }
   }
 );
 
 const initialState: AuthState = {
-	user: null,
-	isAuthenticated: false,
-	loading: false,
-	error: null,
+  user: null,
+  isAuthenticated: false,
+  loading: false,
+  error: null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState
   ,
-  reducers: {// ... other reducers
+  reducers: {
     resetAuthError: (state) => {
       state.error = null;
-    },},
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state) => {
@@ -86,7 +87,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { resetAuthError } = authSlice.actions; 
+export const { resetAuthError } = authSlice.actions;
 
 export default authSlice.reducer;
 

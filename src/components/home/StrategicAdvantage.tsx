@@ -1,31 +1,37 @@
-import { Check, X, Zap, Shield, Clock, Map } from 'lucide-react';
+import { Check, X, Shield, Clock, Map as MapIcon, DollarSign, Building2 } from 'lucide-react';
 import { Section } from '../ui/Section';
 import { Container } from '../ui/Container';
 
 const features = [
   {
-    name: "Average Dispatch ETA",
-    legacy: "20-30 Minutes",
-    ivisit: "5 Minutes",
+    name: "Dispatch Response",
+    legacy: "20-30 Minute ETA",
+    ivisit: "5 Minute Response",
     icon: <Clock className="h-5 w-5" />
   },
   {
-    name: "GPS Tracking Precision",
-    legacy: "Cellular Tower Triangulation",
-    ivisit: "High-Precision Satellite (GNSS)",
-    icon: <Map className="h-5 w-5" />,
+    name: "Tactical Tracking",
+    legacy: "Cellular Triangulation",
+    ivisit: "High-Precision GNSS",
+    icon: <MapIcon className="h-5 w-5" />,
     highlight: true
   },
   {
-    name: "Network Uptime",
-    legacy: "95.5% (Terrestrial)",
-    ivisit: "99.9% (Satellite Failover)",
-    icon: <Zap className="h-5 w-5" />
+    name: "Facility Oversight",
+    legacy: "Fragmented Dashboards",
+    ivisit: "Unified Command OS",
+    icon: <Building2 className="h-5 w-5" />
   },
   {
-    name: "Medical Data Audit",
+    name: "Revenue Cycle",
+    legacy: "30-60 Day Billing",
+    ivisit: "Real-time Operations",
+    icon: <DollarSign className="h-5 w-5" />
+  },
+  {
+    name: "Medical Security",
     legacy: "Manual Paperwork",
-    ivisit: "Real-time Blockchain Sync",
+    ivisit: "Blockchain-Synced Data",
     icon: <Shield className="h-5 w-5" />
   }
 ];
@@ -46,13 +52,12 @@ export default function StrategicAdvantage() {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 gap-8">
             {features.map((feature, index) => (
-              <div 
-                key={index} 
-                className={`group relative grid grid-cols-1 md:grid-cols-3 items-center p-12 rounded-3xl border transition-all duration-500 ${
-                  feature.highlight 
-                  ? 'bg-primary/5 border-primary/20 shadow-[0_0_40px_rgba(134,16,14,0.05)] scale-[1.02] z-10' 
+              <div
+                key={index}
+                className={`group relative grid grid-cols-1 md:grid-cols-3 items-center p-12 rounded-3xl border transition-all duration-500 ${feature.highlight
+                  ? 'bg-primary/5 border-primary/20 shadow-[0_0_40px_rgba(134,16,14,0.05)] scale-[1.02] z-10'
                   : 'bg-background border-border hover:border-primary/30'
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-6 mb-6 md:mb-0">
                   <div className={`p-3 rounded-xl ${feature.highlight ? 'bg-primary text-white' : 'bg-secondary text-primary'}`}>
@@ -60,7 +65,7 @@ export default function StrategicAdvantage() {
                   </div>
                   <span className="font-light text-sm uppercase tracking-[0.15em] text-foreground">{feature.name}</span>
                 </div>
-                
+
                 <div className="flex flex-col md:items-center space-y-2 opacity-50 mb-6 md:mb-0">
                   <span className="text-sm font-light uppercase tracking-[0.1em]">Legacy System</span>
                   <div className="flex items-center gap-3 text-base font-light">

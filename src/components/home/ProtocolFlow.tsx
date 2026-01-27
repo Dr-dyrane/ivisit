@@ -1,57 +1,85 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Container } from '../ui/Container';
 import { Section } from '../ui/Section';
 import { InteractiveFlow } from './transparency/InteractiveFlow';
-import { ShieldCheck, Zap, BedDouble, Ambulance } from 'lucide-react';
+import { Ambulance, BedDouble, Building2, Zap, Navigation } from 'lucide-react';
 
 export default function ProtocolFlow() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [mode, setMode] = useState<'emergency' | 'bed'>('emergency');
+  const [mode, setMode] = useState<'emergency' | 'bed' | 'facility' | 'logistics'>('emergency');
 
   return (
     <Section id="protocols" ref={sectionRef} className="xl:min-h-screen flex flex-col items-center justify-center bg-transparent py-12 sm:py-24 relative overflow-hidden">
 
       {/* Background Ambience */}
-      <div className={`absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-20 pointer-events-none transition-colors duration-1000 ${mode === 'bed' ? 'via-blue-500/5' : ''}`} />
+      <div className={`absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-20 pointer-events-none transition-colors duration-1000 ${mode === 'bed' || mode === 'logistics' ? 'via-blue-500/5' : mode === 'facility' ? 'via-emerald-500/5' : ''}`} />
 
       <Container className="relative z-10">
         <div className="text-center mb-12">
           {/* Tab Switcher */}
-          <div className="inline-flex items-center bg-muted/50 dark:bg-muted/20 backdrop-blur-md p-1.5 rounded-full border border-border/50 mb-8 mx-auto shadow-lg relative z-20">
+          <div className="grid grid-cols-2 md:inline-flex items-center bg-muted/50 dark:bg-muted/20 backdrop-blur-md p-2 rounded-2xl md:rounded-full border border-border/50 mb-8 mx-auto shadow-lg relative z-20 gap-2 md:gap-0">
             <button
               onClick={() => setMode('emergency')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 relative group ${mode === 'emergency'
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-[20px] md:rounded-full text-sm font-bold transition-all duration-300 relative group ${mode === 'emergency'
                 ? 'bg-background text-foreground shadow-sm scale-100'
                 : 'text-muted-foreground hover:text-foreground hover:bg-background/50 scale-95'
                 }`}
             >
               <Ambulance className={`w-4 h-4 ${mode === 'emergency' ? 'text-destructive' : 'group-hover:text-destructive transition-colors'}`} />
-              Ambulance Call
+              Ambulance
             </button>
             <button
               onClick={() => setMode('bed')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 relative group ${mode === 'bed'
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-[20px] md:rounded-full text-sm font-bold transition-all duration-300 relative group ${mode === 'bed'
                 ? 'bg-background text-foreground shadow-sm scale-100'
                 : 'text-muted-foreground hover:text-foreground hover:bg-background/50 scale-95'
                 }`}
             >
               <BedDouble className={`w-4 h-4 ${mode === 'bed' ? 'text-blue-500' : 'group-hover:text-blue-500 transition-colors'}`} />
-              Bed Booking
+              Booking
+            </button>
+            <button
+              onClick={() => setMode('facility')}
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-[20px] md:rounded-full text-sm font-bold transition-all duration-300 relative group ${mode === 'facility'
+                ? 'bg-background text-foreground shadow-sm scale-100'
+                : 'text-muted-foreground hover:text-foreground hover:bg-background/50 scale-95'
+                }`}
+            >
+              <Building2 className={`w-4 h-4 ${mode === 'facility' ? 'text-emerald-500' : 'group-hover:text-emerald-500 transition-colors'}`} />
+              Facility OS
+            </button>
+            <button
+              onClick={() => setMode('logistics')}
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-[20px] md:rounded-full text-sm font-bold transition-all duration-300 relative group ${mode === 'logistics'
+                ? 'bg-background text-foreground shadow-sm scale-100'
+                : 'text-muted-foreground hover:text-foreground hover:bg-background/50 scale-95'
+                }`}
+            >
+              <Navigation className={`w-4 h-4 ${mode === 'logistics' ? 'text-blue-500' : 'group-hover:text-blue-500 transition-colors'}`} />
+              Logistics
             </button>
           </div>
 
           <h2 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-0.06em] text-foreground mb-6 leading-[0.9]">
             {mode === 'emergency' ? (
               <>Instant<span className="text-destructive">.</span> Synchronized<span className="text-destructive">.</span></>
-            ) : (
+            ) : mode === 'bed' ? (
               <>Real-time<span className="text-blue-500">.</span> Allocation<span className="text-blue-500">.</span></>
+            ) : mode === 'facility' ? (
+              <>Unified<span className="text-emerald-500">.</span> Operations<span className="text-emerald-500">.</span></>
+            ) : (
+              <>Tactical<span className="text-blue-500">.</span> Dispatch<span className="text-blue-500">.</span></>
             )}
           </h2>
 
           <p className="text-xl sm:text-2xl text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed h-[60px] flex items-center justify-center transition-opacity duration-300">
             {mode === 'emergency'
               ? "See how an ambulance request instantly alerts the Command Center."
-              : "Watch a bed reservation map to hospital capacity in milliseconds."
+              : mode === 'bed'
+                ? "Watch a bed reservation map to hospital capacity in milliseconds."
+                : mode === 'facility'
+                  ? "Experience the operating system for modern healthcare facilities."
+                  : "Witness the immersive, Uber-style interface for tactical emergency dispatch and logistics."
             }
           </p>
         </div>

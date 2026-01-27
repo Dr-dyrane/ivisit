@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Search, Star } from 'lucide-react'; // Removing BedDouble if unused
+import { Search, Star, CheckCircle2 } from 'lucide-react'; // Removing BedDouble if unused
 import { GoogleMapEmbed } from '../../ui/GoogleMapEmbed';
 
 interface BedBookingScreenReplicaProps {
     onBook: () => void;
     isActive: boolean;
+    isReserved?: boolean;
     mode?: 'booking' | 'emergency';
 }
 
-export function BedBookingScreenReplica({ onBook, isActive }: BedBookingScreenReplicaProps) {
+export function BedBookingScreenReplica({ onBook, isActive, isReserved }: BedBookingScreenReplicaProps) {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedHospital, setSelectedHospital] = useState<string | null>(null);
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -161,11 +162,20 @@ export function BedBookingScreenReplica({ onBook, isActive }: BedBookingScreenRe
 
                             {/* Selection Effect */}
                             {selectedHospital === hospital.id && (
-                                <div className="absolute inset-0 bg-red-500/5 flex items-center justify-center backdrop-blur-[1px]">
-                                    <div className="bg-red-600 px-4 py-2 rounded-full shadow-xl flex items-center gap-2 animate-in zoom-in duration-200">
-                                        <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                        <span className="text-xs font-black text-white uppercase tracking-wide">Securing Bed</span>
-                                    </div>
+                                <div className={`absolute inset-0 flex items-center justify-center animate-in fade-in zoom-in duration-300 transition-colors duration-500 ${isReserved ? 'bg-emerald-600' : 'bg-blue-600'}`}>
+                                    {isReserved ? (
+                                        <div className="flex flex-col items-center gap-2">
+                                            <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center animate-in zoom-in slide-in-from-bottom-2 duration-500">
+                                                <CheckCircle2 className="w-6 h-6 text-white" />
+                                            </div>
+                                            <span className="text-[15px] font-bold tracking-wide text-white uppercase animate-in fade-in slide-in-from-bottom-1 duration-500">Bed Reserved</span>
+                                        </div>
+                                    ) : (
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-[15px] font-bold tracking-wide text-white/90">Connecting...</span>
+                                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                        </div>
+                                    )}
                                 </div>
                             )}
 

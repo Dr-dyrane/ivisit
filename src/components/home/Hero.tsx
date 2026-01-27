@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Ambulance } from 'lucide-react';
+import { Ambulance, ArrowUpRight } from 'lucide-react';
 import { useSpring, animated } from '@react-spring/web';
 import { Container } from '../ui/Container';
 import { Section } from '../ui/Section';
@@ -33,16 +33,16 @@ export default function Hero() {
   return (
     <>
       <SEOHead
-        title="iVisit — Emergency Medical Dispatch | 5-Minute Response Time"
-        description="Ultra-rapid emergency medical dispatch and coordination platform. Get ambulance response within 5 minutes across Nigeria. Real-time tracking, instant booking, 24/7 availability."
-        keywords="emergency medical services, ambulance dispatch, 5 minute response, hospital booking, medical emergency, nigeria healthcare, rapid response, medical coordination, emergency response"
+        title="iVisit — Emergency Medical Dispatch & Facility Command OS"
+        description="Ultra-rapid emergency medical dispatch for citizens and a unified Command OS for healthcare facilities. Get ambulance response within 5 minutes and optimize facility operations."
+        keywords="emergency medical services, ambulance dispatch, hospital command os, medical emergency, nigeria healthcare, facility management, medical coordination, emergency response"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "MedicalOrganization",
           "name": "iVisit",
           "url": "https://ivisit.ng",
           "logo": "https://ivisit.ng/logo.png",
-          "description": "Ultra-rapid emergency medical dispatch and coordination platform with 5-minute response time across Nigeria.",
+          "description": "Ultra-rapid emergency medical dispatch for citizens and a unified Command OS for healthcare facilities.",
           "sameAs": ["https://ivisit.ng"],
           "contactPoint": {
             "@type": "ContactPoint",
@@ -57,28 +57,29 @@ export default function Hero() {
           },
           "serviceType": [
             "Emergency Medical Services",
-            "Ambulance Services", 
+            "Ambulance Services",
             "Hospital Bed Booking",
-            "Medical Coordination"
+            "Medical Coordination",
+            "Facility Management OS"
           ],
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
-            "name": "Emergency Medical Services",
+            "name": "iVisit Services",
             "itemListElement": [
               {
                 "@type": "Offer",
                 "itemOffered": {
                   "@type": "Service",
                   "name": "Emergency Ambulance Dispatch",
-                  "description": "Rapid ambulance dispatch for medical emergencies with 5-minute response time"
+                  "description": "Rapid ambulance dispatch with 5-minute response time"
                 }
               },
               {
-                "@type": "Offer", 
+                "@type": "Offer",
                 "itemOffered": {
                   "@type": "Service",
-                  "name": "Hospital Bed Booking",
-                  "description": "Real-time hospital bed availability and booking system"
+                  "name": "Facility Command OS",
+                  "description": "Unified operating system for healthcare facility management"
                 }
               }
             ]
@@ -88,28 +89,39 @@ export default function Hero() {
       <Section id="home" ref={sectionRef} className="relative min-h-screen flex items-center justify-center bg-transparent">
         <Container className="relative z-10">
           <animated.div style={fadeIn} className="max-w-4xl mx-auto text-center">
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-[-0.08em] text-foreground mb-12 leading-[0.75]">
-              iVisit<span className="text-primary">.</span>
+            <h1 className="text-8xl sm:text-9xl md:text-[12rem] lg:text-[16rem] font-black tracking-[-0.08em] text-foreground mb-12 leading-[0.75] select-none">
+              iVisit<span className="text-primary italic">.</span>
             </h1>
 
-            <div className="max-w-3xl mx-auto mb-20">
-              <p className="text-xl sm:text-2xl md:text-3xl font-light text-muted-foreground leading-relaxed tracking-[-0.02em]">
-                Ultra-rapid medical dispatch systems. Command-grade intervention within <span className="text-primary font-bold">5 minutes</span>.
+            <div className="max-w-4xl mx-auto mb-20">
+              <p className="text-xl sm:text-2xl md:text-3xl font-light text-muted-foreground leading-relaxed tracking-[-0.02em] px-4">
+                Ultra-rapid response for <span className="text-foreground font-black">Citizens</span>. <br className="" />
+                Unified infrastructure for <span className="text-primary font-black">Facilities</span>.
               </p>
+              <div className="mt-10 flex items-center justify-center gap-6 text-[10px] font-black uppercase tracking-[0.3em] opacity-40">
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-destructive animate-pulse" />
+                  <span>5-MINUTE ETA</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
+                  <span>REAL-TIME TRIAGE</span>
+                </div>
+              </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center w-full sm:w-auto px-4 sm:px-0">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center w-full sm:w-auto px-6 sm:px-0">
               <Button
                 variant="accent"
                 size="lg"
                 onClick={handleEmergency}
                 showOverlay={true}
-                className="w-full sm:w-auto px-6 sm:px-8 rounded-2xl text-base sm:text-lg font-bold py-6 transition-all duration-300 hover:scale-[1.02] whitespace-nowrap"
+                className="w-full sm:w-auto px-10 rounded-full text-xs sm:text-sm font-black uppercase tracking-[0.2em] py-7 transition-all duration-500 hover:scale-[1.05] active:scale-95 shadow-2xl shadow-primary/20 whitespace-nowrap"
               >
-                <div className="flex items-center justify-center gap-2 sm:gap-3">
+                <div className="flex items-center justify-center gap-3">
                   <div className="relative">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>
-                    <Ambulance className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+                    <Ambulance className="w-5 h-5 flex-shrink-0" />
                   </div>
                   <span>Try Live Beta</span>
                 </div>
@@ -120,9 +132,12 @@ export default function Hero() {
                 size="lg"
                 onClick={() => window.open('/early-access', '_blank')}
                 showOverlay={true}
-                className="w-full sm:w-auto px-6 sm:px-8 rounded-2xl text-base sm:text-lg font-bold py-6 transition-all duration-300 hover:scale-[1.02] whitespace-nowrap"
+                className="w-full sm:w-auto px-10 rounded-full text-xs sm:text-sm font-black uppercase tracking-[0.2em] py-7 transition-all duration-500 hover:scale-[1.05] active:scale-95 backdrop-blur-md border border-border/50 bg-secondary/10 dark:bg-white/5 whitespace-nowrap"
               >
-                <span>Get Priority Access</span>
+                <div className="flex items-center justify-center gap-3">
+                  <span>Get Priority Access</span>
+                  <ArrowUpRight className="w-4 h-4 opacity-40" />
+                </div>
               </Button>
             </div>
           </animated.div>

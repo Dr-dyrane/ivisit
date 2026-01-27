@@ -46,7 +46,6 @@ export const register = async (userData: {
 		avatar: userData.avatar || `https://api.dicebear.com/6.x/initials/svg?seed=${userData.email}`,
 		provider: userData.provider,
 		providerId: userData.providerId,
-		// ... other user properties
 	};
 };
 
