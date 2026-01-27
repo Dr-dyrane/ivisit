@@ -47,7 +47,8 @@ export function WelcomeScreenReplica({ onConnect, isActive }: WelcomeScreenRepli
             </div>
 
             {/* Hero Illustration Placeholder */}
-            <div className="w-full h-48 flex items-center justify-center my-2 relative">
+            <div className="my-2 sm:hidden h-12 xs:h-48" />
+            <div className="hidden sm:flex w-full h-48 flex items-center justify-center my-2 relative">
                 {/* Glow for 3D effect */}
                 <div className="absolute inset-0 bg-gradient-to-t from-red-500/10 to-transparent rounded-full blur-3xl transform scale-75" />
 
