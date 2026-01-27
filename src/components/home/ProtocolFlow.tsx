@@ -9,7 +9,7 @@ export default function ProtocolFlow() {
   const [mode, setMode] = useState<'emergency' | 'bed'>('emergency');
 
   return (
-    <Section id="protocols" ref={sectionRef} className="min-h-screen flex items-center justify-center bg-transparent py-24 relative overflow-hidden">
+    <Section id="protocols" ref={sectionRef} className="xl:min-h-screen flex flex-col items-center justify-center bg-transparent py-12 sm:py-24 relative overflow-hidden">
 
       {/* Background Ambience */}
       <div className={`absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-20 pointer-events-none transition-colors duration-1000 ${mode === 'bed' ? 'via-blue-500/5' : ''}`} />

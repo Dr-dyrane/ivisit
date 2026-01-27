@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 
 // Add type declaration for window.google to avoid TS errors
 declare global {
@@ -90,52 +90,72 @@ const LIGHT_MAP_STYLE = [
 
 export function GoogleMapEmbed({ isDarkMode, center, zoom = 14, markers = [], className = '' }: GoogleMapEmbedProps) {
     const mapRef = useRef<HTMLDivElement>(null);
-    const [mapInstance, setMapInstance] = useState<any>(null); // use any to avoid TS issues
+    const [mapInstance, setMapInstance] = useState<any>(null);
     const markersRef = useRef<any[]>([]);
 
-    useEffect(() => {
-        // Load Google Maps Script if not already loaded
-        if (!window.google && !document.querySelector('script[src*="maps.googleapis.com"]')) {
-            const script = document.createElement('script');
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}&libraries=places`;
-            script.async = true;
-            script.defer = true;
-            document.body.appendChild(script);
-            script.onload = () => {
-                // Trigger re-render to init map
-                setMapInstance(prev => prev || null);
-            };
-        } else if (window.google && !mapInstance) {
-            // Init map if script is loaded but map isn't
-            initMap();
-        }
+    const mapStyles = useMemo(() => isDarkMode ? DARK_MAP_STYLE : LIGHT_MAP_STYLE, [isDarkMode]);
 
-        function initMap() {
-            if (mapRef.current && !mapInstance && window.google) {
+    useEffect(() => {
+        let isCancelled = false;
+
+        const initMap = () => {
+            if (mapRef.current && window.google && !mapInstance && !isCancelled) {
                 const map = new window.google.maps.Map(mapRef.current, {
                     center,
                     zoom,
-                    styles: isDarkMode ? DARK_MAP_STYLE : LIGHT_MAP_STYLE,
+                    styles: mapStyles,
+                    backgroundColor: isDarkMode ? '#0B0F1A' : '#ffffff',
                     disableDefaultUI: true,
                     zoomControl: false,
                     streetViewControl: false,
                     mapTypeControl: false,
                     fullscreenControl: false,
-                    gestureHandling: 'cooperative', // Better for scrolling pages
+                    gestureHandling: 'cooperative',
                 });
                 setMapInstance(map);
             }
-        }
-    }, [mapInstance]); // Only run on mount/script load (intentionally excluding props to avoid re-init)
+        };
+
+        const checkAndLoad = () => {
+            if (window.google) {
+                initMap();
+                return;
+            }
+
+            if (!document.querySelector('script[src*="maps.googleapis.com"]')) {
+                const script = document.createElement('script');
+                const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+                script.async = true;
+                script.defer = true;
+                document.body.appendChild(script);
+            }
+
+            // Polling for google object to be available (robust against script state)
+            const interval = setInterval(() => {
+                if (window.google) {
+                    clearInterval(interval);
+                    if (!isCancelled) initMap();
+                }
+            }, 100);
+
+            return () => clearInterval(interval);
+        };
+
+        checkAndLoad();
+
+        return () => {
+            isCancelled = true;
+        };
+    }, []); // Only run on mount
 
     // Handle Prop Updates Efficiently
     useEffect(() => {
         if (mapInstance) {
             mapInstance.panTo(center);
             mapInstance.setZoom(zoom);
-            mapInstance.setOptions({ styles: isDarkMode ? DARK_MAP_STYLE : LIGHT_MAP_STYLE });
         }
-    }, [mapInstance, center, zoom, isDarkMode]);
+    }, [mapInstance, center, zoom]);
 
     // Update markers when markers prop changes
     useEffect(() => {
@@ -160,9 +180,12 @@ export function GoogleMapEmbed({ isDarkMode, center, zoom = 14, markers = [], cl
     // Update style dynamically
     useEffect(() => {
         if (mapInstance) {
-            mapInstance.setOptions({ styles: isDarkMode ? DARK_MAP_STYLE : LIGHT_MAP_STYLE });
+            mapInstance.setOptions({
+                styles: mapStyles,
+                backgroundColor: isDarkMode ? '#0B0F1A' : '#ffffff'
+            });
         }
-    }, [mapInstance, isDarkMode]);
+    }, [mapInstance, mapStyles, isDarkMode]);
 
-    return <div ref={mapRef} className={`w-full h-full rounded-[inherit] overflow-hidden ${className}`} />;
+    return <div ref={mapRef} className={`w-full h-full rounded-[inherit] overflow-hidden ${isDarkMode ? 'bg-[#0B0F1A]' : 'bg-white'} ${className}`} />;
 }
