@@ -71,6 +71,25 @@ export default function Navbar() {
     navigate('/early-access');
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/#') && pathname === '/') {
+      e.preventDefault();
+      const targetId = href.replace('/#', '');
+      const element = document.getElementById(targetId);
+      if (element) {
+        const navbarHeight = scrolled ? 80 : 100;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+      setMobileMenuOpen(false);
+    }
+  };
+
   return (
     <animated.nav
       ref={navRef}
@@ -126,6 +145,7 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   to={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className="relative text-muted-foreground hover:text-foreground text-xs font-light uppercase tracking-[0.15em] transition-all group/link overflow-hidden py-2 whitespace-nowrap"
                 >
                   {item.name}
@@ -215,7 +235,10 @@ export default function Navbar() {
                   key={item.name}
                   to={item.href}
                   className="flex items-center justify-between p-4 rounded-xl text-xs sm:text-sm font-light uppercase tracking-[0.15em] text-foreground hover:bg-secondary/50 border border-transparent hover:border-border/50 transition-all"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    handleNavClick(e, item.href);
+                    setMobileMenuOpen(false);
+                  }}
                 >
                   {item.name}
                   <div className="w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity" />

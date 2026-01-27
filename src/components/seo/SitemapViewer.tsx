@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Search, Globe, Clock, Star, ExternalLink, Crown, Zap, ArrowRight, CheckCircle } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { Section } from '@/components/ui/Section';
@@ -150,9 +150,13 @@ export default function SitemapViewer() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
+
   const filteredPages = sitemapData.filter(page => {
     const matchesSearch = page.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         page.description.toLowerCase().includes(searchTerm.toLowerCase());
+      page.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || page.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -184,7 +188,7 @@ export default function SitemapViewer() {
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
                 Explore all pages of iVisit.ng. Find emergency medical services, booking options, and support resources.
               </p>
-              
+
               {/* Premium Alert Banner */}
               <div className="mb-8 p-4 rounded-2xl bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/30">
                 <div className="flex items-center justify-center gap-3">
@@ -196,7 +200,7 @@ export default function SitemapViewer() {
                   <ArrowRight className="h-5 w-5 text-red-500" />
                 </div>
               </div>
-              
+
               {/* Search */}
               <div className="relative max-w-md mx-auto mb-8">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -240,11 +244,10 @@ export default function SitemapViewer() {
               {filteredPages.map((page, index) => (
                 <Card
                   key={index}
-                  className={`p-4 sm:p-6 rounded-xl sm:rounded-2xl border transition-all duration-300 hover:shadow-lg ${
-                    page.isPremium 
-                      ? 'border-red-500/50 bg-red-500/5 shadow-lg shadow-red-500/10 scale-[1.01] sm:scale-[1.02]' 
-                      : categoryColors[page.category]
-                  }`}
+                  className={`p-4 sm:p-6 rounded-xl sm:rounded-2xl border transition-all duration-300 hover:shadow-lg ${page.isPremium
+                    ? 'border-red-500/50 bg-red-500/5 shadow-lg shadow-red-500/10 scale-[1.01] sm:scale-[1.02]'
+                    : categoryColors[page.category]
+                    }`}
                 >
                   <div className="flex flex-col sm:flex-row items-start gap-4">
                     {/* Page Image */}
@@ -253,9 +256,8 @@ export default function SitemapViewer() {
                         <img
                           src={page.image}
                           alt={page.title}
-                          className={`w-full h-32 sm:w-16 sm:h-16 rounded-lg object-cover border ${
-                            page.isPremium ? 'border-red-500 ring-2 ring-red-500/50' : 'border-border'
-                          }`}
+                          className={`w-full h-32 sm:w-16 sm:h-16 rounded-lg object-cover border ${page.isPremium ? 'border-red-500 ring-2 ring-red-500/50' : 'border-border'
+                            }`}
                         />
                       </div>
                     )}
@@ -265,9 +267,8 @@ export default function SitemapViewer() {
                       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4 mb-2">
                         <div className="flex items-center gap-2">
                           {categoryIcons[page.category]}
-                          <h3 className={`text-base sm:text-lg font-bold truncate ${
-                            page.isPremium ? 'text-red-600' : 'text-foreground'
-                          }`}>
+                          <h3 className={`text-base sm:text-lg font-bold truncate ${page.isPremium ? 'text-red-600' : 'text-foreground'
+                            }`}>
                             {page.title}
                           </h3>
                           {page.isPremium && (
@@ -288,9 +289,8 @@ export default function SitemapViewer() {
                         </div>
                       </div>
 
-                      <p className={`text-xs sm:text-sm mb-3 leading-relaxed line-clamp-2 sm:line-clamp-none ${
-                        page.isPremium ? 'text-red-600 font-semibold' : 'text-muted-foreground'
-                      }`}>
+                      <p className={`text-xs sm:text-sm mb-3 leading-relaxed line-clamp-2 sm:line-clamp-none ${page.isPremium ? 'text-red-600 font-semibold' : 'text-muted-foreground'
+                        }`}>
                         {page.description}
                       </p>
 
@@ -307,11 +307,10 @@ export default function SitemapViewer() {
                           variant={page.isPremium ? 'accent' : 'ghost'}
                           size="sm"
                           onClick={() => window.open(page.url, '_blank')}
-                          className={`text-[10px] sm:text-xs w-full sm:w-auto ${
-                            page.isPremium 
-                              ? 'bg-red-500 hover:bg-red-600 text-white px-4 h-9 sm:h-8' 
-                              : 'hover:text-primary h-8'
-                          }`}
+                          className={`text-[10px] sm:text-xs w-full sm:w-auto ${page.isPremium
+                            ? 'bg-red-500 hover:bg-red-600 text-white px-4 h-9 sm:h-8'
+                            : 'hover:text-primary h-8'
+                            }`}
                         >
                           {page.isPremium ? (
                             <span className="flex items-center justify-center gap-1">

@@ -79,12 +79,14 @@ const SupportContent = () => (
     <p>For technical issues regarding your account or the mobile application, please contact our uplink team.</p>
     <h2>Contact Channels</h2>
     <ul>
-      <li>Email: help@ivisit.ng</li>
+      <li>Admin/Management: <a href="mailto:admin@ivisit.ng" className="text-primary hover:underline transition-all">admin@ivisit.ng</a></li>
+      <li>All user replies go here: <a href="mailto:support@ivisit.ng" className="text-primary hover:underline transition-all">support@ivisit.ng</a></li>
+      <li>Help desk: <a href="mailto:help@ivisit.ng" className="text-primary hover:underline transition-all">help@ivisit.ng</a></li>
       <li>International Hotline: +1 951 728 4218</li>
       <li>Status: All Systems Operational</li>
     </ul>
     <h2>Data Privacy & Account Deletion</h2>
-    <p>In accordance with Apple and Google Play safety standards, users have the right to request the deletion of their account and all associated personal and medical data. To initiate this process, please send a "DELETION REQUEST" from your registered email address to <strong>privacy@ivisit.ng</strong>. Requests are processed within 72 hours.</p>
+    <p>In accordance with Apple and Google Play safety standards, users have the right to delete their account and all associated personal and medical data directly within the application settings. This process is instant and irreversible. For any privacy-related inquiries, you may contact our Privacy-related communication team: <a href="mailto:privacy@ivisit.ng" className="text-primary hover:underline transition-all">privacy@ivisit.ng</a>.</p>
   </>
 );
 
@@ -92,22 +94,22 @@ const MedicalDisclaimerContent = () => (
   <>
     <p><strong>⚠️ IMPORTANT MEDICAL DISCLAIMER</strong></p>
     <p>iVisit is a mobile application designed to connect users with healthcare providers and emergency medical services. This application is NOT a substitute for professional medical care, emergency services, or medical advice.</p>
-    
+
     <h2>Emergency Services</h2>
     <p>For life-threatening emergencies, call 911 or your local emergency number immediately. Do not rely on the iVisit app as your primary means of requesting emergency assistance.</p>
-    
+
     <h2>Medical Information</h2>
     <p>The medical information provided through iVisit is for informational purposes only and should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</p>
-    
+
     <h2>No Warranty</h2>
     <p>We make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability with respect to the app or the information, products, services, or related graphics contained in the app for any purpose.</p>
-    
+
     <h2>Limitation of Liability</h2>
     <p>In no event shall iVisit Command, its directors, employees, partners, or affiliates be liable for any claim, damages, or other liability, including without limitation any indirect or consequential loss, damage, or injury arising out of or in connection with the use of this app.</p>
-    
+
     <h2>Response Times</h2>
     <p>While we strive to facilitate rapid connections with healthcare providers, we cannot guarantee response times. Actual response times depend on various factors including provider availability, geographic location, and network conditions.</p>
-    
+
     <p><strong>By using iVisit, you acknowledge that you have read, understood, and agree to this Medical Disclaimer.</strong></p>
   </>
 );
@@ -116,7 +118,7 @@ const HealthDataConsentContent = () => (
   <>
     <p><strong>🛡️ HEALTH DATA CONSENT</strong></p>
     <p>iVisit requires your explicit consent to collect, store, and process your health information to provide you with optimal healthcare services.</p>
-    
+
     <h2>What Health Data We Collect</h2>
     <ul>
       <li><strong>Emergency Contact Information:</strong> Names and phone numbers of designated emergency contacts</li>
@@ -124,7 +126,7 @@ const HealthDataConsentContent = () => (
       <li><strong>Location Data:</strong> Real-time and historical location information for emergency dispatch</li>
       <li><strong>Usage Data:</strong> App interactions, service requests, and communication with healthcare providers</li>
     </ul>
-    
+
     <h2>How We Use Your Health Data</h2>
     <ul>
       <li><strong>Emergency Response:</strong> Dispatch appropriate medical services to your location</li>
@@ -132,7 +134,7 @@ const HealthDataConsentContent = () => (
       <li><strong>Service Improvement:</strong> Analyze usage patterns to enhance our emergency response capabilities</li>
       <li><strong>Communication:</strong> Send critical updates about your medical requests and appointments</li>
     </ul>
-    
+
     <h2>Data Security & Protection</h2>
     <p>Your health data is protected using industry-standard encryption and security measures. We implement:</p>
     <ul>
@@ -141,7 +143,7 @@ const HealthDataConsentContent = () => (
       <li>Regular security audits and vulnerability assessments</li>
       <li>Compliance with healthcare data protection standards</li>
     </ul>
-    
+
     <h2>Your Rights</h2>
     <p>You have the right to:</p>
     <ul>
@@ -150,7 +152,7 @@ const HealthDataConsentContent = () => (
       <li><strong>Delete:</strong> Request removal of your health data (with reasonable notice)</li>
       <li><strong>Withdraw Consent:</strong> Stop future data collection and processing</li>
     </ul>
-    
+
     <h2>Data Sharing</h2>
     <p>We only share your health data with:</p>
     <ul>
@@ -158,14 +160,14 @@ const HealthDataConsentContent = () => (
       <li>Emergency medical services during active emergencies</li>
       <li>Legal authorities when required by law or court order</li>
     </ul>
-    
+
     <h2>Consent Duration</h2>
     <p>Your consent remains in effect until you withdraw it. You may withdraw consent at any time through your account settings or by contacting our privacy team.</p>
-    
+
     <p><strong>By providing your consent, you authorize iVisit to process your health data as described above for the purpose of providing you with emergency medical services and healthcare coordination.</strong></p>
-    
+
     <h2>Questions or Concerns?</h2>
-    <p>If you have questions about this consent or how we handle your health data, please contact us at <strong>privacy@ivisit.ng</strong>.</p>
+    <p>If you have questions about this consent or how we handle your health data, please contact our Privacy-related communication team at <a href="mailto:privacy@ivisit.ng" className="text-primary hover:underline transition-all">privacy@ivisit.ng</a>.</p>
   </>
 );
 

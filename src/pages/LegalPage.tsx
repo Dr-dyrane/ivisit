@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container } from '../components/ui/Container';
-import { Section } from '../components/ui/Section';
 
 interface LegalPageProps {
   title: string;
@@ -8,6 +7,10 @@ interface LegalPageProps {
 }
 
 export const LegalPage: React.FC<LegalPageProps> = ({ title, content }) => {
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [title]);
+
   return (
     <div className="min-h-screen pt-24 sm:pt-40 pb-32 bg-background transition-colors duration-300">
       <Container>
