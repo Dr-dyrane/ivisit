@@ -36,12 +36,12 @@ export default function EarlyAccessCTA() {
               size="lg"
               onClick={() => navigate('/early-access')}
               showOverlay={true}
-              className="px-12 rounded-2xl text-lg font-bold py-6 transition-all duration-300 hover:scale-[1.02]"
+              className="px-6 sm:px-12 rounded-2xl text-base sm:text-lg font-bold py-6 transition-all duration-300 hover:scale-[1.02] whitespace-nowrap w-full sm:w-auto"
             >
-              <div className="flex items-center gap-3">
-                <Sparkles className="w-6 h-6" />
-                <span>CLAIM EARLY ACCESS</span>
-                <ArrowRight className="w-5 h-5" />
+              <div className="flex items-center justify-center gap-3">
+                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+                <span>JOIN THE MISSION</span>
+                <ArrowRight className="w-5 h-5 sm:w-5 sm:h-5 flex-shrink-0" />
               </div>
             </Button>
             <p className="text-lg font-light text-muted-foreground">

@@ -75,14 +75,13 @@ export default function Navbar() {
     <animated.nav
       ref={navRef}
       style={navAnimation}
-      className={`fixed w-full z-50 transition-all duration-500 group ${
-        scrolled 
-          ? 'py-3 bg-background/80 backdrop-blur-2xl border-b border-border/50 shadow-lg' 
-          : 'py-5 bg-transparent'
-      }`}
+      className={`fixed w-full z-50 transition-all duration-500 group ${scrolled
+        ? 'py-3 bg-background/80 backdrop-blur-2xl border-b border-border/50 shadow-lg'
+        : 'py-5 bg-transparent'
+        }`}
     >
       {/* Smarty Blur Background (Subtle for Nav) */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-0 group-hover:opacity-100"
         style={{
           background: `radial-gradient(circle 400px at ${mousePos.x}px ${mousePos.y}px, ${theme === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(var(--grid-color), 0.04)'}, transparent 80%)`,
@@ -154,7 +153,7 @@ export default function Navbar() {
                 onClick={handleBookBed}
                 className="hidden lg:flex px-3 lg:px-5 rounded-xl h-9 lg:h-10 border-border/50 hover:border-primary/50 text-xs font-black tracking-widest"
               >
-                LOGISTICS
+                ACCESS
               </Button>
               <Button
                 variant="accent"
@@ -166,7 +165,7 @@ export default function Navbar() {
                 <div className="flex items-center gap-1 lg:gap-2">
                   <Activity className="w-3 h-3 lg:w-3.5 lg:h-3.5 animate-pulse flex-shrink-0" />
                   <span className="font-black tracking-[0.15em] text-xs whitespace-nowrap">
-                    {inEmergency ? 'STANDBY' : 'SOS'}
+                    {inEmergency ? 'STANDBY' : 'LIVE PREVIEW'}
                   </span>
                 </div>
               </Button>
@@ -181,11 +180,11 @@ export default function Navbar() {
           >
             <LayoutPanelTop className="h-5 w-5" />
           </button>
-        </div>
-      </div>
+        </div >
+      </div >
 
       {/* Mobile menu */}
-      <Dialog as="div" className="md:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+      < Dialog as="div" className="md:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen} >
         <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-md" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background/95 backdrop-blur-3xl border-l border-border/50 p-6 sm:max-w-sm">
           <div className="flex items-center justify-between mb-12">
@@ -209,7 +208,7 @@ export default function Navbar() {
               </div>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">Command-grade medical dispatch infrastructure active.</p>
             </div>
-            
+
             <div className="space-y-1">
               {navigation.map((item) => (
                 <Link
@@ -235,7 +234,7 @@ export default function Navbar() {
               >
                 <div className="flex items-center justify-center gap-3">
                   <Activity className="w-5 h-5 animate-pulse" />
-                  <span className="font-black tracking-[0.2em] text-xs">LAUNCH SOS</span>
+                  <span className="font-black tracking-[0.2em] text-xs">LAUNCH PREVIEW</span>
                 </div>
               </Button>
               <Button
@@ -246,18 +245,18 @@ export default function Navbar() {
                   setMobileMenuOpen(false);
                 }}
               >
-                <span className="font-black tracking-[0.2em] text-xs">LOGISTICS CENTER</span>
+                <span className="font-black tracking-[0.2em] text-xs">JOIN THE MISSION</span>
               </Button>
             </div>
           </div>
-          
+
           <div className="absolute bottom-8 left-0 w-full px-6">
             <p className="text-center text-xs sm:text-sm font-black text-muted-foreground uppercase tracking-[0.5em] opacity-30">
               SECURE COMMAND CHANNEL
             </p>
           </div>
         </Dialog.Panel>
-      </Dialog>
-    </animated.nav>
+      </Dialog >
+    </animated.nav >
   );
 }

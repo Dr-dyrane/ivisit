@@ -1,12 +1,12 @@
 import { useState, useRef } from 'react';
 import { animated, useTransition } from '@react-spring/web';
-import { 
-  Ambulance, 
-  Bed, 
-  MapPin, 
-  ShieldCheck, 
-  Activity, 
-  CheckCircle2, 
+import {
+  Ambulance,
+  Bed,
+  MapPin,
+  ShieldCheck,
+  Activity,
+  CheckCircle2,
   Database,
   Smartphone,
   ChevronRight
@@ -125,23 +125,21 @@ export default function ProtocolFlow() {
               </p>
             </div>
 
-            <div className="flex p-1 bg-secondary border border-border rounded-2xl">
+            <div className="flex flex-col sm:flex-row p-1 bg-secondary border border-border rounded-2xl sm:rounded-2xl gap-1 sm:gap-0">
               <button
                 onClick={() => setMode('emergency')}
-                className={`flex-1 flex items-center justify-center gap-3 py-6 rounded-xl text-sm font-light uppercase tracking-[0.15em] transition-all ${
-                  mode === 'emergency' ? 'bg-background text-primary shadow-lg' : 'text-muted-foreground hover:text-foreground'
-                }`}
+                className={`flex-1 flex items-center justify-center gap-2 sm:gap-3 py-4 sm:py-6 rounded-xl text-xs sm:text-sm font-light uppercase tracking-[0.1em] sm:tracking-[0.15em] transition-all whitespace-nowrap ${mode === 'emergency' ? 'bg-background text-primary shadow-lg' : 'text-muted-foreground hover:text-foreground'
+                  }`}
               >
-                <Ambulance className="h-5 w-5" />
+                <Ambulance className="h-4 w-4 sm:h-5 sm:w-5" />
                 Ambulance SOS
               </button>
               <button
                 onClick={() => setMode('booking')}
-                className={`flex-1 flex items-center justify-center gap-3 py-6 rounded-xl text-sm font-light uppercase tracking-[0.15em] transition-all ${
-                  mode === 'booking' ? 'bg-background text-primary shadow-lg' : 'text-muted-foreground hover:text-foreground'
-                }`}
+                className={`flex-1 flex items-center justify-center gap-2 sm:gap-3 py-4 sm:py-6 rounded-xl text-xs sm:text-sm font-light uppercase tracking-[0.1em] sm:tracking-[0.15em] transition-all whitespace-nowrap ${mode === 'booking' ? 'bg-background text-primary shadow-lg' : 'text-muted-foreground hover:text-foreground'
+                  }`}
               >
-                <Bed className="h-5 w-5" />
+                <Bed className="h-4 w-4 sm:h-5 sm:w-5" />
                 Bed Booking
               </button>
             </div>
@@ -164,19 +162,18 @@ export default function ProtocolFlow() {
           {/* Right Column: Flow Steps */}
           <div className="lg:w-2/3 relative">
             <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent hidden md:block" />
-            
+
             <div className="space-y-16">
               {transitions((style, step, _, index) => (
                 <animated.div style={style} className="relative flex flex-col md:flex-row gap-12">
                   {/* Icon Node */}
                   <div className="relative z-10 flex-shrink-0">
-                    <div className={`w-20 h-20 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 bg-background ${
-                      mode === 'emergency' ? 'border-primary/20 text-primary shadow-[0_0_20px_rgba(134,16,14,0.1)]' : 'border-accent/20 text-accent shadow-[0_0_20px_rgba(var(--accent),0.1)]'
-                    }`}>
+                    <div className={`w-20 h-20 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 bg-background ${mode === 'emergency' ? 'border-primary/20 text-primary shadow-[0_0_20px_rgba(134,16,14,0.1)]' : 'border-accent/20 text-accent shadow-[0_0_20px_rgba(var(--accent),0.1)]'
+                      }`}>
                       {step.icon}
                     </div>
                     {index < steps.length - 1 && (
-                       <div className="absolute top-20 left-1/2 -translate-x-1/2 h-12 w-px bg-border md:hidden" />
+                      <div className="absolute top-20 left-1/2 -translate-x-1/2 h-12 w-px bg-border md:hidden" />
                     )}
                   </div>
 
@@ -185,9 +182,8 @@ export default function ProtocolFlow() {
                     <div className="flex flex-wrap items-center gap-4 mb-4">
                       <span className="text-sm font-light text-muted-foreground/50 uppercase tracking-[0.15em]">Step 0{index + 1}</span>
                       <ChevronRight className="h-4 w-4 text-muted-foreground/30" />
-                      <span className={`text-sm font-light uppercase tracking-[0.15em] px-3 py-1 rounded-lg border ${
-                        mode === 'emergency' ? 'bg-primary/5 border-primary/20 text-primary' : 'bg-accent/5 border-accent/20 text-accent'
-                      }`}>
+                      <span className={`text-sm font-light uppercase tracking-[0.15em] px-3 py-1 rounded-lg border ${mode === 'emergency' ? 'bg-primary/5 border-primary/20 text-primary' : 'bg-accent/5 border-accent/20 text-accent'
+                        }`}>
                         {step.status}
                       </span>
                     </div>
@@ -197,7 +193,7 @@ export default function ProtocolFlow() {
                     <p className="text-muted-foreground text-lg font-light leading-relaxed mb-8 max-w-xl">
                       {step.description}
                     </p>
-                    
+
                     {step.dbAction && (
                       <div className="inline-flex items-center gap-4 px-6 py-3 rounded-xl bg-secondary/50 border border-border/50 font-mono text-sm text-muted-foreground/70 group hover:border-primary/30 transition-colors">
                         <Database className="h-4 w-4 text-primary/50 group-hover:text-primary transition-colors" />

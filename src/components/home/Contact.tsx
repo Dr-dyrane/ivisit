@@ -56,7 +56,7 @@ export default function Contact() {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <Card className="p-20 rounded-3xl bg-background/20 backdrop-blur-3xl">
+          <Card className="p-6 md:p-12 lg:p-20 rounded-3xl bg-background/20 backdrop-blur-3xl">
             <form className="grid grid-cols-1 gap-12 md:grid-cols-2">
               <div className="space-y-4">
                 <label className="text-sm font-light uppercase tracking-[0.15em] text-primary ml-2">Reporting Officer</label>
@@ -86,7 +86,7 @@ export default function Contact() {
                 <Button
                   variant="accent"
                   showOverlay={true}
-                  className="w-full py-12 text-lg font-black tracking-[0.2em] uppercase rounded-2xl shadow-2xl shadow-accent/20"
+                  className="w-full py-6 sm:py-12 text-sm sm:text-lg font-black tracking-widest sm:tracking-[0.2em] uppercase rounded-2xl shadow-2xl shadow-accent/20 whitespace-nowrap"
                 >
                   Initiate Transmission
                 </Button>

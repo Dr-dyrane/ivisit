@@ -98,17 +98,20 @@ export default function Hero() {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center w-full sm:w-auto px-4 sm:px-0">
               <Button
                 variant="accent"
                 size="lg"
                 onClick={handleEmergency}
                 showOverlay={true}
-                className="px-8 rounded-2xl text-lg font-bold py-6 transition-all duration-300 hover:scale-[1.02]"
+                className="w-full sm:w-auto px-6 sm:px-8 rounded-2xl text-base sm:text-lg font-bold py-6 transition-all duration-300 hover:scale-[1.02] whitespace-nowrap"
               >
-                <div className="flex items-center gap-3">
-                  <Ambulance className="w-6 h-6 animate-pulse flex-shrink-0" />
-                  <span>Call Ambulance</span>
+                <div className="flex items-center justify-center gap-2 sm:gap-3">
+                  <div className="relative">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>
+                    <Ambulance className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+                  </div>
+                  <span>Try Live Beta</span>
                 </div>
               </Button>
 
@@ -117,9 +120,9 @@ export default function Hero() {
                 size="lg"
                 onClick={() => window.open('/early-access', '_blank')}
                 showOverlay={true}
-                className="px-8 rounded-2xl text-lg font-bold py-6 transition-all duration-300 hover:scale-[1.02]"
+                className="w-full sm:w-auto px-6 sm:px-8 rounded-2xl text-base sm:text-lg font-bold py-6 transition-all duration-300 hover:scale-[1.02] whitespace-nowrap"
               >
-                <span>View Premium</span>
+                <span>Get Priority Access</span>
               </Button>
             </div>
           </animated.div>
