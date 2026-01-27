@@ -95,14 +95,18 @@ export function GoogleMapEmbed({ isDarkMode, center, zoom = 14, markers = [], cl
 
     useEffect(() => {
         // Load Google Maps Script if not already loaded
-        if (!window.google) {
+        if (!window.google && !document.querySelector('script[src*="maps.googleapis.com"]')) {
             const script = document.createElement('script');
             script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}&libraries=places`;
             script.async = true;
             script.defer = true;
             document.body.appendChild(script);
-            script.onload = initMap;
-        } else {
+            script.onload = () => {
+                // Trigger re-render to init map
+                setMapInstance(prev => prev || null);
+            };
+        } else if (window.google && !mapInstance) {
+            // Init map if script is loaded but map isn't
             initMap();
         }
 
@@ -112,14 +116,24 @@ export function GoogleMapEmbed({ isDarkMode, center, zoom = 14, markers = [], cl
                     center,
                     zoom,
                     styles: isDarkMode ? DARK_MAP_STYLE : LIGHT_MAP_STYLE,
-                    disableDefaultUI: true, // Clean look
+                    disableDefaultUI: true,
                     zoomControl: false,
                     streetViewControl: false,
                     mapTypeControl: false,
                     fullscreenControl: false,
+                    gestureHandling: 'cooperative', // Better for scrolling pages
                 });
                 setMapInstance(map);
             }
+        }
+    }, [mapInstance]); // Only run on mount/script load (intentionally excluding props to avoid re-init)
+
+    // Handle Prop Updates Efficiently
+    useEffect(() => {
+        if (mapInstance) {
+            mapInstance.panTo(center);
+            mapInstance.setZoom(zoom);
+            mapInstance.setOptions({ styles: isDarkMode ? DARK_MAP_STYLE : LIGHT_MAP_STYLE });
         }
     }, [mapInstance, center, zoom, isDarkMode]);
 
