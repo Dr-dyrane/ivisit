@@ -50,7 +50,8 @@ export default function Footer() {
               <li><Link to="/medical-disclaimer" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Medical Disclaimer</Link></li>
               <li><Link to="/health-data-consent" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Health Data Consent</Link></li>
             </ul>
-            <div className="mt-12 pt-12 border-t border-border/10 flex flex-col sm:flex-row lg:flex-col gap-4">
+            {/* App Download Links */}
+            <div className="mt-12 pt-12 border-t border-border/10 flex flex-row gap-2 sm:gap-4 flex-wrap">
               <a
                 href={appDownloadLink}
                 target="_blank"
