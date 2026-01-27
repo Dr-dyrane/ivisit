@@ -90,7 +90,7 @@ export function InteractiveFlow({ mode }: InteractiveFlowProps) {
                 className="min-h-screen xl:min-h-0 flex items-center justify-center w-full py-12 xl:py-0 xl:contents"
             >
                 <div className="relative w-full max-w-4xl transform xl:-rotate-y-[5deg] transition-all duration-700 hover:rotate-y-0 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] rounded-[48px] p-1 bg-white/5 border border-white/10 backdrop-blur-2xl">
-                    <div className="relative aspect-[9/14] sm:aspect-[16/11] xl:aspect-[16/10] w-full rounded-[44px] overflow-hidden shadow-2xl bg-[#0B0F1A]">
+                    <div className="relative aspect-[9/14] sm:aspect-[16/11] w-full rounded-[44px] overflow-hidden shadow-2xl bg-[#0B0F1A]">
                         <DesktopDashboardReplica isActive={isActive} mode={mode} />
 
                         {/* Glass Reflection Overlay */}
