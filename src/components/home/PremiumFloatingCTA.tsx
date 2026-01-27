@@ -27,7 +27,7 @@ export default function PremiumFloatingCTA() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-4 right-4 left-4 sm:left-auto sm:bottom-6 sm:right-6 z-50 md:bottom-8 md:right-8 pointer-events-auto">
+    <div className="fixed hidden sm:block bottom-4 right-4 left-4 sm:left-auto sm:bottom-6 sm:right-6 z-50 md:bottom-8 md:right-8 pointer-events-auto">
       <div
         className="relative group cursor-pointer max-w-sm mx-auto sm:max-w-none"
         onClick={handleUpgrade}
