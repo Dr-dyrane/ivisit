@@ -21,18 +21,18 @@ export default function ProtocolFlow() {
             <button
               onClick={() => setMode('emergency')}
               className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${mode === 'emergency'
-                  ? 'bg-background text-foreground shadow-sm scale-100'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-background/50 scale-95'
+                ? 'bg-background text-foreground shadow-sm scale-100'
+                : 'text-muted-foreground hover:text-foreground hover:bg-background/50 scale-95'
                 }`}
             >
               <Ambulance className={`w-4 h-4 ${mode === 'emergency' ? 'text-destructive' : ''}`} />
-              Flash Response
+              Ambulance Call
             </button>
             <button
               onClick={() => setMode('bed')}
               className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${mode === 'bed'
-                  ? 'bg-background text-foreground shadow-sm scale-100'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-background/50 scale-95'
+                ? 'bg-background text-foreground shadow-sm scale-100'
+                : 'text-muted-foreground hover:text-foreground hover:bg-background/50 scale-95'
                 }`}
             >
               <BedDouble className={`w-4 h-4 ${mode === 'bed' ? 'text-blue-500' : ''}`} />
