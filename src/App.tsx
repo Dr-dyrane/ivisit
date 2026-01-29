@@ -4,6 +4,7 @@ import LoadingSpinner from './components/ui/LoadingSpinner';
 import { Providers } from './providers';
 import { AppRouter } from './routes/AppRouter';
 import { AuthDebug } from './components/debug/AuthDebug';
+import { Analytics } from '@vercel/analytics/next';
 
 function App() {
   const fadeIn = useSpring({
@@ -17,6 +18,7 @@ function App() {
       <animated.div style={fadeIn} className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
         <Suspense fallback={<LoadingSpinner />}>
           <AppRouter />
+           <Analytics />
           <AuthDebug />
         </Suspense>
       </animated.div>
