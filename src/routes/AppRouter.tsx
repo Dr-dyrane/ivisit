@@ -59,6 +59,34 @@ const PrivacyContent = () => (
       <li>Medical Data: Emergency contact info, blood type, and known allergies for rapid medical response.</li>
       <li>Location Data: We use your location to dispatch emergency services with high precision.</li>
     </ul>
+    
+    <h2>Account Deletion</h2>
+    <p>You can delete your iVisit account and all associated personal data at any time through the mobile application. This process is instant and irreversible.</p>
+    
+    <h3>How to Delete Your Account</h3>
+    <ol>
+      <li>Open the iVisit mobile application</li>
+      <li>Navigate to your Profile page</li>
+      <li>Scroll to the "DANGER ZONE" section at the bottom</li>
+      <li>Tap the red "Delete Account" button</li>
+      <li>Confirm the deletion in the alert dialog that states "This action cannot be undone and all your data will be lost"</li>
+    </ol>
+    
+    <h3>Data Deletion Timeline</h3>
+    <ul>
+      <li><strong>Immediate (within 24 hours):</strong> Account access disabled, authentication tokens revoked, profile visibility removed</li>
+      <li><strong>Complete (within 30 days):</strong> All personal data permanently deleted from our systems</li>
+    </ul>
+    
+    <h3>Data Retention for Legal Compliance</h3>
+    <p>Certain data may be retained for legal and regulatory compliance:</p>
+    <ul>
+      <li><strong>Emergency Service Logs:</strong> Retained for 2 years for medical emergency documentation and legal compliance</li>
+      <li><strong>Financial Records:</strong> Retained for 7 years for tax and healthcare billing requirements</li>
+    </ul>
+    
+    <h3>Alternative Deletion Request</h3>
+    <p>If you are unable to access the mobile application, you may request account deletion by emailing our privacy team at <a href="mailto:privacy@ivisit.ng" className="text-primary hover:underline transition-all">privacy@ivisit.ng</a> with the subject "Account Deletion Request" and include your registered email address and full name.</p>
   </>
 );
 
