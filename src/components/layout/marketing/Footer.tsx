@@ -70,7 +70,7 @@ export default function Footer() {
                 </div>
               </a>
               <a
-                href={getAppDownloadLink('production', 'android')}
+                href={appDownloadLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-full sm:w-fit lg:w-full"
@@ -82,8 +82,8 @@ export default function Footer() {
                   <path fill="#EA4335" d="M12 12L350 256L440 182L12 12Z" />
                 </svg>
                 <div className="flex flex-col leading-none text-left">
-                  <span className="text-[10px] sm:text-xs font-light uppercase tracking-tighter opacity-60">Play Store</span>
-                  <span className="text-sm font-black tracking-tight whitespace-nowrap">Get Android App</span>
+                  <span className="text-[10px] sm:text-xs font-light uppercase tracking-tighter opacity-60">Direct APK</span>
+                  <span className="text-sm font-black tracking-tight whitespace-nowrap">Android Beta</span>
                 </div>
               </a>
             </div>
