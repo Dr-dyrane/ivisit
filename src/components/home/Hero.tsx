@@ -26,7 +26,7 @@ export default function Hero() {
     if (isAuthenticated) {
       navigate('/emergency');
     } else {
-      window.open(getAppDownloadLink('production'), '_blank');
+      window.open(getAppDownloadLink('expo-preview'), '_blank');
     }
   };
 
@@ -130,19 +130,6 @@ export default function Hero() {
               <Button
                 variant="outline"
                 size="lg"
-                onClick={() => window.open('https://play.google.com/apps/testing/com.dyrane.ivisit', '_blank')}
-                showOverlay={true}
-                className="w-full sm:w-auto px-10 rounded-full text-xs sm:text-sm font-black uppercase tracking-[0.2em] py-7 transition-all duration-500 hover:scale-[1.05] active:scale-95 backdrop-blur-md border border-border/50 bg-secondary/10 dark:bg-white/5 whitespace-nowrap"
-              >
-                <div className="flex items-center justify-center gap-3">
-                  <span>Join Testing</span>
-                  <ArrowUpRight className="w-4 h-4 opacity-40" />
-                </div>
-              </Button>
-
-              <Button
-                variant="outline"
-                size="lg"
                 onClick={() => window.open('/early-access', '_blank')}
                 showOverlay={true}
                 className="w-full sm:w-auto px-10 rounded-full text-xs sm:text-sm font-black uppercase tracking-[0.2em] py-7 transition-all duration-500 hover:scale-[1.05] active:scale-95 backdrop-blur-md border border-border/50 bg-secondary/10 dark:bg-white/5 whitespace-nowrap"
@@ -152,6 +139,21 @@ export default function Hero() {
                   <ArrowUpRight className="w-4 h-4 opacity-40" />
                 </div>
               </Button>
+
+              {/* Testing program link - commented out for closed testing
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => window.open('https://play.google.com/apps/testing/com.dyrane.ivisit', '_blank')}
+                showOverlay={true}
+                className="w-full sm:w-auto px-10 rounded-full text-xs sm:text-sm font-black uppercase tracking-[0.2em] py-7 transition-all duration-500 hover:scale-[1.05] active:scale-95 backdrop-blur-md border border-border/50 bg-secondary/10 dark:bg-white/5 whitespace-nowrap"
+              >
+                <div className="flex items-center justify-center gap-3">
+                  <span>Join Testing</span>
+                  <ArrowUpRight className="w-4 h-4 opacity-40" />
+                </div>
+              </Button>
+              */}
             </div>
           </animated.div>
         </Container>

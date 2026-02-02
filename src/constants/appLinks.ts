@@ -6,6 +6,9 @@ export const APP_DOWNLOAD_LINKS = {
   // Preview build for testing - v1.0.4 with critical fixes
   PREVIEW: 'https://expo.dev/artifacts/eas/2wRLES8VZmKPuqtBWCBQKN.apk',
 
+  // Expo preview link for app store distribution
+  EXPO_PREVIEW: 'https://expo.dev/accounts/dyrane/projects/ivisit/builds/0c681fac-1215-47dc-9f87-53d9e9c57464',
+
   // Default to production
   DEFAULT: 'https://expo.dev/artifacts/eas/2wRLES8VZmKPuqtBWCBQKN.apk'
 };
@@ -18,6 +21,9 @@ export const getAppDownloadLink = (environment = 'production') => {
     case 'production':
     case 'prod':
       return APP_DOWNLOAD_LINKS.PRODUCTION;
+    case 'expo':
+    case 'expo-preview':
+      return APP_DOWNLOAD_LINKS.EXPO_PREVIEW;
     default:
       return APP_DOWNLOAD_LINKS.DEFAULT;
   }
