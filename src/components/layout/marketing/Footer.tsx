@@ -8,7 +8,8 @@ import { getAppDownloadLink } from '@/constants/appLinks';
 export default function Footer() {
   const { theme, toggleTheme } = useTheme();
   const footerRef = useRef<HTMLElement>(null);
-  const appDownloadLink = getAppDownloadLink('production');
+  const appleDownloadLink = getAppDownloadLink('expo-preview');
+  const androidDownloadLink = getAppDownloadLink('production');
 
   return (
     <footer ref={footerRef} className="bg-background border-t border-border relative z-10 transition-colors duration-300">
@@ -54,7 +55,7 @@ export default function Footer() {
             {/* App Download Links */}
             <div className="mt-12 pt-12 border-t border-border/10 flex flex-row gap-2">
               <a
-                href={appDownloadLink}
+                href={appleDownloadLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-full sm:w-fit lg:w-full"
@@ -70,7 +71,7 @@ export default function Footer() {
                 </div>
               </a>
               <a
-                href={appDownloadLink}
+                href={androidDownloadLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-full sm:w-fit lg:w-full"

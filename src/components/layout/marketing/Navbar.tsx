@@ -63,7 +63,7 @@ export default function Navbar() {
     if (isAuthenticated) {
       navigate('/emergency');
     } else {
-      window.open(getAppDownloadLink('production'), '_blank');
+      window.open(getAppDownloadLink('expo-preview'), '_blank');
     }
   };
 
