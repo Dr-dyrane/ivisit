@@ -31,7 +31,7 @@ export default function Footer() {
           <div>
             <h3 className="font-light text-foreground uppercase tracking-[0.2em] text-xs sm:text-sm mb-8 sm:mb-12 opacity-60">Operations</h3>
             <ul className="space-y-6">
-              <li><Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Home</Link></li>
+              <li><Link to="/#home" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Home</Link></li>
               <li><a href="#services" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Services</a></li>
               <li><a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Command Center</a></li>
               <li className="pt-6 border-t border-border/10">

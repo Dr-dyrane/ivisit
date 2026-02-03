@@ -10,7 +10,7 @@ import { useTheme } from '@/providers/ThemeContext';
 import { getAppDownloadLink } from '@/constants/appLinks';
 
 const navigation = [
-  { name: 'Home', href: '/' },
+  { name: 'Home', href: '/#home' },
   { name: 'Services', href: '/#services' },
   { name: 'Protocols', href: '/#protocols' },
   { name: 'Early Access', href: '/early-access' },
