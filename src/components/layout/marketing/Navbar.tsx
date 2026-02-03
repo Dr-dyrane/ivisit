@@ -12,6 +12,7 @@ import { getAppDownloadLink } from '@/constants/appLinks';
 const navigation = [
   { name: 'Home', href: '/#home' },
   { name: 'Services', href: '/#services' },
+  { name: 'Providers', href: '/#providers' },
   { name: 'Protocols', href: '/#protocols' },
   { name: 'Early Access', href: '/early-access' },
   { name: 'Contact', href: '/#contact' },

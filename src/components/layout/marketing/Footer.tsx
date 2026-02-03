@@ -33,6 +33,7 @@ export default function Footer() {
             <ul className="space-y-6">
               <li><Link to="/#home" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Home</Link></li>
               <li><a href="#services" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Services</a></li>
+              <li><a href="https://console.ivisit.ng/onboarding" target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:text-primary/80 transition-colors tracking-wide font-bold">Provider Console</a></li>
               <li><a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Command Center</a></li>
               <li className="pt-6 border-t border-border/10">
                 <p className="text-xs sm:text-sm font-light text-primary uppercase tracking-wider mb-1">USA HQ</p>

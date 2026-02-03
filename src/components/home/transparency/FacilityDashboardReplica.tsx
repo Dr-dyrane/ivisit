@@ -63,7 +63,7 @@ export function FacilityDashboardReplica({ isActive }: FacilityDashboardReplicaP
             {/* Header */}
             <div className="flex items-center justify-between mb-8 pl-16 sm:pl-0 pt-2 relative z-20">
                 <div>
-                    <h2 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Facility OS</h2>
+                    <h2 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Command Console</h2>
                     <div className="flex items-center gap-2 mt-0.5">
                         <div className={`w-2 h-2 rounded-full ${isActive ? 'bg-green-500 animate-pulse' : 'bg-slate-300 dark:bg-slate-700'}`} />
                         <span className="text-[10px] text-slate-500 dark:text-muted-foreground font-black uppercase tracking-widest">

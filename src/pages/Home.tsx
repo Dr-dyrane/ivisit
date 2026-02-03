@@ -6,6 +6,7 @@ import EarlyAccessCTA from '../components/home/EarlyAccessCTA';
 import Contact from '../components/home/Contact';
 import TrustSignals from '../components/home/TrustSignals';
 import StrategicAdvantage from '../components/home/StrategicAdvantage';
+import ProviderShowcase from '../components/home/ProviderShowcase';
 
 const Home = () => {
   useEffect(() => {
@@ -63,7 +64,7 @@ const Home = () => {
 
     document.addEventListener('click', handleAnchorClick);
     handleInitialHash(); // Handle initial page load with hash
-    
+
     return () => document.removeEventListener('click', handleAnchorClick);
   }, []);
 
@@ -73,6 +74,7 @@ const Home = () => {
       <TrustSignals />
       <Services />
       <StrategicAdvantage />
+      <ProviderShowcase />
       <ProtocolFlow />
       <EarlyAccessCTA />
       <Contact />

@@ -46,7 +46,7 @@ export default function ProtocolFlow() {
                 }`}
             >
               <Building2 className={`w-4 h-4 ${mode === 'facility' ? 'text-emerald-500' : 'group-hover:text-emerald-500 transition-colors'}`} />
-              Facility OS
+              Facility
             </button>
             <button
               onClick={() => setMode('logistics')}
@@ -66,7 +66,7 @@ export default function ProtocolFlow() {
             ) : mode === 'bed' ? (
               <>Real-time<span className="text-blue-500">.</span> Allocation<span className="text-blue-500">.</span></>
             ) : mode === 'facility' ? (
-              <>Unified<span className="text-emerald-500">.</span> Operations<span className="text-emerald-500">.</span></>
+              <>Provider<span className="text-emerald-500">.</span> Command Console<span className="text-emerald-500">.</span></>
             ) : (
               <>Tactical<span className="text-blue-500">.</span> Dispatch<span className="text-blue-500">.</span></>
             )}

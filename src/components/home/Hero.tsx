@@ -98,6 +98,7 @@ export default function Hero() {
                 Ultra-rapid response for <span className="text-foreground font-black">Citizens</span>. <br className="" />
                 Unified infrastructure for <span className="text-primary font-black">Facilities</span>.
               </p>
+
               <div className="mt-10 flex items-center justify-center gap-6 text-[10px] font-black uppercase tracking-[0.3em] opacity-40">
                 <div className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-destructive animate-pulse" />
