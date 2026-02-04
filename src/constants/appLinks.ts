@@ -7,7 +7,7 @@ export const APP_DOWNLOAD_LINKS = {
   PREVIEW: 'https://expo.dev/artifacts/eas/2wRLES8VZmKPuqtBWCBQKN.apk',
 
   // Expo preview link for app store distribution
-  EXPO_PREVIEW: 'https://expo.dev/accounts/dyrane/projects/ivisit/updates/7a774d3c-857d-4358-b260-2f7fbf0cd362',
+  EXPO_PREVIEW: 'https://expo.dev/preview/update?message=feat%3A+FAB+service+picker+and+OTA+stability+fix&updateRuntimeVersion=1.0.4&createdAt=2026-02-04T03%3A06%3A31.546Z&slug=exp&projectId=a3777b70-b973-4b3b-ba59-ed32bf5662e0&group=7a774d3c-857d-4358-b260-2f7fbf0cd362',
 
   // Default to production
   DEFAULT: 'https://expo.dev/artifacts/eas/2wRLES8VZmKPuqtBWCBQKN.apk'
