@@ -7,7 +7,7 @@ export const APP_DOWNLOAD_LINKS = {
   PREVIEW: 'https://expo.dev/artifacts/eas/2wRLES8VZmKPuqtBWCBQKN.apk',
 
   // Expo preview link for app store distribution
-  EXPO_PREVIEW: 'https://expo.dev/accounts/dyrane/projects/ivisit/updates/9b0578f4-0ca1-48a9-893b-686aba498a14',
+  EXPO_PREVIEW: 'https://expo.dev/accounts/dyrane/projects/ivisit/updates/7a774d3c-857d-4358-b260-2f7fbf0cd362',
 
   // Default to production
   DEFAULT: 'https://expo.dev/artifacts/eas/2wRLES8VZmKPuqtBWCBQKN.apk'
