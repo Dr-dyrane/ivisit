@@ -1,6 +1,6 @@
 // Centralized app download links - update once, use everywhere.
 const ANDROID_PREVIEW_UPDATE_URL =
-  'https://expo.dev/accounts/dyrane/projects/ivisit/updates/70af3002-8560-47c0-91c4-fc20f0d9ad2d';
+  'https://expo.dev/accounts/dyrane/projects/ivisit/updates/c8356a20-a35c-40a9-a376-cd5e8bf499a7';
 const IOS_PREVIEW_UPDATE_URL =
   'https://expo.dev/accounts/dyrane/projects/ivisit/updates/9bcafc2c-46c8-4d50-8448-e57ca2f72204';
 
@@ -25,7 +25,7 @@ export const APP_DOWNLOAD_LINKS = {
   // Preview Android artifact.
   PREVIEW: 'https://expo.dev/artifacts/eas/2wRLES8VZmKPuqtBWCBQKN.apk',
 
-  // Expo preview update links from 2026-03-02 publishes.
+  // Expo preview update links from 2026-03-03 publishes.
   EXPO_PREVIEW_ANDROID: ANDROID_PREVIEW_UPDATE_URL,
   EXPO_PREVIEW_IOS: IOS_PREVIEW_UPDATE_URL,
   EXPO_PREVIEW: getPlatformExpoPreviewLink(),
