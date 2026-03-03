@@ -1,8 +1,8 @@
 // Centralized app download links - update once, use everywhere.
 const ANDROID_PREVIEW_UPDATE_URL =
-  'exp+://expo-development-client/?url=https://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/44b3e6f8-b6b4-4e23-ba6c-395449ac886f';
+  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/c4998311-a232-4810-9052-3f2231c77957';
 const IOS_PREVIEW_UPDATE_URL =
-  'exp+://expo-development-client/?url=https://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/c4998311-a232-4810-9052-3f2231c77957';
+  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/c4998311-a232-4810-9052-3f2231c77957';
 
 const getPlatformExpoPreviewLink = () => {
   if (typeof navigator === 'undefined') {
