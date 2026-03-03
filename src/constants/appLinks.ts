@@ -2,7 +2,7 @@
 const ANDROID_PREVIEW_UPDATE_URL =
   'https://expo.dev/accounts/dyrane/projects/ivisit/updates/c8356a20-a35c-40a9-a376-cd5e8bf499a7';
 const IOS_PREVIEW_UPDATE_URL =
-  'https://expo.dev/accounts/dyrane/projects/ivisit/updates/9bcafc2c-46c8-4d50-8448-e57ca2f72204';
+  'https://expo.dev/accounts/dyrane/projects/ivisit/updates/90259559-5534-4277-9b3d-049b1977b274';
 
 const getPlatformExpoPreviewLink = () => {
   if (typeof navigator === 'undefined') {
