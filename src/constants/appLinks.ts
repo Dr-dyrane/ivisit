@@ -5,9 +5,9 @@ const IOS_PRODUCTION_UPDATE_URL =
   'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/ef8c4d5b-4938-4697-b4e8-14010a9965e9';
 
 const ANDROID_PREVIEW_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/fccf6bd0-5f99-47e5-96e4-dddc5f705da3';
+  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/f52846cf-06eb-4fe3-bdeb-36547da090b8';
 const IOS_PREVIEW_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/bc05fd1a-3d25-4681-8307-2c51500d8493';
+  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/4f44ee86-1f56-481b-9e1b-76aa3f2bc5c6';
 
 const getPlatformExpoProductionLink = () => {
   if (typeof navigator === 'undefined') {
@@ -48,7 +48,7 @@ export const APP_DOWNLOAD_LINKS = {
   EXPO_PRODUCTION_IOS: IOS_PRODUCTION_UPDATE_URL,
   EXPO_PRODUCTION: getPlatformExpoProductionLink(),
 
-  // Expo preview update links from 2026-03-06 publishes.
+  // Expo preview update links from 2026-03-06 latest native publishes.
   EXPO_PREVIEW_ANDROID: ANDROID_PREVIEW_UPDATE_URL,
   EXPO_PREVIEW_IOS: IOS_PREVIEW_UPDATE_URL,
   EXPO_PREVIEW: getPlatformExpoPreviewLink(),
