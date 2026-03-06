@@ -1,8 +1,8 @@
 // Centralized app download links - update once, use everywhere.
 const ANDROID_PREVIEW_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/2c6b1c1f-bd57-4598-b267-97ab21a492f1';
+  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/fccf6bd0-5f99-47e5-96e4-dddc5f705da3';
 const IOS_PREVIEW_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/1cb56e89-a5cf-492c-85da-b4cd77b24f0c';
+  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/bc05fd1a-3d25-4681-8307-2c51500d8493';
 
 const getPlatformExpoPreviewLink = () => {
   if (typeof navigator === 'undefined') {
@@ -25,7 +25,7 @@ export const APP_DOWNLOAD_LINKS = {
   // Preview Android artifact.
   PREVIEW: 'https://expo.dev/artifacts/eas/2wRLES8VZmKPuqtBWCBQKN.apk',
 
-  // Expo preview update links from 2026-03-04 publishes.
+  // Expo preview update links from 2026-03-06 publishes.
   EXPO_PREVIEW_ANDROID: ANDROID_PREVIEW_UPDATE_URL,
   EXPO_PREVIEW_IOS: IOS_PREVIEW_UPDATE_URL,
   EXPO_PREVIEW: getPlatformExpoPreviewLink(),
