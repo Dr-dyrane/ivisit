@@ -5,9 +5,9 @@ const IOS_PRODUCTION_UPDATE_URL =
   'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/ef8c4d5b-4938-4697-b4e8-14010a9965e9';
 
 const ANDROID_PREVIEW_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/f52846cf-06eb-4fe3-bdeb-36547da090b8';
+  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/2c4e21dc-08a1-4fc8-bcfe-fef59d47d743';
 const IOS_PREVIEW_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/4f44ee86-1f56-481b-9e1b-76aa3f2bc5c6';
+  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/2c4e21dc-08a1-4fc8-bcfe-fef59d47d743';
 
 const getPlatformExpoProductionLink = () => {
   if (typeof navigator === 'undefined') {
