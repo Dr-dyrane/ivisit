@@ -1,0 +1,839 @@
+{
+  "version": "2.1",
+  "name": "ivisit-marketing-ui-rules",
+  "description": "UI and UX rules tailored to the iVisit marketing page for stressed, time-sensitive users who need immediate clarity, trust, and a clear next step.",
+  "philosophy": {
+    "primaryGoal": "Make the iVisit marketing page feel obvious, calm, trustworthy, and actionable within 5 seconds.",
+    "corePrinciples": [
+      "Reduce cognitive load",
+      "Prioritize clarity over decoration",
+      "Keep flows simple",
+      "Show only what is needed at the moment",
+      "Use motion to support understanding",
+      "Preserve spatial continuity",
+      "Design for touch and mouse equally well",
+      "Respect accessibility and theme sensitivity",
+      "Keep the system visually consistent",
+      "Make every state understandable",
+      "Prefer removal over addition",
+      "Explain what iVisit does before explaining how advanced it is",
+      "Prioritize stressed users over internal brand language",
+      "Make the next step unmistakable",
+      "Substantiate trust claims or remove them",
+      "Keep patient and caregiver value clearer than provider positioning above the fold"
+    ],
+    "designTone": [
+      "minimal",
+      "premium",
+      "calm",
+      "modern",
+      "borderless",
+      "layered",
+      "adaptive",
+      "human",
+      "high-clarity",
+      "reassuring",
+      "urgent-but-calm"
+    ]
+  },
+  "experienceGoals": {
+    "instantComprehension": true,
+    "clearNextStepWithin5Seconds": true,
+    "lowFriction": true,
+    "highTrust": true,
+    "themeSensitive": true,
+    "accessible": true,
+    "responsive": true,
+    "fastPerceivedPerformance": true,
+    "subtleDelight": true
+  },
+  "marketingContext": {
+    "product": "iVisit",
+    "category": "Emergency medical response platform",
+    "primaryAudience": "Patients needing urgent or emergency care",
+    "secondaryAudience": "People helping others in distress",
+    "secondaryBusinessAudience": "Hospitals and healthcare facilities",
+    "userState": [
+      "stressed",
+      "distracted",
+      "urgent",
+      "low-attention"
+    ],
+    "homepagePriority": [
+      "Explain emergency value first",
+      "Reassure the user",
+      "Show what to do next",
+      "Introduce provider value after patient clarity is established"
+    ],
+    "fiveSecondQuestions": [
+      "What does iVisit do?",
+      "How does it help me right now?",
+      "What should I do next?"
+    ]
+  },
+  "marketingPage": {
+    "fiveSecondRule": {
+      "required": true,
+      "mustExplainWhatItDoes": true,
+      "mustExplainImmediateBenefit": true,
+      "mustExplainNextStep": true
+    },
+    "hero": {
+      "headlineMustNameOutcome": true,
+      "subheadlineMustUsePlainEnglish": true,
+      "avoidAbstractBrandLanguageAboveFold": true,
+      "showAtMostTwoSupportingProofPointsAboveFold": true,
+      "showPrimaryAndSecondaryAudienceOnlyIfRolesAreClear": true
+    },
+    "cta": {
+      "onePrimaryCTAAboveFold": true,
+      "secondaryCTAAllowedIfLowerContrast": true,
+      "primaryCTAMustDescribeOutcomeOrDestination": true,
+      "avoidAmbiguousPrimaryCTAWithoutContext": true,
+      "avoidStageLanguageInPrimaryCTA": [
+        "beta",
+        "preview",
+        "mission",
+        "protocol",
+        "access"
+      ]
+    },
+    "trust": {
+      "claimsMustBeProvable": true,
+      "preferSpecificAndVerifiableClaims": true,
+      "avoidUnsupportedComplianceClaims": true,
+      "avoidInflatedInstitutionCountsWithoutSource": true,
+      "avoidUnqualifiedPerformanceGuarantees": true
+    },
+    "audienceStrategy": {
+      "patientsAndCaregiversFirstAboveFold": true,
+      "providersMayAppearBelowFold": true,
+      "labelSecondaryAudienceSectionsClearly": true,
+      "doNotMixAudienceMessagesInSameHeadlineWithoutClarifyingRoles": true
+    },
+    "flow": {
+      "recommendedOrder": [
+        "hero clarity",
+        "trust and reassurance",
+        "how iVisit helps",
+        "how it works",
+        "secondary audience proof",
+        "conversion",
+        "support"
+      ],
+      "showEssentialUserBenefitsBeforeEnterprisePositioning": true,
+      "avoidAddingSectionsUnlessCriticalGapExists": true
+    },
+    "conversion": {
+      "avoidOpportunisticUpsellsOnEmergencyMessagingSurfaces": true,
+      "supportFormsMustMatchActualCapability": true,
+      "contactFormsMustNotImplyLiveEmergencyResponseIfTheyDoNotProvideIt": true
+    }
+  },
+  "appleHIG": {
+    "adaptiveNavigation": {
+      "preferred": true,
+      "mobile": "tab bar",
+      "tablet": "compact sidebar",
+      "desktop": "full sidebar",
+      "navigationOnlyInTabBar": true,
+      "preserveStatePerDestination": true,
+      "activeDestinationShouldUseFilledIcon": true,
+      "inactiveDestinationShouldUseOutlinedIcon": true
+    },
+    "typography": {
+      "preferLargeTitleEntry": true,
+      "largeTitlePx": 34,
+      "bodyDefaultPx": 17,
+      "titleHierarchyRequired": true,
+      "largeTitleCanCollapseInlineOnScroll": true,
+      "dynamicTypeSupportExpected": true
+    },
+    "materials": {
+      "preferSystemLikeMaterials": true,
+      "layeredGlassPreferred": true,
+      "contentShouldExtendUnderChrome": true,
+      "elevatedSurfacesShouldLightenWithDepth": true,
+      "avoidDecorativeBorders": true
+    },
+    "interaction": {
+      "minimumTouchTargetPx": 44,
+      "pressFeedbackShouldBeSubtle": true,
+      "hoverShouldLiftNotGlowAggressively": true,
+      "criticalInteractionsMustWorkWithoutHover": true,
+      "gestureUseMustFeelNatural": true
+    },
+    "progressiveDisclosure": {
+      "required": true,
+      "showOnlyWhatIsNeededNow": true,
+      "drillDownHierarchyPreferred": true,
+      "secondaryActionsShouldBeContextual": true,
+      "focusedTasksCanUseModalOrSheet": true
+    },
+    "transitions": {
+      "mustPreserveSpatialContinuity": true,
+      "noTeleportingBetweenStates": true,
+      "majorMotionEasing": "cubic-bezier(0.32, 0.72, 0, 1)",
+      "reducedMotionMustDisableNonEssentialAnimation": true
+    },
+    "feedbackAndState": {
+      "shapeMatchedSkeletonsPreferred": true,
+      "determinateProgressPreferredWhenPossible": true,
+      "everyEmptyStateNeedsRecoveryPath": true,
+      "errorsShouldOfferClearRecovery": true
+    },
+    "accessibility": {
+      "focusIndicatorsShouldUseNonBorderTreatment": true,
+      "screenReaderLabelsRequired": true,
+      "keyboardNavigationRequired": true,
+      "safeAreaRespectRequired": true
+    }
+  },
+  "layout": {
+    "singlePrimaryActionPerScreen": true,
+    "maxPrimaryActionsPerScreen": 1,
+    "maxSecondaryActionsPerZone": 2,
+    "preferSingleColumnForCriticalFlows": true,
+    "preferSimpleVisualHierarchy": true,
+    "useWhitespaceAsStructure": true,
+    "useBordersSparingly": true,
+    "defaultBorderStyle": "none",
+    "allowDividersOnlyWhenNeededForScanability": true,
+    "containerStrategy": {
+      "preferOpenLayouts": true,
+      "preferSoftSurfacesOverHardBoxes": true,
+      "avoidDeepNesting": true,
+      "maxVisualNestingDepth": 3
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "scale": [4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96],
+      "preferConsistentSpacingSteps": true,
+      "minimumInteractiveGap": 8,
+      "minimumSectionGap": 24,
+      "minimumScreenPaddingMobile": 16,
+      "minimumScreenPaddingTablet": 20,
+      "minimumScreenPaddingDesktop": 24,
+      "maximumContentWidth": 1440,
+      "recommendedReadingWidth": 720
+    },
+    "grid": {
+      "useGridSystem": true,
+      "mobileColumns": 4,
+      "tabletColumns": 8,
+      "desktopColumns": 12,
+      "gutterMobile": 16,
+      "gutterTablet": 20,
+      "gutterDesktop": 24
+    },
+    "alignment": {
+      "requireConsistentAlignment": true,
+      "preferLeftAlignmentForText": true,
+      "avoidFloatingUnanchoredElements": true
+    }
+  },
+  "navigation": {
+    "mustBePredictable": true,
+    "mustShowCurrentLocation": true,
+    "mustPreserveOrientation": true,
+    "topLevelNavShouldBeLimited": true,
+    "preferPlatformAdaptiveNavigation": true,
+    "statePreservationRequired": true,
+    "maxTopLevelItemsMobile": 5,
+    "maxTopLevelItemsDesktop": 7,
+    "backBehaviorMustBeConsistent": true,
+    "avoidSurpriseContextSwitches": true,
+    "preferShallowNavigationDepth": true,
+    "breadcrumbs": {
+      "useOnDesktopForDeepStructures": true,
+      "useOnMobileSparingly": true
+    },
+    "tabBars": {
+      "useForPeerSectionsOnly": true,
+      "maxTabsWithoutOverflow": 5,
+      "navigationOnly": true,
+      "preserveScrollPositionPerTab": true,
+      "activeIconStyle": "filled",
+      "inactiveIconStyle": "outlined"
+    },
+    "sidebars": {
+      "useForComplexDesktopApps": true,
+      "mustCollapseGracefully": true,
+      "preferAdaptiveSidebarOnTabletDesktop": true,
+      "compactModeBetween768And1024": true
+    }
+  },
+  "informationArchitecture": {
+    "groupRelatedContent": true,
+    "separateUnrelatedContent": true,
+    "progressiveDisclosure": true,
+    "showEssentialFirst": true,
+    "revealAdvancedOptionsOnDemand": true,
+    "avoidInformationOverload": true,
+    "preferChunkedContent": true,
+    "avoidDenseWallsOfText": true,
+    "useSectionHeadingsForScanability": true
+  },
+  "visualDesign": {
+    "style": "minimal-layered",
+    "borderlessBias": true,
+    "layeredInterfaces": true,
+    "useDepth": true,
+    "contentShouldFlowUnderChrome": true,
+    "preferSystemLikeMaterials": true,
+    "depthMethods": [
+      "blur",
+      "transparency",
+      "soft shadow",
+      "contrast separation",
+      "elevation"
+    ],
+    "avoidHeavyChrome": true,
+    "avoidLoudGradients": true,
+    "avoidVisualNoise": true,
+    "cornerRadius": {
+      "xs": 8,
+      "sm": 12,
+      "md": 16,
+      "lg": 20,
+      "xl": 24,
+      "2xl": 32
+    },
+    "shadowStyle": {
+      "useSoftShadows": true,
+      "avoidHarshDropShadows": true,
+      "preferLowOpacity": true
+    },
+    "surfaceModel": {
+      "background": "base context layer",
+      "surface": "primary content plane",
+      "elevatedSurface": "floating contextual plane",
+      "overlay": "temporary interaction layer"
+    },
+    "iconography": {
+      "mustBeConsistent": true,
+      "preferSimpleReadableIcons": true,
+      "doNotRelyOnIconsWithoutLabelsForCriticalActions": true,
+      "alignStrokeWeights": true
+    }
+  },
+  "color": {
+    "useSemanticColorRoles": true,
+    "limitPaletteComplexity": true,
+    "preferNeutralFoundation": true,
+    "accentColorShouldBeIntentional": true,
+    "avoidUsingColorAsOnlySignal": true,
+    "roles": [
+      "background",
+      "surface",
+      "surfaceElevated",
+      "textPrimary",
+      "textSecondary",
+      "textTertiary",
+      "borderSubtle",
+      "accent",
+      "success",
+      "warning",
+      "danger",
+      "info",
+      "focusRing",
+      "overlay"
+    ],
+    "states": {
+      "default": true,
+      "hover": true,
+      "active": true,
+      "pressed": true,
+      "disabled": true,
+      "selected": true,
+      "focused": true
+    }
+  },
+  "theme": {
+    "supportLightMode": true,
+    "supportDarkMode": true,
+    "supportSystemTheme": true,
+    "themeSwitchMustBePersistent": true,
+    "themeSwitchMustBeInstant": true,
+    "avoidThemeFlashOnLoad": true,
+    "lightMode": {
+      "goal": "clean, airy, readable, calm",
+      "backgroundBias": "bright neutral",
+      "surfaceContrast": "subtle but clear",
+      "textContrast": "strong",
+      "shadowStrength": "subtle",
+      "blurUse": "light to moderate"
+    },
+    "darkMode": {
+      "goal": "comfortable, deep, readable, premium",
+      "backgroundBias": "deep neutral",
+      "surfaceContrast": "clear but not harsh",
+      "textContrast": "high without glare",
+      "avoidPureBlackForLargeSurfaces": true,
+      "avoidPureWhiteTextWhenTooHarsh": true,
+      "shadowStrength": "minimal",
+      "blurUse": "moderate"
+    },
+    "themeRules": {
+      "allSemanticRolesMustExistInBothThemes": true,
+      "allInteractiveStatesMustExistInBothThemes": true,
+      "doNotInvertBlindly": true,
+      "reviewEverySurfaceForContrast": true,
+      "reviewAllOverlaysSeparatelyPerTheme": true,
+      "iconsMustRemainReadableInBothThemes": true,
+      "chartsMustBeReadableInBothThemes": true,
+      "emptyStatesMustBeReadableInBothThemes": true,
+      "formsMustBeReadableInBothThemes": true
+    }
+  },
+  "typography": {
+    "typographyIsPrimaryHierarchyTool": true,
+    "preferSystemFonts": true,
+    "maxFontFamilies": 2,
+    "fontScale": {
+      "xs": 12,
+      "sm": 14,
+      "md": 16,
+      "lg": 18,
+      "xl": 20,
+      "2xl": 24,
+      "3xl": 30,
+      "4xl": 36,
+      "5xl": 48
+    },
+    "fontWeights": {
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700
+    },
+    "lineHeight": {
+      "tight": 1.15,
+      "snug": 1.25,
+      "normal": 1.5,
+      "relaxed": 1.65
+    },
+    "rules": {
+      "preferLargeTitleEntry": true,
+      "supportDynamicType": true,
+      "useSizeForImportance": true,
+      "useWeightForEmphasis": true,
+      "useSpacingForGrouping": true,
+      "avoidTooManyTextStyles": true,
+      "preferReadableBodyText": true,
+      "avoidLongCenteredParagraphs": true,
+      "minimumBodySize": 17,
+      "maximumParagraphWidth": 75
+    }
+  },
+  "contentDesign": {
+    "writingTone": [
+      "clear",
+      "short",
+      "human",
+      "specific",
+      "non-technical-when-user-facing"
+    ],
+    "avoidJargonInUserFacingUI": true,
+    "preferDirectLabels": true,
+    "preferVerbLedCTAs": true,
+    "preferPlainEnglishForHighStressContexts": true,
+    "heroMustAnswerWhatHowNextStep": true,
+    "ctaLabelsMustStateOutcome": true,
+    "trustClaimsMustBeSubstantiated": true,
+    "avoidHypeWhenUserIsUnderStress": true,
+    "avoidMilitarizedOrInternalLanguageUnlessRequired": true,
+    "emptyStateCopyShouldHelpRecovery": true,
+    "errorCopyShouldExplainAndGuide": true,
+    "successCopyShouldBeShort": true,
+    "doNotUseInternalSystemLanguageInUserFacingText": true
+  },
+  "interaction": {
+    "touchFirst": true,
+    "mouseFriendly": true,
+    "keyboardAccessible": true,
+    "minimumTouchTarget": 44,
+    "comfortableTouchTarget": 48,
+    "minimumHitSpacing": 8,
+    "pressStateShouldBeSubtle": true,
+    "hoverStateShouldSupportNotDominate": true,
+    "interactiveFeedbackMustBeImmediate": true,
+    "interactiveFeedbackTypes": [
+      "opacity",
+      "scale",
+      "shadow shift",
+      "highlight",
+      "position"
+    ],
+    "preventAccidentalActions": true,
+    "confirmDestructiveActions": true,
+    "supportUndoWhenPossible": true,
+    "preferDirectManipulation": true,
+    "avoidHiddenCriticalActions": true
+  },
+  "motion": {
+    "enabled": true,
+    "mustServePurpose": true,
+    "purposes": [
+      "guide attention",
+      "show causality",
+      "support hierarchy",
+      "confirm action",
+      "smooth transitions",
+      "reduce abruptness"
+    ],
+    "avoidDecorativeAnimation": true,
+    "respectReducedMotion": true,
+    "durationsMs": {
+      "micro": 150,
+      "fast": 160,
+      "normal": 300,
+      "slow": 320,
+      "complex": 500
+    },
+    "easing": {
+      "enter": "ease-out",
+      "exit": "ease-in",
+      "move": "ease-in-out",
+      "spring": "cubic-bezier(0.32, 0.72, 0, 1)"
+    },
+    "rules": {
+      "animationsShouldFeelLight": true,
+      "animationsShouldNotBlockUse": true,
+      "preserveSpatialContinuity": true,
+      "avoidLargeUnmotivatedMotion": true,
+      "animateStateChangeNotEverything": true
+    }
+  },
+  "feedback": {
+    "everyUserActionNeedsResponse": true,
+    "feedbackShouldStartImmediately": true,
+    "feedbackCanBeVisual": true,
+    "feedbackCanBeTextual": true,
+    "feedbackCanBeHapticWhenPlatformAllows": true,
+    "loadingIndicatorsMustAppearQuickly": true,
+    "successShouldBeCalmAndClear": true,
+    "errorShouldBeSpecificAndRecoverable": true
+  },
+  "states": {
+    "requiredStates": [
+      "default",
+      "hover",
+      "focus",
+      "active",
+      "pressed",
+      "selected",
+      "disabled",
+      "loading",
+      "success",
+      "warning",
+      "error",
+      "empty"
+    ],
+    "allCriticalComponentsMustDefineAllRelevantStates": true,
+    "stateChangesMustBeVisible": true,
+    "stateChangesMustBeAccessible": true,
+    "disabledStateMustStillBeReadable": true
+  },
+  "forms": {
+    "preferSingleColumn": true,
+    "groupRelatedFields": true,
+    "showLabelsClearly": true,
+    "doNotRelyOnPlaceholderAsLabel": true,
+    "validateInline": true,
+    "validateEarlyButNotAggressively": true,
+    "showHelpfulErrorMessages": true,
+    "showRequiredOptionalClearly": true,
+    "smartDefaults": true,
+    "autoCompleteWhenHelpful": true,
+    "inputSpacingMustBeComfortable": true,
+    "submitActionMustBeClear": true,
+    "primaryActionPlacementMustBePredictable": true,
+    "forLongForms": {
+      "allowStepBasedFlow": true,
+      "showProgress": true,
+      "allowBackNavigation": true,
+      "preserveInputState": true
+    }
+  },
+  "buttons": {
+    "mustHaveClearHierarchy": true,
+    "maxButtonStylesPerScreen": 3,
+    "primaryButtonShouldStandOut": true,
+    "secondaryButtonShouldSupportNotCompete": true,
+    "tertiaryActionsShouldBeQuiet": true,
+    "destructiveActionsMustBeVisiblyDistinct": true,
+    "buttonTextShouldBeActionOriented": true,
+    "iconOnlyButtonsMustHaveTooltipsOrLabelsWhenNeeded": true
+  },
+  "inputs": {
+    "mustBeEasyToRecognize": true,
+    "mustHaveFocusState": true,
+    "mustHaveErrorState": true,
+    "mustHaveDisabledState": true,
+    "mustRemainReadableAcrossThemes": true,
+    "avoidExcessiveVisualNoise": true
+  },
+  "lists": {
+    "mustBeScannable": true,
+    "mustHaveClearItemHierarchy": true,
+    "useDividersOnlyWhenNeeded": true,
+    "supportSelectionStates": true,
+    "supportEmptyState": true,
+    "supportLoadingState": true,
+    "supportErrorState": true
+  },
+  "tables": {
+    "useOnlyWhenComparisonMatters": true,
+    "mustRemainReadable": true,
+    "mustHandleOverflowGracefully": true,
+    "mustSupportResponsiveFallback": true,
+    "preferCardsOnSmallScreensWhenNeeded": true,
+    "rowActionsMustBePredictable": true,
+    "headersMustBeClear": true,
+    "numericColumnsShouldAlignForComparison": true
+  },
+  "cards": {
+    "useWhenGroupingIsHelpful": true,
+    "avoidOveruse": true,
+    "preferSoftSurfaceTreatment": true,
+    "mustNotBecomeVisualClutter": true,
+    "contentMustBreathe": true
+  },
+  "modals": {
+    "useForFocusedTemporaryTasksOnly": true,
+    "avoidDeepModalStacks": true,
+    "mustBeDismissibleUnlessCritical": true,
+    "mustTrapFocus": true,
+    "mustWorkOnSmallScreens": true,
+    "preferSheetsOnMobileWhenAppropriate": true
+  },
+  "drawersSheetsPopovers": {
+    "useForContextualTasks": true,
+    "mustFeelAttachedToTrigger": true,
+    "mustNotHideCriticalContextWithoutNeed": true,
+    "mustHaveClearDismissBehavior": true
+  },
+  "search": {
+    "mustBeEasyToFindWhenCoreToProduct": true,
+    "shouldSupportEmptyQueryState": true,
+    "shouldSupportNoResultsState": true,
+    "shouldPreferRelevantResultsOverMoreResults": true,
+    "filtersShouldBeProgressivelyDisclosed": true,
+    "activeFiltersMustBeVisible": true
+  },
+  "dashboard": {
+    "mustPrioritizeMostImportantSignals": true,
+    "avoidEqualVisualWeightEverywhere": true,
+    "summariesBeforeDetails": true,
+    "cardsShouldNotFightForAttention": true,
+    "chartsShouldSupportDecisionMaking": true,
+    "showStatusAndTrendsClearly": true
+  },
+  "chartsDataViz": {
+    "useOnlyWhenTheyClarify": true,
+    "mustHaveLabels": true,
+    "mustHaveLegibleContrast": true,
+    "mustWorkInLightAndDarkThemes": true,
+    "avoidDecorative3DCharts": true,
+    "preferSimpleChartTypes": true,
+    "tooltipsMustBeReadable": true,
+    "doNotRelyOnColorAlone": true
+  },
+  "emptyStates": {
+    "mustExplainWhereUserIs": true,
+    "mustExplainWhyStateIsEmptyWhenPossible": true,
+    "mustOfferNextStep": true,
+    "shouldReduceDeadEnds": true
+  },
+  "errorHandling": {
+    "preventErrorsWherePossible": true,
+    "inlinePreventionPreferred": true,
+    "errorMessagesMustBeSpecific": true,
+    "errorMessagesMustSuggestRecovery": true,
+    "avoidBlamingUser": true,
+    "avoidGenericSomethingWentWrongWhenBetterDetailExists": true
+  },
+  "successHandling": {
+    "mustConfirmCompletion": true,
+    "mustNotInterruptUnnecessarily": true,
+    "preferInlineSuccessForSmallActions": true,
+    "preferToastsForTransientFeedback": true
+  },
+  "loading": {
+    "mustBeVisible": true,
+    "preferSkeletonsOverSpinnersForStructuredContent": true,
+    "spinnersAllowedForShortUnknownWaits": true,
+    "preserveLayoutDuringLoading": true,
+    "avoidJarringContentShift": true
+  },
+  "notifications": {
+    "mustBeUseful": true,
+    "mustBeDismissibleWhenNonCritical": true,
+    "mustNotOverwhelm": true,
+    "severityMustBeClear": true,
+    "placementMustBeConsistent": true
+  },
+  "responsiveness": {
+    "mobileFirst": true,
+    "mustWorkOnSmallPhones": true,
+    "mustWorkOnLargePhones": true,
+    "mustWorkOnTablets": true,
+    "mustWorkOnLaptopDesktop": true,
+    "mustAvoidHorizontalScrollForCoreContent": true,
+    "mustAdaptNavigationPerBreakpoint": true,
+    "mustAdaptDensityPerBreakpoint": true,
+    "mustAdaptInteractionPatternPerDevice": true
+  },
+  "breakpoints": {
+    "xs": 0,
+    "sm": 480,
+    "md": 768,
+    "lg": 1024,
+    "xl": 1280,
+    "2xl": 1536
+  },
+  "mobileRules": {
+    "prioritizeThumbReach": true,
+    "reduceVisualDensity": true,
+    "preferBottomAnchoredActionsWhenAppropriate": true,
+    "avoidTinyInlineControls": true,
+    "useSheetsForContextualActions": true
+  },
+  "desktopRules": {
+    "useMoreHorizontalSpaceWisely": true,
+    "supportHoverButDoNotDependOnIt": true,
+    "enableKeyboardEfficiency": true,
+    "useSidebarsForComplexStructuresWhenHelpful": true
+  },
+  "accessibility": {
+    "required": true,
+    "colorContrastMustPass": true,
+    "keyboardNavigationRequired": true,
+    "focusVisibleRequired": true,
+    "focusTreatmentShouldNotRelyOnBorders": true,
+    "screenReaderSupportRequired": true,
+    "semanticMarkupRequired": true,
+    "labelsRequiredForInputs": true,
+    "reducedMotionSupportRequired": true,
+    "hitTargetsAccessible": true,
+    "safeAreaSupportRequired": true,
+    "zoomSupportRequired": true,
+    "doNotDisableUserScaling": true
+  },
+  "performanceUX": {
+    "perceivedPerformanceMatters": true,
+    "avoidLayoutShift": true,
+    "avoidInputLag": true,
+    "preferOptimisticUIWhenSafe": true,
+    "lazyLoadNonCriticalContent": true,
+    "deferHeavyVisualEffectsOnWeakDevices": true,
+    "animationsMustNotDropUsability": true
+  },
+  "consistency": {
+    "enforceDesignSystem": true,
+    "reusePatterns": true,
+    "reuseTerminology": true,
+    "reuseInteractionModels": true,
+    "avoidOneOffComponents": true,
+    "allVariantsShouldBelongToSystem": true
+  },
+  "componentArchitecture": {
+    "preferComposableComponents": true,
+    "separateStructureStyleBehavior": true,
+    "variantsMustBeExplicit": true,
+    "statesMustBeDefined": true,
+    "themeSupportMustBeBuiltIn": true,
+    "accessibilityMustBeBuiltIn": true
+  },
+  "designSystem": {
+    "required": true,
+    "mustInclude": [
+      "tokens",
+      "spacing scale",
+      "typography scale",
+      "radii",
+      "shadows",
+      "motion timings",
+      "semantic colors",
+      "component variants",
+      "state definitions",
+      "light theme",
+      "dark theme"
+    ]
+  },
+  "reviewChecklist": {
+    "questions": [
+      "Within 5 seconds, can a stressed first-time user explain what iVisit does?",
+      "Within 5 seconds, can the user explain how iVisit helps immediately?",
+      "Within 5 seconds, can the user identify what to do next?",
+      "Can a first-time user understand this immediately?",
+      "Is there one clear main action?",
+      "Does the primary CTA say exactly what happens next or where it goes?",
+      "Are patient and caregiver needs clearer than provider positioning above the fold?",
+      "Are trust claims provable, qualified, or linked to real proof?",
+      "Is anything visually competing unnecessarily?",
+      "Does it work in light mode?",
+      "Does it work in dark mode?",
+      "Are all states defined?",
+      "Is the hierarchy obvious?",
+      "Is the wording human and clear?",
+      "Can it be used on mobile comfortably?",
+      "Can it be used by keyboard?",
+      "Does motion help rather than distract?",
+      "Can anything be removed?"
+    ]
+  },
+  "reduction": {
+    "removeBeforeAdd": true,
+    "preferLessUI": true,
+    "targetReductionMindset": 0.15,
+    "avoidRedundantLabels": true,
+    "avoidDuplicateActions": true,
+    "avoidDecorativeNoise": true
+  },
+  "agentInstructions": {
+    "whenDesigning": [
+      "Start by identifying the single main purpose of the screen",
+      "On marketing pages, make the hero pass a 5-second clarity test before polishing visuals",
+      "Reduce visible options to the minimum needed at first glance",
+      "For iVisit, explain emergency value before provider or platform sophistication",
+      "Build clear hierarchy with spacing and typography first",
+      "Apply theme-aware semantic color roles",
+      "Ensure every component has all required interaction states",
+      "Check mobile and desktop layouts separately",
+      "Check both light and dark modes separately",
+      "Add motion only where it improves understanding",
+      "Use proof sparingly and only when the claim can be substantiated",
+      "Check accessibility before polish",
+      "Remove anything that does not improve clarity or task completion"
+    ],
+    "whenReviewing": [
+      "Flag clutter",
+      "Flag weak hierarchy",
+      "Flag unclear calls to action",
+      "Flag stage-based or ambiguous CTA labels",
+      "Flag unsupported trust claims or inflated proof points",
+      "Flag enterprise language that appears before user benefit",
+      "Flag forms that imply faster support than they actually provide",
+      "Flag inaccessible contrast",
+      "Flag missing states",
+      "Flag broken theme behavior",
+      "Flag mobile discomfort",
+      "Flag unnecessary borders",
+      "Flag jargon in user-facing copy",
+      "Flag inconsistent spacing or component behavior"
+    ],
+    "whenWritingUserFacingUI": [
+      "Use plain English",
+      "Write for a stressed person, not an internal team",
+      "State the outcome before the mechanism",
+      "Name where a CTA goes or what happens next",
+      "Use calm, reassuring language without sounding theatrical",
+      "Avoid internal engineering language",
+      "Avoid system or protocol terminology",
+      "Make labels and actions feel natural to normal users",
+      "Prefer direct wording over clever wording"
+    ]
+  }
+}

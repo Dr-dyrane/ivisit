@@ -8,6 +8,9 @@ const ANDROID_PREVIEW_UPDATE_URL =
   'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/0e7ee6f7-d581-4a03-a709-42a350bccc40';
 const IOS_PREVIEW_UPDATE_URL =
   'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/0e7ee6f7-d581-4a03-a709-42a350bccc40';
+const IOS_EXPO_GO_STORE_URL = 'https://apps.apple.com/app/expo-go/id982107779';
+const ANDROID_EXPO_GO_STORE_URL =
+  'https://play.google.com/store/apps/details?id=host.exp.exponent';
 
 const getPlatformExpoProductionLink = () => {
   if (typeof navigator === 'undefined') {
@@ -55,6 +58,22 @@ export const APP_DOWNLOAD_LINKS = {
 
   // Default to production.
   DEFAULT: getPlatformExpoProductionLink()
+};
+
+export const EXPO_GO_INSTALL_URL = 'https://expo.dev/go';
+
+export const getExpoGoInstallLink = () => {
+  if (typeof navigator === 'undefined') {
+    return EXPO_GO_INSTALL_URL;
+  }
+
+  const userAgent = navigator.userAgent || '';
+  const isIOS = /iPad|iPhone|iPod|Macintosh/i.test(userAgent);
+  const isAndroid = /Android/i.test(userAgent);
+
+  if (isIOS) return IOS_EXPO_GO_STORE_URL;
+  if (isAndroid) return ANDROID_EXPO_GO_STORE_URL;
+  return EXPO_GO_INSTALL_URL;
 };
 
 export const getAppDownloadLink = (environment = 'production') => {

@@ -50,13 +50,13 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
   if (variant === 'compact') {
     return (
       <div className="w-full">
-        <form onSubmit={handleSubmit} className="flex gap-3">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row">
           <input
             type="email"
             id="email-compact"
             name="email"
             autoComplete="email"
-            placeholder="your@email.com"
+            placeholder="Email for updates"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={loading || status === 'success'}
@@ -68,9 +68,9 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
             variant="accent"
             size="sm"
             disabled={loading || status === 'success'}
-            className="px-6"
+            className="w-full px-6 sm:w-auto"
           >
-            {loading ? '...' : 'Join'}
+            {loading ? '...' : 'Get updates'}
           </Button>
         </form>
 

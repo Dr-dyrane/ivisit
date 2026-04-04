@@ -7,7 +7,7 @@ export const AuthDebug: React.FC = () => {
   const { user, loading } = useAuth();
   const { isAuthenticated, user: reduxUser } = useSelector((state: RootState) => state.auth);
 
-  if (process.env.NODE_ENV !== 'development') {
+  if (!import.meta.env.DEV) {
     return null;
   }
 

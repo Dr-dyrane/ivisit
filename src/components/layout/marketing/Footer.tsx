@@ -1,18 +1,34 @@
 import { useRef } from 'react';
 import { Moon, Sun } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../../providers/ThemeContext';
 import { Button } from '../../ui/Button';
-import { getAppDownloadLink } from '@/constants/appLinks';
 
 export default function Footer() {
   const { theme, toggleTheme } = useTheme();
   const footerRef = useRef<HTMLElement>(null);
-  const appleDownloadLink = getAppDownloadLink('expo-preview');
-  const androidDownloadLink = getAppDownloadLink('production');
+  const location = useLocation();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/#') && location.pathname === '/') {
+      e.preventDefault();
+      const targetId = href.replace('/#', '');
+      const element = document.getElementById(targetId);
+      if (element) {
+        const navbarHeight = 80;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
 
   return (
-    <footer ref={footerRef} className="bg-background border-t border-border relative z-10 transition-colors duration-300">
+    <footer ref={footerRef} className="relative z-10 bg-gradient-to-b from-background to-secondary/10 transition-colors duration-300">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16">
           <div className="col-span-1 sm:col-span-2 lg:col-span-1">
@@ -24,21 +40,22 @@ export default function Footer() {
               <span className="text-2xl font-black text-foreground tracking-tighter">iVisit<span className="text-primary">.</span></span>
             </div>
             <p className="mt-6 text-muted-foreground leading-relaxed text-sm font-light max-w-xs">
-              Next-generation medical response protocols. Real-time intelligence for life-critical decisions.
+              Emergency medical response and hospital coordination designed around clear next steps.
             </p>
           </div>
 
           <div>
-            <h3 className="font-light text-foreground uppercase tracking-[0.2em] text-xs sm:text-sm mb-8 sm:mb-12 opacity-60">Operations</h3>
+            <h3 className="font-light text-foreground uppercase tracking-[0.2em] text-xs sm:text-sm mb-8 sm:mb-12 opacity-60">Explore</h3>
             <ul className="space-y-6">
-              <li><Link to="/#home" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Home</Link></li>
-              <li><a href="#services" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Services</a></li>
-              <li><a href="https://console.ivisit.ng/onboarding" target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:text-primary/80 transition-colors tracking-wide font-bold">Provider Console</a></li>
-              <li><a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Command Center</a></li>
-              <li className="pt-6 border-t border-border/10">
-                <p className="text-xs sm:text-sm font-light text-primary uppercase tracking-wider mb-1">USA HQ</p>
-                <p className="text-xs text-muted-foreground font-light">California Command</p>
-                <p className="text-xs text-muted-foreground font-light">+1 951 728 4218</p>
+              <li><Link to="/#home" onClick={(e) => handleNavClick(e, '/#home')} className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Home</Link></li>
+              <li><Link to="/#help" onClick={(e) => handleNavClick(e, '/#help')} className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">How It Helps</Link></li>
+              <li><Link to="/#how-it-works" onClick={(e) => handleNavClick(e, '/#how-it-works')} className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">How It Works</Link></li>
+              <li><Link to="/#providers" onClick={(e) => handleNavClick(e, '/#providers')} className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">For Facilities</Link></li>
+              <li><Link to="/#updates" onClick={(e) => handleNavClick(e, '/#updates')} className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Updates</Link></li>
+              <li className="mt-8 rounded-2xl bg-secondary/20 px-4 py-4">
+                <p className="text-xs sm:text-sm font-light text-primary uppercase tracking-wider mb-1">Support</p>
+                <a href="mailto:support@ivisit.ng" className="block text-xs text-muted-foreground font-light hover:text-foreground transition-colors">support@ivisit.ng</a>
+                <a href="tel:+19517284218" className="block text-xs text-muted-foreground font-light hover:text-foreground transition-colors">+1 951 728 4218</a>
               </li>
             </ul>
           </div>
@@ -52,43 +69,6 @@ export default function Footer() {
               <li><Link to="/medical-disclaimer" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Medical Disclaimer</Link></li>
               <li><Link to="/health-data-consent" className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Health Data Consent</Link></li>
             </ul>
-
-            {/* App Download Links */}
-            <div className="mt-12 pt-12 border-t border-border/10 flex flex-row gap-2">
-              <a
-                href={appleDownloadLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-full sm:w-fit lg:w-full"
-              >
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
-                  alt="Apple"
-                  className="h-6 w-auto dark:invert transition-colors"
-                />
-                <div className="flex flex-col leading-none text-left">
-                  <span className="text-[10px] sm:text-xs font-light uppercase tracking-tighter opacity-60">Test Flight</span>
-                  <span className="text-sm font-black tracking-tight whitespace-nowrap">iOS Preview</span>
-                </div>
-              </a>
-              <a
-                href={androidDownloadLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3 px-4 py-2 rounded-xl border border-foreground/20 hover:border-primary/50 transition-all hover:scale-105 active:scale-95 bg-transparent min-w-[160px] h-[52px] w-full sm:w-fit lg:w-full"
-              >
-                <svg viewBox="0 0 512 512" className="h-6 w-auto">
-                  <path fill="#4285F4" d="M12 12L12 500L350 256L12 12Z" />
-                  <path fill="#34A853" d="M12 500L440 330L350 256L12 500Z" />
-                  <path fill="#FBBC05" d="M440 330L500 256L440 182L350 256L440 330Z" />
-                  <path fill="#EA4335" d="M12 12L350 256L440 182L12 12Z" />
-                </svg>
-                <div className="flex flex-col leading-none text-left">
-                  <span className="text-[10px] sm:text-xs font-light uppercase tracking-tighter opacity-60">Direct APK</span>
-                  <span className="text-sm font-black tracking-tight whitespace-nowrap">Android Beta</span>
-                </div>
-              </a>
-            </div>
           </div>
 
           <div className="sm:col-span-2 lg:col-span-1">
@@ -96,7 +76,7 @@ export default function Footer() {
             <Button
               variant="ghost"
               onClick={toggleTheme}
-              className="px-8 rounded-2xl h-14 w-full border border-border/50 hover:border-primary/50"
+              className="h-14 w-full rounded-2xl bg-background/70 px-8 shadow-sm shadow-black/5 dark:bg-white/10 dark:shadow-black/20"
             >
               {theme === 'dark' ? (
                 <>
@@ -113,9 +93,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-24 pt-12 border-t border-border/10">
+        <div className="mt-24 pt-12">
           <p className="text-center text-muted-foreground text-xs sm:text-sm font-light uppercase tracking-[0.3em] opacity-40">
-            © {new Date().getFullYear()} IVISIT COMMAND • ALL SYSTEMS OPERATIONAL
+            (c) {new Date().getFullYear()} IVISIT | EMERGENCY RESPONSE, CLEARER
           </p>
         </div>
       </div>

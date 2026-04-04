@@ -1,50 +1,82 @@
-import { Shield, Lock, FileCheck, Eye } from 'lucide-react';
+import { Ambulance, BedDouble, CheckCircle2, MapPinned } from 'lucide-react';
+import { Container } from '../ui/Container';
+import { Section } from '../ui/Section';
 
-const signals = [
+const nextSteps = [
   {
-    icon: <Shield className="h-6 w-6" />,
-    label: "HIPAA Compliant",
-    description: "Enterprise-grade data protection"
+    label: 'We find the nearest available help'
   },
   {
-    icon: <Lock className="h-6 w-6" />,
-    label: "End-to-End Encrypted",
-    description: "AES-256 protocol security"
+    label: 'Your location is shared automatically'
   },
   {
-    icon: <FileCheck className="h-6 w-6" />,
-    label: "Audited Protocols",
-    description: "Zero-fail medical standards"
+    label: 'You can track arrival in real time'
+  }
+];
+
+const helpCards = [
+  {
+    icon: <Ambulance className="h-6 w-6" />,
+    label: 'Start help immediately',
+    description: 'Request an ambulance and share your location instantly.'
   },
   {
-    icon: <Eye className="h-6 w-6" />,
-    label: "Privacy First",
-    description: "No third-party data sharing"
+    icon: <BedDouble className="h-6 w-6" />,
+    label: 'Know where to go',
+    description: 'See which hospitals have space before you move.'
+  },
+  {
+    icon: <MapPinned className="h-6 w-6" />,
+    label: 'Stay visible',
+    description: 'Let responders find you without delays.'
   }
 ];
 
 export default function TrustSignals() {
   return (
-    <div className="py-24 border-y border-border/30 bg-secondary/20">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16">
-          {signals.map((signal, index) => (
-            <div key={index} className="flex flex-col items-center text-center space-y-6 group">
-              <div className="p-4 rounded-2xl bg-primary/5 text-primary group-hover:scale-110 transition-transform duration-500">
-                {signal.icon}
+    <Section id="help" className="min-h-0 bg-secondary/20 py-16 sm:py-20 md:py-24">
+      <Container>
+        <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-primary">What happens next</p>
+            <h2 className="mt-4 text-4xl sm:text-5xl md:text-6xl font-black tracking-[-0.05em] text-foreground leading-[0.95]">
+              Built for urgent moments.
+            </h2>
+            <p className="mt-4 text-lg sm:text-xl font-light text-muted-foreground leading-relaxed">
+              Clear steps. No confusion.
+            </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 gap-3 md:grid-cols-3">
+            {nextSteps.map((step) => (
+              <div
+                key={step.label}
+                className="flex items-center gap-3 rounded-2xl bg-background/[0.65] px-5 py-4 text-sm font-medium text-foreground shadow-[0_16px_40px_rgba(15,23,42,0.06)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.18)]"
+              >
+                <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-primary" />
+                <span>{step.label}</span>
               </div>
-              <div>
-                <h4 className="text-sm font-light text-foreground mb-2 tracking-[0.1em] uppercase">
-                  {signal.label}
-                </h4>
-                <p className="text-xs text-muted-foreground font-light tracking-wide opacity-70">
-                  {signal.description}
+            ))}
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+            {helpCards.map((card) => (
+              <div
+                key={card.label}
+                className="rounded-[2rem] bg-background/60 p-6 shadow-[0_30px_70px_rgba(15,23,42,0.08)] backdrop-blur-2xl dark:shadow-[0_30px_70px_rgba(0,0,0,0.24)] sm:p-8"
+              >
+                <div className="inline-flex rounded-2xl bg-primary/10 p-4 text-primary">
+                  {card.icon}
+                </div>
+                <h3 className="mt-6 text-2xl font-bold tracking-tight text-foreground">{card.label}</h3>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                  {card.description}
                 </p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </div>
+      </Container>
+    </Section>
   );
 }

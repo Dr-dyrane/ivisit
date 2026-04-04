@@ -85,7 +85,7 @@ export function WelcomeScreenReplica({ onConnect, isActive }: WelcomeScreenRepli
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>
                             <Ambulance className="h-5 w-5 text-white relative z-10" />
                         </div>
-                        <span className="text-[15px] font-bold tracking-wide text-white">Find Care Now</span>
+                        <span className="text-[15px] font-bold tracking-wide text-white">Request Help</span>
                     </div>
 
                     {/* Connecting State Overlay */}
@@ -98,10 +98,9 @@ export function WelcomeScreenReplica({ onConnect, isActive }: WelcomeScreenRepli
                 </div>
             </div>
 
-            {/* Login */}
             <div className="text-center mb-2">
                 <p className="text-muted-foreground text-xs font-medium">
-                    Already have an account? <span className="font-bold text-[#DC2626] cursor-pointer hover:underline ml-1">Login</span>
+                    Preview emergency requests and live response tracking.
                 </p>
             </div>
         </div>
