@@ -5,7 +5,6 @@ import { useSpring, animated } from '@react-spring/web';
 import { Dialog } from '@headlessui/react';
 import { Button } from '@/components/ui/Button';
 import { useTheme } from '@/providers/ThemeContext';
-import ExpoMark from '@/components/ui/ExpoMark';
 import { usePreviewBridge } from './PreviewBridgeProvider';
 
 const navigation = [
@@ -142,7 +141,6 @@ export default function Navbar() {
                 className="h-9 flex-shrink-0 rounded-xl border-0 px-3 shadow-[0_0_20px_rgba(var(--primary),0.3)] lg:h-10 lg:px-6"
               >
                 <div className="flex items-center gap-2">
-                  <ExpoMark tone="light" className="h-5 w-5" />
                   <span className="font-black tracking-[0.15em] text-xs whitespace-nowrap">{previewCtaLabel}</span>
                 </div>
               </Button>
@@ -210,7 +208,6 @@ export default function Navbar() {
                 }}
               >
                 <div className="flex items-center justify-center gap-3">
-                  <ExpoMark tone="light" className="h-6 w-6" />
                   <span className="font-black tracking-[0.2em] text-xs">{previewCtaLabel}</span>
                 </div>
               </Button>

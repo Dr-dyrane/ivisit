@@ -5,7 +5,6 @@ import { Container } from '../ui/Container';
 import { Section } from '../ui/Section';
 import { Button } from '../ui/Button';
 import SEOHead from '../seo/SEOHead';
-import ExpoMark from '../ui/ExpoMark';
 import { usePreviewBridge } from '../layout/marketing/PreviewBridgeProvider';
 
 export default function Hero() {
@@ -68,14 +67,13 @@ export default function Hero() {
                 className="w-full min-w-[18rem] rounded-full border-0 px-8 py-7 text-sm font-black uppercase tracking-[0.15em] shadow-2xl shadow-primary/20 sm:w-auto"
               >
                 <div className="flex items-center justify-center gap-3">
-                  <ExpoMark tone="light" className="h-6 w-6" />
                   <span>{previewCtaLabel}</span>
                   <ArrowRight className="h-4 w-4 opacity-70" />
                 </div>
               </Button>
             </div>
             <p className="mt-4 text-sm text-muted-foreground">
-              Early preview access
+              Live on web, mobile, and tablet
             </p>
           </animated.div>
         </Container>

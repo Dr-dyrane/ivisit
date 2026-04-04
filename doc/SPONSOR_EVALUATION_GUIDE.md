@@ -44,22 +44,22 @@ Check:
 
 Expected:
 
-- primary action: `Try the App` or `Open iVisit`
-- helper text: early preview framing
+- primary action: `Open iVisit`
+- helper text: direct live-app framing
 
-### 2. Preview Handoff
+### 2. App Handoff
 
 Check:
 
-- CTA does not deep-link blindly
-- user understands the one-time Expo Go step
-- mobile uses a bottom sheet
-- returning users can continue quickly
+- CTA goes directly to the live patient app
+- landing is clear for signed-out users
+- the same app surface works on mobile, tablet, and desktop
+- no preview or setup language leaks into the marketing journey
 
 Expected:
 
-- first-time state: `Install Expo Go`
-- return state: `Open iVisit`
+- CTA target: `https://app.ivisit.ng`
+- no Expo dependency in the primary handoff
 
 ### 3. Mid-Page Product Proof
 
@@ -115,4 +115,4 @@ This confirms the public marketing surface compiles as production output.
 
 The marketing site is production-credible and suitable for sponsor review.
 
-It is not yet the final end-state architecture because Expo preview is still in the acquisition path. That is a distribution-stage constraint, not a clarity or trust failure in the page itself.
+The public handoff now routes directly into the live patient web app at `app.ivisit.ng`. Marketing, patient app, and provider console are now separable evaluation layers instead of a preview bridge.

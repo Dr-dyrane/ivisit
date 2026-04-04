@@ -5,7 +5,6 @@ import { Container } from '../ui/Container';
 import { Section } from '../ui/Section';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
-import ExpoMark from '../ui/ExpoMark';
 import EarlyAccessForm from '../early-access/EarlyAccessForm';
 import { usePreviewBridge } from '../layout/marketing/PreviewBridgeProvider';
 
@@ -39,16 +38,15 @@ export default function EarlyAccessCTA() {
                   size="lg"
                   onClick={openPreviewBridge}
                   showOverlay={true}
-                className="w-full rounded-full border-0 px-8 py-6 text-sm shadow-2xl shadow-primary/20 sm:w-auto"
-              >
-                <div className="flex items-center justify-center gap-3">
-                  <ExpoMark tone="light" className="h-6 w-6" />
+                  className="w-full rounded-full border-0 px-8 py-6 text-sm shadow-2xl shadow-primary/20 sm:w-auto"
+                >
+                  <div className="flex items-center justify-center gap-3">
                     <span>{previewCtaLabel}</span>
                     <ArrowRight className="w-4 h-4" />
                   </div>
                 </Button>
                 <p className="text-sm text-muted-foreground">
-                  Early preview access
+                  Open the live iVisit app
                 </p>
               </div>
             </div>

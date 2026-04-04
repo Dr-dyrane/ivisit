@@ -101,7 +101,7 @@ const Login: React.FC = () => {
 
   const handleDemoAccess = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    openAppDownloadLink('expo-preview');
+    openAppDownloadLink('production');
   };
 
   return (
@@ -156,13 +156,13 @@ const Login: React.FC = () => {
           <div className="flex items-center justify-center gap-2">
             <Activity className="w-3 h-3 text-primary animate-pulse" />
             <a
-              href={getAppDownloadLink('expo-preview')}
+              href={getAppDownloadLink('production')}
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleDemoAccess}
               className="text-sm font-light text-muted-foreground uppercase tracking-[0.15em] hover:text-primary transition-colors cursor-pointer"
             >
-              Instant Demo Access
+              Open Live App
             </a>
           </div>
         </div>

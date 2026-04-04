@@ -1,4 +1,6 @@
 // Centralized app download links - update once, use everywhere.
+export const APP_WEB_URL = 'https://app.ivisit.ng';
+
 const ANDROID_PRODUCTION_UPDATE_URL =
   'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/6d82a60c-ce2f-4b3f-af7f-bacb62397cb4';
 const IOS_PRODUCTION_UPDATE_URL =
@@ -45,8 +47,8 @@ const getPlatformExpoPreviewLink = () => {
 };
 
 export const APP_DOWNLOAD_LINKS = {
-  // Expo production update links from 2026-03-06 production publishes.
-  PRODUCTION: getPlatformExpoProductionLink(),
+  WEB: APP_WEB_URL,
+  PRODUCTION: APP_WEB_URL,
 
   // Preview Android artifact.
   PREVIEW: 'https://expo.dev/artifacts/eas/oCFJSVracfx3x9HHmkscN.apk',
@@ -60,8 +62,7 @@ export const APP_DOWNLOAD_LINKS = {
   EXPO_PREVIEW_IOS: IOS_PREVIEW_UPDATE_URL,
   EXPO_PREVIEW: getPlatformExpoPreviewLink(),
 
-  // Default to production.
-  DEFAULT: getPlatformExpoProductionLink()
+  DEFAULT: APP_WEB_URL
 };
 
 export const EXPO_GO_INSTALL_URL = 'https://expo.dev/go';
@@ -78,11 +79,14 @@ export const isDesktopClient = () => getClientPlatform() === 'desktop';
 
 export const getAppDownloadLink = (environment = 'production') => {
   switch (environment.toLowerCase()) {
+    case 'web':
+    case 'app':
+      return APP_WEB_URL;
     case 'preview':
       return APP_DOWNLOAD_LINKS.PREVIEW;
     case 'production':
     case 'prod':
-      return APP_DOWNLOAD_LINKS.PRODUCTION;
+      return APP_WEB_URL;
     case 'expo-production':
       return getPlatformExpoProductionLink();
     case 'expo':
@@ -100,6 +104,7 @@ export const openAppDownloadLink = (environment = 'production') => {
 
   const url = getAppDownloadLink(environment);
   const isDeepLink = /^exp:\/\//i.test(url);
+  const isHttpUrl = /^https?:\/\//i.test(url);
 
   if (isDeepLink) {
     if (!isDesktopClient()) {
@@ -108,6 +113,11 @@ export const openAppDownloadLink = (environment = 'production') => {
     }
 
     window.open(getExpoGoInstallLink(), '_blank', 'noopener,noreferrer');
+    return;
+  }
+
+  if (isHttpUrl) {
+    window.location.assign(url);
     return;
   }
 
