@@ -5,6 +5,12 @@ import 'leaflet/dist/leaflet.css';
 import { RefreshCcw } from 'lucide-react'; // Import Lucid icon
 import { useTheme } from '@/providers/ThemeContext';
 
+interface LeafletDefaultIconPrototype extends L.Icon.Default {
+  _getIconUrl?: string;
+}
+
+const DEFAULT_LOCATION: [number, number] = [6.5244, 3.3792];
+
 // Helper Function: Generate random coordinates within a radius
 function getRandomCoordinates(baseCoordinates: [number, number], radiusInMiles: number): [number, number] {
   const radiusInKm = radiusInMiles * 1.60934;
@@ -26,7 +32,7 @@ function getRandomCoordinates(baseCoordinates: [number, number], radiusInMiles: 
 }
 
 // Default marker icons
-delete (L.Icon.Default.prototype as any)._getIconUrl;
+delete (L.Icon.Default.prototype as LeafletDefaultIconPrototype)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
   iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
@@ -69,11 +75,11 @@ function FitBounds({ bounds }: { bounds: L.LatLngBoundsExpression }) {
 }
 
 export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
-  const defaultLocation: [number, number] = [6.5244, 3.3792]; // Default to Lagos coordinates
   const [currentLocation, setCurrentLocation] = useState<[number, number] | null>(null); // Initial state set to null
   const [hospitals, setHospitals] = useState<{ name: string; coordinates: [number, number] }[]>([]);
 
   const { theme } = useTheme();
+  const reloadLabel = mapType === 'ambulance' ? 'Reload ambulance map' : 'Reload hospital map';
 
   // Fetch user location and generate nearby hospitals
   useEffect(() => {
@@ -102,12 +108,12 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
         },
         () => {
           // In case of error, set to default location
-          setCurrentLocation(defaultLocation);
+          setCurrentLocation(DEFAULT_LOCATION);
         }
       );
     } else {
       // If geolocation is not supported, fall back to default location
-      setCurrentLocation(defaultLocation);
+      setCurrentLocation(DEFAULT_LOCATION);
     }
   }, []);
 
@@ -209,6 +215,8 @@ export default function OpenStreetMap({ mapType }: OpenStreetMapProps) {
       {/* CTA Button */}
       <button
         onClick={handleReload}
+        aria-label={reloadLabel}
+        title={reloadLabel}
         className="absolute bottom-4 right-4 p-4 bg-accent-500 text-white rounded-full shadow-lg hover:bg-accent-600 transition-all duration-300"
         style={{ zIndex: 999 }}
       >

@@ -1,9 +1,48 @@
 import { useEffect, useRef, useState, useMemo } from 'react';
 
-// Add type declaration for window.google to avoid TS errors
+type GoogleMapPosition = { lat: number; lng: number };
+type GoogleMapStyle = Array<Record<string, unknown>>;
+
+interface GoogleMapOptions {
+    center: GoogleMapPosition;
+    zoom: number;
+    styles: GoogleMapStyle;
+    backgroundColor: string;
+    disableDefaultUI: boolean;
+    zoomControl: boolean;
+    streetViewControl: boolean;
+    mapTypeControl: boolean;
+    fullscreenControl: boolean;
+    gestureHandling: 'cooperative';
+}
+
+interface GoogleMapInstance {
+    panTo: (center: GoogleMapPosition) => void;
+    setZoom: (zoom: number) => void;
+    setOptions: (options: Partial<Pick<GoogleMapOptions, 'styles' | 'backgroundColor'>>) => void;
+}
+
+interface GoogleMarkerOptions {
+    position: GoogleMapPosition;
+    map: GoogleMapInstance;
+    title?: string;
+    icon?: string;
+}
+
+interface GoogleMarkerInstance {
+    setMap: (map: GoogleMapInstance | null) => void;
+}
+
+interface GoogleMapsAPI {
+    maps: {
+        Map: new (element: HTMLElement, options: GoogleMapOptions) => GoogleMapInstance;
+        Marker: new (options: GoogleMarkerOptions) => GoogleMarkerInstance;
+    };
+}
+
 declare global {
     interface Window {
-        google: any;
+        google?: GoogleMapsAPI;
     }
 }
 
@@ -22,7 +61,7 @@ interface GoogleMapEmbedProps {
     className?: string;
 }
 
-const DARK_MAP_STYLE = [
+const DARK_MAP_STYLE: GoogleMapStyle = [
     { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
     { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
     { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
@@ -72,7 +111,7 @@ const DARK_MAP_STYLE = [
     },
 ];
 
-const LIGHT_MAP_STYLE = [
+const LIGHT_MAP_STYLE: GoogleMapStyle = [
     {
         featureType: "poi",
         elementType: "labels",
@@ -90,64 +129,60 @@ const LIGHT_MAP_STYLE = [
 
 export function GoogleMapEmbed({ isDarkMode, center, zoom = 14, markers = [], className = '' }: GoogleMapEmbedProps) {
     const mapRef = useRef<HTMLDivElement>(null);
-    const [mapInstance, setMapInstance] = useState<any>(null);
-    const markersRef = useRef<any[]>([]);
+    const [isGoogleReady, setIsGoogleReady] = useState(() => Boolean(window.google));
+    const [mapInstance, setMapInstance] = useState<GoogleMapInstance | null>(null);
+    const markersRef = useRef<GoogleMarkerInstance[]>([]);
 
     const mapStyles = useMemo(() => isDarkMode ? DARK_MAP_STYLE : LIGHT_MAP_STYLE, [isDarkMode]);
 
     useEffect(() => {
-        let isCancelled = false;
+        if (window.google) {
+            setIsGoogleReady(true);
+            return;
+        }
 
-        const initMap = () => {
-            if (mapRef.current && window.google && !mapInstance && !isCancelled) {
-                const map = new window.google.maps.Map(mapRef.current, {
-                    center,
-                    zoom,
-                    styles: mapStyles,
-                    backgroundColor: isDarkMode ? '#0B0F1A' : '#ffffff',
-                    disableDefaultUI: true,
-                    zoomControl: false,
-                    streetViewControl: false,
-                    mapTypeControl: false,
-                    fullscreenControl: false,
-                    gestureHandling: 'cooperative',
-                });
-                setMapInstance(map);
-            }
-        };
+        if (!document.querySelector('script[src*="maps.googleapis.com"]')) {
+            const script = document.createElement('script');
+            const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+            script.async = true;
+            script.defer = true;
+            document.body.appendChild(script);
+        }
 
-        const checkAndLoad = () => {
+        const intervalId = window.setInterval(() => {
             if (window.google) {
-                initMap();
-                return;
+                window.clearInterval(intervalId);
+                setIsGoogleReady(true);
             }
-
-            if (!document.querySelector('script[src*="maps.googleapis.com"]')) {
-                const script = document.createElement('script');
-                const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
-                script.async = true;
-                script.defer = true;
-                document.body.appendChild(script);
-            }
-
-            // Polling for google object to be available (robust against script state)
-            const interval = setInterval(() => {
-                if (window.google) {
-                    clearInterval(interval);
-                    if (!isCancelled) initMap();
-                }
-            }, 100);
-
-            return () => clearInterval(interval);
-        };
-
-        checkAndLoad();
+        }, 100);
 
         return () => {
-            isCancelled = true;
+            window.clearInterval(intervalId);
         };
-    }, []); // Only run on mount
+    }, []);
+
+    useEffect(() => {
+        const googleMaps = window.google?.maps;
+        if (!mapRef.current || !googleMaps || mapInstance || !isGoogleReady) {
+            return;
+        }
+
+        const map = new googleMaps.Map(mapRef.current, {
+            center,
+            zoom,
+            styles: mapStyles,
+            backgroundColor: isDarkMode ? '#0B0F1A' : '#ffffff',
+            disableDefaultUI: true,
+            zoomControl: false,
+            streetViewControl: false,
+            mapTypeControl: false,
+            fullscreenControl: false,
+            gestureHandling: 'cooperative',
+        });
+
+        setMapInstance(map);
+    }, [center, isDarkMode, isGoogleReady, mapInstance, mapStyles, zoom]);
 
     // Handle Prop Updates Efficiently
     useEffect(() => {
@@ -159,21 +194,22 @@ export function GoogleMapEmbed({ isDarkMode, center, zoom = 14, markers = [], cl
 
     // Update markers when markers prop changes
     useEffect(() => {
-        if (mapInstance && window.google) {
-            // Clear existing markers
+        const googleMaps = window.google?.maps;
+        if (mapInstance && googleMaps) {
             markersRef.current.forEach(marker => marker.setMap(null));
-            markersRef.current = [];
-
-            // Add new markers
-            markers.forEach(markerData => {
-                const marker = new window.google.maps.Marker({
+            markersRef.current = markers.map((markerData) => (
+                new googleMaps.Marker({
                     position: { lat: markerData.lat, lng: markerData.lng },
                     map: mapInstance,
                     title: markerData.title,
                     icon: markerData.icon,
-                });
-                markersRef.current.push(marker);
-            });
+                })
+            ));
+
+            return () => {
+                markersRef.current.forEach(marker => marker.setMap(null));
+                markersRef.current = [];
+            };
         }
     }, [mapInstance, markers]);
 

@@ -211,7 +211,7 @@ interface HospitalCardProps {
 /** Props for a component displaying a panel to manage bookings. */
 interface BookingPanelProps {
 	/** Animation properties for smooth transitions. */
-	fadeIn: any; //  Replace 'any' with a specific animation type if using a library like React Spring.
+	fadeIn: unknown;
 	/** Currently selected specialty. */
 	selectedSpecialty: string;
 	/** ID of the currently selected hospital. */

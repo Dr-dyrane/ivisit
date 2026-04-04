@@ -12,7 +12,7 @@ interface ListCardProps<TData, TValue> {
     data: TData[]
 }
 
-export function ListCard<TData extends Record<string, any>, TValue>({
+export function ListCard<TData extends Record<string, unknown>, TValue>({
     columns,
     data,
 }: ListCardProps<TData, TValue>) {

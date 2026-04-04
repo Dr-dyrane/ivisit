@@ -1,14 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { login, register, logout } from '../auth/auth';
 
+const getErrorMessage = (error: unknown) =>
+  error instanceof Error ? error.message : 'An unexpected error occurred';
+
 export const loginUser = createAsyncThunk(
   'auth/login',
   async (credentials: { email: string; password: string; provider?: string; providerId?: string }, { rejectWithValue }) => {
     try {
       const user = await login(credentials);
       return user;
-    } catch (error: any) {
-      return rejectWithValue(error.message);
+    } catch (error) {
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -19,8 +22,8 @@ export const registerUser = createAsyncThunk(
     try {
       const user = await register(userData);
       return user;
-    } catch (error: any) {
-      return rejectWithValue(error.message);
+    } catch (error) {
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -30,8 +33,8 @@ export const logoutUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await logout();
-    } catch (error: any) {
-      return rejectWithValue(error.message);
+    } catch (error) {
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );

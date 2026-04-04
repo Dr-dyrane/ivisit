@@ -30,7 +30,7 @@ export const GridBackground: React.FC<GridBackgroundProps> = ({
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [showMask]);
+  }, [showMask, theme]);
 
   return (
     <div 

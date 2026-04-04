@@ -3,7 +3,7 @@ import { useState } from 'react';
 export function useBookingState() {
   const [selectedSpecialty, setSelectedSpecialty] = useState<string>('General Care');
   const [selectedHospital, setSelectedHospital] = useState<string | null>(null);
-  const [userLocation, setUserLocation] = useState<[number, number] | null>([-74.006, 40.7128]);
+  const [userLocation] = useState<[number, number] | null>([-74.006, 40.7128]);
 
   const handleSpecialtySelect = (specialty: string) => {
     setSelectedSpecialty(specialty);

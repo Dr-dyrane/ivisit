@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bed, MapPin, Clock, Star, ChevronRight, Activity, ShieldCheck } from 'lucide-react';
+import { Bed, MapPin, Clock, Star, ChevronRight, ShieldCheck } from 'lucide-react';
 import { Button } from '../ui/Button';
 import ImageWithFallback from '../ui/ImageWithFallback';
 

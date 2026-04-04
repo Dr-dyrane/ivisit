@@ -22,6 +22,36 @@ export function InteractiveFlow({ mode, autoStartKey = 0 }: InteractiveFlowProps
     const desktopRef = useRef<HTMLDivElement>(null);
     const lastAutoStartKey = useRef(0);
 
+    const handleConnect = React.useCallback(() => {
+        setIsConnecting(true);
+
+        setTimeout(() => {
+            setIsConnecting(false);
+            setIsActive(true);
+            if (mode === 'emergency') {
+                setStep('map');
+            }
+
+            if (mode === 'bed') {
+                setTimeout(() => {
+                    setIsReserved(true);
+                }, 3000);
+            }
+        }, 1200);
+
+        if (window.innerWidth < 1280 && desktopRef.current) {
+            setTimeout(() => {
+                desktopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1800);
+        }
+
+        setTimeout(() => {
+            setIsActive(false);
+            setIsReserved(false);
+            setStep('welcome');
+        }, 12000);
+    }, [mode]);
+
     // Reset when mode changes
     React.useEffect(() => {
         setIsActive(false);
@@ -37,41 +67,7 @@ export function InteractiveFlow({ mode, autoStartKey = 0 }: InteractiveFlowProps
 
         lastAutoStartKey.current = autoStartKey;
         handleConnect();
-    }, [autoStartKey, isActive, isConnecting, mode, step]);
-
-    const handleConnect = () => {
-        setIsConnecting(true);
-
-        // Wait for connection simulation (Loop 1)
-        setTimeout(() => {
-            setIsConnecting(false);
-            setIsActive(true); // Loop 2 (Desktop starts sync)
-            if (mode === 'emergency') {
-                setStep('map');
-            }
-
-            // Loop 3: Staggered success for Bed Booking
-            if (mode === 'bed') {
-                setTimeout(() => {
-                    setIsReserved(true);
-                }, 3000); // Wait for desktop map transition
-            }
-        }, 1200);
-
-        // Smooth scroll to desktop view on mobile
-        if (window.innerWidth < 1280 && desktopRef.current) {
-            setTimeout(() => {
-                desktopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 1800);
-        }
-
-        // Auto-reset
-        setTimeout(() => {
-            setIsActive(false);
-            setIsReserved(false);
-            setStep('welcome');
-        }, 12000); // Extended reset time for longer flow
-    };
+    }, [autoStartKey, handleConnect, isActive, isConnecting, mode, step]);
 
     return (
         <div className="flex flex-col xl:flex-row items-center justify-center gap-8 xl:gap-16 w-full max-w-[1360px] mx-auto">
