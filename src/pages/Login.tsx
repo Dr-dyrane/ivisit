@@ -12,7 +12,7 @@ import { Card } from '@/components/ui/Card';
 import { useTheme } from '@/providers/ThemeContext';
 import { ShieldCheck, Lock, User, Satellite, Activity } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
-import { getAppDownloadLink } from '@/constants/appLinks';
+import { getAppDownloadLink, openAppDownloadLink } from '@/constants/appLinks';
 
 const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -99,6 +99,11 @@ const Login: React.FC = () => {
     }
   };
 
+  const handleDemoAccess = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    openAppDownloadLink('expo-preview');
+  };
+
   return (
     <div ref={sectionRef} className="relative min-h-screen flex items-center justify-center bg-transparent overflow-hidden group py-12 sm:py-24">
       {/* Smarty Blur Background */}
@@ -154,6 +159,7 @@ const Login: React.FC = () => {
               href={getAppDownloadLink('expo-preview')}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleDemoAccess}
               className="text-sm font-light text-muted-foreground uppercase tracking-[0.15em] hover:text-primary transition-colors cursor-pointer"
             >
               Instant Demo Access

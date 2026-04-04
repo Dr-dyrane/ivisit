@@ -12,31 +12,35 @@ const IOS_EXPO_GO_STORE_URL = 'https://apps.apple.com/app/expo-go/id982107779';
 const ANDROID_EXPO_GO_STORE_URL =
   'https://play.google.com/store/apps/details?id=host.exp.exponent';
 
-const getPlatformExpoProductionLink = () => {
+const getClientPlatform = () => {
   if (typeof navigator === 'undefined') {
-    return ANDROID_PRODUCTION_UPDATE_URL;
+    return 'android';
   }
 
   const userAgent = navigator.userAgent || '';
-  const isIOS = /iPad|iPhone|iPod|Macintosh/i.test(userAgent);
+  const isAppleMobile =
+    /iPad|iPhone|iPod/i.test(userAgent) ||
+    (/Macintosh/i.test(userAgent) && navigator.maxTouchPoints > 1);
   const isAndroid = /Android/i.test(userAgent);
 
-  if (isIOS) return IOS_PRODUCTION_UPDATE_URL;
-  if (isAndroid) return ANDROID_PRODUCTION_UPDATE_URL;
+  if (isAppleMobile) return 'ios';
+  if (isAndroid) return 'android';
+  return 'desktop';
+};
+
+const getPlatformExpoProductionLink = () => {
+  const platform = getClientPlatform();
+
+  if (platform === 'ios') return IOS_PRODUCTION_UPDATE_URL;
+  if (platform === 'android') return ANDROID_PRODUCTION_UPDATE_URL;
   return ANDROID_PRODUCTION_UPDATE_URL;
 };
 
 const getPlatformExpoPreviewLink = () => {
-  if (typeof navigator === 'undefined') {
-    return ANDROID_PREVIEW_UPDATE_URL;
-  }
+  const platform = getClientPlatform();
 
-  const userAgent = navigator.userAgent || '';
-  const isIOS = /iPad|iPhone|iPod|Macintosh/i.test(userAgent);
-  const isAndroid = /Android/i.test(userAgent);
-
-  if (isIOS) return IOS_PREVIEW_UPDATE_URL;
-  if (isAndroid) return ANDROID_PREVIEW_UPDATE_URL;
+  if (platform === 'ios') return IOS_PREVIEW_UPDATE_URL;
+  if (platform === 'android') return ANDROID_PREVIEW_UPDATE_URL;
   return ANDROID_PREVIEW_UPDATE_URL;
 };
 
@@ -63,18 +67,14 @@ export const APP_DOWNLOAD_LINKS = {
 export const EXPO_GO_INSTALL_URL = 'https://expo.dev/go';
 
 export const getExpoGoInstallLink = () => {
-  if (typeof navigator === 'undefined') {
-    return EXPO_GO_INSTALL_URL;
-  }
+  const platform = getClientPlatform();
 
-  const userAgent = navigator.userAgent || '';
-  const isIOS = /iPad|iPhone|iPod|Macintosh/i.test(userAgent);
-  const isAndroid = /Android/i.test(userAgent);
-
-  if (isIOS) return IOS_EXPO_GO_STORE_URL;
-  if (isAndroid) return ANDROID_EXPO_GO_STORE_URL;
+  if (platform === 'ios') return IOS_EXPO_GO_STORE_URL;
+  if (platform === 'android') return ANDROID_EXPO_GO_STORE_URL;
   return EXPO_GO_INSTALL_URL;
 };
+
+export const isDesktopClient = () => getClientPlatform() === 'desktop';
 
 export const getAppDownloadLink = (environment = 'production') => {
   switch (environment.toLowerCase()) {
@@ -91,6 +91,27 @@ export const getAppDownloadLink = (environment = 'production') => {
     default:
       return APP_DOWNLOAD_LINKS.DEFAULT;
   }
+};
+
+export const openAppDownloadLink = (environment = 'production') => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  const url = getAppDownloadLink(environment);
+  const isDeepLink = /^exp:\/\//i.test(url);
+
+  if (isDeepLink) {
+    if (!isDesktopClient()) {
+      window.location.assign(url);
+      return;
+    }
+
+    window.open(getExpoGoInstallLink(), '_blank', 'noopener,noreferrer');
+    return;
+  }
+
+  window.open(url, '_blank', 'noopener,noreferrer');
 };
 
 export default APP_DOWNLOAD_LINKS;

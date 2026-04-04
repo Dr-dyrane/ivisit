@@ -21,7 +21,9 @@ interface PreviewBridgeProps {
   onOpenChange: (open: boolean) => void;
   onInstallExpo: () => void;
   onOpenPreview: () => void;
-  mode?: 'default' | 'continue';
+  onCopyPageLink: () => void;
+  copyStatus?: 'idle' | 'copied' | 'error';
+  mode?: 'default' | 'continue' | 'desktop';
 }
 
 export default function PreviewBridge({
@@ -29,6 +31,8 @@ export default function PreviewBridge({
   onOpenChange,
   onInstallExpo,
   onOpenPreview,
+  onCopyPageLink,
+  copyStatus = 'idle',
   mode = 'default',
 }: PreviewBridgeProps) {
   const [isMobile, setIsMobile] = useState(false);
@@ -44,6 +48,26 @@ export default function PreviewBridge({
   }, []);
 
   const isContinueMode = mode === 'continue';
+  const isDesktopMode = mode === 'desktop';
+  const title = isDesktopMode
+    ? 'Continue on your phone'
+    : isContinueMode
+      ? 'Open iVisit'
+      : 'Open iVisit preview';
+  const description = isDesktopMode
+    ? 'Expo preview opens from a phone browser. Install Expo Go, then continue on your phone.'
+    : isContinueMode
+      ? 'Continue in Expo Go.'
+      : 'Install Expo Go once to continue.';
+  const helperText = isDesktopMode
+    ? copyStatus === 'copied'
+      ? 'Page link copied. Open it on your phone, then tap Try the App.'
+      : copyStatus === 'error'
+        ? 'Could not copy the page link. Open this page on your phone to continue.'
+        : 'Use the same page on your phone to launch the preview.'
+    : isContinueMode
+      ? 'Ready when you are.'
+      : 'One-time setup.';
 
   const bridgeBody = (
       <div className="rounded-[2rem] bg-gradient-to-b from-background via-background to-secondary/15 p-6 sm:p-8">
@@ -55,45 +79,45 @@ export default function PreviewBridge({
           {isMobile ? (
             <DrawerHeader className="p-0 text-left">
               <DrawerTitle className="text-2xl font-black tracking-[-0.04em] text-foreground">
-                {isContinueMode ? 'Open iVisit' : 'Open iVisit preview'}
+                {title}
               </DrawerTitle>
               <DrawerDescription className="mt-3 text-base leading-relaxed text-muted-foreground">
-                {isContinueMode ? 'Continue in Expo Go.' : 'Install Expo Go once to continue.'}
+                {description}
               </DrawerDescription>
             </DrawerHeader>
           ) : (
             <DialogHeader className="text-left">
               <DialogTitle className="text-2xl font-black tracking-[-0.04em] text-foreground">
-                {isContinueMode ? 'Open iVisit' : 'Open iVisit preview'}
+                {title}
               </DialogTitle>
               <DialogDescription className="mt-3 text-base leading-relaxed text-muted-foreground">
-                {isContinueMode ? 'Continue in Expo Go.' : 'Install Expo Go once to continue.'}
+                {description}
               </DialogDescription>
             </DialogHeader>
           )}
         </div>
 
       <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-        {isContinueMode ? 'Ready when you are.' : 'One-time setup.'}
+        {helperText}
       </p>
 
       <div className="mt-8 flex flex-col gap-3">
         <Button
-          variant={isContinueMode ? 'ghost' : 'accent'}
+          variant={isContinueMode || isDesktopMode ? 'ghost' : 'accent'}
           size="lg"
           onClick={onInstallExpo}
-          className={`w-full rounded-full ${isContinueMode ? 'border-0 bg-secondary/35 text-foreground hover:bg-secondary/50 dark:bg-white/10 dark:hover:bg-white/15' : 'border-0'}`}
+          className={`w-full rounded-full ${isContinueMode || isDesktopMode ? 'border-0 bg-secondary/35 text-foreground hover:bg-secondary/50 dark:bg-white/10 dark:hover:bg-white/15' : 'border-0'}`}
         >
           Install Expo Go
         </Button>
         <Button
-          variant={isContinueMode ? 'accent' : 'ghost'}
+          variant={isDesktopMode || isContinueMode ? 'accent' : 'ghost'}
           size="lg"
-          onClick={onOpenPreview}
-          className={`w-full rounded-full ${isContinueMode ? 'border-0' : 'bg-secondary/35 text-foreground hover:bg-secondary/50 dark:bg-white/10 dark:hover:bg-white/15'}`}
+          onClick={isDesktopMode ? onCopyPageLink : onOpenPreview}
+          className={`w-full rounded-full ${isDesktopMode || isContinueMode ? 'border-0' : 'bg-secondary/35 text-foreground hover:bg-secondary/50 dark:bg-white/10 dark:hover:bg-white/15'}`}
         >
-          <ExpoMark className="h-5 w-5" />
-          Open iVisit
+          {!isDesktopMode && <ExpoMark className="h-5 w-5" />}
+          {isDesktopMode ? (copyStatus === 'copied' ? 'Link Copied' : 'Copy Page Link') : 'Open iVisit'}
         </Button>
       </div>
     </div>

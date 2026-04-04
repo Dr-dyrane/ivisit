@@ -7,7 +7,11 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import { getAppDownloadLink, getExpoGoInstallLink } from '@/constants/appLinks';
+import {
+  getExpoGoInstallLink,
+  isDesktopClient,
+  openAppDownloadLink,
+} from '@/constants/appLinks';
 import PreviewBridge from './PreviewBridge';
 
 interface PreviewBridgeContextValue {
@@ -21,13 +25,16 @@ const PREVIEW_INSTALL_TS_KEY = 'ivisit-preview-install-ts';
 
 export function PreviewBridgeProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'error'>('idle');
   const [previewStep, setPreviewStep] = useState<'default' | 'installing' | 'ready'>(() => {
     if (typeof window === 'undefined') return 'default';
     const stored = window.localStorage.getItem(PREVIEW_STEP_KEY);
     return stored === 'installing' || stored === 'ready' ? stored : 'default';
   });
+  const isDesktopPreview = isDesktopClient();
 
   const openPreviewBridge = useCallback(() => {
+    setCopyStatus('idle');
     setIsOpen(true);
   }, []);
 
@@ -48,9 +55,37 @@ export function PreviewBridgeProvider({ children }: { children: ReactNode }) {
 
   const handleOpenPreview = useCallback(() => {
     updatePreviewStep('ready');
-    window.open(getAppDownloadLink('expo-preview'), '_blank', 'noopener,noreferrer');
+    openAppDownloadLink('expo-preview');
     setIsOpen(false);
   }, [updatePreviewStep]);
+
+  const handleCopyPageLink = useCallback(async () => {
+    if (typeof window === 'undefined') return;
+
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(window.location.href);
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = window.location.href;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'absolute';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        const didCopy = document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        if (!didCopy) {
+          throw new Error('Copy failed');
+        }
+      }
+
+      setCopyStatus('copied');
+    } catch {
+      setCopyStatus('error');
+    }
+  }, []);
 
   useEffect(() => {
     const promoteInstallReturn = () => {
@@ -83,9 +118,10 @@ export function PreviewBridgeProvider({ children }: { children: ReactNode }) {
   const value = useMemo(
     () => ({
       openPreviewBridge,
-      previewCtaLabel: previewStep === 'ready' ? 'Open iVisit' : 'Try the App',
+      previewCtaLabel:
+        !isDesktopPreview && previewStep === 'ready' ? 'Open iVisit' : 'Try the App',
     }),
-    [openPreviewBridge, previewStep]
+    [isDesktopPreview, openPreviewBridge, previewStep]
   );
 
   return (
@@ -96,7 +132,9 @@ export function PreviewBridgeProvider({ children }: { children: ReactNode }) {
         onOpenChange={setIsOpen}
         onInstallExpo={handleInstallExpo}
         onOpenPreview={handleOpenPreview}
-        mode={previewStep === 'ready' ? 'continue' : 'default'}
+        onCopyPageLink={handleCopyPageLink}
+        copyStatus={copyStatus}
+        mode={isDesktopPreview ? 'desktop' : previewStep === 'ready' ? 'continue' : 'default'}
       />
     </PreviewBridgeContext.Provider>
   );
