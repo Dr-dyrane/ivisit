@@ -14,22 +14,22 @@ export default function ProtocolFlow() {
     {
       icon: <PhoneCall className="w-5 h-5 text-primary" />,
       label: 'Request',
-      description: 'Start help fast.'
+      description: 'Ask for help in seconds.'
     },
     {
       icon: <MapPinned className="w-5 h-5 text-primary" />,
       label: 'Share',
-      description: 'Send your location.'
+      description: 'Let responders find you quickly.'
     },
     {
       icon: <Route className="w-5 h-5 text-primary" />,
       label: 'Track',
-      description: 'Follow the response.'
+      description: 'Follow help on the way.'
     },
     {
       icon: <CheckCircle2 className="w-5 h-5 text-primary" />,
       label: 'Coordinate',
-      description: 'Prepare the next step.'
+      description: 'Know where to go next.'
     }
   ];
 
@@ -66,7 +66,7 @@ export default function ProtocolFlow() {
       <Container className="relative z-10">
         <div className="text-center mb-12">
           <div className="mb-6 inline-flex items-center rounded-full bg-background/75 px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-muted-foreground shadow-[0_16px_40px_rgba(15,23,42,0.06)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.18)]">
-            Live app preview
+            Live patient flow
           </div>
           <div className="relative z-20 mx-auto mb-8 grid max-w-3xl grid-cols-1 items-center gap-2 rounded-2xl bg-muted/[0.65] p-2 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur-md dark:bg-muted/30 dark:shadow-[0_24px_60px_rgba(0,0,0,0.24)] md:rounded-full sm:grid-cols-3">
             <button
@@ -77,7 +77,7 @@ export default function ProtocolFlow() {
                 }`}
             >
               <Ambulance className={`w-4 h-4 ${mode === 'emergency' ? 'text-destructive' : 'group-hover:text-destructive transition-colors'}`} />
-              Emergency help
+              Request help
             </button>
             <button
               onClick={() => handleModeChange('bed')}
@@ -87,7 +87,7 @@ export default function ProtocolFlow() {
                 }`}
             >
               <BedDouble className={`w-4 h-4 ${mode === 'bed' ? 'text-blue-500' : 'group-hover:text-blue-500 transition-colors'}`} />
-              Bed booking
+              Find a bed
             </button>
             <button
               onClick={() => handleModeChange('facility')}
@@ -107,9 +107,9 @@ export default function ProtocolFlow() {
 
           <p className="text-xl sm:text-2xl text-muted-foreground font-light max-w-3xl mx-auto leading-relaxed min-h-[84px] flex items-center justify-center transition-opacity duration-300 px-2">
             {mode === 'emergency'
-              ? 'Request, share, track, and coordinate.'
+              ? 'Start help fast, share where you are, and follow care on the way.'
               : mode === 'bed'
-                ? 'See bed availability before you move.'
+                ? 'Check bed options before you move and arrive with fewer delays.'
                 : 'See how care teams coordinate incoming patients more clearly.'
             }
           </p>

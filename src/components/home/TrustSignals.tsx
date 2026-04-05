@@ -17,18 +17,18 @@ const nextSteps = [
 const helpCards = [
   {
     icon: <Ambulance className="h-6 w-6" />,
-    label: 'Start help immediately',
-    description: 'Request an ambulance and share your location instantly.'
+    label: 'Request an ambulance',
+    description: 'Start help from your phone.'
   },
   {
     icon: <BedDouble className="h-6 w-6" />,
-    label: 'Know where to go',
-    description: 'See which hospitals have space before you move.'
+    label: 'Choose a hospital bed',
+    description: 'See where you can go next.'
   },
   {
     icon: <MapPinned className="h-6 w-6" />,
-    label: 'Stay visible',
-    description: 'Let responders find you without delays.'
+    label: 'Share your location',
+    description: 'Help responders find you faster.'
   }
 ];
 

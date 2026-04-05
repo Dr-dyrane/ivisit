@@ -1,106 +1,106 @@
-import React, { useState, useEffect } from 'react';
-import { Ambulance } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { SunMedium } from 'lucide-react';
 
 interface WelcomeScreenReplicaProps {
     onConnect: () => void;
     isActive: boolean;
 }
 
-export function WelcomeScreenReplica({ onConnect, isActive }: WelcomeScreenReplicaProps) {
-    const [swiped, setSwiped] = useState(false);
+const entryIntents = [
+    { key: 'emergency', label: 'Request Help', primary: true },
+    { key: 'bed', label: 'Find a hospital bed', primary: false },
+];
 
-    // Auto-reset when parent flow finishes
+export function WelcomeScreenReplica({ onConnect, isActive }: WelcomeScreenReplicaProps) {
+    const [isOpening, setIsOpening] = useState(false);
+
     useEffect(() => {
         if (!isActive) {
-            setSwiped(false);
+            setIsOpening(false);
         }
     }, [isActive]);
 
-    const handleSlide = () => {
-        if (!swiped) {
-            setSwiped(true);
-            // Wait for visual slide completion before triggering connect
-            setTimeout(() => {
-                onConnect();
-            }, 600);
-        }
+    const handleOpen = () => {
+        if (isOpening) return;
+        setIsOpening(true);
+        setTimeout(() => {
+            onConnect();
+        }, 500);
     };
 
     return (
-        <div className="flex flex-col h-full bg-gradient-to-b from-background via-secondary/10 to-background dark:from-[#0B0F1A] dark:via-[#111827] dark:to-[#0B0F1A] px-6 pt-16 pb-8 justify-between relative overflow-hidden transition-colors duration-500">
-            {/* Status Bar Spacer */}
-            <div className="h-6 w-full" />
+        <div className="relative flex h-full flex-col overflow-hidden bg-[linear-gradient(180deg,#fffcfb_0%,#fbf7f6_48%,#f6f2f1_100%)] px-7 pb-8 pt-7 text-slate-900 transition-colors duration-500 dark:bg-[linear-gradient(180deg,#0B0F1A_0%,#101827_50%,#0B0F1A_100%)] dark:text-white">
+            <div className="pointer-events-none absolute -left-14 -top-10 h-40 w-40 rounded-full bg-primary/[0.08] blur-3xl dark:bg-primary/[0.12]" />
+            <div className="pointer-events-none absolute -right-[4.5rem] bottom-10 h-52 w-52 rounded-full bg-slate-200/60 blur-3xl dark:bg-[#132038]/60" />
 
-            {/* Header */}
-            <div className="flex flex-col items-center mt-4">
-                <div className="relative">
-                    <div className="absolute inset-0 bg-red-600 blur-xl opacity-20 rounded-full" />
-                    <img
-                        src="/logo.png"
-                        alt="Logo"
-                        className="w-16 h-16 object-contain relative z-10 drop-shadow-2xl"
-                    />
-                </div>
-                <h1 className="text-3xl mt-4 font-black tracking-tighter text-foreground leading-none">
-                    iVisit<span className="text-[#DC2626]">.</span>
-                </h1>
-            </div>
-
-            {/* Hero Illustration Placeholder */}
-            <div className="my-2 sm:hidden h-12 xs:h-48" />
-            <div className="hidden sm:flex w-full h-48 flex items-center justify-center my-2 relative">
-                {/* Glow for 3D effect */}
-                <div className="absolute inset-0 bg-gradient-to-t from-red-500/10 to-transparent rounded-full blur-3xl transform scale-75" />
-
-                {/* Image Container */}
-                <div className="relative w-full h-full flex items-center justify-center z-10 transition-transform duration-700 hover:scale-105">
-                    <img
-                        src="/hero-illustration.png"
-                        className="w-[120%] h-[120%] object-contain drop-shadow-2xl"
-                        alt="Emergency Response"
-                        onError={(e) => e.currentTarget.style.display = 'none'}
-                    />
-                </div>
-            </div>
-
-            {/* Value Prop */}
-            <div className="w-full px-4 text-center space-y-4 pb-6">
-                <h2 className="text-[28px] leading-[32px] font-black tracking-tight text-foreground">
-                    Skip the wait. <span className="text-[#DC2626]">Get<br />care now.</span>
-                </h2>
-                <p className="text-[15px] text-muted-foreground font-medium leading-relaxed max-w-[260px] mx-auto">
-                    Book a bed. Get an ambulance. See a doctor. <span className="text-foreground font-bold">Right when you need it.</span>
-                </p>
-            </div>
-
-            {/* Slide Button */}
-            <div className="w-full mt-auto mb-6">
-                <div
-                    className="relative h-[56px] w-full bg-[#B91C1C] rounded-2xl overflow-hidden cursor-pointer group shadow-lg shadow-red-900/40 active:scale-[0.98] transition-all duration-200"
-                    onClick={handleSlide}
-                >
-                    {/* Base Text */}
-                    <div className={`absolute inset-0 flex items-center justify-center gap-3 z-10 transition-all duration-300 ${swiped ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
-                        <div className="relative">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>
-                            <Ambulance className="h-5 w-5 text-white relative z-10" />
-                        </div>
-                        <span className="text-[15px] font-bold tracking-wide text-white">Request Help</span>
-                    </div>
-
-                    {/* Connecting State Overlay */}
+            <div className="relative flex flex-1 flex-col">
+                <div className="relative flex items-start justify-center">
                     <div
-                        className={`absolute inset-0 bg-[#991B1B] flex items-center justify-center gap-2 z-20 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${swiped ? 'translate-y-0' : 'translate-y-full'}`}
+                        aria-hidden="true"
+                        className="absolute right-0 top-0 inline-flex h-11 w-11 items-center justify-center rounded-full border border-primary/15 bg-white/70 text-primary shadow-[0_12px_30px_rgba(15,23,42,0.08)] backdrop-blur-md transition-colors dark:bg-white/5 dark:text-white dark:shadow-[0_12px_30px_rgba(0,0,0,0.22)]"
                     >
-                        <span className="text-[15px] font-bold tracking-wide text-white/90">Connecting...</span>
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <SunMedium className="h-4 w-4" />
+                    </div>
+
+                    <div className="flex flex-col items-center pt-4 text-center">
+                        <div className="relative">
+                            <div className="absolute inset-0 rounded-full bg-red-600/12 blur-2xl dark:bg-red-600/20" />
+                            <img
+                                src="/logo.png"
+                                alt="iVisit"
+                                className="relative z-10 h-9 w-9 object-contain"
+                            />
+                        </div>
+                        <h1 className="mt-2 text-[26px] font-black tracking-[-0.06em] text-foreground">
+                            iVisit<span className="text-[#991B1B]">.</span>
+                        </h1>
                     </div>
                 </div>
-            </div>
 
-            <div className="text-center mb-2">
-                <p className="text-muted-foreground text-xs font-medium">
-                    Preview emergency requests and live response tracking.
+                <div className="mx-auto mt-2 flex w-full max-w-[214px] justify-center">
+                    <img
+                        src="/emergency-welcome.png"
+                        alt="Emergency response preview"
+                        className="h-auto w-full object-contain"
+                    />
+                </div>
+
+                <div className="mx-auto mt-5 w-full max-w-[282px] text-center">
+                    <h2 className="text-[33px] font-black leading-[0.94] tracking-[-0.05em] text-foreground">
+                        Get help now
+                    </h2>
+                    <p className="mt-3 text-[15px] font-semibold leading-6 text-muted-foreground">
+                        Connecting you to care nearby.
+                    </p>
+
+                    <div className="mt-3 inline-flex items-center rounded-full bg-white/78 px-4 py-2 text-[13px] font-bold text-slate-600 shadow-[0_12px_30px_rgba(15,23,42,0.05)] backdrop-blur-md dark:border dark:border-white/8 dark:bg-white/[0.05] dark:text-slate-100 dark:shadow-[0_12px_30px_rgba(0,0,0,0.18)]">
+                        Available near you
+                    </div>
+                </div>
+
+                <div className="mx-auto mt-auto flex w-full max-w-[298px] flex-col gap-2.5 pt-6">
+                    {entryIntents.map((intent) => (
+                        <button
+                            key={intent.key}
+                            onClick={handleOpen}
+                            className={`relative flex h-[50px] w-full items-center justify-center overflow-hidden rounded-[25px] px-5 text-[15px] font-extrabold transition-transform duration-200 active:scale-[0.985] ${intent.primary
+                                ? 'bg-[linear-gradient(135deg,#99110F_0%,#B81614_100%)] text-white shadow-[0_16px_36px_rgba(127,29,29,0.18)]'
+                                : 'bg-[linear-gradient(135deg,#F7F0F0_0%,#F2E6E6_100%)] text-slate-900 shadow-[0_14px_32px_rgba(15,23,42,0.05)] dark:bg-[linear-gradient(135deg,rgba(31,40,58,0.98)_0%,rgba(20,27,40,0.98)_100%)] dark:text-white dark:shadow-[0_14px_24px_rgba(0,0,0,0.18)]'
+                                }`}
+                        >
+                            <span
+                                aria-hidden="true"
+                                className={`pointer-events-none absolute left-px right-px top-px h-[42%] rounded-[24px] bg-white ${intent.primary ? 'opacity-[0.04]' : 'opacity-[0.10] dark:opacity-[0.06]'}`}
+                            />
+                            <span className={`transition-opacity duration-200 ${isOpening && intent.primary ? 'opacity-70' : 'opacity-100'}`}>
+                                {intent.label}
+                            </span>
+                        </button>
+                    ))}
+                </div>
+
+                <p className="mt-3 text-center text-[13px] font-semibold text-muted-foreground">
+                    Sign in
                 </p>
             </div>
         </div>

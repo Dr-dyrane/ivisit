@@ -66,12 +66,14 @@ Expected:
 Check:
 
 - live product preview feels real, not theatrical
+- `How it works` begins on the same first screen users see in the app
 - headings and labels remain human-readable
 - emergency flow remains primary
 
 Expected:
 
 - live preview is framed as product proof
+- first-screen preview matches current app welcome copy and action hierarchy
 - no fake enterprise dashboard energy
 
 ### 4. Provider Positioning

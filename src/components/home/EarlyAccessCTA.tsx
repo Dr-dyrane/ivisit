@@ -29,7 +29,7 @@ export default function EarlyAccessCTA() {
                 Keep iVisit within reach when you need it.
               </h2>
               <p className="mt-6 max-w-2xl text-lg sm:text-xl font-light text-muted-foreground leading-relaxed lg:max-w-3xl">
-                Open the iVisit preview on your phone and keep the app ready when you need it.
+                Open iVisit on web, phone, or tablet and keep it ready when you need it.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:items-center sm:justify-center lg:items-start lg:justify-start">

@@ -73,7 +73,7 @@ export default function Hero() {
               </Button>
             </div>
             <p className="mt-4 text-sm text-muted-foreground">
-              Live on web, mobile, and tablet
+              Open on web, phone, or tablet
             </p>
           </animated.div>
         </Container>

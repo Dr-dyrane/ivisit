@@ -66,8 +66,19 @@ export function InteractiveFlow({ mode, autoStartKey = 0 }: InteractiveFlowProps
         if (isActive || isConnecting || step !== 'welcome') return;
 
         lastAutoStartKey.current = autoStartKey;
-        handleConnect();
+        const timer = window.setTimeout(() => {
+            handleConnect();
+        }, 900);
+
+        return () => window.clearTimeout(timer);
     }, [autoStartKey, handleConnect, isActive, isConnecting, mode, step]);
+
+    const previewLabel =
+        mode === 'emergency'
+            ? 'Start here'
+            : mode === 'bed'
+                ? 'Then choose'
+                : 'Preview';
 
     return (
         <div className="flex flex-col xl:flex-row items-center justify-center gap-8 xl:gap-16 w-full max-w-[1360px] mx-auto">
@@ -128,7 +139,7 @@ export function InteractiveFlow({ mode, autoStartKey = 0 }: InteractiveFlowProps
 
                     {/* Inactive State (Try It) */}
                     <div className={`flex flex-col xl:flex-row items-center gap-4 transition-all duration-500 ${!isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-75 absolute pointer-events-none'}`}>
-                        <span className="text-sm xl:text-base text-gray-400 font-medium">Preview</span>
+                        <span className="text-sm xl:text-base text-gray-400 font-medium">{previewLabel}</span>
                         <div className="rotate-90 xl:rotate-0 bg-primary/10 rounded-full p-2.5 text-primary/60">
                             <ArrowRight className="w-5 h-5 xl:w-6 xl:h-6" />
                         </div>
