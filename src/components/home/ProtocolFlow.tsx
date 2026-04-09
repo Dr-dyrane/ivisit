@@ -1,40 +1,42 @@
 import { useEffect, useRef, useState } from 'react';
+import { ArrowRight, CheckCircle2, MapPinned, PhoneCall, Route } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { Section } from '../ui/Section';
+import { Button } from '../ui/Button';
+import { usePreviewBridge } from '../layout/marketing/PreviewBridgeProvider';
 import { InteractiveFlow } from './transparency/InteractiveFlow';
-import { Ambulance, BedDouble, Building2, CheckCircle2, MapPinned, PhoneCall, Route } from 'lucide-react';
 
 export default function ProtocolFlow() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [mode, setMode] = useState<'emergency' | 'bed' | 'facility'>('emergency');
-  const [hasInteracted, setHasInteracted] = useState(false);
   const [autoStartKey, setAutoStartKey] = useState(0);
+  const [hasAutoStarted, setHasAutoStarted] = useState(false);
+  const { openPreviewBridge, previewCtaLabel } = usePreviewBridge();
 
   const flowHighlights = [
     {
-      icon: <PhoneCall className="w-5 h-5 text-primary" />,
-      label: 'Request',
-      description: 'Ask for help in seconds.'
+      icon: <PhoneCall className="h-5 w-5 text-primary" />,
+      label: 'Open',
+      description: 'Start the live help screen without bouncing between steps.'
     },
     {
-      icon: <MapPinned className="w-5 h-5 text-primary" />,
-      label: 'Share',
-      description: 'Let responders find you quickly.'
+      icon: <MapPinned className="h-5 w-5 text-primary" />,
+      label: 'Confirm',
+      description: 'Share where help should start so the right team can move.'
     },
     {
-      icon: <Route className="w-5 h-5 text-primary" />,
-      label: 'Track',
-      description: 'Follow help on the way.'
+      icon: <Route className="h-5 w-5 text-primary" />,
+      label: 'Follow',
+      description: 'See the route, the hospital, and the next move in one place.'
     },
     {
-      icon: <CheckCircle2 className="w-5 h-5 text-primary" />,
-      label: 'Coordinate',
-      description: 'Know where to go next.'
+      icon: <CheckCircle2 className="h-5 w-5 text-primary" />,
+      label: 'Arrive',
+      description: 'Reach real care with less delay and clearer coordination.'
     }
   ];
 
   useEffect(() => {
-    if (!sectionRef.current || hasInteracted) return;
+    if (!sectionRef.current || hasAutoStarted) return;
     if (typeof window === 'undefined') return;
 
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -42,84 +44,57 @@ export default function ProtocolFlow() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting || hasInteracted) return;
-        setAutoStartKey(1);
+        if (!entry.isIntersecting || hasAutoStarted) return;
+        setAutoStartKey((current) => current + 1);
+        setHasAutoStarted(true);
         observer.disconnect();
       },
-      { threshold: 0.5 }
+      { threshold: 0.45 }
     );
 
     observer.observe(sectionRef.current);
 
     return () => observer.disconnect();
-  }, [hasInteracted]);
-
-  const handleModeChange = (nextMode: 'emergency' | 'bed' | 'facility') => {
-    setHasInteracted(true);
-    setMode(nextMode);
-  };
+  }, [hasAutoStarted]);
 
   return (
-    <Section id="how-it-works" ref={sectionRef} className="relative flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-transparent via-secondary/10 to-transparent py-12 sm:py-24 xl:min-h-screen">
-      <div className={`absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-20 pointer-events-none transition-colors duration-1000 ${mode === 'bed' ? 'via-blue-500/5' : mode === 'facility' ? 'via-emerald-500/5' : ''}`} />
+    <Section id="how-it-works" ref={sectionRef} className="relative flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-transparent via-secondary/10 to-transparent py-16 sm:py-24 xl:min-h-screen">
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-20" />
 
       <Container className="relative z-10">
-        <div className="text-center mb-12">
+        <div className="mx-auto mb-12 max-w-4xl text-center">
           <div className="mb-6 inline-flex items-center rounded-full bg-background/75 px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-muted-foreground shadow-[0_16px_40px_rgba(15,23,42,0.06)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.18)]">
-            Live patient flow
-          </div>
-          <div className="relative z-20 mx-auto mb-8 grid max-w-3xl grid-cols-1 items-center gap-2 rounded-2xl bg-muted/[0.65] p-2 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur-md dark:bg-muted/30 dark:shadow-[0_24px_60px_rgba(0,0,0,0.24)] md:rounded-full sm:grid-cols-3">
-            <button
-              onClick={() => handleModeChange('emergency')}
-              className={`flex items-center justify-center gap-2 px-6 py-3 rounded-[20px] md:rounded-full text-sm font-bold transition-all duration-300 relative group ${mode === 'emergency'
-                ? 'scale-100 bg-background text-foreground shadow-md'
-                : 'text-muted-foreground hover:text-foreground hover:bg-background/50'
-                }`}
-            >
-              <Ambulance className={`w-4 h-4 ${mode === 'emergency' ? 'text-destructive' : 'group-hover:text-destructive transition-colors'}`} />
-              Request help
-            </button>
-            <button
-              onClick={() => handleModeChange('bed')}
-              className={`flex items-center justify-center gap-2 px-6 py-3 rounded-[20px] md:rounded-full text-sm font-bold transition-all duration-300 relative group ${mode === 'bed'
-                ? 'scale-100 bg-background text-foreground shadow-md'
-                : 'text-muted-foreground hover:text-foreground hover:bg-background/50'
-                }`}
-            >
-              <BedDouble className={`w-4 h-4 ${mode === 'bed' ? 'text-blue-500' : 'group-hover:text-blue-500 transition-colors'}`} />
-              Find a bed
-            </button>
-            <button
-              onClick={() => handleModeChange('facility')}
-              className={`flex items-center justify-center gap-2 px-6 py-3 rounded-[20px] md:rounded-full text-sm font-bold transition-all duration-300 relative group ${mode === 'facility'
-                ? 'scale-100 bg-background text-foreground shadow-md'
-                : 'text-muted-foreground hover:text-foreground hover:bg-background/50'
-                }`}
-            >
-              <Building2 className={`w-4 h-4 ${mode === 'facility' ? 'text-emerald-500' : 'group-hover:text-emerald-500 transition-colors'}`} />
-              Facilities
-            </button>
+            How iVisit works
           </div>
 
-          <h2 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-0.06em] text-foreground mb-6 leading-[0.9]">
-            How it works
+          <h2 className="text-5xl font-black leading-[0.9] tracking-[-0.06em] text-foreground sm:text-6xl md:text-7xl">
+            One calm flow when every minute matters.
           </h2>
 
-          <p className="text-xl sm:text-2xl text-muted-foreground font-light max-w-3xl mx-auto leading-relaxed min-h-[84px] flex items-center justify-center transition-opacity duration-300 px-2">
-            {mode === 'emergency'
-              ? 'Start help fast, share where you are, and follow care on the way.'
-              : mode === 'bed'
-                ? 'Check bed options before you move and arrive with fewer delays.'
-                : 'See how care teams coordinate incoming patients more clearly.'
-            }
+          <p className="mx-auto mt-6 max-w-3xl px-2 text-xl font-light leading-relaxed text-muted-foreground sm:text-2xl">
+            Open iVisit, confirm your location, and move toward real help from one live screen.
           </p>
+
+          <div className="mt-8 flex flex-col items-center justify-center gap-3">
+            <Button
+              variant="accent"
+              size="lg"
+              onClick={openPreviewBridge}
+              showOverlay={true}
+              className="w-full rounded-full border-0 px-8 py-6 text-sm shadow-2xl shadow-primary/20 sm:w-auto"
+            >
+              <span>{previewCtaLabel}</span>
+              <ArrowRight className="h-4 w-4 opacity-70" />
+            </Button>
+            <p className="text-sm text-muted-foreground">Open the live iVisit app</p>
+          </div>
         </div>
 
         <div className="w-full">
-          <InteractiveFlow mode={mode} autoStartKey={autoStartKey} />
+          <InteractiveFlow mode="emergency" autoStartKey={autoStartKey} />
         </div>
 
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {flowHighlights.map((item) => (
             <div
               key={item.label}

@@ -6,10 +6,7 @@ interface WelcomeScreenReplicaProps {
     isActive: boolean;
 }
 
-const entryIntents = [
-    { key: 'emergency', label: 'Request Help', primary: true },
-    { key: 'bed', label: 'Find a hospital bed', primary: false },
-];
+const PRIMARY_CTA_LABEL = 'Continue';
 
 export function WelcomeScreenReplica({ onConnect, isActive }: WelcomeScreenReplicaProps) {
     const [isOpening, setIsOpening] = useState(false);
@@ -70,7 +67,7 @@ export function WelcomeScreenReplica({ onConnect, isActive }: WelcomeScreenRepli
                         Get help now
                     </h2>
                     <p className="mt-3 text-[15px] font-semibold leading-6 text-muted-foreground">
-                        Connecting you to care nearby.
+                        Fast help nearby.
                     </p>
 
                     <div className="mt-3 inline-flex items-center rounded-full bg-white/78 px-4 py-2 text-[13px] font-bold text-slate-600 shadow-[0_12px_30px_rgba(15,23,42,0.05)] backdrop-blur-md dark:border dark:border-white/8 dark:bg-white/[0.05] dark:text-slate-100 dark:shadow-[0_12px_30px_rgba(0,0,0,0.18)]">
@@ -79,24 +76,18 @@ export function WelcomeScreenReplica({ onConnect, isActive }: WelcomeScreenRepli
                 </div>
 
                 <div className="mx-auto mt-auto flex w-full max-w-[298px] flex-col gap-2.5 pt-6">
-                    {entryIntents.map((intent) => (
-                        <button
-                            key={intent.key}
-                            onClick={handleOpen}
-                            className={`relative flex h-[50px] w-full items-center justify-center overflow-hidden rounded-[25px] px-5 text-[15px] font-extrabold transition-transform duration-200 active:scale-[0.985] ${intent.primary
-                                ? 'bg-[linear-gradient(135deg,#99110F_0%,#B81614_100%)] text-white shadow-[0_16px_36px_rgba(127,29,29,0.18)]'
-                                : 'bg-[linear-gradient(135deg,#F7F0F0_0%,#F2E6E6_100%)] text-slate-900 shadow-[0_14px_32px_rgba(15,23,42,0.05)] dark:bg-[linear-gradient(135deg,rgba(31,40,58,0.98)_0%,rgba(20,27,40,0.98)_100%)] dark:text-white dark:shadow-[0_14px_24px_rgba(0,0,0,0.18)]'
-                                }`}
-                        >
-                            <span
-                                aria-hidden="true"
-                                className={`pointer-events-none absolute left-px right-px top-px h-[42%] rounded-[24px] bg-white ${intent.primary ? 'opacity-[0.04]' : 'opacity-[0.10] dark:opacity-[0.06]'}`}
-                            />
-                            <span className={`transition-opacity duration-200 ${isOpening && intent.primary ? 'opacity-70' : 'opacity-100'}`}>
-                                {intent.label}
-                            </span>
-                        </button>
-                    ))}
+                    <button
+                        onClick={handleOpen}
+                        className="relative flex h-[52px] w-full items-center justify-center overflow-hidden rounded-[26px] bg-[linear-gradient(135deg,#99110F_0%,#B81614_100%)] px-5 text-[15px] font-extrabold text-white shadow-[0_16px_36px_rgba(127,29,29,0.18)] transition-transform duration-200 active:scale-[0.985]"
+                    >
+                        <span
+                            aria-hidden="true"
+                            className="pointer-events-none absolute left-px right-px top-px h-[42%] rounded-[25px] bg-white opacity-[0.04]"
+                        />
+                        <span className={`transition-opacity duration-200 ${isOpening ? 'opacity-70' : 'opacity-100'}`}>
+                            {PRIMARY_CTA_LABEL}
+                        </span>
+                    </button>
                 </div>
 
                 <p className="mt-3 text-center text-[13px] font-semibold text-muted-foreground">
