@@ -75,10 +75,10 @@ export function WelcomeScreenReplica({ onConnect, isActive }: WelcomeScreenRepli
                     </div>
                 </div>
 
-                <div className="mx-auto mt-auto flex w-full max-w-[298px] flex-col gap-2.5 pt-6">
+                <div className="mx-auto mt-auto flex w-full max-w-[264px] flex-col gap-2.5 pt-6">
                     <button
                         onClick={handleOpen}
-                        className="relative flex h-[52px] w-full items-center justify-center overflow-hidden rounded-[26px] bg-[linear-gradient(135deg,#99110F_0%,#B81614_100%)] px-5 text-[15px] font-extrabold text-white shadow-[0_16px_36px_rgba(127,29,29,0.18)] transition-transform duration-200 active:scale-[0.985]"
+                        className="relative mx-auto flex h-[52px] w-full items-center justify-center overflow-hidden rounded-[26px] bg-[linear-gradient(135deg,#99110F_0%,#B81614_100%)] px-5 text-[15px] font-extrabold text-white shadow-[0_16px_36px_rgba(127,29,29,0.18)] transition-transform duration-200 active:scale-[0.985]"
                     >
                         <span
                             aria-hidden="true"
@@ -90,9 +90,6 @@ export function WelcomeScreenReplica({ onConnect, isActive }: WelcomeScreenRepli
                     </button>
                 </div>
 
-                <p className="mt-3 text-center text-[13px] font-semibold text-muted-foreground">
-                    Sign in
-                </p>
             </div>
         </div>
     );
