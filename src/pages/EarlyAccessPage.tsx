@@ -10,6 +10,9 @@ import EarlyAccessForm from '@/components/early-access/EarlyAccessForm';
 import SEOHead from '@/components/seo/SEOHead';
 import { supabase } from '@/lib/supabase';
 import { submitSubscriber } from '@/lib/api/subscribers';
+import { usePreviewBridge } from '@/components/layout/marketing/PreviewBridgeProvider';
+import { MobileFrame } from '@/components/home/transparency/MobileFrame';
+import { AmbulanceMapScreenReplica } from '@/components/home/transparency/AmbulanceMapScreenReplica';
 import { toast } from 'sonner';
 
 const premiumBenefits = [
@@ -78,6 +81,7 @@ export default function EarlyAccessPage() {
   const sectionRef = useRef<HTMLElement>(null);
   const formSectionRef = useRef<HTMLDivElement>(null);
   const [isPaid] = useState(searchParams.get('paid') === 'true');
+  const { openPreviewBridge, openExpoBridge } = usePreviewBridge();
 
   useEffect(() => {
     document.title = 'iVisit Early Access - Join the Revolution';
@@ -169,7 +173,7 @@ export default function EarlyAccessPage() {
       />
       <div className="min-h-screen bg-background">
         {isPaid && (
-          <div className="fixed top-0 left-0 right-0 z-40 bg-green-500/90 sm:bg-green-500/10 border-b border-green-500/30 backdrop-blur-none sm:backdrop-blur-sm shadow-lg sm:shadow-none">
+          <div className="fixed top-0 left-0 right-0 z-40 bg-green-500/90 sm:bg-green-500/10 backdrop-blur-none sm:backdrop-blur-sm shadow-lg sm:shadow-none">
             <div className="w-full mx-auto px-4 sm:px-6 py-2 sm:py-4 flex items-center gap-3 sm:gap-4">
               <Check className="h-5 w-5 sm:h-6 sm:w-6 text-white sm:text-green-500 flex-shrink-0" />
               <div className="min-w-0">
@@ -223,9 +227,9 @@ export default function EarlyAccessPage() {
                     style={fadeIn}
                     className="group"
                   >
-                    <Card className="p-12 h-full rounded-3xl bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 hover:border-primary/40 transition-all duration-500">
+                    <Card className="p-12 h-full rounded-3xl bg-secondary/20 hover:bg-secondary/40 transition-all duration-500">
                       <div className="flex items-start gap-6">
-                        <div className="p-4 rounded-2xl bg-background border border-border group-hover:scale-110 transition-transform duration-300">
+                        <div className="p-4 rounded-2xl bg-background group-hover:scale-110 transition-transform duration-300">
                           {benefit.icon}
                         </div>
                         <div className="flex-1">
@@ -240,6 +244,43 @@ export default function EarlyAccessPage() {
                     </Card>
                   </animated.div>
                 ))}
+              </div>
+            </div>
+          </Container>
+        </Section>
+
+        {/* Native Experience Section */}
+        <Section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-primary/5 -skew-y-6 transform origin-top-right" />
+          <Container className="relative z-10">
+            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+              <div className="flex-1 text-center lg:text-left">
+                <h2 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-0.06em] text-foreground mb-8 leading-[0.8]">
+                  Enjoy iVisit on<span className="text-primary"> Native.</span>
+                </h2>
+                <p className="text-xl sm:text-2xl font-light text-muted-foreground mb-12 leading-relaxed tracking-[-0.02em]">
+                  Experience the full power of our native platform. 
+                  Get pixel-perfect maps and cinematic animations before the public launch.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <Button
+                    variant="accent"
+                    size="lg"
+                    className="rounded-2xl text-lg font-bold py-6 px-12 transition-all duration-300 hover:scale-[1.02] shadow-xl shadow-primary/20"
+                    onClick={openExpoBridge}
+                  >
+                    Try iVisit in App Now
+                    <ArrowRight className="h-5 w-5 ml-2" />
+                  </Button>
+                </div>
+              </div>
+              <div className="flex-1 w-full flex justify-center lg:justify-end">
+                <div className="relative group scale-90 sm:scale-100 origin-center sm:origin-right">
+                  <div className="absolute -inset-8 bg-primary/10 rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                  <MobileFrame className="shadow-none">
+                    <AmbulanceMapScreenReplica isActive={true} />
+                  </MobileFrame>
+                </div>
               </div>
             </div>
           </Container>
@@ -266,8 +307,8 @@ export default function EarlyAccessPage() {
                   >
                     <Card
                       className={`p-12 h-full rounded-3xl transition-all duration-500 flex flex-col ${tier.highlighted
-                          ? 'border-primary/50 bg-primary/5 scale-[1.02]'
-                          : 'bg-secondary/30 border-border'
+                          ? 'bg-primary/10 scale-[1.02]'
+                          : 'bg-secondary/20'
                         }`}
                     >
                       <div className="mb-12">

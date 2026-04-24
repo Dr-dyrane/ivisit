@@ -52,11 +52,11 @@ export default function Footer() {
               <li><Link to="/#how-it-works" onClick={(e) => handleNavClick(e, '/#how-it-works')} className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">How It Works</Link></li>
               <li><Link to="/#providers" onClick={(e) => handleNavClick(e, '/#providers')} className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">For Facilities</Link></li>
               <li><Link to="/#updates" onClick={(e) => handleNavClick(e, '/#updates')} className="text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide font-light">Updates</Link></li>
-              <li className="mt-8 rounded-2xl bg-secondary/20 px-4 py-4">
+              {/* <li className="mt-8 rounded-2xl bg-secondary/20 px-4 py-4">
                 <p className="text-xs sm:text-sm font-light text-primary uppercase tracking-wider mb-1">Support</p>
                 <a href="mailto:support@ivisit.ng" className="block text-xs text-muted-foreground font-light hover:text-foreground transition-colors">support@ivisit.ng</a>
                 <a href="tel:+19517284218" className="block text-xs text-muted-foreground font-light hover:text-foreground transition-colors">+1 951 728 4218</a>
-              </li>
+              </li> */}
             </ul>
           </div>
 

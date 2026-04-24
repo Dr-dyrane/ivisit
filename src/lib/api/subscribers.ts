@@ -16,7 +16,8 @@ export interface SubscriberResponse {
  */
 export const submitSubscriber = async (
   email: string,
-  type: 'free' | 'paid' = 'free'
+  type: 'free' | 'paid' = 'free',
+  intent?: 'google_play_closed_testing' | string
 ): Promise<SubscriberResponse> => {
   try {
     // Validate email
@@ -32,7 +33,11 @@ export const submitSubscriber = async (
     // Insert subscriber
     const { data, error } = await supabase
       .from('subscribers')
-      .insert([{ email, type }])
+      .insert([{ 
+        email, 
+        type,
+        metadata: intent ? { intent } : undefined
+      }])
       .select();
 
     if (error) {

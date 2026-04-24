@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Mail, CheckCircle2, AlertCircle, X } from 'lucide-react';
+import { Mail, CheckCircle2, AlertCircle, X, ChevronRight } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { submitSubscriber } from '@/lib/api/subscribers';
 import { toast } from 'sonner';
@@ -15,6 +15,7 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
   const [isFocused, setIsFocused] = useState(false);
+  const [closedTesting, setClosedTesting] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -22,7 +23,11 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
     setLoading(true);
     setStatus('idle');
 
-    const result = await submitSubscriber(email, 'free');
+    const result = await submitSubscriber(
+      email, 
+      'free', 
+      closedTesting ? 'google_play_closed_testing' : undefined
+    );
 
     if (result.success) {
       setStatus('success');
@@ -38,7 +43,6 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
 
     setLoading(false);
   };
-
 
   const clearInput = () => {
     setEmail('');
@@ -131,15 +135,36 @@ export default function EarlyAccessForm({ onSuccess, variant = 'default' }: Earl
           )}
         </div>
 
+        {/* Closed Testing Opt-in */}
+        <div 
+          className={`flex items-center gap-3 p-4 rounded-2xl transition-all duration-300 cursor-pointer ${
+            closedTesting 
+              ? 'bg-primary/10' 
+              : 'bg-secondary/40 hover:bg-secondary/60'
+          }`}
+          onClick={() => setClosedTesting(!closedTesting)}
+        >
+          <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-all duration-200 ${
+            closedTesting ? 'bg-primary' : 'bg-background'
+          }`}>
+            {closedTesting && <CheckCircle2 className="h-3 w-3 text-white" />}
+          </div>
+          <div className="flex-1">
+            <p className="text-sm font-bold text-foreground leading-none mb-1">Google Play Closed Testing</p>
+            <p className="text-[11px] text-muted-foreground/60">I want to be among the first 12 Android testers.</p>
+          </div>
+        </div>
+
         {/* Submit Button */}
         <Button
           type="submit"
           variant="accent"
           size="lg"
           disabled={loading || status === 'success'}
-          className="w-full rounded-2xl text-base font-bold transition-all duration-200 hover:scale-[1.02]"
+          className="w-full rounded-2xl text-base font-bold transition-all duration-200 hover:scale-[1.02] group"
         >
-          {loading ? 'Subscribing...' : 'Get Early Access'}
+          <span>{loading ? 'Subscribing...' : 'Get Early Access'}</span>
+          <ChevronRight className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
         </Button>
 
         {status === 'success' && (

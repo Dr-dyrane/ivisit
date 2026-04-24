@@ -14,7 +14,7 @@ const IOS_EXPO_GO_STORE_URL = 'https://apps.apple.com/app/expo-go/id982107779';
 const ANDROID_EXPO_GO_STORE_URL =
   'https://play.google.com/store/apps/details?id=host.exp.exponent';
 
-const getClientPlatform = () => {
+export const getClientPlatform = () => {
   if (typeof navigator === 'undefined') {
     return 'android';
   }
@@ -76,6 +76,14 @@ export const getExpoGoInstallLink = () => {
 };
 
 export const isDesktopClient = () => getClientPlatform() === 'desktop';
+
+export const getAppDownloadLinks = (environment = 'production') => {
+  return {
+    expoGo: getExpoGoInstallLink(),
+    expoLink: getAppDownloadLink(environment === 'production' ? 'expo-production' : 'expo-preview'),
+    web: APP_WEB_URL
+  };
+};
 
 export const getAppDownloadLink = (environment = 'production') => {
   switch (environment.toLowerCase()) {

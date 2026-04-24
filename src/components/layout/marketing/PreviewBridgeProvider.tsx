@@ -3,33 +3,46 @@ import {
   useCallback,
   useMemo,
   useContext,
+  useState,
   type ReactNode,
 } from 'react';
 import { openAppDownloadLink } from '@/constants/appLinks';
+import { PreviewBridge } from './PreviewBridge';
 
 interface PreviewBridgeContextValue {
   openPreviewBridge: () => void;
+  openExpoBridge: () => void;
   previewCtaLabel: 'Open iVisit';
 }
 
 const PreviewBridgeContext = createContext<PreviewBridgeContextValue | null>(null);
 
 export function PreviewBridgeProvider({ children }: { children: ReactNode }) {
+  const [isExpoOpen, setIsExpoOpen] = useState(false);
+
   const openPreviewBridge = useCallback(() => {
+    // Landing page CTAs go directly to the web app
     openAppDownloadLink('production');
+  }, []);
+
+  const openExpoBridge = useCallback(() => {
+    // Guided native experience
+    setIsExpoOpen(true);
   }, []);
 
   const value = useMemo(
     () => ({
       openPreviewBridge,
-      previewCtaLabel: 'Open iVisit',
+      openExpoBridge,
+      previewCtaLabel: 'Open iVisit' as const,
     }),
-    [openPreviewBridge]
+    [openPreviewBridge, openExpoBridge]
   );
 
   return (
     <PreviewBridgeContext.Provider value={value}>
       {children}
+      <PreviewBridge isOpen={isExpoOpen} onOpenChange={setIsExpoOpen} />
     </PreviewBridgeContext.Provider>
   );
 }

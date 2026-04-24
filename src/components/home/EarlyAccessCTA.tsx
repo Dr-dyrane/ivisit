@@ -10,7 +10,7 @@ import { usePreviewBridge } from '../layout/marketing/PreviewBridgeProvider';
 
 export default function EarlyAccessCTA() {
   const sectionRef = useRef<HTMLElement>(null);
-  const { openPreviewBridge, previewCtaLabel } = usePreviewBridge();
+  const { openPreviewBridge, openExpoBridge, previewCtaLabel } = usePreviewBridge();
 
   const fadeIn = useSpring({
     from: { opacity: 0, transform: 'translateY(20px)' },
@@ -32,22 +32,37 @@ export default function EarlyAccessCTA() {
                 Open iVisit on web, phone, or tablet and keep it ready when you need it.
               </p>
 
-              <div className="mt-8 flex flex-col gap-3 sm:items-center sm:justify-center lg:items-start lg:justify-start">
-                <Button
-                  variant="accent"
-                  size="lg"
-                  onClick={openPreviewBridge}
-                  showOverlay={true}
-                  className="w-full rounded-full border-0 px-8 py-6 text-sm shadow-2xl shadow-primary/20 sm:w-auto"
-                >
-                  <div className="flex items-center justify-center gap-3">
-                    <span>{previewCtaLabel}</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </div>
-                </Button>
-                <p className="text-sm text-muted-foreground">
-                  Open the live iVisit app
-                </p>
+              <div className="mt-8 flex flex-col gap-6 sm:items-center sm:justify-center lg:items-start lg:justify-start">
+                <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                  <Button
+                    variant="accent"
+                    size="lg"
+                    onClick={openPreviewBridge}
+                    showOverlay={true}
+                    className="w-full rounded-full border-0 px-8 py-6 text-sm shadow-2xl shadow-primary/20 sm:w-auto"
+                  >
+                    <div className="flex items-center justify-center gap-3">
+                      <span>{previewCtaLabel}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    onClick={openExpoBridge}
+                    className="w-full rounded-full px-8 py-6 text-sm bg-secondary/40 hover:bg-secondary/60 sm:w-auto"
+                  >
+                    Try Native Preview
+                  </Button>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <a href="/early-access" className="text-xs text-primary/60 hover:text-primary transition-colors flex items-center justify-center gap-1 group">
+                    View Early Access Program
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </div>
               </div>
             </div>
 
