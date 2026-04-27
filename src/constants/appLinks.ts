@@ -7,9 +7,9 @@ const IOS_PRODUCTION_UPDATE_URL =
   'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/ef8c4d5b-4938-4697-b4e8-14010a9965e9';
 
 const ANDROID_PREVIEW_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/0e7ee6f7-d581-4a03-a709-42a350bccc40';
+  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/4281bce7-a176-4c4e-8d4c-ec5fd2f01024';
 const IOS_PREVIEW_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/0e7ee6f7-d581-4a03-a709-42a350bccc40';
+  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/4281bce7-a176-4c4e-8d4c-ec5fd2f01024';
 const IOS_EXPO_GO_STORE_URL = 'https://apps.apple.com/app/expo-go/id982107779';
 const ANDROID_EXPO_GO_STORE_URL =
   'https://play.google.com/store/apps/details?id=host.exp.exponent';
