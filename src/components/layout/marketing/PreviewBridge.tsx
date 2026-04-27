@@ -12,7 +12,7 @@ interface PreviewBridgeProps {
 }
 
 export function PreviewBridge({ isOpen, onOpenChange }: PreviewBridgeProps) {
-  const links = getAppDownloadLinks('production');
+  const links = getAppDownloadLinks('preview');
   const [isMobile, setIsMobile] = React.useState(false);
 
   React.useEffect(() => {
