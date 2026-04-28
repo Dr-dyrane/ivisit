@@ -33,7 +33,10 @@ export function PreviewBridge({ isOpen, onOpenChange }: PreviewBridgeProps) {
         <div className="flex items-center justify-between p-6 rounded-3xl bg-secondary/30 hover:bg-secondary/50 transition-colors">
           <div className="flex items-center gap-4">
             <Download className="w-5 h-5 text-primary/60" />
-            <span className="text-sm font-medium text-foreground/80">Install Expo Go</span>
+            <div className="flex flex-col gap-0.5">
+              <span className="text-sm font-medium text-foreground/80">Install Expo Go</span>
+              <span className="text-[11px] text-muted-foreground/50">Then come back and tap Open iVisit</span>
+            </div>
           </div>
           <Button 
             variant="ghost" 
