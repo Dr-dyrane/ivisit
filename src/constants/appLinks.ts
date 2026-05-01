@@ -7,9 +7,9 @@ const IOS_PRODUCTION_UPDATE_URL =
   'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/ef8c4d5b-4938-4697-b4e8-14010a9965e9';
 
 const ANDROID_PREVIEW_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/239408e5-4b33-45b1-b2d5-febff8715285';
+  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/0b5ce8d7-da3f-4481-aab5-15ec66a623ed';
 const IOS_PREVIEW_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/239408e5-4b33-45b1-b2d5-febff8715285';
+  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/0b5ce8d7-da3f-4481-aab5-15ec66a623ed';
 const IOS_EXPO_GO_STORE_URL = 'https://apps.apple.com/app/expo-go/id982107779';
 const ANDROID_EXPO_GO_STORE_URL =
   'https://play.google.com/store/apps/details?id=host.exp.exponent';
@@ -57,7 +57,7 @@ export const APP_DOWNLOAD_LINKS = {
   EXPO_PRODUCTION_IOS: IOS_PRODUCTION_UPDATE_URL,
   EXPO_PRODUCTION: getPlatformExpoProductionLink(),
 
-  // Expo preview update links from the March 27, 2026 preview OTA publish.
+  // Expo preview update links from the April 29, 2026 staging OTA publish.
   EXPO_PREVIEW_ANDROID: ANDROID_PREVIEW_UPDATE_URL,
   EXPO_PREVIEW_IOS: IOS_PREVIEW_UPDATE_URL,
   EXPO_PREVIEW: getPlatformExpoPreviewLink(),
@@ -133,4 +133,3 @@ export const openAppDownloadLink = (environment = 'production') => {
 };
 
 export default APP_DOWNLOAD_LINKS;
-
