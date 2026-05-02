@@ -90,6 +90,7 @@ This repo currently uses:
 
 - `npm run build` for production build verification
 - manual responsive review for sponsor-facing UX
+- Vercel Analytics mounted once at `src/main.tsx` via `@vercel/analytics/react`
 
 Product hardening and deeper runtime confidence live primarily in `../ivisit-app`, where the emergency and visit flows are validated against the live contract surface.
 

@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { registerSW } from 'virtual:pwa-register';
 import App from './App';
 import './index.css';
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from '@vercel/analytics/react';
 
 const container = document.getElementById('root');
 if (!container) throw new Error('Failed to find the root element');
@@ -20,6 +20,7 @@ registerSW({ immediate: true });
 createRoot(container).render(
   <React.StrictMode>
     <App />
+    {/* Mount Vercel Analytics once at the app root for the Vite/React site. */}
     <Analytics />
   </React.StrictMode>
 );
