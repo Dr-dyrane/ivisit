@@ -6,6 +6,10 @@ const ANDROID_PRODUCTION_UPDATE_URL =
 const IOS_PRODUCTION_UPDATE_URL =
   'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/ef8c4d5b-4938-4697-b4e8-14010a9965e9';
 
+// Staging OTA links should stay as plain Expo deep links:
+//   exp://u.expo.dev/<project-id>/group/<update-group-id>
+// Do not wrap them in exp+://expo-development-client or an encoded https URL here;
+// this website entry point is meant to hand off directly to Expo/Expo Go.
 const ANDROID_PREVIEW_UPDATE_URL =
   'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/78a9fb2f-5d8c-4da8-9ceb-56589d6c0c39';
 const IOS_PREVIEW_UPDATE_URL =
