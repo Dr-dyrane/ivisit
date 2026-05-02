@@ -11,9 +11,9 @@ const IOS_PRODUCTION_UPDATE_URL =
 // Do not wrap them in exp+://expo-development-client or an encoded https URL here;
 // this website entry point is meant to hand off directly to Expo/Expo Go.
 const ANDROID_PREVIEW_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/78a9fb2f-5d8c-4da8-9ceb-56589d6c0c39';
+  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/5730bb0d-9b03-4780-ad33-20ff4c25c91b';
 const IOS_PREVIEW_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/78a9fb2f-5d8c-4da8-9ceb-56589d6c0c39';
+  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/5730bb0d-9b03-4780-ad33-20ff4c25c91b';
 const IOS_EXPO_GO_STORE_URL = 'https://apps.apple.com/app/expo-go/id982107779';
 const ANDROID_EXPO_GO_STORE_URL =
   'https://play.google.com/store/apps/details?id=host.exp.exponent';
@@ -61,7 +61,7 @@ export const APP_DOWNLOAD_LINKS = {
   EXPO_PRODUCTION_IOS: IOS_PRODUCTION_UPDATE_URL,
   EXPO_PRODUCTION: getPlatformExpoProductionLink(),
 
-  // Expo preview update links from the April 29, 2026 staging OTA publish.
+  // Expo preview update links from the latest staging OTA publish.
   EXPO_PREVIEW_ANDROID: ANDROID_PREVIEW_UPDATE_URL,
   EXPO_PREVIEW_IOS: IOS_PREVIEW_UPDATE_URL,
   EXPO_PREVIEW: getPlatformExpoPreviewLink(),
