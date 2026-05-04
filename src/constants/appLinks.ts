@@ -10,10 +10,12 @@ const IOS_PRODUCTION_UPDATE_URL =
 //   exp://u.expo.dev/<project-id>/group/<update-group-id>
 // Do not wrap them in exp+://expo-development-client or an encoded https URL here;
 // this website entry point is meant to hand off directly to Expo/Expo Go.
+const APP_ID = 'a3777b70-b973-4b3b-ba59-ed32bf5662e0'
+const GROUP_ID = '27096123-8ad5-4fff-a8bc-c8b10adef26e'
 const ANDROID_PREVIEW_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/393e7606-4116-4e85-b86a-7099ddf8cf91';
+  `exp://u.expo.dev/${APP_ID}/group/${GROUP_ID}`;
 const IOS_PREVIEW_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/393e7606-4116-4e85-b86a-7099ddf8cf91';
+  `exp://u.expo.dev/${APP_ID}/group/${GROUP_ID}`;
 const IOS_EXPO_GO_STORE_URL = 'https://apps.apple.com/app/expo-go/id982107779';
 const ANDROID_EXPO_GO_STORE_URL =
   'https://play.google.com/store/apps/details?id=host.exp.exponent';
