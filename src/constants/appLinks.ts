@@ -11,7 +11,7 @@ const IOS_PRODUCTION_UPDATE_URL =
 // Do not wrap them in exp+://expo-development-client or an encoded https URL here;
 // this website entry point is meant to hand off directly to Expo/Expo Go.
 const APP_ID = 'a3777b70-b973-4b3b-ba59-ed32bf5662e0'
-const GROUP_ID = '4ff6d451-668a-4a47-9cd0-4562b276b82e' // 2026-05-14: Visit Detail Return + History Filter UI + Ambulance heading refactor
+const GROUP_ID = 'b51c015a-f9d3-4b41-ad33-6cdbf21393df' // 2026-05-14: Payment Method Expansion + Ambulance Route Heading
 const ANDROID_PREVIEW_UPDATE_URL =
   `exp://u.expo.dev/${APP_ID}/group/${GROUP_ID}`;
 const IOS_PREVIEW_UPDATE_URL =
