@@ -11,7 +11,7 @@ const IOS_PRODUCTION_UPDATE_URL =
 // Do not wrap them in exp+://expo-development-client or an encoded https URL here;
 // this website entry point is meant to hand off directly to Expo/Expo Go.
 const APP_ID = 'a3777b70-b973-4b3b-ba59-ed32bf5662e0'
-const GROUP_ID = '3b4f2f2e-12f0-47f1-859c-68f61af47da3' // 2026-05-15: Contact Dispatch hardening - fixes for service adapter, query keys, modal lifecycle, and UI cleanup
+const GROUP_ID = '4d0c046e-7747-4727-b081-ffb2a40d2ba2' // 2026-05-15: LOC-4 Cache determinism + LOC-2 Manual address validation
 const ANDROID_PREVIEW_UPDATE_URL =
   `exp://u.expo.dev/${APP_ID}/group/${GROUP_ID}`;
 const IOS_PREVIEW_UPDATE_URL =
