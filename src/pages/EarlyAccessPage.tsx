@@ -256,11 +256,11 @@ export default function EarlyAccessPage() {
             <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
               <div className="flex-1 text-center lg:text-left">
                 <h2 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-0.06em] text-foreground mb-8 leading-[0.8]">
-                  Enjoy iVisit on<span className="text-primary"> Native.</span>
+                  Get iVisit<span className="text-primary"> Now.</span>
                 </h2>
                 <p className="text-xl sm:text-2xl font-light text-muted-foreground mb-12 leading-relaxed tracking-[-0.02em]">
-                  Experience the full power of our native platform. 
-                  Get pixel-perfect maps and cinematic animations before the public launch.
+                  Download iVisit from the App Store or Google Play. 
+                  Pixel-perfect maps and cinematic animations, right on your phone.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button
@@ -269,7 +269,7 @@ export default function EarlyAccessPage() {
                     className="rounded-2xl text-lg font-bold py-6 px-12 transition-all duration-300 hover:scale-[1.02] shadow-xl shadow-primary/20"
                     onClick={openExpoBridge}
                   >
-                    Try iVisit in App Now
+                    Download iVisit
                     <ArrowRight className="h-5 w-5 ml-2" />
                   </Button>
                 </div>

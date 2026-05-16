@@ -3,6 +3,7 @@ import { Moon, Sun } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../../providers/ThemeContext';
 import { Button } from '../../ui/Button';
+import { StoreLinks } from '../../ui/StoreLinks';
 
 export default function Footer() {
   const { theme, toggleTheme } = useTheme();
@@ -72,7 +73,10 @@ export default function Footer() {
           </div>
 
           <div className="sm:col-span-2 lg:col-span-1">
-            <h3 className="font-light text-foreground uppercase tracking-[0.2em] text-xs sm:text-sm mb-8 sm:mb-12 opacity-60">Preferences</h3>
+            <h3 className="font-light text-foreground uppercase tracking-[0.2em] text-xs sm:text-sm mb-8 sm:mb-12 opacity-60">Get the App</h3>
+            <StoreLinks variant="compact" className="mb-8" />
+
+            <h3 className="font-light text-foreground uppercase tracking-[0.2em] text-xs sm:text-sm mb-6 opacity-60">Preferences</h3>
             <Button
               variant="ghost"
               onClick={toggleTheme}

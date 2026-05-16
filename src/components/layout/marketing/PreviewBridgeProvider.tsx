@@ -9,6 +9,9 @@ import {
 import { openAppDownloadLink } from '@/constants/appLinks';
 import { PreviewBridge } from './PreviewBridge';
 
+// PULLBACK NOTE: Replaced Expo bridge with App Store / Play Store bridge
+// OLD: openExpoBridge opened Expo Go deep link flow
+// NEW: openExpoBridge opens store download dialog
 interface PreviewBridgeContextValue {
   openPreviewBridge: () => void;
   openExpoBridge: () => void;

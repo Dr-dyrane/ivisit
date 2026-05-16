@@ -1,24 +1,12 @@
 // Centralized app download links - update once, use everywhere.
+// PULLBACK NOTE: Removed all Expo Go deep links (exp://u.expo.dev/...)
+// OLD: Expo Go OTA deep links for preview/production
+// NEW: Real App Store / Play Store links for production distribution
 export const APP_WEB_URL = 'https://app.ivisit.ng';
 
-const ANDROID_PRODUCTION_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/6d82a60c-ce2f-4b3f-af7f-bacb62397cb4';
-const IOS_PRODUCTION_UPDATE_URL =
-  'exp://u.expo.dev/a3777b70-b973-4b3b-ba59-ed32bf5662e0/group/ef8c4d5b-4938-4697-b4e8-14010a9965e9';
-
-// Staging OTA links should stay as plain Expo deep links:
-//   exp://u.expo.dev/<project-id>/group/<update-group-id>
-// Do not wrap them in exp+://expo-development-client or an encoded https URL here;
-// this website entry point is meant to hand off directly to Expo/Expo Go.
-const APP_ID = 'a3777b70-b973-4b3b-ba59-ed32bf5662e0'
-const GROUP_ID = '63dcc02a-1b3c-4f7e-825b-c680bd008b4b' // 2026-05-16: Preview - restore public preview access
-const ANDROID_PREVIEW_UPDATE_URL =
-  `exp://u.expo.dev/${APP_ID}/group/${GROUP_ID}`;
-const IOS_PREVIEW_UPDATE_URL =
-  `exp://u.expo.dev/${APP_ID}/group/${GROUP_ID}`;
-const IOS_EXPO_GO_STORE_URL = 'https://apps.apple.com/app/expo-go/id982107779';
-const ANDROID_EXPO_GO_STORE_URL =
-  'https://play.google.com/store/apps/details?id=host.exp.exponent';
+// Real store links — gate-free, anyone can download
+const IOS_APP_STORE_URL = 'https://apps.apple.com/app/ivisit/id6670428412';
+const ANDROID_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.dyrane.ivisit';
 
 export const getClientPlatform = () => {
   if (typeof navigator === 'undefined') {
@@ -36,59 +24,22 @@ export const getClientPlatform = () => {
   return 'desktop';
 };
 
-const getPlatformExpoProductionLink = () => {
+export const isDesktopClient = () => getClientPlatform() === 'desktop';
+
+/** Returns the platform-appropriate store link */
+export const getStoreLink = () => {
   const platform = getClientPlatform();
-
-  if (platform === 'ios') return IOS_PRODUCTION_UPDATE_URL;
-  if (platform === 'android') return ANDROID_PRODUCTION_UPDATE_URL;
-  return ANDROID_PRODUCTION_UPDATE_URL;
-};
-
-const getPlatformExpoPreviewLink = () => {
-  const platform = getClientPlatform();
-
-  if (platform === 'ios') return IOS_PREVIEW_UPDATE_URL;
-  if (platform === 'android') return ANDROID_PREVIEW_UPDATE_URL;
-  return ANDROID_PREVIEW_UPDATE_URL;
+  if (platform === 'ios') return IOS_APP_STORE_URL;
+  return ANDROID_PLAY_STORE_URL;
 };
 
 export const APP_DOWNLOAD_LINKS = {
   WEB: APP_WEB_URL,
   PRODUCTION: APP_WEB_URL,
-
-  // Preview Android artifact.
-  PREVIEW: 'https://expo.dev/artifacts/eas/oCFJSVracfx3x9HHmkscN.apk',
-
-  EXPO_PRODUCTION_ANDROID: ANDROID_PRODUCTION_UPDATE_URL,
-  EXPO_PRODUCTION_IOS: IOS_PRODUCTION_UPDATE_URL,
-  EXPO_PRODUCTION: getPlatformExpoProductionLink(),
-
-  // Expo preview update links from the latest staging OTA publish.
-  EXPO_PREVIEW_ANDROID: ANDROID_PREVIEW_UPDATE_URL,
-  EXPO_PREVIEW_IOS: IOS_PREVIEW_UPDATE_URL,
-  EXPO_PREVIEW: getPlatformExpoPreviewLink(),
-
+  IOS: IOS_APP_STORE_URL,
+  ANDROID: ANDROID_PLAY_STORE_URL,
+  STORE: getStoreLink(),
   DEFAULT: APP_WEB_URL
-};
-
-export const EXPO_GO_INSTALL_URL = 'https://expo.dev/go';
-
-export const getExpoGoInstallLink = () => {
-  const platform = getClientPlatform();
-
-  if (platform === 'ios') return IOS_EXPO_GO_STORE_URL;
-  if (platform === 'android') return ANDROID_EXPO_GO_STORE_URL;
-  return EXPO_GO_INSTALL_URL;
-};
-
-export const isDesktopClient = () => getClientPlatform() === 'desktop';
-
-export const getAppDownloadLinks = (environment = 'production') => {
-  return {
-    expoGo: getExpoGoInstallLink(),
-    expoLink: getAppDownloadLink(environment === 'production' ? 'expo-production' : 'expo-preview'),
-    web: APP_WEB_URL
-  };
 };
 
 export const getAppDownloadLink = (environment = 'production') => {
@@ -96,18 +47,16 @@ export const getAppDownloadLink = (environment = 'production') => {
     case 'web':
     case 'app':
       return APP_WEB_URL;
-    case 'preview':
-      return APP_DOWNLOAD_LINKS.PREVIEW;
+    case 'store':
+      return getStoreLink();
+    case 'ios':
+      return IOS_APP_STORE_URL;
+    case 'android':
+      return ANDROID_PLAY_STORE_URL;
     case 'production':
     case 'prod':
-      return APP_WEB_URL;
-    case 'expo-production':
-      return getPlatformExpoProductionLink();
-    case 'expo':
-    case 'expo-preview':
-      return getPlatformExpoPreviewLink();
     default:
-      return APP_DOWNLOAD_LINKS.DEFAULT;
+      return APP_WEB_URL;
   }
 };
 
@@ -117,25 +66,14 @@ export const openAppDownloadLink = (environment = 'production') => {
   }
 
   const url = getAppDownloadLink(environment);
-  const isDeepLink = /^exp:\/\//i.test(url);
-  const isHttpUrl = /^https?:\/\//i.test(url);
-
-  if (isDeepLink) {
-    if (!isDesktopClient()) {
-      window.location.assign(url);
-      return;
-    }
-
-    window.open(getExpoGoInstallLink(), '_blank', 'noopener,noreferrer');
-    return;
-  }
-
-  if (isHttpUrl) {
-    window.location.assign(url);
-    return;
-  }
-
   window.open(url, '_blank', 'noopener,noreferrer');
+};
+
+export const openStoreLink = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+  window.open(getStoreLink(), '_blank', 'noopener,noreferrer');
 };
 
 export default APP_DOWNLOAD_LINKS;

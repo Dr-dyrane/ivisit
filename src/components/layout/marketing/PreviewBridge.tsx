@@ -1,10 +1,10 @@
+// PULLBACK NOTE: Replaced Expo Go bridge with App Store / Play Store download bridge
+// OLD: ExpoMark logo, Expo Go install step, exp:// deep link "Open iVisit" step
+// NEW: Apple / Google store download buttons via shared StoreLinks component
 import React from 'react';
-import { Smartphone, Download, ExternalLink } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { Button } from '@/components/ui/Button';
-import ExpoMark from '@/components/ui/ExpoMark';
-import { getAppDownloadLinks } from '@/constants/appLinks';
+import { StoreLinks } from '@/components/ui/StoreLinks';
 
 interface PreviewBridgeProps {
   isOpen: boolean;
@@ -12,7 +12,6 @@ interface PreviewBridgeProps {
 }
 
 export function PreviewBridge({ isOpen, onOpenChange }: PreviewBridgeProps) {
-  const links = getAppDownloadLinks('preview');
   const [isMobile, setIsMobile] = React.useState(false);
 
   React.useEffect(() => {
@@ -23,46 +22,15 @@ export function PreviewBridge({ isOpen, onOpenChange }: PreviewBridgeProps) {
   }, []);
 
   const content = (
-    <div className="space-y-12 py-6">
-      <div className="flex justify-center">
-        <ExpoMark className="h-12 w-auto opacity-80" />
-      </div>
+    <div className="space-y-10 py-6">
+      <p className="text-center text-base font-light text-muted-foreground leading-relaxed">
+        Download iVisit from your app store and experience emergency healthcare at your fingertips.
+      </p>
 
-      <div className="space-y-4">
-        {/* Step 1: Install */}
-        <div className="flex items-center justify-between p-6 rounded-3xl bg-secondary/30 hover:bg-secondary/50 transition-colors">
-          <div className="flex items-center gap-4">
-            <Download className="w-5 h-5 text-primary/60" />
-            <div className="flex flex-col gap-0.5">
-              <span className="text-sm font-medium text-foreground/80">Install Expo Go</span>
-              <span className="text-[11px] text-muted-foreground/50">Then come back and tap Open iVisit</span>
-            </div>
-          </div>
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            className="text-[11px] uppercase tracking-widest font-black text-primary hover:bg-primary/10"
-            onClick={() => window.open(links.expoGo, '_blank')}
-          >
-            Get App
-          </Button>
-        </div>
-
-        {/* Step 2: Open */}
-        <div className="p-1 rounded-[2rem] bg-gradient-to-b from-primary/20 to-transparent">
-          <Button 
-            variant="accent" 
-            className="w-full h-16 rounded-[1.85rem] text-sm font-black uppercase tracking-widest shadow-2xl shadow-primary/20"
-            onClick={() => window.location.assign(links.expoLink)}
-          >
-            Open iVisit
-            <ExternalLink className="w-4 h-4 ml-3 opacity-60" />
-          </Button>
-        </div>
-      </div>
+      <StoreLinks />
 
       <p className="text-[10px] text-center text-muted-foreground/40 uppercase tracking-[0.2em] font-black">
-        Native Staging Environment
+        Available on iOS & Android
       </p>
     </div>
   );
@@ -73,7 +41,7 @@ export function PreviewBridge({ isOpen, onOpenChange }: PreviewBridgeProps) {
         <SheetContent side="bottom" className="border-0 bg-background/95 backdrop-blur-2xl p-8 rounded-t-[3rem]">
           <SheetHeader className="text-left mb-8">
             <SheetTitle className="text-3xl font-black tracking-[-0.05em] text-foreground">
-              Enjoy App Experience<span className="text-primary">.</span>
+              Get iVisit<span className="text-primary">.</span>
             </SheetTitle>
           </SheetHeader>
           {content}
@@ -87,7 +55,7 @@ export function PreviewBridge({ isOpen, onOpenChange }: PreviewBridgeProps) {
       <DialogContent className="max-w-md border-0 bg-background/95 backdrop-blur-2xl p-10 rounded-[3rem] shadow-2xl shadow-black/10 dark:shadow-black/50">
         <DialogHeader className="text-center mb-8">
           <DialogTitle className="text-4xl font-black tracking-[-0.08em] text-foreground">
-            Enjoy iVisit<span className="text-primary"> Native.</span>
+            Get iVisit<span className="text-primary">.</span>
           </DialogTitle>
         </DialogHeader>
         {content}

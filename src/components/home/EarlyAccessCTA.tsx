@@ -53,7 +53,7 @@ export default function EarlyAccessCTA() {
                     onClick={openExpoBridge}
                     className="w-full rounded-full px-8 py-6 text-sm bg-secondary/40 hover:bg-secondary/60 sm:w-auto"
                   >
-                    Try Native Preview
+                    Download App
                   </Button>
                 </div>
 
