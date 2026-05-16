@@ -1,8 +1,8 @@
-// PULLBACK NOTE: Store link buttons with real brand icons
-// OLD: Lucide Apple + Smartphone icons (generic)
-// NEW: react-icons FaApple + FaGooglePlay (real brand marks)
+// PULLBACK NOTE: Apple-grade store download badges
+// OLD: Row layout with floating "Get" label, generic sizing
+// NEW: Solid tinted pills — icon + micro label + store name, single tap target
 import { FaApple, FaGooglePlay } from 'react-icons/fa';
-import { getClientPlatform, APP_DOWNLOAD_LINKS } from '@/constants/appLinks';
+import { APP_DOWNLOAD_LINKS } from '@/constants/appLinks';
 import { cn } from '@/lib/utils';
 
 interface StoreLinksProps {
@@ -10,82 +10,78 @@ interface StoreLinksProps {
   variant?: 'default' | 'compact';
 }
 
-export function StoreLinks({ className, variant = 'default' }: StoreLinksProps) {
-  const platform = getClientPlatform();
-  const isCompact = variant === 'compact';
+const stores = [
+  {
+    name: 'App Store',
+    label: 'Download on the',
+    href: APP_DOWNLOAD_LINKS.IOS,
+    icon: FaApple,
+    ariaLabel: 'Download on the App Store',
+    iconSize: { default: 'w-7 h-7', compact: 'w-5 h-5' },
+  },
+  {
+    name: 'Google Play',
+    label: 'Get it on',
+    href: APP_DOWNLOAD_LINKS.ANDROID,
+    icon: FaGooglePlay,
+    ariaLabel: 'Get it on Google Play',
+    iconSize: { default: 'w-5 h-5', compact: 'w-4 h-4' },
+  },
+] as const;
 
-  const linkClass = cn(
-    'flex items-center justify-between rounded-2xl transition-colors min-w-0',
-    isCompact ? 'px-4 py-3' : 'p-5 rounded-3xl',
-    // PULLBACK NOTE: max-w caps button stretch on wide viewports
-    // OLD: no max-width, buttons stretched full container
-    // NEW: max-w-xs on default, uncapped on compact (footer column is narrow)
-    !isCompact && 'max-w-xs'
-  );
+export function StoreLinks({ className, variant = 'default' }: StoreLinksProps) {
+  const isCompact = variant === 'compact';
 
   return (
     <div
       className={cn(
-        // PULLBACK NOTE: Responsive layout per breakpoint
-        // OLD: always stacked (space-y-3)
-        // NEW: stacked on mobile, side-by-side when container allows (sm in footer)
-        isCompact
-          ? 'grid grid-cols-2 gap-2'
-          : 'flex flex-col gap-3',
+        'flex gap-3',
+        isCompact ? 'flex-row' : 'flex-col sm:flex-row',
         className
       )}
     >
-      {/* iOS — App Store */}
-      <a
-        href={APP_DOWNLOAD_LINKS.IOS}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Download on the App Store"
-        className={cn(
-          linkClass,
-          platform === 'ios'
-            ? 'bg-primary/10'
-            : 'bg-secondary/20 hover:bg-secondary/40'
-        )}
-      >
-        <div className="flex items-center gap-3 min-w-0">
-          <FaApple className={cn('flex-shrink-0 text-foreground/80', isCompact ? 'w-4 h-4' : 'w-5 h-5')} />
-          <span className={cn('font-medium text-foreground/80 truncate', isCompact ? 'text-xs' : 'text-sm')}>
-            {isCompact ? 'App Store' : 'App Store'}
-          </span>
-        </div>
-        {!isCompact && (
-          <span className="text-[11px] uppercase tracking-widest font-black text-primary flex-shrink-0 ml-3">
-            Get
-          </span>
-        )}
-      </a>
-
-      {/* Android — Google Play */}
-      <a
-        href={APP_DOWNLOAD_LINKS.ANDROID}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Get it on Google Play"
-        className={cn(
-          linkClass,
-          platform === 'android'
-            ? 'bg-primary/10'
-            : 'bg-secondary/20 hover:bg-secondary/40'
-        )}
-      >
-        <div className="flex items-center gap-3 min-w-0">
-          <FaGooglePlay className={cn('flex-shrink-0 text-foreground/80', isCompact ? 'w-3.5 h-3.5' : 'w-4 h-4')} />
-          <span className={cn('font-medium text-foreground/80 truncate', isCompact ? 'text-xs' : 'text-sm')}>
-            {isCompact ? 'Google Play' : 'Google Play'}
-          </span>
-        </div>
-        {!isCompact && (
-          <span className="text-[11px] uppercase tracking-widest font-black text-primary flex-shrink-0 ml-3">
-            Get
-          </span>
-        )}
-      </a>
+      {stores.map(({ name, label, href, icon: Icon, ariaLabel, iconSize }) => (
+        <a
+          key={name}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={ariaLabel}
+          className={cn(
+            'group flex items-center gap-3 rounded-2xl bg-foreground/90 dark:bg-white/10',
+            'hover:bg-foreground hover:dark:bg-white/15 active:scale-[0.97]',
+            'transition-all duration-150',
+            isCompact
+              ? 'px-4 py-2.5 flex-1 min-w-0'
+              : 'px-5 py-3.5'
+          )}
+        >
+          <Icon
+            className={cn(
+              'flex-shrink-0 text-background dark:text-foreground',
+              isCompact ? iconSize.compact : iconSize.default
+            )}
+          />
+          <div className="flex flex-col min-w-0">
+            <span
+              className={cn(
+                'text-background/70 dark:text-foreground/50 font-light leading-none',
+                isCompact ? 'text-[8px]' : 'text-[10px]'
+              )}
+            >
+              {label}
+            </span>
+            <span
+              className={cn(
+                'text-background dark:text-foreground font-semibold leading-tight truncate',
+                isCompact ? 'text-xs' : 'text-sm'
+              )}
+            >
+              {name}
+            </span>
+          </div>
+        </a>
+      ))}
     </div>
   );
 }
