@@ -16,8 +16,10 @@ const stores = [
     label: 'Download on the',
     href: APP_DOWNLOAD_LINKS.IOS,
     icon: FaApple,
-    ariaLabel: 'Download on the App Store',
+    ariaLabel: 'Coming soon on the App Store',
     iconSize: { default: 'w-6 h-6', compact: 'w-5 h-5' },
+    comingSoon: true,
+    badge: null,
   },
   {
     name: 'Google Play',
@@ -26,6 +28,8 @@ const stores = [
     icon: FaGooglePlay,
     ariaLabel: 'Get it on Google Play',
     iconSize: { default: 'w-[18px] h-[18px]', compact: 'w-4 h-4' },
+    comingSoon: false,
+    badge: 'Beta',
   },
 ] as const;
 
@@ -42,48 +46,80 @@ export function StoreLinks({ className, variant = 'default' }: StoreLinksProps) 
         className
       )}
     >
-      {stores.map(({ name, label, href, icon: Icon, ariaLabel, iconSize }) => (
-        <a
-          key={name}
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={ariaLabel}
-          className={cn(
-            'group flex items-center gap-4 rounded-2xl',
-            'bg-secondary/30 hover:bg-secondary/50',
-            'active:scale-[0.98] transition-all duration-150',
-            isCompact
-              ? 'px-4 py-3 flex-1 min-w-0'
-              : 'px-6 py-4'
-          )}
-        >
-          <Icon
+      {stores.map(({ name, label, href, icon: Icon, ariaLabel, iconSize, comingSoon, badge }) => {
+        const button = (
+          <div
+            aria-label={ariaLabel}
             className={cn(
-              'flex-shrink-0 text-foreground/70',
-              isCompact ? iconSize.compact : iconSize.default
+              'group flex items-center gap-4 rounded-2xl',
+              'bg-secondary/30 transition-all duration-150',
+              comingSoon
+                ? 'opacity-40 cursor-not-allowed select-none'
+                : 'hover:bg-secondary/50 active:scale-[0.98] cursor-pointer',
+              isCompact
+                ? 'px-4 py-3 flex-1 min-w-0'
+                : 'px-6 py-4'
             )}
-          />
-          <div className="flex flex-col min-w-0">
-            <span
+          >
+            <Icon
               className={cn(
-                'text-muted-foreground/60 font-light leading-none',
-                isCompact ? 'text-[8px]' : 'text-[10px]'
+                'flex-shrink-0 text-foreground/70',
+                isCompact ? iconSize.compact : iconSize.default
               )}
-            >
-              {label}
-            </span>
-            <span
-              className={cn(
-                'text-foreground/90 font-semibold leading-tight truncate',
-                isCompact ? 'text-xs' : 'text-sm'
-              )}
-            >
-              {name}
-            </span>
+            />
+            <div className="flex flex-col min-w-0">
+              <span
+                className={cn(
+                  'font-light leading-none',
+                  comingSoon ? 'text-muted-foreground/40' : 'text-muted-foreground/60',
+                  isCompact ? 'text-[8px]' : 'text-[10px]'
+                )}
+              >
+                {comingSoon ? 'Coming soon on' : label}
+              </span>
+              <span
+                className={cn(
+                  'font-semibold leading-tight truncate',
+                  comingSoon ? 'text-foreground/40' : 'text-foreground/90',
+                  isCompact ? 'text-xs' : 'text-sm'
+                )}
+              >
+                {name}
+              </span>
+            </div>
           </div>
-        </a>
-      ))}
+        );
+
+        return (
+          <div key={name} className={cn('flex items-center gap-1.5', isCompact ? 'flex-1 min-w-0' : '')}>
+            {comingSoon ? (
+              <div className={cn(isCompact ? 'flex-1 min-w-0' : 'w-full')}>{button}</div>
+            ) : (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(isCompact ? 'flex-1 min-w-0' : 'w-full')}
+              >
+                {button}
+              </a>
+            )}
+            {badge && (
+              <span
+                className={cn(
+                  'flex-shrink-0 rounded-full border border-foreground/10',
+                  'bg-foreground/[0.04] backdrop-blur-sm',
+                  'text-foreground/40 font-medium tracking-wide',
+                  'leading-none select-none',
+                  isCompact ? 'text-[7px] px-1.5 py-0.5' : 'text-[8px] px-2 py-1'
+                )}
+              >
+                {badge}
+              </span>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
